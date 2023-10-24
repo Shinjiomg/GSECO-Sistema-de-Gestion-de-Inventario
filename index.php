@@ -5,7 +5,7 @@ if(isset($_POST['btningresar']))
 	$dbhost="localhost";
 	$dbuser="root";
 	$dbpass="";
-	$dbname="sistema_inventario";
+	$dbname="inventario";
 	$conn=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 	$Usuario=$_POST['txtusuario'];
 	$Contraseña=$_POST['txtpassword'];
@@ -28,7 +28,7 @@ if(isset($_POST['btningresar']))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Inicio de Sesión</title>
+	<title>test</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
@@ -43,7 +43,7 @@ if(isset($_POST['btningresar']))
 		<div class="login-content">
 			<form method="POST">
 				<img src="img/avatar.svg">
-				<h2 class="title">BIENVENIDO</h2>
+				<h2 class="title">Iniciar Sesión</h2>
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>

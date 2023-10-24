@@ -30,7 +30,7 @@
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href="#" target="_blank">
+      <a class="navbar-brand m-0">
         <img src="./assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">Gestión de Metas</span>
       </a>
@@ -44,6 +44,14 @@
               <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Inicio</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="inicio.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Inventario</span>
           </a>
         </li>
       </ul>
@@ -66,7 +74,7 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Paginas</a></li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-8 text-white active" href="javascript:;">Páginas</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Inicio</li>
           </ol>
           <h6 class="font-weight-bolder text-white mb-0">Inicio</h6>
@@ -77,7 +85,7 @@
           <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
           <div class="input-group">
               <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="search" name ="buscar" class="form-control" placeholder="Buscar IMEI..." 
+              <input type="search" name ="buscar" class="form-control" placeholder="Buscar..." 
               value="<?= isset($_POST['buscar'])?htmlspecialchars($_POST['buscar']):'' ?>" >
             </div>
             </form>
@@ -85,14 +93,14 @@
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+              <a class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none"><?php echo $nombreUsuario; ?></span>
                 <div class="wrap">
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+              <a class="nav-link text-white p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
                   <i class="sidenav-toggler-line bg-white"></i>
                   <i class="sidenav-toggler-line bg-white"></i>
@@ -112,13 +120,13 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Numero de registros</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Número de registros</p>
                     <h5 class="font-weight-bolder">
                       <?php echo $Fila['registros']; ?>
                     </h5>
@@ -133,7 +141,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
@@ -154,7 +162,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+        <!-- <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
           <div class="card" style="height:89px">
             <div class="card-body p-3">
               <div class="row">
@@ -196,7 +204,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- buscador -->
 
@@ -209,16 +217,15 @@
                 <p class="mb-4">Lista de productos</p>
               </div>
 
-              <!--<form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+              <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
         <div class="search">
-        <input type="search" class="searchTerm" placeholder="Ingresa el IMEI" name="buscar"
+        <input type="search" class="searchTerm" placeholder="Buscar producto..." name="buscar"
         value="<?= isset($_POST['buscar'])?htmlspecialchars($_POST['buscar']):'' ?>" >
         <button type="submit" class="searchButton">
         <i class="fa fa-search"></i>
         </button>
         </div>
         </form>
--->
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
@@ -349,8 +356,8 @@
         </a>
         <!-- Sidenav Type -->
         <div class="mt-3">
-          <h6 class="mb-0">Color de la barra del menu</h6>
-          <p class="text-sm">Choose between 2 different sidenav types.</p>
+          <h6 class="mb-0">Color de la barra del menú</h6>
+          <p class="text-sm">Escoge entre dos temas del menú lateral.</p>
         </div>
         <div class="d-flex">
           <button class="btn bg-gradient-primary w-100 px-3 mb-2 active me-2" data-class="bg-white" onclick="sidebarType(this)">Blanco</button>

@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost","root","","sistema_inventario");
+$conn = new mysqli("localhost","root","","inventario");
 	
 	if($conn->connect_errno)
 	{
