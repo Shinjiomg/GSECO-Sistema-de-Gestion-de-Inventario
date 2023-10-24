@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost","id18764048_admin","qGE8!#{ozd53nPZk","id18764048_empresa1_1");
+$conn = new mysqli("localhost","root","","sistema_inventario");
 	
 	if($conn->connect_errno)
 	{

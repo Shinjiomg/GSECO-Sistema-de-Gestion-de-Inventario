@@ -3,20 +3,20 @@ session_start();
 if(isset($_POST['btningresar']))
 {
 	$dbhost="localhost";
-	$dbuser="id18764048_admin";
-	$dbpass="qGE8!#{ozd53nPZk";
-	$dbname="id18764048_empresa1_1";
+	$dbuser="root";
+	$dbpass="";
+	$dbname="sistema_inventario";
 	$conn=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 	$Usuario=$_POST['txtusuario'];
 	$Contraseña=$_POST['txtpassword'];
-	$query = mysqli_query($conn,"Select * from usuarios where Nombre = '$Usuario' and Contraseña = '$Contraseña'");
+	$query = mysqli_query($conn,"Select * from usuario where email = '$Usuario' and password = '$Contraseña'");
 	$nr=mysqli_num_rows($query);
 	if($nr != 0){
         while($row=mysqli_fetch_array($query)) {
-            if($Usuario == $row['Nombre'] && $Contraseña == $row['Contraseña'])
+            if($Usuario == $row['email'] && $Contraseña == $row['password'])
             {
 		        $_SESSION['nombredelusuario']=$Usuario;
-                $_SESSION['id_usuario']=$row['id_usuario'];
+                $_SESSION['id_usuario']=$row['id'];
 		        header("location:inicio.php");
             }
 	}

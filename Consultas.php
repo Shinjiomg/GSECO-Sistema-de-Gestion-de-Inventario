@@ -3,11 +3,11 @@
     include_once("conexion.php"); 
     $var_session = $_SESSION['id_usuario'];
     //Consulta para mostrar la informacion del usuario//
-    $queryUsuarios = mysqli_query($conn, "SELECT * FROM usuarios where id_usuario = $var_session");
+    $queryUsuarios = mysqli_query($conn, "SELECT * FROM usuario where id = $var_session");
     while($mostrar = mysqli_fetch_array($queryUsuarios))
     {
-        $idUsuario = $mostrar['id_usuario'];
-        $nombreUsuario = $mostrar['Nombre'];
+        $idUsuario = $mostrar['id'];
+        $nombreUsuario = $mostrar['email'];
     } 
     //Consulta para mostrar el Id Asignado con el que se identificara el registros//
     $query= mysqli_query($conn,"SELECT MAX(id_Producto+1) AS id FROM productos");
