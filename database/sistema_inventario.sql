@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2023 a las 03:03:55
+-- Tiempo de generación: 25-10-2023 a las 05:16:49
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,108 +24,101 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ciudad`
+-- Estructura de tabla para la tabla `articulo`
 --
 
-CREATE TABLE `ciudad` (
-  `Id_Ciudad` int(10) UNSIGNED NOT NULL,
-  `Ciudad` varchar(45) NOT NULL
+CREATE TABLE `articulo` (
+  `id_articulo` int(10) UNSIGNED NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `precio_venta` decimal(11,2) NOT NULL,
+  `stock` int(11) NOT NULL,
+  `descripcion` varchar(45) NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
+  `categoria_id_categoria` int(10) UNSIGNED NOT NULL,
+  `meta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cliente`
+-- Estructura de tabla para la tabla `categoria`
 --
 
-CREATE TABLE `cliente` (
-  `Id_cliente` int(10) UNSIGNED NOT NULL,
-  `Nombre` varchar(45) NOT NULL,
-  `Apellidos` varchar(45) NOT NULL,
-  `Telefono` varchar(12) NOT NULL,
-  `Correo` varchar(45) NOT NULL,
-  `Contraseña` varchar(45) NOT NULL,
-  `Dirección_Id_Dirección` int(10) UNSIGNED NOT NULL,
-  `Fecha_nacimiento` date NOT NULL,
-  `Sexo` enum('hombre','mujer','otro') NOT NULL
+CREATE TABLE `categoria` (
+  `id_categoria` int(10) UNSIGNED NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dirección`
+-- Estructura de tabla para la tabla `detalle_venta`
 --
 
-CREATE TABLE `dirección` (
-  `Id_Dirección` int(10) UNSIGNED NOT NULL,
-  `Dirección` varchar(45) NOT NULL,
-  `Ciudad_Id_Ciudad` int(10) UNSIGNED NOT NULL
+CREATE TABLE `detalle_venta` (
+  `id_detalle_venta` int(10) UNSIGNED NOT NULL,
+  `Venta_id_venta` int(10) UNSIGNED NOT NULL,
+  `Articulo_id_articulo` int(10) UNSIGNED NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empleado`
+-- Estructura de tabla para la tabla `rol`
 --
 
-CREATE TABLE `empleado` (
-  `Id_empleado` int(10) UNSIGNED NOT NULL,
-  `Nombre` varchar(45) NOT NULL,
-  `Apellidos` varchar(45) NOT NULL,
-  `Correo` varchar(45) NOT NULL,
-  `Contraseña` varchar(45) NOT NULL,
-  `Roles_Id_roles` int(10) UNSIGNED NOT NULL
+CREATE TABLE `rol` (
+  `id_rol` int(10) UNSIGNED NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id_rol`, `nombre`, `estado`) VALUES
+(1, 'admin', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `factura`
+-- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `factura` (
-  `idFactura` int(10) UNSIGNED NOT NULL,
-  `Fecha` date NOT NULL,
-  `Pedido_idPedido` int(10) UNSIGNED NOT NULL,
-  `Total` decimal(10,2) NOT NULL,
-  `Subtotal` decimal(10,2) NOT NULL,
-  `Empleado_Id_empleado` int(10) UNSIGNED NOT NULL
+CREATE TABLE `usuario` (
+  `id_usuario` int(10) UNSIGNED NOT NULL,
+  `nombres` varchar(45) NOT NULL,
+  `apellidos` varchar(45) NOT NULL,
+  `tipo_documento` varchar(45) NOT NULL,
+  `num_documento` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
+  `rol_id_rol` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombres`, `apellidos`, `tipo_documento`, `num_documento`, `email`, `password`, `estado`, `rol_id_rol`) VALUES
+(1, 'camilo', 'hernandez', 'CC', '1007159461', 'ah460218@gmail.com', '1234567', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pedido`
+-- Estructura de tabla para la tabla `venta`
 --
 
-CREATE TABLE `pedido` (
-  `idPedido` int(10) UNSIGNED NOT NULL,
-  `Cliente_Id_cliente` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `platillo`
---
-
-CREATE TABLE `platillo` (
-  `idPlatillo` int(10) UNSIGNED NOT NULL,
-  `Nombre_platillo` varchar(45) NOT NULL,
-  `Precio` decimal(10,2) NOT NULL,
-  `Descripción` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `roles`
---
-
-CREATE TABLE `roles` (
-  `Id_roles` int(10) UNSIGNED NOT NULL,
-  `Descripción` varchar(45) NOT NULL,
-  `Rol` enum('empleado','administrador') NOT NULL
+CREATE TABLE `venta` (
+  `id_venta` int(10) UNSIGNED NOT NULL,
+  `Usuario_id_usuario` int(10) UNSIGNED NOT NULL,
+  `fecha` datetime NOT NULL,
+  `total` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -133,115 +126,114 @@ CREATE TABLE `roles` (
 --
 
 --
--- Indices de la tabla `ciudad`
+-- Indices de la tabla `articulo`
 --
-ALTER TABLE `ciudad`
-  ADD PRIMARY KEY (`Id_Ciudad`);
+ALTER TABLE `articulo`
+  ADD PRIMARY KEY (`id_articulo`),
+  ADD KEY `categoria_id_categoria` (`categoria_id_categoria`);
 
 --
--- Indices de la tabla `cliente`
+-- Indices de la tabla `categoria`
 --
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`Id_cliente`),
-  ADD KEY `Dirección_Id_Dirección` (`Dirección_Id_Dirección`);
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indices de la tabla `dirección`
+-- Indices de la tabla `detalle_venta`
 --
-ALTER TABLE `dirección`
-  ADD PRIMARY KEY (`Id_Dirección`),
-  ADD KEY `Ciudad_Id_Ciudad` (`Ciudad_Id_Ciudad`);
+ALTER TABLE `detalle_venta`
+  ADD PRIMARY KEY (`id_detalle_venta`),
+  ADD KEY `Venta_id_venta` (`Venta_id_venta`),
+  ADD KEY `Articulo_id_articulo` (`Articulo_id_articulo`);
 
 --
--- Indices de la tabla `empleado`
+-- Indices de la tabla `rol`
 --
-ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`Id_empleado`),
-  ADD KEY `Roles_Id_roles` (`Roles_Id_roles`);
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`id_rol`);
 
 --
--- Indices de la tabla `factura`
+-- Indices de la tabla `usuario`
 --
-ALTER TABLE `factura`
-  ADD PRIMARY KEY (`idFactura`),
-  ADD KEY `fk_Factura_Pedido1` (`Pedido_idPedido`),
-  ADD KEY `Empleado_Id_empleado` (`Empleado_Id_empleado`);
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD KEY `rol_id_rol` (`rol_id_rol`);
 
 --
--- Indices de la tabla `pedido`
+-- Indices de la tabla `venta`
 --
-ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`idPedido`),
-  ADD KEY `Cliente_Id_cliente` (`Cliente_Id_cliente`);
-
---
--- Indices de la tabla `platillo`
---
-ALTER TABLE `platillo`
-  ADD PRIMARY KEY (`idPlatillo`);
-
---
--- Indices de la tabla `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`Id_roles`);
+ALTER TABLE `venta`
+  ADD PRIMARY KEY (`id_venta`),
+  ADD KEY `Usuario_id_usuario` (`Usuario_id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `cliente`
+-- AUTO_INCREMENT de la tabla `articulo`
 --
-ALTER TABLE `cliente`
-  MODIFY `Id_cliente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `articulo`
+  MODIFY `id_articulo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `empleado`
+-- AUTO_INCREMENT de la tabla `categoria`
 --
-ALTER TABLE `empleado`
-  MODIFY `Id_empleado` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `categoria`
+  MODIFY `id_categoria` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `roles`
+-- AUTO_INCREMENT de la tabla `detalle_venta`
 --
-ALTER TABLE `roles`
-  MODIFY `Id_roles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `detalle_venta`
+  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
+  MODIFY `id_rol` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `venta`
+--
+ALTER TABLE `venta`
+  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `cliente`
+-- Filtros para la tabla `articulo`
 --
-ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`Dirección_Id_Dirección`) REFERENCES `dirección` (`Id_Dirección`);
+ALTER TABLE `articulo`
+  ADD CONSTRAINT `articulo_ibfk_1` FOREIGN KEY (`categoria_id_categoria`) REFERENCES `categoria` (`id_categoria`);
 
 --
--- Filtros para la tabla `dirección`
+-- Filtros para la tabla `detalle_venta`
 --
-ALTER TABLE `dirección`
-  ADD CONSTRAINT `dirección_ibfk_1` FOREIGN KEY (`Ciudad_Id_Ciudad`) REFERENCES `ciudad` (`Id_Ciudad`);
+ALTER TABLE `detalle_venta`
+  ADD CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`Venta_id_venta`) REFERENCES `venta` (`id_venta`),
+  ADD CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`Articulo_id_articulo`) REFERENCES `articulo` (`id_articulo`);
 
 --
--- Filtros para la tabla `empleado`
+-- Filtros para la tabla `usuario`
 --
-ALTER TABLE `empleado`
-  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`Roles_Id_roles`) REFERENCES `roles` (`Id_roles`);
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rol_id_rol`) REFERENCES `rol` (`id_rol`);
 
 --
--- Filtros para la tabla `factura`
+-- Filtros para la tabla `venta`
 --
-ALTER TABLE `factura`
-  ADD CONSTRAINT `factura_ibfk_1` FOREIGN KEY (`Empleado_Id_empleado`) REFERENCES `empleado` (`Id_empleado`),
-  ADD CONSTRAINT `fk_Factura_Pedido1` FOREIGN KEY (`Pedido_idPedido`) REFERENCES `pedido` (`idPedido`);
-
---
--- Filtros para la tabla `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`Cliente_Id_cliente`) REFERENCES `cliente` (`Id_cliente`);
+ALTER TABLE `venta`
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`Usuario_id_usuario`) REFERENCES `usuario` (`id_usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
