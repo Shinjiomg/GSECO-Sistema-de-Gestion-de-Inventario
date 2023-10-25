@@ -5,7 +5,7 @@ if(isset($_POST['btningresar']))
 	$dbhost="localhost";
 	$dbuser="root";
 	$dbpass="";
-	$dbname="inventario";
+	$dbname="sistema_inventario";
 	$conn=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 	$Usuario=$_POST['txtusuario'];
 	$Contraseña=$_POST['txtpassword'];
@@ -16,7 +16,7 @@ if(isset($_POST['btningresar']))
             if($Usuario == $row['email'] && $Contraseña == $row['password'])
             {
 		        $_SESSION['nombredelusuario']=$Usuario;
-                $_SESSION['id_usuario']=$row['id'];
+                $_SESSION['id_usuario']=$row['id_usuario'];
 		        header("location:inicio.php");
             }
 	}

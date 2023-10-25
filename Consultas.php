@@ -3,20 +3,20 @@
     include_once("conexion.php"); 
     $var_session = $_SESSION['id_usuario'];
     //Consulta para mostrar la informacion del usuario//
-    $queryUsuarios = mysqli_query($conn, "SELECT * FROM usuario where id = $var_session");
+    $queryUsuarios = mysqli_query($conn, "SELECT * FROM usuario where id_usuario = $var_session");
     while($mostrar = mysqli_fetch_array($queryUsuarios))
     {
-        $idUsuario = $mostrar['id'];
+        $idUsuario = $mostrar['id_usuario'];
         $nombreUsuario = $mostrar['email'];
     } 
     //Consulta para mostrar el Id Asignado con el que se identificara el registros//
-    $query= mysqli_query($conn,"SELECT MAX(id_Producto+1) AS id FROM productos");
+    $query= mysqli_query($conn,"SELECT MAX(id_articulo+1) AS id FROM articulo");
     while($ConsultaMax = mysqli_fetch_array($query))
     {
         $varConsultaMax = $ConsultaMax[0];
     }
     //Consulta productos(Tabla index)//
-      $queryProductos = mysqli_query($conn, "SELECT * FROM productos WHERE IdUsuarios = $var_session");
+      $queryProductos = mysqli_query($conn, "SELECT * FROM articulo ");
     //Agregar Datos //
     if (isset($_POST['btnAgregar'])) {
       $producto= $_POST['txtNombreProducto'];
@@ -25,10 +25,10 @@
       header('Location:inicio.php');
     }
     // Consulta para obtener la suma de registros
-    $querySuma = mysqli_query($conn,"SELECT COUNT(id_Producto) AS registros FROM productos WHERE IdUsuarios = $var_session");
+    $querySuma = mysqli_query($conn,"SELECT COUNT(id_articulo) AS registros FROM articulo");
     $Fila = mysqli_fetch_assoc($querySuma);
     // Consulta para sumar los registros de la tabla 
-    $queryValor = mysqli_query($conn,"SELECT SUM(Cantidad) AS Valores FROM productos WHERE IdUsuarios = $var_session");
+    $queryValor = mysqli_query($conn,"SELECT SUM(stock) AS Valores FROM articulo");
     $FilaValor = mysqli_fetch_assoc($queryValor);
 
 ?>
