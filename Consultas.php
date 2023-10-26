@@ -22,7 +22,7 @@
       $producto= $_POST['txtNombreProducto'];
       $cantidad= $_POST['txtCantidad'];
 	    mysqli_query($conn, "INSERT INTO productos(Nombre,Cantidad,IdUsuarios) VALUES ('$producto',$cantidad,$idUsuario)");
-      header('Location:inicio.php');
+      header('Location:stats.php');
     }
     // Consulta para obtener la suma de registros
     $querySuma = mysqli_query($conn,"SELECT COUNT(id_articulo) AS registros FROM articulo");

@@ -17,7 +17,7 @@ if(isset($_POST['btningresar']))
             {
 		        $_SESSION['nombredelusuario']=$Usuario;
                 $_SESSION['id_usuario']=$row['id_usuario'];
-		        header("location:inicio.php");
+		        header("location:stats.php");
             }
 	}
 	} else { 

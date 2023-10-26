@@ -14,7 +14,7 @@
         $txtNombreProducto	= $_POST['txtNombreProducto'];
         $txtCantidad 	= $_POST['txtCantidad'];   
         $queryModificar = mysqli_query($conn, "UPDATE productos SET Nombre='$txtNombreProducto', Cantidad='$txtCantidad' WHERE id_Producto = $codigo");
-        header('Location:inicio.php');
+        header('Location:stats.php');
         
     }
 ?>
@@ -55,7 +55,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="inicio.php">
+          <a class="nav-link active" href="stats.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
             </div>
