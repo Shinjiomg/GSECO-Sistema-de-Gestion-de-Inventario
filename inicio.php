@@ -5,13 +5,16 @@ include_once("Consultas.php");
 <!DOCTYPE html>
 <html lang="en">
 
+
+<!-- librerías -->
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/inventario.png">
+  <link rel="icon" type="image/png" href="./assets/img/logo-ct-dark.png">
   <title>
-    Inicio
+    Inventario
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -26,14 +29,12 @@ include_once("Consultas.php");
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
-  <aside
-    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
-    id="sidenav-main">
+
+  <!-- sidebar -->
+  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-        aria-hidden="true" id="iconSidenav"></i>
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0">
         <img src="./assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">Gestión de inventario</span>
@@ -44,60 +45,30 @@ include_once("Consultas.php");
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" href="inicio.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-archive-2 text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Inicio</span>
+            <span class="nav-link-text ms-1">Inventario</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " href="inventario.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+        <!-- <li class="nav-item">
+          <a class="nav-link ">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-folder-17 text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">inventario</span>
+            <span class="nav-link-text ms-1">tab 2</span>
           </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">tab 3</span>
-          </a>
-        </li>
+        </li> -->
       </ul>
     </div>
-    <div class="sidenav-footer mx-3 ">
-      <div class="card card-plain shadow-none" id="sidenavCard">
-        <img class="w-50 mx-auto" src="./assets/img/illustrations/icon-documentation.svg" alt="sidebar_illustration">
-        <div class="card-body text-center p-3 w-100 pt-0">
-          <div class="docs-info">
-            <h6 class="mb-0">Metas</h6>
-            <p class="text-xs font-weight-bold mb-0">Gestión</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </aside>
+
+
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-      data-scroll="false">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-8 text-white active" href="javascript:;">Páginas</a>
-            </li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Inicio</li>
-          </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Inicio</h6>
-        </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
@@ -130,37 +101,20 @@ include_once("Consultas.php");
               </a>
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                aria-expanded="false">
+              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
               </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          13 minutes ago
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
+              <!-- <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+              </ul> -->
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- End Navbar -->
+
     <div class="container-fluid py-4">
+
+      <!-- Cards -->
       <div class="row">
         <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
@@ -168,9 +122,10 @@ include_once("Consultas.php");
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's money</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Data 1</p>
                     <h5 class="font-weight-bolder">
-                      <?php echo $Fila['registros']; ?>
+                      $
+                      <!-- <?php echo $Fila['registros']; ?> -->
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -193,9 +148,10 @@ include_once("Consultas.php");
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New clients</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Data 2</p>
                     <h5 class="font-weight-bolder">
-                      <?php echo $FilaValor['Valores']; ?> 2
+                      $
+                      <!-- <?php echo $FilaValor['Valores']; ?>  -->
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+3%</span>
@@ -218,9 +174,9 @@ include_once("Consultas.php");
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Data 3</p>
                     <h5 class="font-weight-bolder">
-                      $103,430
+                      $
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
@@ -238,125 +194,116 @@ include_once("Consultas.php");
         </div>
       </div>
 
-      <div class="mt-4">
-        <div class="row">
-          <div class="col-xl-12">
-            <div class="card mt-4">
-              <div class="card-header pb-4">
-                <div class="row pb-4">
-                  <div class="col-6 d-flex align-items-center">
-                    <h6 class="mb-0">Productos</h6>
-                  </div>
-                  <div class="col-6 text-end">
-                    <a class="btn bg-gradient-dark mb-0" href="javascript:;"><i
-                        class="fas fa-plus"></i>&nbsp;&nbsp;Añadir producto</a>
-                  </div>
-                </div>
-                <div class="card-body px-0 pt-0 pb-2">
-                  <div class="table-responsive p-0">
-                    <table class="table align-items-center mb-0">
-                      <thead>
-                        <tr>
-                          <th align="center"
-                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id
-                            producto</th>
-                          <th align="center"
-                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                            Nombre del producto</th>
-                          <th align="center"
-                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                            Cantidad</th>
-                          <th align="center"
-                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Meta
-                          </th>
-                          <th align="center"
-                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                            Porcentaje</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $numerofila = 0;
-                        while ($mostrar = mysqli_fetch_array($queryProductos)) {
-                          $total = $mostrar['Meta'];
-                          $actual = $mostrar['Cantidad'];
-                          $porcentaje = round(($actual / $total) * 100, 1);
-                          ?>
-                          <tr id="Resultado">
-                            <td align="center">
-                              <?php echo $mostrar['id_Producto']; ?>
-                            </td>
-                            <td align="center">
-                              <?php echo $mostrar['Nombre']; ?>
-                            </td>
-                            <td align="center">
-                              <?php echo $mostrar['Cantidad']; ?>
-                            </td>
-                            <td align="center">
-                              <?php echo $mostrar['Meta']; ?>
-                            </td>
-                            <td align="center">
-                              <div class="d-flex align-items-center justify-content-center">
-                                <?php
-                                if ($porcentaje > 100) {
-                                  ?>
-                                  <span class="me-2 text-xs font-weight-bold">
-                                    <?php echo 100; ?>%
-                                  </span>
-                                  <div class="progress">
-                                    <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60"
-                                      aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%"></div>
-                                    <?php
-                                } else if ($porcentaje <= 100) {
-                                  ?>
-                                      <span class="me-2 text-xs font-weight-bold">
-                                      <?php echo $porcentaje ?>%
-                                      </span>
 
-                                      <div>
-                                        <div class="progress">
-                                          <?php
-                                          if ($porcentaje <= 40) {
-                                            ?>
-                                            <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60"
-                                              aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%">
-                                            </div>
-                                          <?php
-                                          } else if ($porcentaje > 40 && $porcentaje <= 60) {
-                                            ?>
-                                              <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60"
-                                                aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%">
-                                              </div>
-                                          <?php
-                                          } else if ($porcentaje > 60 && $porcentaje <= 100) {
-                                            ?>
-                                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60"
-                                                  aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%">
-                                                </div>
-                                          <?php
-                                          }
-                                          ?>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  <?php
-                                }
-                                ?>
-                            </td>
-                          </tr>
-                          <?php
-                        }
-                        ?>
-                      </tbody>
-                    </table>
-                  </div>
+      <!-- main content -->
+      <div class="row mt-4">
+
+        <div class="col-xl-12">
+          <div class="card">
+            <div class="card-header pb-4">
+              <div class="row pb-2 p-3">
+                <div class="col-6 d-flex align-items-center">
+                  <h6>Productos</h6>
                 </div>
+                <div class="col-6 text-end">
+                  <a class="btn bg-gradient-dark mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir producto</a>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table align-items-center">
+                  <thead>
+                    <tr>
+                      <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id
+                        producto</th>
+                      <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                        Nombre del producto</th>
+                      <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Cantidad</th>
+                      <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Meta
+                      </th>
+                      <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Porcentaje</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $numerofila = 0;
+                    while ($mostrar = mysqli_fetch_array($queryProductos)) {
+                      $total = $mostrar['Meta'];
+                      $actual = $mostrar['Cantidad'];
+                      $porcentaje = round(($actual / $total) * 100, 1);
+                    ?>
+                      <tr id="Resultado">
+                        <td align="center">
+                          <?php echo $mostrar['id_Producto']; ?>
+                        </td>
+                        <td align="center">
+                          <?php echo $mostrar['Nombre']; ?>
+                        </td>
+                        <td align="center">
+                          <?php echo $mostrar['Cantidad']; ?>
+                        </td>
+                        <td align="center">
+                          <?php echo $mostrar['Meta']; ?>
+                        </td>
+                        <td align="center">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <?php
+                            if ($porcentaje > 100) {
+                            ?>
+                              <span class="me-2 text-xs font-weight-bold">
+                                <?php echo 100; ?>%
+                              </span>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%"></div>
+                              <?php
+                            } else if ($porcentaje <= 100) {
+                              ?>
+                                <span class="me-2 text-xs font-weight-bold">
+                                  <?php echo $porcentaje ?>%
+                                </span>
+
+                                <div>
+                                  <div class="progress">
+                                    <?php
+                                    if ($porcentaje <= 40) {
+                                    ?>
+                                      <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%">
+                                      </div>
+                                    <?php
+                                    } else if ($porcentaje > 40 && $porcentaje <= 60) {
+                                    ?>
+                                      <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%">
+                                      </div>
+                                    <?php
+                                    } else if ($porcentaje > 60 && $porcentaje <= 100) {
+                                    ?>
+                                      <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%">
+                                      </div>
+                                    <?php
+                                    }
+                                    ?>
+                                  </div>
+                                </div>
+                              </div>
+                            <?php
+                            }
+                            ?>
+                        </td>
+                      </tr>
+                    <?php
+                    }
+                    ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
+
+        <!--secondary content -->
         <div class="row mt-4">
           <div class="col-lg-7 mb-lg-0 mb-4">
             <div class="card ">
@@ -368,130 +315,7 @@ include_once("Consultas.php");
               <div class="table-responsive">
                 <table class="table align-items-center ">
                   <tbody>
-                    <tr>
-                      <td class="w-30">
-                        <div class="d-flex px-2 py-1 align-items-center">
-                          <div>
-                            <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                          </div>
-                          <div class="ms-4">
-                            <p class="text-xs font-weight-bold mb-0">Country:</p>
-                            <h6 class="text-sm mb-0">United States</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                          <h6 class="text-sm mb-0">2500</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Value:</p>
-                          <h6 class="text-sm mb-0">$230,900</h6>
-                        </div>
-                      </td>
-                      <td class="align-middle text-sm">
-                        <div class="col text-center">
-                          <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                          <h6 class="text-sm mb-0">29.9%</h6>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="w-30">
-                        <div class="d-flex px-2 py-1 align-items-center">
-                          <div>
-                            <img src="../assets/img/icons/flags/DE.png" alt="Country flag">
-                          </div>
-                          <div class="ms-4">
-                            <p class="text-xs font-weight-bold mb-0">Country:</p>
-                            <h6 class="text-sm mb-0">Germany</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                          <h6 class="text-sm mb-0">3.900</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Value:</p>
-                          <h6 class="text-sm mb-0">$440,000</h6>
-                        </div>
-                      </td>
-                      <td class="align-middle text-sm">
-                        <div class="col text-center">
-                          <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                          <h6 class="text-sm mb-0">40.22%</h6>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="w-30">
-                        <div class="d-flex px-2 py-1 align-items-center">
-                          <div>
-                            <img src="../assets/img/icons/flags/GB.png" alt="Country flag">
-                          </div>
-                          <div class="ms-4">
-                            <p class="text-xs font-weight-bold mb-0">Country:</p>
-                            <h6 class="text-sm mb-0">Great Britain</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                          <h6 class="text-sm mb-0">1.400</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Value:</p>
-                          <h6 class="text-sm mb-0">$190,700</h6>
-                        </div>
-                      </td>
-                      <td class="align-middle text-sm">
-                        <div class="col text-center">
-                          <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                          <h6 class="text-sm mb-0">23.44%</h6>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="w-30">
-                        <div class="d-flex px-2 py-1 align-items-center">
-                          <div>
-                            <img src="../assets/img/icons/flags/BR.png" alt="Country flag">
-                          </div>
-                          <div class="ms-4">
-                            <p class="text-xs font-weight-bold mb-0">Country:</p>
-                            <h6 class="text-sm mb-0">Brasil</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                          <h6 class="text-sm mb-0">562</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="text-center">
-                          <p class="text-xs font-weight-bold mb-0">Value:</p>
-                          <h6 class="text-sm mb-0">$143,960</h6>
-                        </div>
-                      </td>
-                      <td class="align-middle text-sm">
-                        <div class="col text-center">
-                          <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                          <h6 class="text-sm mb-0">32.14%</h6>
-                        </div>
-                      </td>
-                    </tr>
+
                   </tbody>
                 </table>
               </div>
@@ -515,8 +339,7 @@ include_once("Consultas.php");
                       </div>
                     </div>
                     <div class="d-flex">
-                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i
-                          class="ni ni-bold-right" aria-hidden="true"></i></button>
+                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
                     </div>
                   </li>
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
@@ -530,8 +353,7 @@ include_once("Consultas.php");
                       </div>
                     </div>
                     <div class="d-flex">
-                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i
-                          class="ni ni-bold-right" aria-hidden="true"></i></button>
+                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
                     </div>
                   </li>
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
@@ -545,8 +367,7 @@ include_once("Consultas.php");
                       </div>
                     </div>
                     <div class="d-flex">
-                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i
-                          class="ni ni-bold-right" aria-hidden="true"></i></button>
+                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
                     </div>
                   </li>
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
@@ -560,8 +381,7 @@ include_once("Consultas.php");
                       </div>
                     </div>
                     <div class="d-flex">
-                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i
-                          class="ni ni-bold-right" aria-hidden="true"></i></button>
+                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
                     </div>
                   </li>
                 </ul>
@@ -569,24 +389,28 @@ include_once("Consultas.php");
             </div>
           </div>
         </div>
+      </div>
 
-        <footer class="footer pt-3  ">
-          <div class="container-fluid">
-            <div class="row align-items-center justify-content-lg-between">
-              <div class="col-lg-6 mb-lg-0 mb-4">
-                <div class="copyright text-center text-sm text-muted text-lg-start">
-                  ©
-                  <script>
-                    document.write(new Date().getFullYear())
-                  </script>,
-                  Todos los derechos reservados
-                </div>
+      <!-- footer -->
+      <footer class="footer pt-3  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script> Jhonatan, Nicoll y Camilo,
+                Todos los derechos reservados
               </div>
             </div>
           </div>
-        </footer>
-      </div>
+        </div>
+      </footer>
   </main>
+
+
+  <!-- config interface -->
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="fa fa-cog py-2"> </i>
@@ -612,8 +436,7 @@ include_once("Consultas.php");
         </div>
         <a href="javascript:void(0)" class="switch-trigger background-color">
           <div class="badge-colors my-2 text-start">
-            <span class="badge filter bg-gradient-primary active" data-color="primary"
-              onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span>
             <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
             <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
             <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
@@ -627,10 +450,8 @@ include_once("Consultas.php");
           <p class="text-sm">Escoge entre dos temas del menú lateral.</p>
         </div>
         <div class="d-flex">
-          <button class="btn bg-gradient-primary w-100 px-3 mb-2 active me-2" data-class="bg-white"
-            onclick="sidebarType(this)">Blanco</button>
-          <button class="btn bg-gradient-primary w-100 px-3 mb-2" data-class="bg-default"
-            onclick="sidebarType(this)">Oscuro</button>
+          <button class="btn bg-gradient-primary w-100 px-3 mb-2 active me-2" data-class="bg-white" onclick="sidebarType(this)">Blanco</button>
+          <button class="btn bg-gradient-primary w-100 px-3 mb-2" data-class="bg-default" onclick="sidebarType(this)">Oscuro</button>
         </div>
         <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
         <!-- Navbar Fixed -->
@@ -651,7 +472,7 @@ include_once("Consultas.php");
       </div>
     </div>
   </div>
-  <!--   Core JS Files   -->
+  <!--   Core JS Files and scripts  -->
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -758,10 +579,10 @@ include_once("Consultas.php");
 
 </html>
 
+
+<!-- style -->
 <style>
   @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-
 
   .search {
     width: 100%;
