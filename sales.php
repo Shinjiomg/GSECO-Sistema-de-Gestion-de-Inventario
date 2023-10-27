@@ -26,12 +26,12 @@ include_once("Consultas.php");
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
                 <img src="./assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">Nombre de cliente</span>
@@ -124,7 +124,198 @@ include_once("Consultas.php");
         </nav>
         <div class="container-fluid py-4">
             <!-- main content -->
-            <!-- <footer class="footer pt-3  ">
+            <div class="card mb-4">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas totales</p>
+                                <h5 class="font-weight-bolder">
+                                    $
+                                    <!-- <?php echo $Fila['registros']; ?> -->
+                                </h5>
+                                <p class="mb-0">
+                                    <span class="text-success text-sm font-weight-bolder">+55%</span>
+                                    desde el mes pasado
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card h-100">
+                        <div class="card-header pb-0 p-3">
+                            <div class="row">
+                                <div class="col-6 d-flex align-items-center">
+                                    <h6 class="mb-0">Facturas</h6>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <button class="btn btn-outline-primary btn-sm mb-0">Ver todo</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-3 pb-0">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
+                                        <span class="text-xs">#MS-415646</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $180
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">February, 10, 2021</h6>
+                                        <span class="text-xs">#RV-126749</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $250
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">April, 05, 2020</h6>
+                                        <span class="text-xs">#FB-212562</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $560
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">June, 25, 2019</h6>
+                                        <span class="text-xs">#QW-103578</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $120
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
+                                        <span class="text-xs">#AR-803481</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $300
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card h-100 mt-4 mb-4">
+                        <div class="card-header pb-0 px-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="mb-0">Transacciones</h6>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                                    <i class="far fa-calendar-alt me-2"></i>
+                                    <small>23 - 30 March 2020</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-4 p-3">
+                            <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Más nuevas</h6>
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-down"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Netflix</h6>
+                                            <span class="text-xs">27 March 2020, at 12:30 PM</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
+                                        - $ 2,500
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Apple</h6>
+                                            <span class="text-xs">27 March 2020, at 04:30 AM</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                        + $ 2,000
+                                    </div>
+                                </li>
+                            </ul>
+                            <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Ayer</h6>
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Stripe</h6>
+                                            <span class="text-xs">26 March 2020, at 13:45 PM</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                        + $ 750
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">HubSpot</h6>
+                                            <span class="text-xs">26 March 2020, at 12:30 PM</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                        + $ 1,000
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Creative Tim</h6>
+                                            <span class="text-xs">26 March 2020, at 08:30 AM</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                        + $ 2,500
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-exclamation"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Webflow</h6>
+                                            <span class="text-xs">26 March 2020, at 05:00 AM</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
+                                        Pendiente
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- footer -->
+            <footer class="footer pt-3  ">
                 <div class="container-fluid">
                     <div class="row align-items-center justify-content-lg-between">
                         <div class="col-lg-6 mb-lg-0 mb-4">
@@ -138,7 +329,7 @@ include_once("Consultas.php");
                         </div>
                     </div>
                 </div>
-            </footer> -->
+            </footer>
         </div>
     </main>
     <!-- config interface -->
@@ -266,7 +457,7 @@ include_once("Consultas.php");
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="./assets/js/argon-dashboard.min.js?v=2.0.2"></script>
+    <script src="./assets/js/argon-dashboard.js"></script>
 </body>
 
 </html>

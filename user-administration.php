@@ -26,12 +26,12 @@ include_once("Consultas.php");
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
                 <img src="./assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">Nombre de cliente</span>
@@ -48,7 +48,7 @@ include_once("Consultas.php");
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Estadísticas</span>
+                        <span class="nav-link-text ms-1  text-black">Estadísticas</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -125,7 +125,55 @@ include_once("Consultas.php");
         <div class="container-fluid py-4">
             <!-- main content -->
             <div class="row">
-                <div class="col-12">
+                <div class="col-xl-4">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <div class="row pb-2 p-3">
+                                <div class="col-6 d-flex align-items-center">
+                                    <h6>Roles</h6>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <a class="btn bg-gradient-primary mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir rol</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-black text-xxs font-weight-bolder opacity-7 pl-2">Rol</th>
+                                            <th class="text-black opacity-7"></th>
+                                            <th class="text-black opacity-7"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-3 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">Administrador</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" class="text-black font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                    Editar
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
+                                                    Borrar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
                             <div class="row pb-2 p-3">
@@ -142,12 +190,11 @@ include_once("Consultas.php");
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rol</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estado</th>
-                                            <th class="text-secondary opacity-7"></th>
-                                            <th class="text-secondary opacity-7"></th>
+                                            <th class="text-uppercase text-black text-xxs font-weight-bolder opacity-7">Nombre</th>
+                                            <th class="text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">Rol</th>
+                                            <th class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">Estado</th>
+                                            <th class="text-black opacity-7"></th>
+                                            <th class="text-black opacity-7"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -156,22 +203,19 @@ include_once("Consultas.php");
                                                 <div class="d-flex px-3 py-1">
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-sm">John Michael</h6>
-                                                        <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
+                                                        <p class="text-xs text-black mb-0">john@creative-tim.com</p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                                <p class="text-xs text-secondary mb-0">Organization</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">test@test.com</span>
+                                                <p class="text-xs text-black mb-0">Organization</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 <span class="badge badge-sm bg-gradient-success">Activo</span>
                                             </td>
                                             <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                <a href="javascript:;" class="text-primary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                                     Editar
                                                 </a>
                                             </td>
@@ -333,7 +377,7 @@ include_once("Consultas.php");
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="./assets/js/argon-dashboard.min.js?v=2.0.2"></script>
+    <script src="./assets/js/argon-dashboard.js"></script>
 </body>
 
 </html>

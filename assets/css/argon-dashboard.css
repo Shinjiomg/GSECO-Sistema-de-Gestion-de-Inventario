@@ -24803,15 +24803,15 @@ p {
 }
 
 .dark-version .sidenav.bg-transparent .navbar-nav .nav-link {
-  color: #fff !important;
+  color: transparent !important;
 }
 
 .dark-version .sidenav.bg-transparent .nav .nav-link {
-  color: #fff !important;
+  color: transparent !important;
 }
 
 .dark-version .sidenav.bg-white {
-  background: #fff !important;
+  background: transparent !important;
 }
 
 .dark-version .sidenav.bg-white .navbar-nav .nav-link.active:after {
@@ -25005,12 +25005,12 @@ p {
 }
 
 .dark-version .navbar-vertical .navbar-nav .nav-item .nav-link {
-  color: #fff;
+  color: #000;
   opacity: .8;
 }
 
 .dark-version .navbar-vertical .navbar-nav .nav-item .nav-link[data-bs-toggle="collapse"]:after {
-  color: #fff;
+  color: #0e422c !important;
 }
 
 .dark-version .navbar-vertical .navbar-nav .nav-item .nav-link.active {
@@ -25019,7 +25019,7 @@ p {
 
 .dark-version .navbar-vertical .navbar-nav .nav-item .collapse .nav .nav-item .nav-link,
 .dark-version .navbar-vertical .navbar-nav .nav-item .collapsing .nav .nav-item .nav-link {
-  color: #fff;
+  color: #0e422c !important;
   opacity: .6;
 }
 

@@ -26,12 +26,12 @@ include_once("Consultas.php");
   <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0">
         <img src="./assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">Nombre de cliente</span>
@@ -226,7 +226,7 @@ include_once("Consultas.php");
                   <h6>Artículos</h6>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-dark mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir producto</a>
+                  <a class="btn bg-gradient-primary mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir producto</a>
                 </div>
               </div>
             </div>
@@ -234,21 +234,21 @@ include_once("Consultas.php");
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Nombre del artículo</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
                       Precio de venta</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Cantidad</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Estado</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Categoría</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Meta
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">Meta
                     </th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Porcentaje</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                     </th>
                   </tr>
                 </thead>
@@ -340,7 +340,7 @@ include_once("Consultas.php");
                   <h6>Categorías</h6>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-dark mb-0" href=""><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
+                  <a class="btn bg-gradient-primary mb-0" href=""><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
                 </div>
               </div>
             </div>
@@ -551,7 +551,7 @@ include_once("Consultas.php");
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="./assets/js/argon-dashboard.min.js?v=2.0.2"></script>
+  <script src="./assets/js/argon-dashboard.js"></script>
 </body>
 
 </html>
