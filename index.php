@@ -29,23 +29,21 @@ if(isset($_POST['btningresar']))
 <html>
 <head>
 	<title>test</title>
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/estilo.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="./css/estilo.css">
-
 </head>
 <body>
-	<img class="wave" src="img/wave.png">
+	
 	<div class="container">
+	<div class="contenedor">
 		<div class="img">
-			<img src="img/bg.svg">
 		</div>
 		<div class="login-content">
 			<form method="POST">
-				<img src="img/avatar.svg">
+				<img class="logo" src="img/images.png">
 				<h3 class="titulo" id="titulo">Iniciar Sesión</h3>
            		<div class="input-div one">
            		   <div class="i">
@@ -69,6 +67,7 @@ if(isset($_POST['btningresar']))
             </form>
         </div>
     </div>
+	</div>
     <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
