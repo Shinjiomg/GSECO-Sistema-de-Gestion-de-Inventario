@@ -26,9 +26,13 @@ body{
 
 .login-content{
 	display: flex;
-	justify-content: flex-start;
+	
 	align-items: center;
 	text-align: center;
+}
+.btnpos{
+	justify-content: center;
+	display: flex;
 }
 
 .img img{
@@ -155,7 +159,7 @@ a:hover{
 
 .btn{
 	display: block;
-	width: 100%;
+	width: 80%;
 	height: 50px;
 	border-radius: 15px;
 	outline: none;
@@ -169,6 +173,9 @@ a:hover{
 	margin: 1rem 0;
 	cursor: pointer;
 	transition: .5s;
+	border: 2px ;
+    border-image: 2px linear-gradient(to bottom, 100%) 1; 
+    box-shadow: 0px 0px 5px 5px #dddddd !important;
 }
 .btn:hover{
 	background-position: right;
@@ -178,6 +185,7 @@ a:hover{
 .titulo{
     font-family: sans-serif;
     padding: 20px;
+	color:#838282;
 }
 
 .input-div > div > input{
@@ -185,6 +193,7 @@ a:hover{
 }
 .btn{
 background: linear-gradient(to right, #046bc0, #70d8c1);
+
 }
 .input-div.focus > .i > i{
 	color: #40b6e6;
