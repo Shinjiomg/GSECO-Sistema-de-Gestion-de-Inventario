@@ -9,10 +9,10 @@ include_once("Consultas.php");
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/logo-ct-dark.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./img/logo.png">
+  <link rel="icon" type="image/png" href="./img/logo.png">
   <title>
-    Artículos
+  Tienda del soldado GSECO
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -32,9 +32,9 @@ include_once("Consultas.php");
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0">
-        <img src="./assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">Nombre de cliente</span>
+      <a class="navbar-brand m-0 mr-4">
+        <img src="./img/logo.png" class="navbar-brand-img h-100 mr-5" alt="main_logo">
+        <span class="ms-1 font-weight-bold">GSECO</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -91,7 +91,7 @@ include_once("Consultas.php");
             <li class="nav-item d-flex align-items-center">
               <a class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">
+                <span class="d-sm-inline d-none text-capitalize">
                   <?php echo $nombreUsuario; ?>
                 </span>
                 <div class="wrap">

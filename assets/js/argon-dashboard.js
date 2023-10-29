@@ -277,7 +277,7 @@ function toggleNavLinksColor(type) {
     });
   } else if (type === "transparent") {
     navLinks.forEach(element => {
-      element.classList.add('text-black')
+      element.classList.add('text-white')
     });
 
     navLinksToggler.forEach(element => {

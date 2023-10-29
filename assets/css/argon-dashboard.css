@@ -24803,15 +24803,15 @@ p {
 }
 
 .dark-version .sidenav.bg-transparent .navbar-nav .nav-link {
-  color: transparent !important;
+  color: #fff !important;
 }
 
 .dark-version .sidenav.bg-transparent .nav .nav-link {
-  color: transparent !important;
+  color: #fff !important;
 }
 
 .dark-version .sidenav.bg-white {
-  background: transparent !important;
+  background: #fff !important;
 }
 
 .dark-version .sidenav.bg-white .navbar-nav .nav-link.active:after {
@@ -25005,7 +25005,7 @@ p {
 }
 
 .dark-version .navbar-vertical .navbar-nav .nav-item .nav-link {
-  color: #000;
+  color: #fff;
   opacity: .8;
 }
 
