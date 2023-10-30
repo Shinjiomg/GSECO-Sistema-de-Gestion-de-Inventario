@@ -9,6 +9,10 @@ body{
     overflow: hidden;
 }
 
+.logo{
+	opacity: 1;
+}
+
 .container{
 	background: white;
     width: 100vw;
