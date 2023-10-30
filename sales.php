@@ -170,7 +170,12 @@ include_once("Consultas.php");
                                     </div>
                                     <div class="d-flex align-items-center text-sm">
                                         $180
-                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                        <a href="./reports/venta.php" target="_blank">
+                                            <button 
+                                                class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
+                                                    <i class="fas fa-file-pdf text-lg me-1"></i> PDF
+                                            </button>
+                                        </a>
                                     </div>
                                 </li>
                                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
