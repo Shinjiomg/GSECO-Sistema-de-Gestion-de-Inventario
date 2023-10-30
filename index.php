@@ -40,10 +40,11 @@ if(isset($_POST['btningresar']))
 	<div class="container">
 	<div class="contenedor">
 		<div class="img">
+		<img src="img/fondo.png">
 		</div>
 		<div class="login-content">
 			<form method="POST">
-				<img class="logo" src="img/images.png">
+				<img class="logo" src="img/logo.png">
 				<h3 class="titulo" id="titulo">Bienvenido</h3>
            		<div class="input-div one">
            		   <div class="i">
@@ -63,7 +64,7 @@ if(isset($_POST['btningresar']))
            		    	<input type="password" name="txtpassword" class="input">
             	   </div>
             	</div>
-            	<div class="btnpos"><input type="submit" name= "btningresar" class="btn" value="Ingresar">
+            	<div class="btnpos"><input type="submit" class="btn" name= "btningresar" value="Ingresar">
 				</div>
             </form>
         </div>
