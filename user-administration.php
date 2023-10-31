@@ -12,7 +12,7 @@ include_once("Consultas.php");
     <link rel="apple-touch-icon" sizes="76x76" href="./img/logo.png">
     <link rel="icon" type="image/png" href="./img/logo.png">
     <title>
-    Tienda del soldado GSECO
+        Tienda del soldado GSECO
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -177,10 +177,17 @@ include_once("Consultas.php");
                     <div class="card mb-4">
                         <div class="card-header pb-0">
                             <div class="row pb-2 p-3">
-                                <div class="col-6 d-flex align-items-center">
+                                <div class="col-4 d-flex align-items-center">
                                     <h6>Usuarios</h6>
                                 </div>
-                                <div class="col-6 text-end">
+                                <div class="col-4 d-flex align-items-center">
+                                    <a href="./reports/usuarios.php" target="_blank">
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
+                                            <i class="fas fa-file-pdf text-lg me-1"></i> PDF
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="col-4 text-end">
                                     <a class="btn bg-gradient-primary mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir usuario</a>
                                 </div>
                             </div>
