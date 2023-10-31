@@ -77,9 +77,9 @@ $fpdf->SetTextColor(0,0,0);
 $fpdf->SetFillColor(255,255,255);
 foreach($order_details as $detail)
 {
-	$fpdf->Cell(60, 10, 'Gaseosa', 0, 0, 'C', 1);
-	$fpdf->Cell(60, 10, '', 0, 0, 'C', 1);
-	$fpdf->Cell(20, 10, 'Bebida', 0, 0, 'C', 1);
+	$fpdf->Cell(60, 10, $detail->nombre, 0, 0, 'C', 1);
+	$fpdf->Cell(60, 10, $detail->descripcion, 0, 0, 'C', 1);
+	$fpdf->Cell(20, 10, $detail->precio, 0, 0, 'C', 1);
 	$fpdf->Cell(20, 10, $detail->cantidad, 0, 0, 'C', 1);
 	$fpdf->Cell(30, 10, $detail->cantidad * $detail->precio, 0, 0, 'C', 1);
 /* 	$fpdf->Cell(60, 10, $detail->product_name, 0, 0, 'C', 1);

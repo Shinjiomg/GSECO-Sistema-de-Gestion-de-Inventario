@@ -18,7 +18,7 @@ class Northwind extends Database
 
 	public function getOrderDetails(int $id)
 	{
-		$query = $this->pdo->query('SELECT Articulo_id_articulo, cantidad, precio
+		$query = $this->pdo->query('SELECT Articulo_id_articulo, cantidad, precio, articulo.nombre, articulo.descripcion
 				FROM detalle_venta
 				JOIN articulo ON articulo.id_articulo = Articulo_id_articulo
 				WHERE detalle_venta.Venta_id_venta = '.$id);
