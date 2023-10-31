@@ -7,12 +7,13 @@ class pdf extends FPDF
 {
 	public function header()
 	{
-		$this->SetFillColor(253, 135,39);
+		$this->SetFillColor(2, 178,236);
 		$this->Rect(0,0, 220, 50, 'F');
 		$this->SetY(25);
 		$this->SetFont('Arial', 'B', 30);
 		$this->SetTextColor(255,255,255);
-		$this->Write(5, 'CodeStack');
+		$this->Write(5, 'Factura de venta');
+		$this->Image('../img/logo.png', 160, 15,30,30);
 
 	}
 
@@ -24,7 +25,7 @@ class pdf extends FPDF
 		$this->SetFont('Arial', '', 12);
 		$this->SetTextColor(255,255,255);
 		$this->SetX(120);
-		$this->Write(5, 'CodeStack');
+		$this->Write(5, 'Tienda del soldado GSECO');
 		$this->Ln();
 		$this->SetX(120);
 		$this->Write(5, 'jose.jairo.fuentes@gmail.com');
@@ -38,32 +39,27 @@ class pdf extends FPDF
 $fpdf = new pdf('P','mm','letter',true);
 $fpdf->AddPage('portrait', 'letter');
 $fpdf->SetMargins(10,30,20,20);
-$fpdf->SetFont('Arial', '', 9);
-$fpdf->SetTextColor(255,255,255);
+$fpdf->SetFont('Arial', '', 12);
+$fpdf->SetTextColor(0,0,0);
 $order = $nw->getOrder($id);
-/* $customer = $nw->getCustomer($order->customer_id); */
+
 $order_details = $nw->getOrderDetails($id);
 
-$fpdf->SetY(15);
-$fpdf->SetX(120);
-$fpdf->Write(5, 'DETALLES DEL ENVÍO ');
+$fpdf->SetFillColor(0,0,0);
+$fpdf->SetY(60);
+$fpdf->SetX(10);
+$fpdf->Write(5, 'Fecha:');
+$fpdf->SetX(140);
+$fpdf->Write(5, $order->fecha);
 $fpdf->Ln();
-$fpdf->SetX(120);
-$fpdf->Write(5, 'Fecha de la orden: '.$order->fecha);
 $fpdf->Ln();
-/* $fpdf->SetX(120);
-$fpdf->Write(5, 'Fecha de envío: '.$order->shipped_date); */
-/* $fpdf->Ln();
-$fpdf->SetX(120);
-$fpdf->Write(5, 'Dirección: '.$order->ship_address); */
-/* $fpdf->Ln();
-$fpdf->SetX(120);
-$fpdf->Write(5, 'Ciudad: '.$order->ship_address); */
-
-$fpdf->SetTextColor(0,0,0);
-$fpdf->Image('../img/2.png', 20, 55);
-
-$fpdf->SetY(100);
+$fpdf->SetX(10);
+$fpdf->Write(5, 'Cajero:');
+$fpdf->SetX(140);
+$fpdf->Write(5, $order->nombre_completo);
+$fpdf->Ln();
+$fpdf->Ln();
+$fpdf->SetFont('Arial', '', 9);
 $fpdf->SetTextColor(255,255,255);
 $fpdf->SetFillColor(79,78,77);
 $fpdf->Cell(60, 10, 'PRODUCTO', 0, 0, 'C', 1);

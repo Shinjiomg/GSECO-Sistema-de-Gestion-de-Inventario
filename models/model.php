@@ -11,7 +11,10 @@ class Northwind extends Database
 
 	public function getOrder(int $id)
 	{
-		$query = $this->pdo->query('SELECT * FROM venta WHERE id_venta = '.$id);
+		$query = $this->pdo->query('SELECT id_venta, fecha, total, CONCAT(usuario.nombres, " ", usuario.apellidos) AS nombre_completo, usuario.nombres, usuario.apellidos
+		 FROM venta
+		 JOIN usuario ON usuario.id_usuario = Usuario_id_usuario
+		 WHERE id_venta = '.$id);
 	
 		return $query->fetch();
 	}
