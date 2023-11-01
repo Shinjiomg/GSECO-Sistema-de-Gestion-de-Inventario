@@ -9,14 +9,6 @@ body{
     overflow: hidden;
 }
 
-.wave{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	height: 100%;
-	z-index: -1;
-}
-
 .container{
     width: 100vw;
     height: 100vh;
@@ -103,7 +95,7 @@ form{
 	bottom: -2px;
 	width: 0%;
 	height: 2px;
-	background-color: #38d39f;
+	background-color: #5e72e4;
 	transition: .4s;
 }
 
@@ -125,7 +117,7 @@ form{
 }
 
 .input-div.focus > .i > i{
-	color: #38d39f;
+	color: #5e72e4;
 }
 
 .input-div > div > input{
@@ -138,7 +130,7 @@ form{
 	outline: none;
 	background: none;
 	padding: 0.5rem 0.7rem;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	color: #555;
 	font-family: 'poppins', sans-serif;
 }
@@ -157,7 +149,7 @@ a{
 }
 
 a:hover{
-	color: #38d39f;
+	color: #5e72e4;
 }
 
 .btn{
@@ -167,7 +159,8 @@ a:hover{
 	border-radius: 25px;
 	outline: none;
 	border: none;
-	background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+	/* background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f); */
+	background: #5e72e4;
 	background-size: 200%;
 	font-size: 1.2rem;
 	color: #fff;

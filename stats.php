@@ -266,11 +266,12 @@ include_once("Consultas.php");
                   </tr>
                 </thead>
                 <tbody>
-                  <td class="align-middle">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i
-                        class="ni ni-settings" aria-hidden="true"></i></button>
-                  </td>
-                  </tr>
+                  <!-- <tr>
+                    <td class="align-middle">
+                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i
+                          class="ni ni-settings" aria-hidden="true"></i></button>
+                    </td>
+                  </tr> -->
                 </tbody>
               </table>
             </div>
