@@ -15,7 +15,12 @@ if (isset($_POST['btningresar'])) {
 			if ($Usuario == $row['email'] && $Contraseña == $row['password']) {
 				$_SESSION['nombredelusuario'] = $Usuario;
 				$_SESSION['id_usuario'] = $row['id_usuario'];
-				header("location:stats.php");
+				$_SESSION['rol'] = $row['rol_id_rol'];
+				if( intval($row['rol_id_rol']) == 1){
+					header("location:stats.php");
+				}else{
+					header("location:sales.php");
+				}
 			}
 		}
 	} else {
