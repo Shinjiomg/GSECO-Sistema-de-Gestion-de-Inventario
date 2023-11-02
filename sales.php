@@ -1,6 +1,8 @@
 <?php
 include_once("conexion.php");
 include_once("Consultas.php");
+$rol = intval($_SESSION['rol']);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -59,9 +61,13 @@ include_once("Consultas.php");
                         <span class="nav-link-text ms-1">Ventas</span>
                     </a>
                 </li>
+                <?php
+                    if($rol == 1){
+                ?>
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                 </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="user-administration.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -70,6 +76,9 @@ include_once("Consultas.php");
                         <span class="nav-link-text ms-1">Usuarios</span>
                     </a>
                 </li>
+                <?php
+                    }
+                ?>
                 <li class="sidenav-footer mx-3">
 
                 </li>
