@@ -1,6 +1,13 @@
 <?php
 include_once("conexion.php");
 include_once("Consultas.php");
+
+require('./models/venta.php');
+$nw = new Venta();
+
+$ventas = $nw->ventas(1);
+$ultimaVenta = $nw->ultimaVenta(1);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -179,7 +186,7 @@ include_once("Consultas.php");
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas diarias</p>
                     <h5 class="font-weight-bolder">
-                      $
+                      $ <?php  echo $ventas->total_diario ?>
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+3%</span>
@@ -202,7 +209,7 @@ include_once("Consultas.php");
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Última venta</p>
                     <h5 class="font-weight-bolder">
-                      $
+                      $ <?php echo $ultimaVenta->total ?>
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+3%</span>
