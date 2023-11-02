@@ -165,10 +165,10 @@ $ultimaVenta = $nw->ultimaVenta(1);
                     <h5 class="font-weight-bolder">
                       $
                     </h5>
-                    <p class="mb-0">
+                    <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
                       desde el mes pasado
-                    </p>
+                    </p> -->
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -186,12 +186,13 @@ $ultimaVenta = $nw->ultimaVenta(1);
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas diarias</p>
                     <h5 class="font-weight-bolder">
-                      $ <?php  echo $ventas->total_diario ?>
+                      $
+                      <?php echo $ventas->total_diario ?>
                     </h5>
-                    <p class="mb-0">
+                    <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+3%</span>
                       desde ayer
-                    </p>
+                    </p> -->
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -209,12 +210,13 @@ $ultimaVenta = $nw->ultimaVenta(1);
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Última venta</p>
                     <h5 class="font-weight-bolder">
-                      $ <?php echo $ultimaVenta->total ?>
+                      $
+                      <?php echo ($ultimaVenta->total_diario !== null) ? $ultimaVenta->total_diario : '0'; ?>
                     </h5>
-                    <p class="mb-0">
+                    <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+3%</span>
                       desde la última venta
-                    </p>
+                    </p> -->
                   </div>
                 </div>
                 <div class="col-4 text-end">
