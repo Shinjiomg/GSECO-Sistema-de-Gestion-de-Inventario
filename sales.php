@@ -1,7 +1,12 @@
 <?php
 include_once("conexion.php");
 include_once("Consultas.php");
+require('./models/categoria.php');
+
 $rol = intval($_SESSION['rol']);
+
+$Categoria = new Categoria()
+
 
 ?>
 <!DOCTYPE html>
@@ -160,7 +165,12 @@ $rol = intval($_SESSION['rol']);
                                         Seleccionar categoría
                                     </button>
                                     <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <?php
+                                                foreach($Categoria->index() as $c)
+                                                {
+                                        ?>
+                                        <li><a class="dropdown-item" href="#"><?php echo $c->nombre ?></a></li>
+                                        <?php } ?>
                                     </ul>
                                 </div>
                             </div>
