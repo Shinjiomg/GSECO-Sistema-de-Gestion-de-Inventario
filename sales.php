@@ -151,20 +151,17 @@ $rol = intval($_SESSION['rol']);
             <!-- main content -->
 
             <div class="row">
-                <div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">
+                <div class="col-xl-12 col-sm-6 mb-xl-0">
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de la venta</p>
-                                        <h5 class="font-weight-bolder">
-                                            $0
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <a class="btn bg-gradient-primary mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Crear venta</a>
+                                <div class="col-12">
+                                    <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
+                                        Seleccionar categoría
+                                    </button>
+                                    <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -172,70 +169,141 @@ $rol = intval($_SESSION['rol']);
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-xl-12">
+                <div class="col-xl-7 mb-4">
                     <div class="card p-4">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-8 ">
-                                    <h5>Selecciona el código o el nombre del artículo</h5>
-                                </div>
-                                <div class="col-md-4 text-end">
-                                    <a class="btn bg-gradient-primary mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Agregar artículo</a>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="">Código del artículo</label>
-                                        <select class="form-control" id="">
-                                            <option>1</option>
-                                            <option>2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="form-group">
-                                        <label for="">Nombre del artículo</label>
-                                        <select class="form-control" id="">
-                                            <option>Empanada</option>
-                                            <option>Coca-Cola</option>
-                                        </select>
+                        <div class="col-md-12 ">
+                            <h5>Selecciona los artículos</h5>
+                            <p><em>Categoría seleccionada:</em> <strong>test</strong></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="producto">
+                                    <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-form-product">01 - Empanada <br> $2500</a>
+                                    <div class="modal fade" id="modal-form-product" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body p-0">
+                                                    <div class="card card-plain">
+                                                        <div class="card-body">
+                                                            <form role="form text-left">
+                                                                <div class="text-center">
+                                                                    <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0"> Añadir</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5">
+                    <div class="card p-4">
+                        <form>
                             <div class="row">
-                                <div class="row col-xl-8">
-                                    <h5>Cantidad y precio</h5>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Cantidad</label>
-                                            <input type="text" placeholder="Ingresa la cantidad" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Precio unitario</label>
-                                            <input type="text" placeholder="Ingresa el valor unitario" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Total por este artículo</label>
-                                            <input type="text" placeholder="Total" class="form-control" disabled />
-                                        </div>
+                                <div class="col-md-8">
+                                    <h5>Artículos seleccionados</h5>
+                                </div>
+                                <div class="col-md-4 mt-1">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked="">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Generar factura</label>
                                     </div>
                                 </div>
-                                <div class="row col-xl-4">
-                                    <h5>Método de pago</h5>
-                                    <label for="">Selecciona un método de pago</label>
-                                    <div class="col-md-6">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
-                                            <label class="custom-control-label" for="customRadio1">Efectivo</label>
-                                        </div>
+                                <div>
+                                    <div class="table-responsive">
+                                        <table class="table align-items-center">
+                                            <thead>
+                                                <tr>
+                                                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                                                        Artículo</th>
+                                                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
+                                                        Cantidad</th>
+                                                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
+                                                        Precio unitario</th>
+                                                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
+                                                        Total </th>
+                                                    <th class=" text-uppercase text-black text-xxs font-weight-bolder opacity-7"></th>
+                                                    <th class=" text-uppercase text-black text-xxs font-weight-bolder opacity-7"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <p>Empanada</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>3</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>$2500</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>$7500</p>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <a href="#" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal-form-edit-product" data-toggle="tooltip" data-original-title="Edit user">
+                                                            Editar
+                                                        </a>
+                                                        <div class="modal fade" id="modal-form-edit-product" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body p-0">
+                                                                        <div class="card card-plain">
+                                                                            <div class="card-body">
+                                                                                <form role="form text-left">
+                                                                                    <div class="text-center">
+                                                                                        <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0"> Cambiar</button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a class="text-danger font-weight-bold text-xs" data-original-title="Delete user">
+                                                            Borrar
+                                                        </a>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2">
-                                            <label class="custom-control-label" for="customRadio2">Nequi</label>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="col-xl-12 mt-4">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de la venta</p>
+                                            <h5 class="font-weight-bolder">
+                                                $0
+                                            </h5>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
+                                                        <label class="custom-control-label" for="customRadio1">Efectivo</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2">
+                                                        <label class="custom-control-label" for="customRadio2">Nequi</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 text-end mt-xl-3">
+                                            <a class="btn btn-outline-success mb-0" href="javascript:;"></i>&nbsp;&nbsp;Crear venta</a>
                                         </div>
                                     </div>
                                 </div>
@@ -245,21 +313,6 @@ $rol = intval($_SESSION['rol']);
                 </div>
             </div>
             <!-- footer -->
-            <footer class="footer pt-3  ">
-                <div class="container-fluid">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 mb-lg-0 mb-4">
-                            <div class="copyright text-center text-sm text-muted text-lg-start">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script> Jhonatan, Nicoll y Camilo,
-                                Todos los derechos reservados
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </main>
     <!-- config interface -->
