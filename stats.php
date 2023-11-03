@@ -36,12 +36,9 @@ $ultimaVenta = $nw->ultimaVenta(1);
 <body class="g-sidenav-show bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
-  <aside
-    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
-    id="sidenav-main">
+  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-        aria-hidden="true" id="iconSidenav"></i>
+      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0 mr-4">
         <img src="./img/logo.png" class="navbar-brand-img h-100 mr-5" alt="main_logo">
         <span class="ms-1 font-weight-bold">GSECO</span>
@@ -55,8 +52,7 @@ $ultimaVenta = $nw->ultimaVenta(1);
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="stats.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Estadísticas</span>
@@ -64,11 +60,26 @@ $ultimaVenta = $nw->ultimaVenta(1);
         </li>
         <li class="nav-item">
           <a class="nav-link" href="sales.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-cart text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Ventas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="bills.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-cart text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Facturas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="transactions.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-cart text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Transacciones</span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -76,8 +87,7 @@ $ultimaVenta = $nw->ultimaVenta(1);
         </li>
         <li class="nav-item">
           <a class="nav-link" href="user-administration.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Usuarios</span>
@@ -91,8 +101,7 @@ $ultimaVenta = $nw->ultimaVenta(1);
   </aside>
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-      data-scroll="false">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -138,25 +147,9 @@ $ultimaVenta = $nw->ultimaVenta(1);
     </nav>
     <div class="container-fluid py-4">
       <!-- Cards -->
-      <div class="row mt-4">
-        <div class="col-xl-6  mb-4">
-          <div class="card z-index-2 h-100">
-            <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize">Resumen de ventas</h6>
-              <p class="text-sm mb-0">
-                <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% más</span> en 2023
-              </p>
-            </div>
-            <div class="card-body p-3">
-              <div class="chart">
-                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-6 mt-1">
-          <div class="card mb-4">
+      <div class="row">
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -164,11 +157,8 @@ $ultimaVenta = $nw->ultimaVenta(1);
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas totales</p>
                     <h5 class="font-weight-bolder">
                       $
+                      <?php echo $ventas->total_diario ? $ultimaVenta->total_diario : '0'; ?>
                     </h5>
-                    <!-- <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
-                      desde el mes pasado
-                    </p> -->
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -179,7 +169,9 @@ $ultimaVenta = $nw->ultimaVenta(1);
               </div>
             </div>
           </div>
-          <div class="card mb-4">
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -187,12 +179,8 @@ $ultimaVenta = $nw->ultimaVenta(1);
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas diarias</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <?php echo $ventas->total_diario ?>
+                      <?php echo $ventas->total_diario ? $ultimaVenta->total_diario : '0'; ?>
                     </h5>
-                    <!-- <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
-                      desde ayer
-                    </p> -->
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -203,6 +191,8 @@ $ultimaVenta = $nw->ultimaVenta(1);
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
@@ -213,10 +203,6 @@ $ultimaVenta = $nw->ultimaVenta(1);
                       $
                       <?php echo ($ultimaVenta->total_diario !== null) ? $ultimaVenta->total_diario : '0'; ?>
                     </h5>
-                    <!-- <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
-                      desde la última venta
-                    </p> -->
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -239,8 +225,24 @@ $ultimaVenta = $nw->ultimaVenta(1);
                   <h6>Artículos</h6>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-primary mb-0" href="javascript:;"><i
-                      class="fas fa-plus"></i>&nbsp;&nbsp;Añadir producto</a>
+                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-product"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir producto</a>
+                  <div class="modal fade" id="modal-form-product" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body p-0">
+                          <div class="card card-plain">
+                            <div class="card-body">
+                              <form role="form text-left">
+                                <div class="text-center">
+                                  <button type="button" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir producto</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -248,29 +250,21 @@ $ultimaVenta = $nw->ultimaVenta(1);
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Nombre del artículo</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
                       Precio de venta</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Cantidad</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Estado</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Categoría</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">Meta
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">Meta
                     </th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Porcentaje</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                     </th>
                   </tr>
                 </thead>
@@ -289,7 +283,7 @@ $ultimaVenta = $nw->ultimaVenta(1);
       </div>
       <!--secondary content -->
       <div class="row mt-4">
-        <div class="col-xl-4">
+        <div class="col-xl-5">
           <div class="card mb-4">
             <div class="card-header pb-0">
               <div class="row pb-2 p-3">
@@ -297,15 +291,31 @@ $ultimaVenta = $nw->ultimaVenta(1);
                   <h6>Categorías</h6>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-primary mb-0" href=""><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir
-                    categoría</a>
+                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
+                  <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body p-0">
+                          <div class="card card-plain">
+                            <div class="card-body">
+                              <form role="form text-left">
+                                <div class="text-center">
+                                  <button type="button" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir categoría</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="card-body p-3">
               <ul class="list-group">
                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex align-items-center">
+                  <!-- <div class="d-flex align-items-center">
                     <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
                       <i class="ni ni-basket text-white opacity-10"></i>
                     </div>
@@ -315,16 +325,15 @@ $ultimaVenta = $nw->ultimaVenta(1);
                     </div>
                   </div>
                   <div class="d-flex">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i
-                        class="ni ni-settings" aria-hidden="true"></i></button>
-                  </div>
+                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-settings" aria-hidden="true"></i></button>
+                  </div> -->
                 </li>
 
               </ul>
             </div>
           </div>
         </div>
-        <div class="col-xl-8">
+        <div class="col-xl-7">
           <div class="card ">
             <div class="card-header pb-4">
               <div class="row pb-2 p-3">
@@ -336,7 +345,7 @@ $ultimaVenta = $nw->ultimaVenta(1);
             <div class="table-responsive">
               <table class="table align-items-center ">
                 <tbody>
-                  <tr>
+                  <!-- <tr>
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Vendedor:</p>
@@ -361,7 +370,7 @@ $ultimaVenta = $nw->ultimaVenta(1);
                         <h6 class="text-sm mb-0">29.9%</h6>
                       </div>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>

@@ -54,7 +54,7 @@ $rol = intval($_SESSION['rol']);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="sales.php">
+                    <a class="nav-link" href="sales.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
@@ -62,7 +62,7 @@ $rol = intval($_SESSION['rol']);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="bills.php">
+                    <a class="nav-link active" href="bills.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
@@ -149,101 +149,41 @@ $rol = intval($_SESSION['rol']);
         </nav>
         <div class="container-fluid py-4">
             <!-- main content -->
-
             <div class="row">
-                <div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
+                <div class="col-xl-12">
+                    <div class="card h-100">
+                        <div class="card-header pb-0 p-3">
                             <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de la venta</p>
-                                        <h5 class="font-weight-bolder">
-                                            $0
-                                        </h5>
-                                    </div>
+                                <div class="col-6 d-flex align-items-center">
+                                    <h6 class="mb-0">Facturas</h6>
                                 </div>
-                                <div class="col-4 text-end">
-                                    <a class="btn bg-gradient-primary mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Crear venta</a>
-                                </div>
+                                <!-- <div class="col-6 text-end">
+                                    <button class="btn btn-outline-primary btn-sm mb-0">Ver todo</button>
+                                </div> -->
                             </div>
+                        </div>
+                        <div class="card-body p-3 pb-0">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
+                                        <span class="text-xs">#MS-415646</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $180
+                                        <a href="./reports/venta.php" target="_blank">
+                                            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
+                                                <i class="fas fa-file-pdf text-lg me-1"></i> PDF
+                                            </button>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-xl-12">
-                    <div class="card p-4">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-8 ">
-                                    <h5>Selecciona el código o el nombre del artículo</h5>
-                                </div>
-                                <div class="col-md-4 text-end">
-                                    <a class="btn bg-gradient-primary mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Agregar artículo</a>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="">Código del artículo</label>
-                                        <select class="form-control" id="">
-                                            <option>1</option>
-                                            <option>2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="form-group">
-                                        <label for="">Nombre del artículo</label>
-                                        <select class="form-control" id="">
-                                            <option>Empanada</option>
-                                            <option>Coca-Cola</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row col-xl-8">
-                                    <h5>Cantidad y precio</h5>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Cantidad</label>
-                                            <input type="text" placeholder="Ingresa la cantidad" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Precio unitario</label>
-                                            <input type="text" placeholder="Ingresa el valor unitario" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Total por este artículo</label>
-                                            <input type="text" placeholder="Total" class="form-control" disabled />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row col-xl-4">
-                                    <h5>Método de pago</h5>
-                                    <label for="">Selecciona un método de pago</label>
-                                    <div class="col-md-6">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
-                                            <label class="custom-control-label" for="customRadio1">Efectivo</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2">
-                                            <label class="custom-control-label" for="customRadio2">Nequi</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
             <!-- footer -->
             <footer class="footer pt-3  ">
                 <div class="container-fluid">

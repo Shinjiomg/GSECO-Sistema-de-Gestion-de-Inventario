@@ -59,6 +59,22 @@ include_once("Consultas.php");
                         <span class="nav-link-text ms-1">Ventas</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="bills.php">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-cart text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Facturas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="transactions.php">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-cart text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Transacciones</span>
+                    </a>
+                </li>
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                 </li>
@@ -133,7 +149,24 @@ include_once("Consultas.php");
                                     <h6>Roles</h6>
                                 </div>
                                 <div class="col-6 text-end">
-                                    <a class="btn bg-gradient-primary mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir rol</a>
+                                    <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir rol</a>
+                                    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body p-0">
+                                                    <div class="card card-plain">
+                                                        <div class="card-body">
+                                                            <form role="form text-left">
+                                                                <div class="text-center">
+                                                                    <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Añadir rol</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -177,18 +210,28 @@ include_once("Consultas.php");
                     <div class="card mb-4">
                         <div class="card-header pb-0">
                             <div class="row pb-2 p-3">
-                                <div class="col-4 d-flex align-items-center">
+                                <div class="col-8 d-flex align-items-center">
                                     <h6>Usuarios</h6>
                                 </div>
-                                <div class="col-4 d-flex align-items-center">
-                                    <a href="./reports/usuarios.php" target="_blank">
-                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
-                                            <i class="fas fa-file-pdf text-lg me-1"></i> PDF
-                                        </button>
-                                    </a>
-                                </div>
                                 <div class="col-4 text-end">
-                                    <a class="btn bg-gradient-primary mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir usuario</a>
+                                    <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-user"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir usuario</a>
+                                    <div class="modal fade" id="modal-form-user" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body p-0">
+                                                    <div class="card card-plain">
+                                                        <div class="card-body">
+                                                            <form role="form text-left">
+                                                                <div class="text-center">
+                                                                    <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Añadir usuario</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -201,7 +244,13 @@ include_once("Consultas.php");
                                             <th class="text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">Rol</th>
                                             <th class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">Estado</th>
                                             <th class="text-black opacity-7"></th>
-                                            <th class="text-black opacity-7"></th>
+                                            <th class="text-black opacity-7">
+                                                <a href="./reports/usuarios.php" target="_blank">
+                                                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
+                                                        <i class="fas fa-file-pdf text-lg me-1"></i> PDF
+                                                    </button>
+                                                </a>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
