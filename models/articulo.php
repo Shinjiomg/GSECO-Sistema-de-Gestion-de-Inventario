@@ -13,7 +13,7 @@ class Articulo extends Database
 
 	public function articuloByCategory($category)
 	{
-		$query = $this->pdo->query('SELECT * FROM articulo WHERE categoria_id_categoria='.$category.'AND estado = 1');
+		$query = $this->pdo->query('SELECT * FROM articulo where categoria_id_categoria ='.$category.' AND estado = 1');
 		return $query->fetchAll();
 	}
 

@@ -29,6 +29,7 @@ $Categoria = new Categoria()
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 </head>
@@ -169,7 +170,7 @@ $Categoria = new Categoria()
                                                 foreach($Categoria->index() as $c)
                                                 {
                                         ?>
-                                        <li><a class="dropdown-item" href="#"><?php echo $c->nombre ?></a></li>
+                                        <li onclick="showProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')" ><a class="dropdown-item" href="#"><?php echo $c->nombre ?></a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -183,31 +184,9 @@ $Categoria = new Categoria()
                     <div class="card p-4">
                         <div class="col-md-12 ">
                             <h5>Selecciona los artículos</h5>
-                            <p><em>Categoría seleccionada:</em> <strong>test</strong></p>
+                            <p><em>Categoría seleccionada:</em> <strong id="selected_category"></strong></p>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="producto">
-                                    <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-form-product">01 - Empanada <br> $2500</a>
-                                    <div class="modal fade" id="modal-form-product" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-body p-0">
-                                                    <div class="card card-plain">
-                                                        <div class="card-body">
-                                                            <form role="form text-left">
-                                                                <div class="text-center">
-                                                                    <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0"> Añadir</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row" id="products_category">
                         </div>
                     </div>
                 </div>
@@ -352,6 +331,7 @@ $Categoria = new Categoria()
         </div>
     </div>
     <!--   Core JS Files and scripts  -->
+    <script src="js/infoproductos.js"></script>
     <script src="js/ventas.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
