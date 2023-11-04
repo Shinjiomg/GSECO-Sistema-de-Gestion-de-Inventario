@@ -221,32 +221,7 @@ $Categoria = new Categoria()
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <p>Empanada</p>
-                                                    </td>
-                                                    <td>
-                                                        <p>3</p>
-                                                    </td>
-                                                    <td>
-                                                        <p>$2500</p>
-                                                    </td>
-                                                    <td>
-                                                        <p>$7500</p>
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <a href="#" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal-form-edit-product" data-toggle="tooltip" data-original-title="Edit user">
-                                                            Editar
-                                                        </a>
-                                            
-                                                    </td>
-                                                    <td>
-                                                        <a class="text-danger font-weight-bold text-xs" data-original-title="Delete user">
-                                                            Borrar
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
+                                               
                                             </tbody>
                                         </table>
                                     </div>
@@ -314,8 +289,31 @@ $Categoria = new Categoria()
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body p-0">
+                          <div class="card card-plain">
+                            <div class="card-body">
+                              <form role="form text-left">
+                                <div class="text-center">
+                                <label for="productQuantity">Cantidad:</label>
+                                <input type="number" id="productQuantity">
+                                  <button 
+                                  type="button" 
+                                  id="confirmButton"
+                                  class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Guardar</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+    
     <!--   Core JS Files and scripts  -->
-    <script src="js/infoproductos.js"></script>
     <script src="js/ventas.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>

@@ -1,8 +1,8 @@
 products = [];
+selectedProduct = null;
 
 function showProductsByCategory(category, name) {
 
-    console.log(name)
     var datos = new FormData();
 
     datos.append("id_categoria", category);
@@ -34,7 +34,7 @@ function renderProducts(data) {
     while (divContainer.firstChild) {
         divContainer.removeChild(divContainer.firstChild);
     }
-
+    console.log(data)
     data.forEach(pr => {
         // Crear un contenedor div con clase "col-md-4"
         var colDiv = document.createElement("div");
@@ -74,50 +74,87 @@ function renderProducts(data) {
 
     });
 
-    function addProductTable(pr) {
-        products.push(pr);
-        let tabla = document.getElementById("data_table");
-
-        products.forEach(pr => {
-
-            var nuevaFila = document.createElement("tr");
-
-            // Define el contenido de cada celda
-            var contenidoCeldas = [
-                pr.nombre,
-                "3",
-                pr.precio_venta,
-                "$7500",
-                // Celda con el botón "Editar"
-                '<a href="#" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal-form-edit-product" data-toggle="tooltip" data-original-title="Edit user">Editar</a>',
-                // Celda con el botón "Borrar"
-                '<a class="text-danger font-weight-bold text-xs" data-original-title="Delete user">Borrar</a>',
-            ];
-
-            // Itera sobre el contenido de las celdas y crea celdas <td>
-            contenidoCeldas.forEach(function (contenido) {
-                var celda = document.createElement("td");
-                var parrafo = document.createElement("p");
-                parrafo.innerHTML = contenido;
-                celda.appendChild(parrafo);
-                nuevaFila.appendChild(celda);
-            });
-
-            // Agrega la nueva fila a la tabla
-            tabla.querySelector("tbody").appendChild(nuevaFila);
+}
 
 
-        })
-
-
+function addProductTable(pr) {
+    selectedProduct = pr;
+    const rs = products.filter(
+        (art) => art.id_articulo === pr.id_articulo
+    );
+   
+    if (rs?.length) {
+      return;
     }
+    
+    $('#modal-form').modal('show');
 
-
-
-
-
+   
 
 }
+
+function confirmQuantity(){
+    const quantityInput = document.getElementById('productQuantity');
+    const quantity = parseInt(quantityInput.value);
+
+    if (!isNaN(quantity)) {
+        products.push({...selectedProduct, cantidad:quantity});
+        renderTable();
+
+    }else{
+        alert('Por favor, ingrese una cantidad válida.');
+    }
+}
+
+function renderTable(){
+    let tabla = document.getElementById("data_table");
+    products.forEach(pr => {
+
+        var nuevaFila = document.createElement("tr");
+
+        // Define el contenido de cada celda
+        var contenidoCeldas = [
+            pr.nombre,
+            pr.cantidad,
+            pr.precio_venta,
+            "$" + pr.cantidad * pr.precio_venta,
+            // Celda con el botón "Editar"
+            '<a href="#" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal-form-edit-product" data-toggle="tooltip" data-original-title="Edit user">Editar</a>',
+            // Celda con el botón "Borrar"
+            '<a class="text-danger font-weight-bold text-xs" data-original-title="Delete user">Borrar</a>',
+        ];
+
+        // Itera sobre el contenido de las celdas y crea celdas <td>
+        contenidoCeldas.forEach(function (contenido) {
+            var celda = document.createElement("td");
+            var parrafo = document.createElement("p");
+            parrafo.innerHTML = contenido;
+            celda.appendChild(parrafo);
+            nuevaFila.appendChild(celda);
+        });
+
+        // Agrega la nueva fila a la tabla
+        tabla.querySelector("tbody").appendChild(nuevaFila);
+
+        const modal = document.getElementById('modal');
+
+        $('#modal-form').modal('hide');
+      
+
+    })
+}
+
+
+const confirmButton = document.getElementById('confirmButton');
+confirmButton.addEventListener('click', confirmQuantity);
+
+
+
+
+
+
+
+
 
 
 
