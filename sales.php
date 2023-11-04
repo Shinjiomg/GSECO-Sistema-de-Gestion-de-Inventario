@@ -205,7 +205,7 @@ $Categoria = new Categoria()
                                 </div>
                                 <div>
                                     <div class="table-responsive">
-                                        <table class="table align-items-center">
+                                        <table id ="data_table" class="table align-items-center">
                                             <thead>
                                                 <tr>
                                                     <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
@@ -238,23 +238,7 @@ $Categoria = new Categoria()
                                                         <a href="#" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal-form-edit-product" data-toggle="tooltip" data-original-title="Edit user">
                                                             Editar
                                                         </a>
-                                                        <div class="modal fade" id="modal-form-edit-product" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-body p-0">
-                                                                        <div class="card card-plain">
-                                                                            <div class="card-body">
-                                                                                <form role="form text-left">
-                                                                                    <div class="text-center">
-                                                                                        <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0"> Cambiar</button>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                            
                                                     </td>
                                                     <td>
                                                         <a class="text-danger font-weight-bold text-xs" data-original-title="Delete user">
