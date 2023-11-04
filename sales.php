@@ -352,6 +352,7 @@ $Categoria = new Categoria()
         </div>
     </div>
     <!--   Core JS Files and scripts  -->
+    <script src="js/ventas.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
