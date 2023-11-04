@@ -3,10 +3,12 @@ include_once("conexion.php");
 include_once("Consultas.php");
 
 require('./models/venta.php');
+require('./models/articulo.php');
 $nw = new Venta();
-
+$ar = new Articulo();
 $ventas = $nw->ventas(1);
 $ultimaVenta = $nw->ultimaVenta(1);
+$articulos = $ar->index();
 
 ?>
 <!DOCTYPE html>
@@ -269,12 +271,26 @@ $ultimaVenta = $nw->ultimaVenta(1);
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- <tr>
-                    <td class="align-middle">
-                      <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i
-                          class="ni ni-settings" aria-hidden="true"></i></button>
+                  <?php foreach($articulos as $art){ ?>
+                  <tr>
+                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                       <?php echo $art->nombre ?>
                     </td>
-                  </tr> -->
+                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                       <?php echo $art->precio_venta ?>
+                    </td>
+                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                       <?php echo $art->stock ?>
+                    </td>
+                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                       <?php echo $art->estado ?>
+                    </td>
+                  </tr>
+
+                  <?php 
+                    }
+                  ?>
+
                 </tbody>
               </table>
             </div>
