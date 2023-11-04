@@ -53,7 +53,7 @@ if(isset($_POST['btningresar']))
            		   		<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
-           		   		<h5>Correo</h5>
+           		   		<h5>Correo Electrónico</h5>
            		   		<input type="email" name="txtusuario" class="input">
            		   </div>
            		</div>
