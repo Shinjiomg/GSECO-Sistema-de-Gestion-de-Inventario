@@ -39,13 +39,15 @@ if(isset($_POST['btningresar']))
 	
 	<div class="container">
 	<div class="contenedor">
-		<div class="img">
-		<img src="img/fondo.png">
+	<h2 class="tituloempresa">TIENDA DEL SOLDADO</h2>
+	<div class="img">
+		<img src="img/logo.png">
 		</div>
 		<div class="login-content">
 			<form method="POST">
-				<img class="logo" src="img/logo.png">
-				<h3 class="titulo" id="titulo">Bienvenido</h3>
+				<img class="logo" src="">
+				<h3 class="titulo" id="titulo1">GSECO</h3>
+				<h3 class="titulo" id="titulo3">Iniciar Sesión</h3>
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
