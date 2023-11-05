@@ -11,7 +11,6 @@ if(isset($_POST["productos"])){
 	$productos= $_POST["productos"];
 	$total= $_POST["total"];
 
-    
-	
+    $venta->store($var_session, $total, $productos);
 
 }
