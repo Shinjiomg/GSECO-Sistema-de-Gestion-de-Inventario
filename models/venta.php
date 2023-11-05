@@ -11,19 +11,21 @@ class Venta extends Database
 		return $query->fetch();
 	}
 
-	public function store($idUsuario, $total, $productos)
+	public function store($idUsuario, $total, $productos, $tipoPago)
 	{
 
-		$query = $this->pdo->prepare('INSERT INTO venta (Usuario_id_usuario, total, fecha) VALUES (:usuario_id, :total, :fecha)');
+		$query = $this->pdo->prepare('INSERT INTO venta (Usuario_id_usuario, total, fecha, tipo_pago) VALUES (:usuario_id, :total, :fecha, :tipo_pago)');
 
 		
 		$query->bindParam(':usuario_id', $idUsuario);
 		$query->bindParam(':total', $total);
 		$query->bindParam(':fecha', date('Y-m-d H:i:s'));
+		$query->bindParam(':tipo_pago', $tipoPago);
 		$query->execute();
 
 		
 		if ($query->rowCount() > 0) {
+			echo "Se guardo.";
 			$id_venta = $this->pdo->lastInsertId();
 			$productos = json_decode($productos);
 			foreach ($productos as $articulo) {

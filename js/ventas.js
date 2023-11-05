@@ -27,18 +27,27 @@ function showProductsByCategory(category, name) {
 
 }
 
-function GenerarVenta(){
+function GenerarVenta() {
 
     let datos = new FormData();
 
-    /* for (let i = 0; i < products.length; i++) {
-        datos.append("productos[]", products[i]);
-    } */
+    let radios = document.getElementsByName('tipoPago');
+
+    let tipo_pago = null;
+
+    
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            tipo_pago = radios[i].value;
+            break; 
+        }
+    }
 
     datos.append("productos", JSON.stringify(products));
     datos.append("total", sumaTotales);
+    datos.append("tipo_pago", tipo_pago);
 
-    console.log(datos)
+  
 
     $.ajax({
         url: "ajax/ventas.ajax.php",
@@ -102,8 +111,8 @@ function renderProducts(data) {
             divContainer.appendChild(colDiv);
 
         });
-    }else{
-        msg ='<div class="col-md-12 text-center"><h5>No se encontraron articulos</h5></div>'
+    } else {
+        msg = '<div class="col-md-12 text-center"><h5>No se encontraron articulos</h5></div>'
         divContainer.innerHTML = msg;
     }
 
@@ -113,19 +122,19 @@ function renderProducts(data) {
 
 function addProductTable(pr) {
     console.log(pr)
-    
+
     const rs = products.filter(
         (art) => art.id_articulo === pr.id_articulo
     );
 
     if (rs?.length) {
         return;
-    }else{
+    } else {
         selectedProduct = pr;
         $('#modal-form').modal('show');
     }
 
-  
+
 
 }
 
@@ -157,7 +166,7 @@ function renderTable() {
         let nuevaFila = document.createElement("tr");
         let subtotal = pr.cantidad * pr.precio_venta;
 
-        sumaTotales +=  subtotal;
+        sumaTotales += subtotal;
 
         // Define el contenido de cada celda
         let contenidoCeldas = [

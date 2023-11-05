@@ -138,7 +138,7 @@ $Categoria = new Categoria()
                             </a>
                         </li>
                         <li class="nav-item px-3 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-0">
+                            <a class="nav-link text-white p-0">
                                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
@@ -238,13 +238,23 @@ $Categoria = new Categoria()
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
+                                                        <input 
+                                                            class="form-check-input" 
+                                                            type="radio" 
+                                                            name="tipoPago" 
+                                                            id="customRadio1" 
+                                                            value="Efectivo">
                                                         <label class="custom-control-label" for="customRadio1">Efectivo</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2">
+                                                        <input 
+                                                            class="form-check-input" 
+                                                            type="radio" 
+                                                            name="tipoPago" 
+                                                            id="customRadio2" 
+                                                            value="Nequi">
                                                         <label class="custom-control-label" for="customRadio2">Nequi</label>
                                                     </div>
                                                 </div>
