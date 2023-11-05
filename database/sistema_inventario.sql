@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2023 a las 05:16:49
+-- Tiempo de generación: 05-11-2023 a las 18:44:48
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -38,6 +38,13 @@ CREATE TABLE `articulo` (
   `meta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `articulo`
+--
+
+INSERT INTO `articulo` (`id_articulo`, `nombre`, `precio_venta`, `stock`, `descripcion`, `estado`, `categoria_id_categoria`, `meta`) VALUES
+(1, 'gaseosa', 1200.00, 30, 'coca cola', 1, 1, 20);
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +56,13 @@ CREATE TABLE `categoria` (
   `nombre` varchar(45) NOT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`id_categoria`, `nombre`, `estado`) VALUES
+(1, 'bebida', 1);
 
 -- --------------------------------------------------------
 
@@ -63,6 +77,17 @@ CREATE TABLE `detalle_venta` (
   `cantidad` int(11) NOT NULL,
   `precio` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_venta`
+--
+
+INSERT INTO `detalle_venta` (`id_detalle_venta`, `Venta_id_venta`, `Articulo_id_articulo`, `cantidad`, `precio`) VALUES
+(2, 1, 1, 1, 12.00),
+(3, 2, 1, 1, 1200.00),
+(4, 3, 1, 1, 1200.00),
+(5, 4, 1, 1, 1200.00),
+(6, 5, 1, 4, 1200.00);
 
 -- --------------------------------------------------------
 
@@ -118,8 +143,20 @@ CREATE TABLE `venta` (
   `id_venta` int(10) UNSIGNED NOT NULL,
   `Usuario_id_usuario` int(10) UNSIGNED NOT NULL,
   `fecha` datetime NOT NULL,
-  `total` decimal(11,2) NOT NULL
+  `total` decimal(11,2) NOT NULL,
+  `tipo_pago` varchar(30) DEFAULT 'Efectivo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`id_venta`, `Usuario_id_usuario`, `fecha`, `total`, `tipo_pago`) VALUES
+(1, 1, '2023-11-05 18:12:57', 20000.00, 'Efectivo'),
+(2, 1, '2023-11-05 18:16:07', 1200.00, 'null'),
+(3, 1, '2023-11-05 18:17:10', 1200.00, 'Efectivo'),
+(4, 1, '2023-11-05 18:17:21', 1200.00, 'Efectivo'),
+(5, 1, '2023-11-05 18:17:55', 4800.00, 'Nequi');
 
 --
 -- Índices para tablas volcadas
@@ -174,19 +211,19 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `id_articulo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_articulo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -204,7 +241,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
