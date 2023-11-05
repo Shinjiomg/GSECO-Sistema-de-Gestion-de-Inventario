@@ -31,11 +31,14 @@ function GenerarVenta(){
 
     let datos = new FormData();
 
-    for (let i = 0; i < products.length; i++) {
+    /* for (let i = 0; i < products.length; i++) {
         datos.append("productos[]", products[i]);
-    }
+    } */
 
+    datos.append("productos", JSON.stringify(products));
     datos.append("total", sumaTotales);
+
+    console.log(datos)
 
     $.ajax({
         url: "ajax/ventas.ajax.php",

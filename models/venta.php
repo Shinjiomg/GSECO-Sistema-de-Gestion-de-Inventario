@@ -25,9 +25,9 @@ class Venta extends Database
 		
 		if ($query->rowCount() > 0) {
 			$id_venta = $this->pdo->lastInsertId();
-			
+			$productos = json_decode($productos);
 			foreach ($productos as $articulo) {
-				$this->insertDetalleVenta($id_venta, $articulo['id_articulo'], $articulo['cantidad'], $articulo['precio_venta']);
+				$this->insertDetalleVenta($id_venta, $articulo->id_articulo, $articulo->cantidad, $articulo->precio_venta);
 			}
 			
 		} else {
