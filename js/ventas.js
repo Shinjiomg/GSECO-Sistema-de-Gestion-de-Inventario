@@ -177,7 +177,7 @@ function renderTable() {
             // Celda con el botón "Editar"
             '<a href="#" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal-form-edit-product" data-toggle="tooltip" data-original-title="Edit user">Editar</a>',
             // Celda con el botón "Borrar"
-            '<a class="text-danger font-weight-bold text-xs" data-original-title="Delete user">Borrar</a>',
+            '<a class="text-danger font-weight-bold text-xs" onclick="removeProduct('+pr.id_articulo+')" data-original-title="Delete user">Borrar</a>',
         ];
 
         // Itera sobre el contenido de las celdas y crea celdas <td>
@@ -201,6 +201,11 @@ function renderTable() {
     })
 }
 
+function removeProduct(idproducto){
+
+    products =products.filter(p=> p.id_articulo !== idproducto)
+    renderTable();
+}
 
 const confirmButton = document.getElementById('confirmButton');
 confirmButton.addEventListener('click', confirmQuantity);
