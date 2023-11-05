@@ -1,7 +1,7 @@
 products = [];
 selectedProduct = null;
 sumaTotales = 0;
-
+isEdit = false;
 function showProductsByCategory(category, name) {
 
     let datos = new FormData();
@@ -121,17 +121,24 @@ function renderProducts(data) {
 
 
 function addProductTable(pr) {
-    console.log(pr)
+   
 
     const rs = products.filter(
         (art) => art.id_articulo === pr.id_articulo
     );
-
+    let title= document.querySelector('#titleModal');
+  
     if (rs?.length) {
+        Swal.fire({
+            title: "Alerta",
+            text: "El producto ya se encuentra en el carrito de compras",
+            icon: "warning"
+        });
         return;
     } else {
         selectedProduct = pr;
         $('#modal-form').modal('show');
+        title.textContent  = pr.nombre;
     }
 
 
@@ -142,11 +149,39 @@ function confirmQuantity() {
     const quantityInput = document.getElementById('productQuantity');
     const quantity = parseInt(quantityInput.value);
     if (!isNaN(quantity)) {
-        products.push({ ...selectedProduct, cantidad: quantity });
+
+        const rs = products.filter(
+            (art) => art.id_articulo === selectedProduct.id_articulo
+        );
+        
+        if (rs?.length) {
+            prActualizado = products.find( art => art.id_articulo === selectedProduct.id_articulo)
+            prActualizado.cantidad = quantity;
+            $('#modal-form').modal('hide');
+            Swal.fire({
+                title: "Editar",
+                text: "El registro fue editado exitosamente",
+                icon: "success"
+            });
+            renderTable();
+            return;
+        } else{
+            products.push({ ...selectedProduct, cantidad: quantity });
+            Swal.fire({
+                title: "Alerta",
+                text: "El producto fue agregado al carrito de compras",
+                icon: "success"
+            });
+        }
+        quantityInput.value = 0;
         renderTable();
 
     } else {
-        alert('Por favor, ingrese una cantidad válida.');
+        Swal.fire({
+            title: "Error",
+            text: "Ingrese valores numéricos",
+            icon: "error"
+        });
     }
 }
 
@@ -175,9 +210,9 @@ function renderTable() {
             pr.precio_venta,
             "$" + subtotal,
             // Celda con el botón "Editar"
-            '<a href="#" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal-form-edit-product" data-toggle="tooltip" data-original-title="Edit user">Editar</a>',
+            '<a class="text-primary font-weight-bold text-xs" onclick="editProduct('+pr.id_articulo+')" data-original-title="Delete user">Editar</a>',
             // Celda con el botón "Borrar"
-            '<a class="text-danger font-weight-bold text-xs" onclick="removeProduct('+pr.id_articulo+')" data-original-title="Delete user">Borrar</a>',
+            '<a class="text-danger font-weight-bold text-xs"  onclick="removeProduct('+pr.id_articulo+')" data-original-title="Delete user">Borrar</a>',
         ];
 
         // Itera sobre el contenido de las celdas y crea celdas <td>
@@ -201,10 +236,40 @@ function renderTable() {
     })
 }
 
-function removeProduct(idproducto){
+function editProduct(id_articulo){
 
-    products =products.filter(p=> p.id_articulo !== idproducto)
-    renderTable();
+    selectedProduct = products.find(p => p.id_articulo === id_articulo);
+    
+    
+    title = document.getElementById('titleModal');
+    title.textContent = selectedProduct.nombre;
+
+    $('#modal-form').modal('show');
+    let cantidad = document.getElementById('productQuantity');
+    cantidad.value = +selectedProduct.cantidad;
+   
+
+}
+
+function removeProduct(id_articulo){
+
+ 
+   selectedProduct = products.find(p => p.id_articulo === id_articulo);
+
+    Swal.fire({
+        title: `Desea borrar el producto ${selectedProduct.nombre} ?`,
+       
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+      }).then((result) => {
+       
+        if (result.isConfirmed) {
+            products =products.filter(p=> p.id_articulo !== id_articulo)
+            renderTable();
+        } 
+      })
+
+   
 }
 
 const confirmButton = document.getElementById('confirmButton');

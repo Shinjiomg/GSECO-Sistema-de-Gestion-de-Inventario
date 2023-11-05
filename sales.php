@@ -21,6 +21,7 @@ $Categoria = new Categoria()
     <title>
         Tienda del soldado GSECO
     </title>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
@@ -167,10 +168,9 @@ $Categoria = new Categoria()
                                     </button>
                                     <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
                                         <?php
-                                                foreach($Categoria->index() as $c)
-                                                {
+                                        foreach ($Categoria->index() as $c) {
                                         ?>
-                                        <li onclick="showProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')" ><a class="dropdown-item" href="#"><?php echo $c->nombre ?></a></li>
+                                            <li onclick="showProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')"><a class="dropdown-item" href="#"><?php echo $c->nombre ?></a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -205,7 +205,7 @@ $Categoria = new Categoria()
                                 </div>
                                 <div>
                                     <div class="table-responsive">
-                                        <table id ="data_table" class="table align-items-center">
+                                        <table id="data_table" class="table align-items-center">
                                             <thead>
                                                 <tr>
                                                     <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
@@ -221,7 +221,7 @@ $Categoria = new Categoria()
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                               
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -233,38 +233,26 @@ $Categoria = new Categoria()
                                         <div class="col-8">
                                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de la venta</p>
                                             <h5 id="total" class="font-weight-bolder">
-                                             $0
+                                                $0
                                             </h5>
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="form-check">
-                                                        <input 
-                                                            class="form-check-input" 
-                                                            type="radio" 
-                                                            name="tipoPago" 
-                                                            id="customRadio1" 
-                                                            value="Efectivo">
+                                                        <input class="form-check-input" type="radio" name="tipoPago" id="customRadio1" value="Efectivo">
                                                         <label class="custom-control-label" for="customRadio1">Efectivo</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-check">
-                                                        <input 
-                                                            class="form-check-input" 
-                                                            type="radio" 
-                                                            name="tipoPago" 
-                                                            id="customRadio2" 
-                                                            value="Nequi">
+                                                        <input class="form-check-input" type="radio" name="tipoPago" id="customRadio2" value="Nequi">
                                                         <label class="custom-control-label" for="customRadio2">Nequi</label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-4 text-end mt-xl-3">
-                                            <button 
-                                                class="btn btn-outline-success mb-0" 
-                                                onclick="GenerarVenta()">
-                                            </i>&nbsp;&nbsp;Crear venta
+                                            <button type="button" class="btn btn-outline-success mb-0" onclick="GenerarVenta()">
+                                                </i>&nbsp;&nbsp;Crear venta
                                             </button>
                                         </div>
                                     </div>
@@ -305,28 +293,29 @@ $Categoria = new Categoria()
     </div>
 
     <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                      <div class="modal-content">
-                        <div class="modal-body p-0">
-                          <div class="card card-plain">
-                            <div class="card-body">
-                              <form role="form text-left">
-                                <div class="text-center">
-                                <label for="productQuantity">Cantidad:</label>
-                                <input type="number" id="productQuantity">
-                                  <button 
-                                  type="button" 
-                                  id="confirmButton"
-                                  class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Guardar</button>
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titleModal"></h5>
+
+                </div>
+                <div class="modal-body p-0">
+                    <div class="card card-plain">
+                        <div class="card-body">
+                            <form role="form text-left">
+                                <div class="form-group">
+                                    <label for="productQuantity" class="col-form-label">Cantidad:</label>
+                                    <input class="form-control" type="number" id="productQuantity">
+                                    <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Guardar</button>
                                 </div>
-                              </form>
-                            </div>
-                          </div>
+                            </form>
                         </div>
-                      </div>
                     </div>
-                  </div>
-    
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--   Core JS Files and scripts  -->
     <script src="js/ventas.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
