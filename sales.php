@@ -232,8 +232,8 @@ $Categoria = new Categoria()
                                     <div class="row">
                                         <div class="col-8">
                                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de la venta</p>
-                                            <h5 class="font-weight-bolder">
-                                                $0
+                                            <h5 id="total" class="font-weight-bolder">
+                                             $0
                                             </h5>
                                             <div class="row">
                                                 <div class="col-4">
@@ -251,7 +251,11 @@ $Categoria = new Categoria()
                                             </div>
                                         </div>
                                         <div class="col-4 text-end mt-xl-3">
-                                            <a class="btn btn-outline-success mb-0" href="javascript:;"></i>&nbsp;&nbsp;Crear venta</a>
+                                            <button 
+                                                class="btn btn-outline-success mb-0" 
+                                                onclick="GenerarVenta()">
+                                            </i>&nbsp;&nbsp;Crear venta
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

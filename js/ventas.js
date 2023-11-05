@@ -1,9 +1,10 @@
 products = [];
 selectedProduct = null;
+sumaTotales = 0;
 
 function showProductsByCategory(category, name) {
 
-    var datos = new FormData();
+    let datos = new FormData();
 
     datos.append("id_categoria", category);
 
@@ -26,6 +27,28 @@ function showProductsByCategory(category, name) {
 
 }
 
+function GenerarVenta(){
+
+    let datos = new FormData();
+
+    datos.append("productos", products);
+    datos.append("total", total);
+
+    $.ajax({
+        url: "ajax/ventas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            console.log(response)
+        }
+
+    });
+
+}
+
 function renderProducts(data) {
     data = JSON.parse(data);
 
@@ -34,90 +57,108 @@ function renderProducts(data) {
     while (divContainer.firstChild) {
         divContainer.removeChild(divContainer.firstChild);
     }
-    console.log(data)
-    data.forEach(pr => {
-        // Crear un contenedor div con clase "col-md-4"
-        var colDiv = document.createElement("div");
-        colDiv.className = "col-md-4";
-        colDiv.addEventListener("click", function () {
-            // Llama a la función addProductTable con el valor de pr
-            addProductTable(pr);
+    if (data.length > 0) {
+        data.forEach(pr => {
+            // Crear un contenedor div con clase "col-md-4"
+            var colDiv = document.createElement("div");
+            colDiv.className = "col-md-4";
+            colDiv.addEventListener("click", function () {
+                // Llama a la función addProductTable con el valor de pr
+                addProductTable(pr);
+            });
+
+            // Crear un div con clase "producto"
+            var productoDiv = document.createElement("div");
+            productoDiv.className = "producto";
+
+            // Crear un botón
+            var btn = document.createElement("a");
+            btn.className = "btn btn-outline-primary";
+            /*      btn.setAttribute("data-bs-toggle", "modal");
+                 btn.setAttribute("data-bs-target", "#modal-form-product"); */
+            btn.textContent = pr.id_articulo + " - " + pr.nombre + ' $' + pr.precio_venta;
+
+            // Crear un div para el modal
+            var modalDiv = document.createElement("div");
+            modalDiv.className = "modal fade";
+            modalDiv.id = "modal-form-product";
+            modalDiv.tabIndex = "-1";
+            modalDiv.role = "dialog";
+            modalDiv.setAttribute("aria-labelledby", "modal-form");
+            modalDiv.setAttribute("aria-hidden", "true");
+
+
+            productoDiv.appendChild(btn);
+
+            colDiv.appendChild(productoDiv);
+            colDiv.appendChild(modalDiv);
+
+            divContainer.appendChild(colDiv);
+
         });
+    }else{
+        msg ='<div class="col-md-12 text-center"><h5>No se encontraron articulos</h5></div>'
+        divContainer.innerHTML = msg;
+    }
 
-        // Crear un div con clase "producto"
-        var productoDiv = document.createElement("div");
-        productoDiv.className = "producto";
-
-        // Crear un botón
-        var btn = document.createElement("a");
-        btn.className = "btn btn-outline-primary";
-        /*      btn.setAttribute("data-bs-toggle", "modal");
-             btn.setAttribute("data-bs-target", "#modal-form-product"); */
-        btn.textContent = pr.id_articulo + " - " + pr.nombre + ' $' + pr.precio_venta;
-
-        // Crear un div para el modal
-        var modalDiv = document.createElement("div");
-        modalDiv.className = "modal fade";
-        modalDiv.id = "modal-form-product";
-        modalDiv.tabIndex = "-1";
-        modalDiv.role = "dialog";
-        modalDiv.setAttribute("aria-labelledby", "modal-form");
-        modalDiv.setAttribute("aria-hidden", "true");
-
-
-        productoDiv.appendChild(btn);
-
-        colDiv.appendChild(productoDiv);
-        colDiv.appendChild(modalDiv);
-
-        divContainer.appendChild(colDiv);
-
-    });
 
 }
 
 
 function addProductTable(pr) {
-    selectedProduct = pr;
+    console.log(pr)
+    
     const rs = products.filter(
         (art) => art.id_articulo === pr.id_articulo
     );
-   
-    if (rs?.length) {
-      return;
-    }
-    
-    $('#modal-form').modal('show');
 
-   
+    if (rs?.length) {
+        return;
+    }else{
+        selectedProduct = pr;
+        $('#modal-form').modal('show');
+    }
+
+  
 
 }
 
-function confirmQuantity(){
+function confirmQuantity() {
     const quantityInput = document.getElementById('productQuantity');
     const quantity = parseInt(quantityInput.value);
-
     if (!isNaN(quantity)) {
-        products.push({...selectedProduct, cantidad:quantity});
+        products.push({ ...selectedProduct, cantidad: quantity });
         renderTable();
 
-    }else{
+    } else {
         alert('Por favor, ingrese una cantidad válida.');
     }
 }
 
-function renderTable(){
+function renderTable() {
     let tabla = document.getElementById("data_table");
+
+    let filas = tabla.getElementsByTagName("tr");
+    let total = document.getElementById('total');
+    sumaTotales = 0;
+
+    for (var i = filas.length - 1; i > 0; i--) {
+        tabla.deleteRow(i);
+    }
+
     products.forEach(pr => {
 
-        var nuevaFila = document.createElement("tr");
+        let nuevaFila = document.createElement("tr");
+        let subtotal = pr.cantidad * pr.precio_venta;
+
+        sumaTotales +=  subtotal;
 
         // Define el contenido de cada celda
-        var contenidoCeldas = [
+        let contenidoCeldas = [
             pr.nombre,
             pr.cantidad,
             pr.precio_venta,
-            "$" + pr.cantidad * pr.precio_venta,
+            "$" + subtotal,
             // Celda con el botón "Editar"
             '<a href="#" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal-form-edit-product" data-toggle="tooltip" data-original-title="Edit user">Editar</a>',
             // Celda con el botón "Borrar"
@@ -137,9 +178,10 @@ function renderTable(){
         tabla.querySelector("tbody").appendChild(nuevaFila);
 
         const modal = document.getElementById('modal');
+        total.textContent = '$' + sumaTotales;
 
         $('#modal-form').modal('hide');
-      
+
 
     })
 }
