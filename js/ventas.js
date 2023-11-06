@@ -1,7 +1,7 @@
 products = [];
 selectedProduct = null;
 sumaTotales = 0;
-isEdit = false;
+
 function showProductsByCategory(category, name) {
 
     let datos = new FormData();
@@ -27,6 +27,23 @@ function showProductsByCategory(category, name) {
 
 }
 
+function resetTitle(){
+    title = document.getElementById('selected_category')
+    title.textContent = '';
+}
+
+function resetTipoPago(){
+    let radios = document.getElementsByName('tipoPago');
+    radios.forEach(function(checkbox) {
+        checkbox.checked = false;
+    });
+}
+
+function resetButtonVenta(){
+    const btnCrearVenta = document.getElementById("btnCrearVenta");
+    btnCrearVenta.disabled = true;
+}
+
 function GenerarVenta() {
 
     let datos = new FormData();
@@ -47,31 +64,67 @@ function GenerarVenta() {
     datos.append("total", sumaTotales);
     datos.append("tipo_pago", tipo_pago);
 
+    Swal.fire({
+        title: `Desea Generar la venta?`,
+
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            $.ajax({
+                url: "ajax/ventas.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    console.log('entro')
+                    Swal.fire({
+                        title: "Generar venta",
+                        text: "La venta fue generada de forma exitosa",
+                        icon: "success"
+                    });
+                    this.products = [];
+                    resetTipoPago();
+                    let tabla = document.getElementById("data_table");
+                    let filas = tabla.getElementsByTagName("tr");
+
+                    for (var i = filas.length - 1; i > 0; i--) {
+                        tabla.deleteRow(i);
+                    }
+                    resetButtonVenta();
+                    clearProducts();
+                    renderSumTotal(0);
+                    selectedProduct = null;
+                    sumaTotales = 0;
+
+                }
+
+            });
 
 
-    $.ajax({
-        url: "ajax/ventas.ajax.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            console.log(response)
         }
+    })
 
-    });
+
 
 }
 
-function renderProducts(data) {
-    data = JSON.parse(data);
 
+function clearProducts() {
     divContainer = document.getElementById('products_category')
 
     while (divContainer.firstChild) {
         divContainer.removeChild(divContainer.firstChild);
     }
+}
+
+function renderProducts(data) {
+    data = JSON.parse(data);
+    clearProducts();
     if (data.length > 0) {
         data.forEach(pr => {
             // Crear un contenedor div con clase "col-md-4"
@@ -145,6 +198,12 @@ function addProductTable(pr) {
 
 }
 
+function renderSumTotal(value) {
+    let total = document.getElementById('total');
+    total.textContent = '$' + value;
+
+}
+
 function confirmQuantity() {
     const quantityInput = document.getElementById('productQuantity');
     const quantity = parseInt(quantityInput.value);
@@ -185,11 +244,13 @@ function confirmQuantity() {
     }
 }
 
+
+
 function renderTable() {
     let tabla = document.getElementById("data_table");
 
     let filas = tabla.getElementsByTagName("tr");
-    let total = document.getElementById('total');
+
     sumaTotales = 0;
 
     for (var i = filas.length - 1; i > 0; i--) {
@@ -228,7 +289,7 @@ function renderTable() {
         tabla.querySelector("tbody").appendChild(nuevaFila);
 
         const modal = document.getElementById('modal');
-        total.textContent = '$' + sumaTotales;
+        renderSumTotal(sumaTotales)
 
         $('#modal-form').modal('hide');
     })
@@ -236,10 +297,20 @@ function renderTable() {
 }
 
 function habilitarBotonVenta() {
+
+    let radios = document.getElementsByName('tipoPago');
+    let metododePagoSeleccionado = false;
+
+    radios.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            metododePagoSeleccionado = true;
+        }
+      });
+      
     const tabla = document.getElementById("data_table");
     const btnCrearVenta = document.getElementById("btnCrearVenta");
 
-    if (tabla && tabla.rows.length > 1) { // Verifica que la tabla tenga más de una fila (cabecera + al menos un elemento)
+    if (tabla && tabla.rows.length > 1 && metododePagoSeleccionado) { // Verifica que la tabla tenga más de una fila (cabecera + al menos un elemento)
         btnCrearVenta.disabled = false; // Habilita el botón
     } else {
         btnCrearVenta.disabled = true; // Deshabilita el botón
@@ -278,6 +349,8 @@ function validarCantidad(input) {
     }
 }
 
+
+
 function removeProduct(id_articulo) {
 
 
@@ -298,8 +371,7 @@ function removeProduct(id_articulo) {
             });
 
             // Actualizar el elemento HTML del total
-            const total = document.getElementById('total');
-            total.textContent = '$' + sumaTotales;
+            renderSumTotal(sumaTotales)
             renderTable();
         }
     })
