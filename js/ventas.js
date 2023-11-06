@@ -35,11 +35,11 @@ function GenerarVenta() {
 
     let tipo_pago = null;
 
-    
+
     for (var i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
             tipo_pago = radios[i].value;
-            break; 
+            break;
         }
     }
 
@@ -47,7 +47,7 @@ function GenerarVenta() {
     datos.append("total", sumaTotales);
     datos.append("tipo_pago", tipo_pago);
 
-  
+
 
     $.ajax({
         url: "ajax/ventas.ajax.php",
@@ -121,16 +121,16 @@ function renderProducts(data) {
 
 
 function addProductTable(pr) {
-   
+
 
     const rs = products.filter(
         (art) => art.id_articulo === pr.id_articulo
     );
-    let title= document.querySelector('#titleModal');
-  
+    let title = document.querySelector('#titleModal');
+
     if (rs?.length) {
         Swal.fire({
-            title: "Alerta",
+            title: "Agregar un artículo",
             text: "El producto ya se encuentra en el carrito de compras",
             icon: "warning"
         });
@@ -138,7 +138,7 @@ function addProductTable(pr) {
     } else {
         selectedProduct = pr;
         $('#modal-form').modal('show');
-        title.textContent  = pr.nombre;
+        title.textContent = pr.nombre;
     }
 
 
@@ -153,22 +153,22 @@ function confirmQuantity() {
         const rs = products.filter(
             (art) => art.id_articulo === selectedProduct.id_articulo
         );
-        
+
         if (rs?.length) {
-            prActualizado = products.find( art => art.id_articulo === selectedProduct.id_articulo)
+            prActualizado = products.find(art => art.id_articulo === selectedProduct.id_articulo)
             prActualizado.cantidad = quantity;
             $('#modal-form').modal('hide');
             Swal.fire({
-                title: "Editar",
+                title: "Editar artículo",
                 text: "El registro fue editado exitosamente",
                 icon: "success"
             });
             renderTable();
             return;
-        } else{
+        } else {
             products.push({ ...selectedProduct, cantidad: quantity });
             Swal.fire({
-                title: "Alerta",
+                title: "Agregar artículo",
                 text: "El producto fue agregado al carrito de compras",
                 icon: "success"
             });
@@ -210,9 +210,9 @@ function renderTable() {
             pr.precio_venta,
             "$" + subtotal,
             // Celda con el botón "Editar"
-            '<a class="text-primary font-weight-bold text-xs" onclick="editProduct('+pr.id_articulo+')" data-original-title="Delete user">Editar</a>',
+            '<a class="text-primary font-weight-bold text-xs" onclick="editProduct(' + pr.id_articulo + ')" data-original-title="Delete user">Editar</a>',
             // Celda con el botón "Borrar"
-            '<a class="text-danger font-weight-bold text-xs"  onclick="removeProduct('+pr.id_articulo+')" data-original-title="Delete user">Borrar</a>',
+            '<a class="text-danger font-weight-bold text-xs"  onclick="removeProduct(' + pr.id_articulo + ')" data-original-title="Delete user">Borrar</a>',
         ];
 
         // Itera sobre el contenido de las celdas y crea celdas <td>
@@ -231,45 +231,80 @@ function renderTable() {
         total.textContent = '$' + sumaTotales;
 
         $('#modal-form').modal('hide');
-
-
     })
+    habilitarBotonVenta();
 }
 
-function editProduct(id_articulo){
+function habilitarBotonVenta() {
+    const tabla = document.getElementById("data_table");
+    const btnCrearVenta = document.getElementById("btnCrearVenta");
 
+    if (tabla && tabla.rows.length > 1) { // Verifica que la tabla tenga más de una fila (cabecera + al menos un elemento)
+        btnCrearVenta.disabled = false; // Habilita el botón
+    } else {
+        btnCrearVenta.disabled = true; // Deshabilita el botón
+    }
+}
+// Llama a la función para habilitar o deshabilitar el botón cuando se carga la página
+window.onload = habilitarBotonVenta;
+
+function editProduct(id_articulo) {
     selectedProduct = products.find(p => p.id_articulo === id_articulo);
-    
-    
+
     title = document.getElementById('titleModal');
     title.textContent = selectedProduct.nombre;
 
     $('#modal-form').modal('show');
     let cantidad = document.getElementById('productQuantity');
-    cantidad.value = +selectedProduct.cantidad;
-   
+    let cantidadValue = +selectedProduct.cantidad;
 
+    if (cantidadValue <= 1) {
+        cantidad.value = 1; // Establece la cantidad en 1 si es 0 o menor
+    } else {
+        cantidad.value = cantidadValue;
+    }
+
+    // Agrega una validación adicional
+    cantidad.addEventListener('input', function () {
+        if (cantidad.value <= 0) {
+            cantidad.value = 1;
+        }
+    });
 }
 
-function removeProduct(id_articulo){
+function validarCantidad(input) {
+    if (input.value < 1) {
+        input.value = 1;
+    }
+}
 
- 
-   selectedProduct = products.find(p => p.id_articulo === id_articulo);
+function removeProduct(id_articulo) {
+
+
+    selectedProduct = products.find(p => p.id_articulo === id_articulo);
 
     Swal.fire({
         title: `Desea borrar el producto ${selectedProduct.nombre} ?`,
-       
+
         showCancelButton: true,
         confirmButtonText: 'Aceptar',
-      }).then((result) => {
-       
-        if (result.isConfirmed) {
-            products =products.filter(p=> p.id_articulo !== id_articulo)
-            renderTable();
-        } 
-      })
+    }).then((result) => {
 
-   
+        if (result.isConfirmed) {
+            products = products.filter(p => p.id_articulo !== id_articulo)
+            sumaTotales = 0;
+            products.forEach(pr => {
+                sumaTotales += pr.cantidad * pr.precio_venta;
+            });
+
+            // Actualizar el elemento HTML del total
+            const total = document.getElementById('total');
+            total.textContent = '$' + sumaTotales;
+            renderTable();
+        }
+    })
+
+
 }
 
 const confirmButton = document.getElementById('confirmButton');

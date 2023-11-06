@@ -164,13 +164,13 @@ $Categoria = new Categoria()
                             <div class="row">
                                 <div class="col-12">
                                     <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
-                                        Seleccionar categoría
+                                        Selecciona una categoría
                                     </button>
                                     <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
                                         <?php
                                         foreach ($Categoria->index() as $c) {
                                         ?>
-                                            <li onclick="showProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')"><a class="dropdown-item" href="#"><?php echo $c->nombre ?></a></li>
+                                            <li onclick="showProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')"><a class="dropdown-item"><?php echo $c->nombre ?></a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -199,7 +199,7 @@ $Categoria = new Categoria()
                                 </div>
                                 <div class="col-md-4 mt-1">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked="">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Generar factura</label>
                                     </div>
                                 </div>
@@ -251,8 +251,8 @@ $Categoria = new Categoria()
                                             </div>
                                         </div>
                                         <div class="col-4 text-end mt-xl-3">
-                                            <button type="button" class="btn btn-outline-success mb-0" onclick="GenerarVenta()">
-                                                </i>&nbsp;&nbsp;Crear venta
+                                            <button type="button" class="btn btn-outline-success mb-0" onclick="GenerarVenta()" id="btnCrearVenta" disabled>
+                                                </i>Crear venta
                                             </button>
                                         </div>
                                     </div>
@@ -305,7 +305,7 @@ $Categoria = new Categoria()
                             <form role="form text-left">
                                 <div class="form-group">
                                     <label for="productQuantity" class="col-form-label">Cantidad:</label>
-                                    <input class="form-control" type="number" id="productQuantity">
+                                    <input class="form-control" type="number" id="productQuantity" oninput="validarCantidad(this)">
                                     <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Guardar</button>
                                 </div>
                             </form>
