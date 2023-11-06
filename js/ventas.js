@@ -96,6 +96,7 @@ function GenerarVenta() {
                         tabla.deleteRow(i);
                     }
                     resetButtonVenta();
+                    resetTitle();
                     clearProducts();
                     renderSumTotal(0);
                     selectedProduct = null;
@@ -207,7 +208,7 @@ function renderSumTotal(value) {
 function confirmQuantity() {
     const quantityInput = document.getElementById('productQuantity');
     const quantity = parseInt(quantityInput.value);
-    if (!isNaN(quantity)) {
+    if (!isNaN(quantity) && selectedProduct.stock >= quantity) {
 
         const rs = products.filter(
             (art) => art.id_articulo === selectedProduct.id_articulo
@@ -238,7 +239,7 @@ function confirmQuantity() {
     } else {
         Swal.fire({
             title: "Error",
-            text: "Ingrese valores numéricos",
+            text: "El inventario es insuficiente",
             icon: "error"
         });
     }
