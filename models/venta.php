@@ -30,12 +30,21 @@ class Venta extends Database
 			$productos = json_decode($productos);
 			foreach ($productos as $articulo) {
 				$this->insertDetalleVenta($id_venta, $articulo->id_articulo, $articulo->cantidad, $articulo->precio_venta);
+				$this->discountProduct( $articulo->id_articulo, $articulo->cantidad);
 			}
 			
 		} else {
 			
 			echo "Error en la inserción.";
 		}
+	}
+
+	public function discountProduct($id_articulo, $cantidad){
+
+		$query = $this->pdo->prepare("UPDATE articulo SET stock = stock - $cantidad WHERE id_articulo = $id_articulo");
+		$query->execute();
+	
+		
 	}
 
 
