@@ -31,9 +31,12 @@ $rol = intval($_SESSION['rol']);
 <body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
-    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
                 <img src="./img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">GSECO</span>
@@ -47,7 +50,8 @@ $rol = intval($_SESSION['rol']);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Estadísticas</span>
@@ -55,7 +59,8 @@ $rol = intval($_SESSION['rol']);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="sales.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Ventas</span>
@@ -63,7 +68,8 @@ $rol = intval($_SESSION['rol']);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="bills.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Facturas</span>
@@ -71,7 +77,8 @@ $rol = intval($_SESSION['rol']);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="transactions.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Transacciones</span>
@@ -79,20 +86,21 @@ $rol = intval($_SESSION['rol']);
                 </li>
                 <?php
                 if ($rol == 1) {
-                ?>
+                    ?>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="user-administration.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Usuarios</span>
                         </a>
                     </li>
-                <?php
+                    <?php
                 }
                 ?>
                 <li class="sidenav-footer mx-3">
@@ -103,14 +111,12 @@ $rol = intval($_SESSION['rol']);
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+            data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group">
-                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                            <input type="search" name="buscar" class="form-control" placeholder="Buscar...">
-                        </div>
+
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
@@ -157,14 +163,16 @@ $rol = intval($_SESSION['rol']);
                             <div class="row">
                                 <div class="col-8">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en efectivo</p>
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en
+                                            efectivo</p>
                                         <h5 class="font-weight-bolder">
                                             $0
                                         </h5>
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                    <div
+                                        class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
                                         <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
                                     </div>
                                 </div>
@@ -178,14 +186,16 @@ $rol = intval($_SESSION['rol']);
                             <div class="row">
                                 <div class="col-8">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en Nequi</p>
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en Nequi
+                                        </p>
                                         <h5 class="font-weight-bolder">
                                             $0
                                         </h5>
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                                    <div
+                                        class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
                                         <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
                                     </div>
                                 </div>
@@ -206,15 +216,19 @@ $rol = intval($_SESSION['rol']);
                     </div>
                     <div class="card-body pt-4 p-3">
                         <ul class="list-group">
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                            <li
+                                class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex align-items-center">
-                                    <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
+                                    <button
+                                        class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                            class="fas fa-arrow-up"></i></button>
                                     <div class="d-flex flex-column">
                                         <h6 class="mb-1 text-dark text-sm">Empanadas</h6>
                                         <span class="text-xs">02 Noviembre 2023, a las 10:04 PM</span>
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                <div
+                                    class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
                                     + $ 2,000
                                 </div>
                             </li>
@@ -244,10 +258,11 @@ $rol = intval($_SESSION['rol']);
                 <div class="mt-2 mb-5 d-flex">
                     <h6 class="mb-0">Tema claro / oscuro</h6>
                     <div class="form-check form-switch ps-0 ms-auto my-auto">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
+                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version"
+                            onclick="darkMode(this)">
                     </div>
                 </div>
-                <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar Sesion</a>
+                <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
             </div>
         </div>
     </div>

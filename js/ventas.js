@@ -184,7 +184,7 @@ function addProductTable(pr) {
 
     if (rs?.length) {
         Swal.fire({
-            title: "Agregar un artículo",
+            title: "Agregar un producto",
             text: "El producto ya se encuentra en el carrito de compras",
             icon: "warning"
         });
@@ -194,9 +194,8 @@ function addProductTable(pr) {
         $('#modal-form').modal('show');
         title.textContent = pr.nombre;
     }
-
-
-
+    let stock = document.getElementById('stock');
+    stock.textContent = selectedProduct.stock + ' productos';
 }
 
 function renderSumTotal(value) {
@@ -219,7 +218,7 @@ function confirmQuantity() {
             prActualizado.cantidad = quantity;
             $('#modal-form').modal('hide');
             Swal.fire({
-                title: "Editar artículo",
+                title: "Editar producto",
                 text: "El registro fue editado exitosamente",
                 icon: "success"
             });
@@ -228,7 +227,7 @@ function confirmQuantity() {
         } else {
             products.push({ ...selectedProduct, cantidad: quantity });
             Swal.fire({
-                title: "Agregar artículo",
+                title: "Agregar producto",
                 text: "El producto fue agregado al carrito de compras",
                 icon: "success"
             });
@@ -328,6 +327,8 @@ function editProduct(id_articulo) {
 
     $('#modal-form').modal('show');
     let cantidad = document.getElementById('productQuantity');
+    let stock = document.getElementById('stock');
+    stock.textContent = selectedProduct.stock + ' productos';
     let cantidadValue = +selectedProduct.cantidad;
 
     if (cantidadValue <= 1) {
