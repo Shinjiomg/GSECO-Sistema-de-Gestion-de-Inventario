@@ -79,18 +79,9 @@ $venta = new Venta();
                     <a class="nav-link active" href="bills.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-cart text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Facturas</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="transactions.php">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-cart text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Transacciones</span>
                     </a>
                 </li>
                 <?php
@@ -165,13 +156,62 @@ $venta = new Venta();
         <div class="container-fluid py-4">
             <!-- main content -->
             <div class="row">
-                <?php   foreach($venta->facturas($idUsuario) as $f ){?>
+                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en
+                                            efectivo</p>
+                                        <h5 class="font-weight-bolder">
+                                            $0
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <div
+                                        class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en Nequi
+                                        </p>
+                                        <h5 class="font-weight-bolder">
+                                            $0
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <div
+                                        class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                                        <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+
                 <div class="col-xl-12">
                     <div class="card h-100">
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center">
-                                    <h6 class="mb-0">Factura  # <?php echo $f->id_venta; ?></h6>
+                                    <h6 class="mb-0">Transacciones
+                                    </h6>
                                 </div>
                                 <!-- <div class="col-6 text-end">
                                     <button class="btn btn-outline-primary btn-sm mb-0">Ver todo</button>
@@ -179,27 +219,41 @@ $venta = new Venta();
                             </div>
                         </div>
                         <div class="card-body p-3 pb-0">
-                            <ul class="list-group">
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark font-weight-bold text-sm"><?php echo $f->fecha; ?></h6>
-                                        <span class="text-xs">#MS-415646</span>
-                                    </div>
-                                    <div class="d-flex align-items-center text-sm">
-                                        $<?php echo $f->total;?>
-                                        <a onclick="viewPDF(<?php echo  $f->id_venta?>)" target="_blank">
-                                            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
-                                                <i class="fas fa-file-pdf text-lg me-1"></i> PDF
-                                            </button>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
+                            <?php foreach ($venta->facturas($idUsuario) as $f) { ?>
+                                <ul class="list-group">
+                                    <li
+                                        class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                        <div class="d-flex align-items-center">
+                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank"
+                                                class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                    class="fas fa-file-pdf"></i></a>
+                                            <div class="d-flex flex-column">
+                                                <h6 class="mb-1 text-dark font-weight-bold text-sm">
+                                                    <?php echo $f->nombres_productos; ?>
+                                                </h6>
+                                                <span class="text-xs">
+                                                    <?php echo $f->fecha_venta; ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="column">
+                                            <div
+                                                class="d-flex justify-content-end align-items-center text-sm font-weight-bold">
+                                                <?php echo $f->tipo_pago; ?>
+                                            </div>
+                                            <div
+                                                class="d-flex justify-content-end text-success align-items-center text-gradient text-sm font-weight-bold">
+                                                + $
+                                                <?php echo number_format($f->total, 0, ',', '.'); ?>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
-                <?php }?>
+
             </div>
 
             <!-- footer -->

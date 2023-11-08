@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2023 a las 20:48:02
+-- Tiempo de generación: 08-11-2023 a las 22:01:44
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -43,8 +43,8 @@ CREATE TABLE `articulo` (
 --
 
 INSERT INTO `articulo` (`id_articulo`, `nombre`, `precio_venta`, `stock`, `descripcion`, `estado`, `categoria_id_categoria`, `stock_deseado`) VALUES
-(1, 'gaseosa', 1200.00, 18, 'coca cola', 1, 1, 40),
-(3, 'Fritos', 2000.00, 10, 'fritos', 1, 1, 10);
+(1, 'gaseosa', 1200.00, 15, 'coca cola', 1, 1, 40),
+(3, 'Fritos', 2000.00, 4, 'fritos', 1, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -91,9 +91,10 @@ INSERT INTO `detalle_venta` (`id_detalle_venta`, `Venta_id_venta`, `Articulo_id_
 (5, 4, 1, 1, 1200.00),
 (6, 5, 1, 4, 1200.00),
 (7, 6, 1, 5, 1200.00),
-(8, 7, 3, 12, 2000.00),
-(9, 8, 3, 3, 2000.00),
-(10, 8, 1, 7, 1200.00);
+(11, 9, 3, 5, 2000.00),
+(12, 10, 1, 1, 1200.00),
+(13, 10, 3, 1, 2000.00),
+(14, 11, 1, 2, 1200.00);
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,9 @@ INSERT INTO `venta` (`id_venta`, `Usuario_id_usuario`, `fecha`, `total`, `tipo_p
 (5, 1, '2023-11-05 18:17:55', 4800.00, 'Nequi'),
 (6, 1, '2023-11-07 17:41:53', 6000.00, 'Efectivo'),
 (7, 1, '2023-11-07 23:01:12', 24000.00, 'Efectivo'),
-(8, 1, '2023-11-08 14:49:30', 14400.00, 'Efectivo');
+(9, 1, '2023-11-08 21:19:55', 10000.00, 'Efectivo'),
+(10, 1, '2023-11-08 21:23:28', 3200.00, 'Efectivo'),
+(11, 1, '2023-11-08 21:51:10', 2400.00, 'Nequi');
 
 --
 -- Índices para tablas volcadas
@@ -232,7 +235,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -250,7 +253,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas

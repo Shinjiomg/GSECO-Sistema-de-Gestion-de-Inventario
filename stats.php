@@ -84,18 +84,9 @@ $categorias = $cat->index();
           <a class="nav-link" href="bills.php">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-cart text-primary text-sm opacity-10"></i>
+              <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Facturas</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="transactions.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-cart text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Transacciones</span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -172,7 +163,10 @@ $categorias = $cat->index();
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas totales</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <?php echo ($ventas->total_diario !== null) ? $ultimaVenta->total_diario : '0'; ?>
+                      <?php
+                      $totalVenta = ($ventas->total_diario !== null) ? number_format($ultimaVenta->total_diario, 0, ',', '.') : '0';
+                      echo $totalVenta;
+                      ?>
                     </h5>
                   </div>
                 </div>
@@ -194,7 +188,10 @@ $categorias = $cat->index();
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas diarias</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <?php echo ($ventas->total_diario !== null) ? $ultimaVenta->total_diario : '0'; ?>
+                      <?php
+                      $totalVenta = ($ventas->total_diario !== null) ? number_format($ultimaVenta->total_diario, 0, ',', '.') : '0';
+                      echo $totalVenta;
+                      ?>
                     </h5>
                   </div>
                 </div>
@@ -216,7 +213,10 @@ $categorias = $cat->index();
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Última venta</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <?php echo ($ultimaVenta->total_diario !== null) ? $ultimaVenta->total_diario : '0'; ?>
+                      <?php
+                      $totalDiario = ($ultimaVenta->total_diario !== null) ? number_format($ultimaVenta->total_diario, 0, ',', '.') : '0';
+                      echo $totalDiario;
+                      ?>
                     </h5>
                   </div>
                 </div>
@@ -273,7 +273,12 @@ $categorias = $cat->index();
                                       <input class="form-control" type="number" id=""
                                         placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
                                     </div>
-                                    <div class="col-xl-8">
+                                    <div class="col-xl-4">
+                                      <label for="" class="col-form-label">Stock máximo</label>
+                                      <input class="form-control" type="number" id=""
+                                        placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
+                                    </div>
+                                    <div class="col-xl-4">
                                       <label for="" class="col-form-label">Categoría</label>
                                       <button class="btn btn-outline-primary dropdown-toggle w-100" type="button"
                                         id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
@@ -338,8 +343,11 @@ $categorias = $cat->index();
                         <?php echo $art->nombre ?>
                       </td>
                       <td align="center"
-                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
-                        <?php echo $art->precio_venta ?>
+                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">$
+                        <?php
+                        $precioVenta = number_format($art->precio_venta, 0, ',', '.');
+                        echo $precioVenta;
+                        ?>
                       </td>
                       <td align="center"
                         class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
