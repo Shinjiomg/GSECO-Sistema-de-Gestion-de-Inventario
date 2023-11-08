@@ -7,7 +7,8 @@ class Articulo extends Database
 
 	public function index()
 	{
-		$query = $this->pdo->query('SELECT * FROM articulo WHERE estado = 1');
+		$query = $this->pdo->query('SELECT articulo.*, categoria.nombre as categoria FROM articulo
+		join categoria on categoria.id_categoria = 	categoria_id_categoria  WHERE articulo.estado = 1');
 		return $query->fetchAll();
 	}
 

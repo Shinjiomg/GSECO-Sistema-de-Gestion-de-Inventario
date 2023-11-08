@@ -4,11 +4,14 @@ include_once("Consultas.php");
 
 require('./models/venta.php');
 require('./models/articulo.php');
+require('./models/categoria.php');
 $nw = new Venta();
 $ar = new Articulo();
+$cat = new Categoria();
 $ventas = $nw->ventas(1);
 $ultimaVenta = $nw->ultimaVenta(1);
 $articulos = $ar->index();
+$categorias = $cat->index();
 
 ?>
 <!DOCTYPE html>
@@ -33,6 +36,10 @@ $articulos = $ar->index();
   <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -355,11 +362,15 @@ $articulos = $ar->index();
                       <div class="modal-content">
                         <div class="modal-body p-0">
                           <div class="card card-plain">
-                            <div class="card-body">
-                              <form role="form text-left">
+                            <div class="card-body text-start">
+                              <form role="form text-center">
+                              <div class="row">
+                                    <div class="col-xl-12">
+                                      <label for="" class="col-form-label">Nombre de la categoria</label>
+                                      <input id="categoria" type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
+                                    </div>
                                 <div class="text-center">
-                                  <button type="button" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
-                                    categoría</button>
+                                  <button type="button" onClick="guardarCategoria()" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir categoría</button>
                                 </div>
                               </form>
                             </div>
@@ -371,9 +382,43 @@ $articulos = $ar->index();
                 </div>
               </div>
             </div>
-            <div class="card-body p-3">
-              <ul class="list-group">
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+            <!--<table class="table align-items-center mb-0">-->
+                <thead>
+                  <tr>
+                    <div class="card-body p-3">
+                      <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      Categoria</th>
+                      <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      Nombre</th>
+                      <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach($categorias as $cat){ ?>
+                  <tr>
+                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                       <?php echo $cat->id_categoria ?>
+                    </td>
+                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                       <?php echo $cat->nombre ?>
+                    </td>
+                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                       <?php echo $cat->estado ?>
+                    </td>
+                  </tr>
+
+                  <?php 
+                    }
+                  ?>
+
+                </tbody>
+                </table>
+                  </div>
+              <!--<ul class="list-group"> -->
+                <!--<li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">-->
                   <!-- <div class="d-flex align-items-center">
                     <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
                       <i class="ni ni-basket text-white opacity-10"></i>
@@ -386,9 +431,9 @@ $articulos = $ar->index();
                   <div class="d-flex">
                     <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-settings" aria-hidden="true"></i></button>
                   </div> -->
-                </li>
+                <!--</li>-->
 
-              </ul>
+              <!--</ul>-->
             </div>
           </div>
         </div>
@@ -472,6 +517,7 @@ $articulos = $ar->index();
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="assets/js/plugins/chartjs.min.js"></script>
   <script src="Js/Search.js"></script>
+  <script src="js/categoria.js"></script>
   <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);

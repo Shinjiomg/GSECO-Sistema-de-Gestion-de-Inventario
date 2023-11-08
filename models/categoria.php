@@ -10,6 +10,13 @@ class Categoria extends Database
 		return $query->fetchAll();
 	}
 
+	function store($categoria){
+		$query = $this->pdo->prepare('INSERT INTO categoria (nombre) VALUES (:nombre)');
+	
+		$query->bindParam(':nombre', $categoria);
+		$query->execute();
+	}
 	
 	
 }
+
