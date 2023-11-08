@@ -11,7 +11,12 @@ function guardarCategoria(){
         contentType: false,
         processData: false,
         success: function (response) {
-                
+            Swal.fire({
+                title: "Generar categoria",
+                text: "La categoria se guardo correctamente",
+                icon: "success"
+            });
+            $('#modal-form').modal('hide');
         }
     });
 }
