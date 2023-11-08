@@ -38,12 +38,9 @@ $articulos = $ar->index();
 <body class="g-sidenav-show bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
-  <aside
-    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
-    id="sidenav-main">
+  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-        aria-hidden="true" id="iconSidenav"></i>
+      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0 mr-4">
         <img src="./img/logo.png" class="navbar-brand-img h-100 mr-5" alt="main_logo">
         <span class="ms-1 font-weight-bold">GSECO</span>
@@ -57,8 +54,7 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="stats.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Estadísticas</span>
@@ -66,8 +62,7 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link" href="sales.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-cart text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Ventas</span>
@@ -75,8 +70,7 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link" href="bills.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-cart text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Facturas</span>
@@ -84,8 +78,7 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link" href="transactions.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-cart text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Transacciones</span>
@@ -96,8 +89,7 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link" href="user-administration.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Usuarios</span>
@@ -111,8 +103,7 @@ $articulos = $ar->index();
   </aside>
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-      data-scroll="false">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -165,7 +156,7 @@ $articulos = $ar->index();
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas totales</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <?php echo ($ventas->total_diario) ? $ultimaVenta->total_diario : '0'; ?>
+                      <?php echo ($ventas->total_diario !== null) ? $ultimaVenta->total_diario : '0'; ?>
                     </h5>
                   </div>
                 </div>
@@ -187,7 +178,7 @@ $articulos = $ar->index();
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas diarias</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <?php echo ($ventas->total_diario) ? $ultimaVenta->total_diario : '0'; ?>
+                      <?php echo ($ventas->total_diario !== null) ? $ultimaVenta->total_diario : '0'; ?>
                     </h5>
                   </div>
                 </div>
@@ -233,10 +224,8 @@ $articulos = $ar->index();
                   <h6>Productos</h6>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-product"><i
-                      class="fas fa-plus"></i>&nbsp;&nbsp;Añadir producto</a>
-                  <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog"
-                    aria-labelledby="modal-form" aria-hidden="true">
+                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-product"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</a>
+                  <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -251,33 +240,28 @@ $articulos = $ar->index();
                                     <div class="col-xl-7">
                                       <label for="" class="col-form-label">Nombre
                                         del producto</label>
-                                      <input type="text" placeholder="Ingresa el nombre del producto"
-                                        class="form-control" />
+                                      <input type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
                                     </div>
                                     <div class="col-xl-5">
                                       <label for="" class="col-form-label">Cantidad</label>
-                                      <input class="form-control" type="number" id="" placeholder="Ingresa la cantidad"
-                                        oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="" placeholder="Ingresa la cantidad" oninput="validarCantidad(this)">
                                     </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-xl-6">
                                       <label for="" class="col-form-label">Valor unitario</label>
-                                      <input class="form-control" type="number" id=""
-                                        placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-6">
                                       <label for="" class="col-form-label">Categoría</label>
-                                      <button class="btn btn-outline-primary dropdown-toggle w-100" type="button"
-                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
+                                      <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
                                         Selecciona una categoría
                                       </button>
                                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       </ul>
                                     </div>
                                   </div>
-                                  <button type="button" id="confirmButton"
-                                    class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
+                                  <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
                                     producto</button>
                                 </div>
                               </form>
@@ -294,72 +278,58 @@ $articulos = $ar->index();
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Nombre del producto</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
                       Precio de venta</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Cantidad</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Estado</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Categoría</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Porcentaje</th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                     </th>
-                    <th align="center"
-                      class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php foreach ($articulos as $art) { ?>
                     <tr>
-                      <td align="center"
-                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                         <?php echo $art->nombre ?>
                       </td>
-                      <td align="center"
-                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                         <?php echo $art->precio_venta ?>
                       </td>
-                      <td align="center"
-                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                         <?php echo $art->stock ?>
                       </td>
-                      <td align="center"
-                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder">
                         <?php
                         if ($art->estado == 1) {
-                          echo '<span class="badge badge-sm bg-gradient-success">Activo</span>';
+                          echo '<span class="badge badge-sm bg-gradient-success">Disponible</span>';
                         } else {
-                          echo '<span class="badge badge-sm bg-gradient-danger">Inactivo</span>';
+                          echo '<span class="badge badge-sm bg-gradient-danger">No disponible</span>';
                         }
                         ?>
                       </td>
-                      <td align="center"
-                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       </td>
-                      <td align="center"
-                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       </td>
-                      <td align="center" class="text-center text-black text-xxs font-weight-bolder opacity-7">
-                        <a class="text-primary font-weight-bold text-xs" href="">Editar</a>
+                      <td align="center" class="text-center text-black text-xxs font-weight-bolder">
+                        <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" href=""><i class="fas fa-edit" style='font-size:24px'></i></a>
                       </td>
-                      <td align="center" class="text-center text-black text-xxs font-weight-bolder opacity-7">
-                        <a class="text-danger font-weight-bold text-xs" href="">Borrar</a>
+                      <td align="center" class="text-center text-black text-xxs font-weight-bolder">
+                        <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>
                       </td>
                     </tr>
 
-                    <?php
+                  <?php
                   }
                   ?>
 
@@ -379,10 +349,8 @@ $articulos = $ar->index();
                   <h6>Categorías</h6>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form"><i
-                      class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
-                  <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form"
-                    aria-hidden="true">
+                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
+                  <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                       <div class="modal-content">
                         <div class="modal-body p-0">
@@ -390,8 +358,7 @@ $articulos = $ar->index();
                             <div class="card-body">
                               <form role="form text-left">
                                 <div class="text-center">
-                                  <button type="button"
-                                    class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
+                                  <button type="button" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
                                     categoría</button>
                                 </div>
                               </form>
