@@ -164,8 +164,8 @@ $categorias = $cat->index();
                     <h5 class="font-weight-bolder">
                       $
                       <?php
-                      $totalVenta = ($ventas->total_diario !== null) ? number_format($ultimaVenta->total_diario, 0, ',', '.') : '0';
-                      echo $totalVenta;
+                      $ventasTotales = ($ultimaVenta->total_ultimo_mes !== null) ? number_format($ultimaVenta->total_ultimo_mes, 0, ',', '.') : '0';
+                      echo $ventasTotales;
                       ?>
                     </h5>
                   </div>
@@ -214,8 +214,8 @@ $categorias = $cat->index();
                     <h5 class="font-weight-bolder">
                       $
                       <?php
-                      $totalDiario = ($ultimaVenta->total_diario !== null) ? number_format($ultimaVenta->total_diario, 0, ',', '.') : '0';
-                      echo $totalDiario;
+                      $ultimaVenta = ($ultimaVenta->ultima_venta !== null) ? number_format($ultimaVenta->ultima_venta, 0, ',', '.') : '0';
+                      echo $ultimaVenta;
                       ?>
                     </h5>
                   </div>

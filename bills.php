@@ -5,6 +5,7 @@ require('./models/venta.php');
 $rol = intval($_SESSION['rol']);
 $idUsuario = intval($_SESSION['id_usuario']);
 $venta = new Venta();
+$transacciones= $venta->transacciones($idUsuario );
 
 
 
@@ -165,7 +166,7 @@ $venta = new Venta();
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en
                                             efectivo</p>
                                         <h5 class="font-weight-bolder">
-                                            $0
+                                            $<?php echo $transacciones[0]->total_diario; ?>
                                         </h5>
                                     </div>
                                 </div>
@@ -188,7 +189,7 @@ $venta = new Venta();
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en Nequi
                                         </p>
                                         <h5 class="font-weight-bolder">
-                                            $0
+                                            $<?php echo $transacciones[1]->total_diario; ?>
                                         </h5>
                                     </div>
                                 </div>

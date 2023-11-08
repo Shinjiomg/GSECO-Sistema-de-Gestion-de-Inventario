@@ -32,7 +32,6 @@ class Venta extends Database
 				$this->insertDetalleVenta($id_venta, $articulo->id_articulo, $articulo->cantidad, $articulo->precio_venta);
 				$this->discountProduct($articulo->id_articulo, $articulo->cantidad);
 			}
-
 		} else {
 
 			echo "Error en la inserción.";
@@ -44,8 +43,6 @@ class Venta extends Database
 
 		$query = $this->pdo->prepare("UPDATE articulo SET stock = stock - $cantidad WHERE id_articulo = $id_articulo");
 		$query->execute();
-
-
 	}
 
 
@@ -65,13 +62,10 @@ class Venta extends Database
 
 		if ($query->rowCount() > 0) {
 			echo "Se guardo correctamente";
-
 		} else {
 
 			echo "Error en la inserción.";
 		}
-
-
 	}
 
 
@@ -80,8 +74,10 @@ class Venta extends Database
 	{
 		$currentDate = date('Y-m-d');
 		/* $query = $this->pdo->query('SELECT * FROM venta WHERE Usuario_id_usuario ='.$id.' order by fecha desc limit 1'); */
-		$query = $this->pdo->query("SELECT SUM(total) as total_diario FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}'");
-
+		/* $query = $this->pdo->query("SELECT SUM(total) as total_diario FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}'"); */
+		$query = $this->pdo->query("SELECT SUM(total) as total_diario, 
+    	(SELECT total FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}' ORDER BY fecha DESC LIMIT 1) as ultima_venta,
+    	(SELECT SUM(total) FROM venta  WHERE Usuario_id_usuario = {$id}  AND DATE(fecha) BETWEEN DATE_SUB('{$currentDate}', INTERVAL 30 DAY) AND '{$currentDate}') as total_ultimo_mes FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}'");
 		return $query->fetch();
 	}
 
@@ -96,6 +92,12 @@ class Venta extends Database
     WHERE venta.Usuario_id_usuario = {$id_usuario} AND DATE(venta.fecha) = '{$currentDate}'
     GROUP BY venta.id_venta");
 		return $query->fetchAll();
+	}
 
+	public function transacciones($id_usuario)
+	{
+		$currentDate = date('Y-m-d');
+		$query = $this->pdo->query("SELECT SUM(total) as total_diario FROM venta WHERE Usuario_id_usuario = {$id_usuario} AND DATE(fecha) = '{$currentDate}' GROUP BY tipo_pago");
+		return $query->fetchAll();
 	}
 }
