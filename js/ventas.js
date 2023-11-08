@@ -2,6 +2,7 @@ products = [];
 selectedProduct = null;
 sumaTotales = 0;
 
+
 function showProductsByCategory(category, name) {
 
     let datos = new FormData();

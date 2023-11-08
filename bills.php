@@ -31,6 +31,10 @@ $venta = new Venta();
     <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -184,7 +188,7 @@ $venta = new Venta();
                                     </div>
                                     <div class="d-flex align-items-center text-sm">
                                         $<?php echo $f->total;?>
-                                        <a href="./reports/venta.php" target="_blank">
+                                        <a onclick="viewPDF(<?php echo  $f->id_venta?>)" target="_blank">
                                             <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
                                                 <i class="fas fa-file-pdf text-lg me-1"></i> PDF
                                             </button>
@@ -230,6 +234,7 @@ $venta = new Venta();
         </div>
     </div>
     <!--   Core JS Files and scripts  -->
+    <script src="./js/factura.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>

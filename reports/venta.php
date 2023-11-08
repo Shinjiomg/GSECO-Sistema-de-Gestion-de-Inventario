@@ -2,7 +2,11 @@
 require('../fpdf/fpdf.php');
 require('../models/model.php');
 $nw = new Northwind();
-$id = 1;
+	
+$id = $_GET['id_venta'];
+
+
+
 class pdf extends FPDF
 {
 	public function header()
