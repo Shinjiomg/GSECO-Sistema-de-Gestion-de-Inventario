@@ -98,4 +98,13 @@ class Venta extends Database
 		return $query->fetchAll();
 
 	}
+
+	public function transacciones($id_usuario)
+	{	
+		$currentDate = date('Y-m-d');
+		$query = $this->pdo->query("SELECT SUM(total) as total_diario FROM venta WHERE Usuario_id_usuario = {$id_usuario} AND DATE(fecha) = '{$currentDate}' GROUP BY tipo_pago");
+		return $query->fetchAll();
+
+	}
+
 }
