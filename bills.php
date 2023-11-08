@@ -1,7 +1,12 @@
 <?php
 include_once("conexion.php");
 include_once("Consultas.php");
+require('./models/venta.php');
 $rol = intval($_SESSION['rol']);
+$idUsuario = intval($_SESSION['id_usuario']);
+$venta = new Venta();
+
+
 
 ?>
 <!DOCTYPE html>
@@ -156,12 +161,13 @@ $rol = intval($_SESSION['rol']);
         <div class="container-fluid py-4">
             <!-- main content -->
             <div class="row">
+                <?php   foreach($venta->facturas($idUsuario) as $f ){?>
                 <div class="col-xl-12">
                     <div class="card h-100">
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center">
-                                    <h6 class="mb-0">Facturas</h6>
+                                    <h6 class="mb-0">Factura  # <?php echo $f->id_venta; ?></h6>
                                 </div>
                                 <!-- <div class="col-6 text-end">
                                     <button class="btn btn-outline-primary btn-sm mb-0">Ver todo</button>
@@ -173,11 +179,11 @@ $rol = intval($_SESSION['rol']);
                                 <li
                                     class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                     <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
+                                        <h6 class="mb-1 text-dark font-weight-bold text-sm"><?php echo $f->fecha; ?></h6>
                                         <span class="text-xs">#MS-415646</span>
                                     </div>
                                     <div class="d-flex align-items-center text-sm">
-                                        $180
+                                        $<?php echo $f->total;?>
                                         <a href="./reports/venta.php" target="_blank">
                                             <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
                                                 <i class="fas fa-file-pdf text-lg me-1"></i> PDF
@@ -189,6 +195,7 @@ $rol = intval($_SESSION['rol']);
                         </div>
                     </div>
                 </div>
+                <?php }?>
             </div>
 
             <!-- footer -->

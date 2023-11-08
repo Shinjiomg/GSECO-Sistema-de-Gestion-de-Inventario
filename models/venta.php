@@ -82,4 +82,12 @@ class Venta extends Database
 
 		return $query->fetch();
 	}
+
+	public function facturas($id_usuario){
+		$currentDate = date('Y-m-d');
+		
+		$query = $this->pdo->query("SELECT * FROM venta WHERE Usuario_id_usuario = {$id_usuario} AND DATE(fecha) = '{$currentDate}'");
+		return $query->fetchAll();
+
+	}
 }
