@@ -89,7 +89,7 @@ class Venta extends Database
 	{
 		$currentDate = date('Y-m-d');
 
-		$query = $this->pdo->query("SELECT venta.id_venta,  DATE_FORMAT(venta.fecha, '%Y-%m-%d') AS fecha_venta, GROUP_CONCAT(articulo.nombre SEPARATOR ', ') AS nombres_productos, ROUND(venta.total) AS total, venta.tipo_pago
+		$query = $this->pdo->query("SELECT venta.id_venta,  DATE_FORMAT(venta.fecha, '%d-%m-%Y') AS fecha_venta, GROUP_CONCAT(articulo.nombre SEPARATOR ', ') AS nombres_productos, ROUND(venta.total) AS total, venta.tipo_pago
     FROM venta 
     JOIN detalle_venta ON venta.id_venta = detalle_venta.Venta_id_venta 
     JOIN articulo ON detalle_venta.Articulo_id_articulo = articulo.id_articulo

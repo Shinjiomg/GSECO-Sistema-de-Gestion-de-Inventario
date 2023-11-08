@@ -28,19 +28,19 @@ function showProductsByCategory(category, name) {
 
 }
 
-function resetTitle(){
+function resetTitle() {
     title = document.getElementById('selected_category')
     title.textContent = '';
 }
 
-function resetTipoPago(){
+function resetTipoPago() {
     let radios = document.getElementsByName('tipoPago');
-    radios.forEach(function(checkbox) {
+    radios.forEach(function (checkbox) {
         checkbox.checked = false;
     });
 }
 
-function resetButtonVenta(){
+function resetButtonVenta() {
     const btnCrearVenta = document.getElementById("btnCrearVenta");
     btnCrearVenta.disabled = true;
 }
@@ -146,7 +146,12 @@ function renderProducts(data) {
             btn.className = "btn btn-outline-primary";
             /*      btn.setAttribute("data-bs-toggle", "modal");
                  btn.setAttribute("data-bs-target", "#modal-form-product"); */
-            btn.textContent = pr.id_articulo + " - " + pr.nombre + ' $' + pr.precio_venta;
+            var precioFormateado = pr.precio_venta.toLocaleString('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0
+            });
+            btn.textContent = pr.id_articulo + " - " + pr.nombre + ' ' + precioFormateado;
 
             // Crear un div para el modal
             var modalDiv = document.createElement("div");
@@ -196,7 +201,7 @@ function addProductTable(pr) {
         title.textContent = pr.nombre;
     }
     let stock = document.getElementById('stock');
-    stock.textContent = selectedProduct.stock + ' productos';
+    stock.textContent = selectedProduct.stock + ' unidades';
 }
 
 function renderSumTotal(value) {
@@ -302,12 +307,12 @@ function habilitarBotonVenta() {
     let radios = document.getElementsByName('tipoPago');
     let metododePagoSeleccionado = false;
 
-    radios.forEach(function(checkbox) {
+    radios.forEach(function (checkbox) {
         if (checkbox.checked) {
             metododePagoSeleccionado = true;
         }
-      });
-      
+    });
+
     const tabla = document.getElementById("data_table");
     const btnCrearVenta = document.getElementById("btnCrearVenta");
 
@@ -329,7 +334,7 @@ function editProduct(id_articulo) {
     $('#modal-form').modal('show');
     let cantidad = document.getElementById('productQuantity');
     let stock = document.getElementById('stock');
-    stock.textContent = selectedProduct.stock + ' productos';
+    stock.textContent = selectedProduct.stock + ' unidades';
     let cantidadValue = +selectedProduct.cantidad;
 
     if (cantidadValue <= 1) {

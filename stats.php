@@ -231,10 +231,35 @@ $categorias = $cat->index();
         </div>
       </div>
       <!-- main content -->
+
       <div class="row mt-4">
         <div class="col-xl-12">
           <div class="card">
             <div class="card-header pb-4">
+              <?php
+              // Variable para almacenar los nombres de los productos agotándose
+              $productosAgotandose = [];
+
+              foreach ($articulos as $art) {
+                $total = $art->stock_deseado;
+                $actual = $art->stock;
+                $porcentaje = ($actual / $total) * 100;
+
+                if ($porcentaje <= 40) {
+                  $productosAgotandose[] = $art->nombre; // Agregar el nombre del producto al array
+                }
+              }
+
+              // Mostrar la alerta solo si hay productos agotándose
+              if (!empty($productosAgotandose)) {
+                ?>
+                <div class="alert alert-warning lowercase" role="alert" style="color: white">
+                  <strong>¡Aviso!</strong> Se están agotando los siguientes productos:
+                  <strong>
+                    <?php echo implode(', ', $productosAgotandose); ?>
+                  </strong>
+                </div>
+              <?php } ?>
               <div class="row pb-2 p-3">
                 <div class="col-6 d-flex align-items-center">
                   <h6>Productos</h6>
@@ -249,6 +274,7 @@ $categorias = $cat->index();
                         <div class="modal-header">
                           <h5 class="modal-title">Añadir producto</h5>
                         </div>
+
                         <div class="modal-body p-0">
                           <div class="card card-plain">
                             <div class="card-body text-start">
@@ -276,7 +302,8 @@ $categorias = $cat->index();
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label">Stock máximo</label>
                                       <input class="form-control" type="number" id=""
-                                        placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
+                                        placeholder="Ingresa el stock máximo del producto"
+                                        oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label">Categoría</label>
@@ -314,7 +341,7 @@ $categorias = $cat->index();
                       Precio de venta</th>
                     <th align="center"
                       class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
-                      Cantidad</th>
+                      Unidades</th>
                     <th align="center"
                       class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Estado</th>

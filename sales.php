@@ -322,7 +322,7 @@ $Categoria = new Categoria()
                                     <label for="productQuantity" class="col-form-label">Cantidad:</label>
                                     <input class="form-control" type="number" id="productQuantity"
                                         oninput="validarCantidad(this)">
-                                    <p><em>En stock:</em> <strong id="stock"></strong></p>
+                                    <p><em>Unidades disponibles:</em> <strong id="stock"></strong></p>
                                     <button type="button" id="confirmButton"
                                         class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Guardar</button>
                                 </div>
