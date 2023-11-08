@@ -1,7 +1,12 @@
 <?php
 include_once("conexion.php");
 include_once("Consultas.php");
+require('./models/venta.php');
 $rol = intval($_SESSION['rol']);
+$idUsuario = intval($_SESSION['id_usuario']);
+$venta = new Venta();
+
+
 
 ?>
 <!DOCTYPE html>
@@ -26,14 +31,21 @@ $rol = intval($_SESSION['rol']);
     <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
-    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
                 <img src="./img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">GSECO</span>
@@ -47,7 +59,8 @@ $rol = intval($_SESSION['rol']);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Estadísticas</span>
@@ -55,7 +68,8 @@ $rol = intval($_SESSION['rol']);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="sales.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Ventas</span>
@@ -63,7 +77,8 @@ $rol = intval($_SESSION['rol']);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="bills.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Facturas</span>
@@ -71,7 +86,8 @@ $rol = intval($_SESSION['rol']);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="transactions.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Transacciones</span>
@@ -79,20 +95,21 @@ $rol = intval($_SESSION['rol']);
                 </li>
                 <?php
                 if ($rol == 1) {
-                ?>
+                    ?>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="user-administration.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Usuarios</span>
                         </a>
                     </li>
-                <?php
+                    <?php
                 }
                 ?>
                 <li class="sidenav-footer mx-3">
@@ -103,14 +120,12 @@ $rol = intval($_SESSION['rol']);
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+            data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group">
-                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                            <input type="search" name="buscar" class="form-control" placeholder="Buscar...">
-                        </div>
+
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
@@ -150,12 +165,13 @@ $rol = intval($_SESSION['rol']);
         <div class="container-fluid py-4">
             <!-- main content -->
             <div class="row">
+                <?php   foreach($venta->facturas($idUsuario) as $f ){?>
                 <div class="col-xl-12">
                     <div class="card h-100">
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center">
-                                    <h6 class="mb-0">Facturas</h6>
+                                    <h6 class="mb-0">Factura  # <?php echo $f->id_venta; ?></h6>
                                 </div>
                                 <!-- <div class="col-6 text-end">
                                     <button class="btn btn-outline-primary btn-sm mb-0">Ver todo</button>
@@ -164,14 +180,15 @@ $rol = intval($_SESSION['rol']);
                         </div>
                         <div class="card-body p-3 pb-0">
                             <ul class="list-group">
-                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                     <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
+                                        <h6 class="mb-1 text-dark font-weight-bold text-sm"><?php echo $f->fecha; ?></h6>
                                         <span class="text-xs">#MS-415646</span>
                                     </div>
                                     <div class="d-flex align-items-center text-sm">
-                                        $180
-                                        <a href="./reports/venta.php" target="_blank">
+                                        $<?php echo $f->total;?>
+                                        <a onclick="viewPDF(<?php echo  $f->id_venta?>)" target="_blank">
                                             <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
                                                 <i class="fas fa-file-pdf text-lg me-1"></i> PDF
                                             </button>
@@ -182,6 +199,7 @@ $rol = intval($_SESSION['rol']);
                         </div>
                     </div>
                 </div>
+                <?php }?>
             </div>
 
             <!-- footer -->
@@ -207,14 +225,16 @@ $rol = intval($_SESSION['rol']);
                 <div class="mt-2 mb-5 d-flex">
                     <h6 class="mb-0">Tema claro / oscuro</h6>
                     <div class="form-check form-switch ps-0 ms-auto my-auto">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
+                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version"
+                            onclick="darkMode(this)">
                     </div>
                 </div>
-                <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar Sesion</a>
+                <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
             </div>
         </div>
     </div>
     <!--   Core JS Files and scripts  -->
+    <script src="./js/factura.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>

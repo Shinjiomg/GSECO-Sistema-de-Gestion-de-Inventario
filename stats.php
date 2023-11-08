@@ -114,10 +114,7 @@ $categorias = $cat->index();
       <div class="container-fluid py-1 px-3">
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group">
-              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="search" name="buscar" class="form-control" placeholder="Buscar...">
-            </div>
+
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
@@ -166,7 +163,7 @@ $categorias = $cat->index();
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas totales</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <?php echo $ventas->total_diario ? $ultimaVenta->total_diario : '0'; ?>
+                      <?php echo ($ventas->total_diario !== null) ? $ultimaVenta->total_diario : '0'; ?>
                     </h5>
                   </div>
                 </div>
@@ -188,7 +185,7 @@ $categorias = $cat->index();
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas diarias</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <?php echo $ventas->total_diario ? $ultimaVenta->total_diario : '0'; ?>
+                      <?php echo ($ventas->total_diario !== null) ? $ultimaVenta->total_diario : '0'; ?>
                     </h5>
                   </div>
                 </div>
@@ -231,19 +228,48 @@ $categorias = $cat->index();
             <div class="card-header pb-4">
               <div class="row pb-2 p-3">
                 <div class="col-6 d-flex align-items-center">
-                  <h6>Artículos</h6>
+                  <h6>Productos</h6>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-product"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir producto</a>
-                  <div class="modal fade" id="modal-form-product" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-product"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</a>
+                  <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                       <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Añadir producto</h5>
+                        </div>
                         <div class="modal-body p-0">
                           <div class="card card-plain">
                             <div class="card-body">
                               <form role="form text-left">
-                                <div class="text-center">
-                                  <button type="button" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir producto</button>
+                                <div class="form-group">
+                                  <div class="row">
+                                    <div class="col-xl-7">
+                                      <label for="" class="col-form-label">Nombre
+                                        del producto</label>
+                                      <input type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
+                                    </div>
+                                    <div class="col-xl-5">
+                                      <label for="" class="col-form-label">Cantidad</label>
+                                      <input class="form-control" type="number" id="" placeholder="Ingresa la cantidad" oninput="validarCantidad(this)">
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-xl-6">
+                                      <label for="" class="col-form-label">Valor unitario</label>
+                                      <input class="form-control" type="number" id="" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
+                                    </div>
+                                    <div class="col-xl-6">
+                                      <label for="" class="col-form-label">Categoría</label>
+                                      <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
+                                        Selecciona una categoría
+                                      </button>
+                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
+                                    producto</button>
                                 </div>
                               </form>
                             </div>
@@ -260,7 +286,7 @@ $categorias = $cat->index();
                 <thead>
                   <tr>
                     <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
-                      Nombre del artículo</th>
+                      Nombre del producto</th>
                     <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
                       Precio de venta</th>
                     <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
@@ -269,33 +295,49 @@ $categorias = $cat->index();
                       Estado</th>
                     <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Categoría</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">Meta
-                    </th>
                     <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Porcentaje</th>
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    </th>
                     <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($articulos as $art){ ?>
-                  <tr>
-                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
-                       <?php echo $art->nombre ?>
-                    </td>
-                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
-                       <?php echo $art->precio_venta ?>
-                    </td>
-                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
-                       <?php echo $art->stock ?>
-                    </td>
-                    <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
-                       <?php echo $art->estado ?>
-                    </td>
-                  </tr>
+                  <?php foreach ($articulos as $art) { ?>
+                    <tr>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                        <?php echo $art->nombre ?>
+                      </td>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                        <?php echo $art->precio_venta ?>
+                      </td>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                        <?php echo $art->stock ?>
+                      </td>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder">
+                        <?php
+                        if ($art->estado == 1) {
+                          echo '<span class="badge badge-sm bg-gradient-success">Disponible</span>';
+                        } else {
+                          echo '<span class="badge badge-sm bg-gradient-danger">No disponible</span>';
+                        }
+                        ?>
+                      </td>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      </td>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      </td>
+                      <td align="center" class="text-center text-black text-xxs font-weight-bolder">
+                        <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" href=""><i class="fas fa-edit" style='font-size:24px'></i></a>
+                      </td>
+                      <td align="center" class="text-center text-black text-xxs font-weight-bolder">
+                        <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>
+                      </td>
+                    </tr>
 
-                  <?php 
-                    }
+                  <?php
+                  }
                   ?>
 
                 </tbody>
@@ -463,11 +505,12 @@ $categorias = $cat->index();
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
           </div>
         </div>
-        <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar Sesion</a>
+        <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
       </div>
     </div>
   </div>
   <!--   Core JS Files and scripts  -->
+  <script src="js/stats.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
