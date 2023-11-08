@@ -1,5 +1,6 @@
 function guardarCategoria(){
     let categoria = document.getElementById("categoria").value
+    console.log(categoria)
     let datos = new FormData();
     datos.append("categoria", categoria);
     $.ajax({
@@ -10,6 +11,7 @@ function guardarCategoria(){
         contentType: false,
         processData: false,
         success: function (response) {
+                
         }
     });
 }
