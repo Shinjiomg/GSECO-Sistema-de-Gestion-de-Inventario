@@ -5,7 +5,7 @@ require('./models/venta.php');
 $rol = intval($_SESSION['rol']);
 $idUsuario = intval($_SESSION['id_usuario']);
 $venta = new Venta();
-$transacciones= $venta->transacciones($idUsuario );
+$transacciones = $venta->transacciones($idUsuario);
 
 
 
@@ -166,7 +166,11 @@ $transacciones= $venta->transacciones($idUsuario );
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en
                                             efectivo</p>
                                         <h5 class="font-weight-bolder">
-                                            $<?php echo $transacciones[0]->total_diario; ?>
+                                            $
+                                            <?php
+                                            $totalDiario = ($transacciones[0]->total_diario !== null) ? number_format($transacciones[0]->total_diario, 0, ',', '.') : '0';
+                                            echo $totalDiario;
+                                            ?>
                                         </h5>
                                     </div>
                                 </div>
@@ -189,7 +193,11 @@ $transacciones= $venta->transacciones($idUsuario );
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en Nequi
                                         </p>
                                         <h5 class="font-weight-bolder">
-                                            $<?php echo $transacciones[1]->total_diario; ?>
+                                            $
+                                            <?php
+                                            $totalDiario2 = ($transacciones[1]->total_diario !== null) ? number_format($transacciones[1]->total_diario, 0, ',', '.') : '0';
+                                            echo $totalDiario2;
+                                            ?>
                                         </h5>
                                     </div>
                                 </div>
