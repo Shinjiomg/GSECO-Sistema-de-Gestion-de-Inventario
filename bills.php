@@ -216,7 +216,16 @@ $transacciones = $venta->transacciones($idUsuario);
                             </div>
                         </div>
                         <div class="card-body p-3 pb-0">
-                            <?php foreach ($venta->facturas($idUsuario) as $f) { ?>
+                            <?php  // Obtener las facturas
+                            $facturas = $venta->facturas($idUsuario);
+
+                            // Ordenar las facturas por fecha de venta de forma descendente
+                            usort($facturas, function ($a, $b) {
+                                return strtotime($b->fecha_venta) - strtotime($a->fecha_venta);
+                            });
+
+                            // Iterar sobre las facturas ordenadas
+                            foreach ($facturas as $f) {  ?>
                                 <ul class="list-group">
                                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                         <div class="d-flex align-items-center">
