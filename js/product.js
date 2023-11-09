@@ -1,6 +1,6 @@
 selectProduct = null;
 
-function editProduct(id){
+function editProduct(id) {
     let datos = new FormData();
 
     datos.append("id_articulo", id);
@@ -14,43 +14,43 @@ function editProduct(id){
         processData: false,
         success: function (response) {
             renderData(response)
+            $('.modal-title').text('Editar producto');
         }
-
     });
 }
 
-function saveProduct(){
+function saveProduct() {
 
     let nombre = document.getElementById('product_name').value;
     let cantidad = document.getElementById('product_stock').value;
     let precio = document.getElementById('product_price').value;
     let stockMaximo = document.getElementById('stock_maximo').value;
     let selectCategoria = document.getElementById('categories_select').value;
-    saveEditProduct(nombre,  cantidad, precio, stockMaximo, selectCategoria);
+    saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria);
 
 }
 
 
 
 
-   
-
-
-    //! Todo: realizar el de creacion
 
 
 
-function saveEditProduct(nombre,  cantidad, precio, stockMaximo, selectCategoria ){
+//! Todo: realizar el de creacion
+
+
+
+function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria) {
 
     let datos = new FormData();
 
     let product_edit = {
-        nombre,  
+        nombre,
         cantidad,
         precio,
         stockMaximo,
         selectCategoria,
-        id_articulo: selectProduct.id_articulo      
+        id_articulo: selectProduct.id_articulo
     }
 
 
@@ -63,22 +63,22 @@ function saveEditProduct(nombre,  cantidad, precio, stockMaximo, selectCategoria
         contentType: false,
         processData: false,
         success: function (response) {
-           
+
             Swal.fire({
                 title: "Productos",
                 text: "El producto fue editado de forma exitosa",
                 icon: "success"
             });
-          
+
 
         }
 
     });
 }
 
-function renderData(data){
+function renderData(data) {
     selectProduct = JSON.parse(data);
-   
+
     console.log(selectProduct)
     let nombre = document.getElementById('product_name');
     let cantidad = document.getElementById('product_stock');
