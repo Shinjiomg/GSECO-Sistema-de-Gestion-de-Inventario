@@ -24,7 +24,7 @@ if (isset($_POST['btningresar'])) {
 			}
 		}
 	} else {
-		echo "<script>alert('correo y/o contraseña no coinciden');window.location= 'index.php' </script>";
+		echo "<script>alert('correo y/o contraseña no coinciden');window.location= 'login.php' </script>";
 	}
 }
 ?>
@@ -32,10 +32,11 @@ if (isset($_POST['btningresar'])) {
 <html>
 
 <head>
-	<title>test</title>
+	<title>Tienda del soldado GSECO</title>
 	<link rel="stylesheet" href="./css/estilo.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<link rel="icon" type="image/png" href="./img/logo.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
