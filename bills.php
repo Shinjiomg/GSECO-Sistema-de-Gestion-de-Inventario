@@ -33,20 +33,15 @@ $transacciones = $venta->transacciones($idUsuario);
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
-    <aside
-        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
-        id="sidenav-main">
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-                aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
                 <img src="./img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">GSECO</span>
@@ -60,8 +55,7 @@ $transacciones = $venta->transacciones($idUsuario);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Estadísticas</span>
@@ -69,8 +63,7 @@ $transacciones = $venta->transacciones($idUsuario);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="sales.php">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Ventas</span>
@@ -78,8 +71,7 @@ $transacciones = $venta->transacciones($idUsuario);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="bills.php">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Facturas</span>
@@ -87,21 +79,20 @@ $transacciones = $venta->transacciones($idUsuario);
                 </li>
                 <?php
                 if ($rol == 1) {
-                    ?>
+                ?>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="user-administration.php">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Usuarios</span>
                         </a>
                     </li>
-                    <?php
+                <?php
                 }
                 ?>
                 <li class="sidenav-footer mx-3">
@@ -112,8 +103,7 @@ $transacciones = $venta->transacciones($idUsuario);
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-            data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -175,8 +165,7 @@ $transacciones = $venta->transacciones($idUsuario);
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
                                         <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
                                     </div>
                                 </div>
@@ -202,8 +191,7 @@ $transacciones = $venta->transacciones($idUsuario);
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
                                         <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
                                     </div>
                                 </div>
@@ -230,12 +218,9 @@ $transacciones = $venta->transacciones($idUsuario);
                         <div class="card-body p-3 pb-0">
                             <?php foreach ($venta->facturas($idUsuario) as $f) { ?>
                                 <ul class="list-group">
-                                    <li
-                                        class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                         <div class="d-flex align-items-center">
-                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank"
-                                                class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                                    class="fas fa-file-pdf"></i></a>
+                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
                                             <div class="d-flex flex-column">
                                                 <h6 class="mb-1 text-dark font-weight-bold text-sm">
                                                     <?php echo $f->nombres_productos; ?>
@@ -246,12 +231,10 @@ $transacciones = $venta->transacciones($idUsuario);
                                             </div>
                                         </div>
                                         <div class="column">
-                                            <div
-                                                class="d-flex justify-content-end align-items-center text-sm font-weight-bold">
+                                            <div class="d-flex justify-content-end align-items-center text-sm font-weight-bold">
                                                 <?php echo $f->tipo_pago; ?>
                                             </div>
-                                            <div
-                                                class="d-flex justify-content-end text-success align-items-center text-gradient text-sm font-weight-bold">
+                                            <div class="d-flex justify-content-end text-success align-items-center text-gradient text-sm font-weight-bold">
                                                 + $
                                                 <?php echo number_format($f->total, 0, ',', '.'); ?>
                                             </div>
@@ -288,8 +271,7 @@ $transacciones = $venta->transacciones($idUsuario);
                 <div class="mt-2 mb-5 d-flex">
                     <h6 class="mb-0">Tema claro / oscuro</h6>
                     <div class="form-check form-switch ps-0 ms-auto my-auto">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version"
-                            onclick="darkMode(this)">
+                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
                     </div>
                 </div>
                 <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
