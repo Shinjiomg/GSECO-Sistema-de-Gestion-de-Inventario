@@ -470,9 +470,9 @@ $categorias = $cat->index();
                       <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder">
                         <?php
                         if ($cat->estado == 1) {
-                          echo '<span class="badge badge-sm bg-gradient-success">Activo</span>';
+                          echo '<span class="badge badge-sm bg-gradient-success">Disponible</span>';
                         } else {
-                          echo '<span class="badge badge-sm bg-gradient-danger">Inactivo</span>';
+                          echo '<span class="badge badge-sm bg-gradient-danger">No disponible</span>';
                         }
                         ?>
                       </td>
