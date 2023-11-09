@@ -15,7 +15,7 @@ if(isset($_POST["id_articulo"])){
 	$producto = new Articulo();
 	$id_articulo = intval($_POST["id_articulo"]);
     
-	echo json_encode($producto -> articuloByCategory($id_articulo));
+	echo json_encode($producto -> show($id_articulo));
 
 }
 

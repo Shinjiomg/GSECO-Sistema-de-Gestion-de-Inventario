@@ -266,21 +266,21 @@ $categorias = $cat->index();
                                     <div class="col-xl-9">
                                       <label for="" class="col-form-label">Nombre
                                         del producto</label>
-                                      <input type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
+                                      <input id="product_name" type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
                                     </div>
                                     <div class="col-xl-3">
                                       <label for="" class="col-form-label">Cantidad</label>
-                                      <input class="form-control" type="number" id="" placeholder="Ingresa la cantidad" oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad" oninput="validarCantidad(this)">
                                     </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label">Valor unitario</label>
-                                      <input class="form-control" type="number" id="" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label">Stock máximo</label>
-                                      <input class="form-control" type="number" id="" placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="stock_maximo" placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label">Categoría</label>

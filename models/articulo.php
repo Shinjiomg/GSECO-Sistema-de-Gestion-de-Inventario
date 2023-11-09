@@ -18,5 +18,11 @@ class Articulo extends Database
 		return $query->fetchAll();
 	}
 
+	public function show($id_articulo){
+		$query = $this->pdo->query('SELECT * FROM articulo where id_articulo ='.$id_articulo);
+		return $query->fetch();
+
+	}
+
 	
 }
