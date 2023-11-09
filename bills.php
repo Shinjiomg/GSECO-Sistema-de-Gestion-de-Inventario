@@ -158,7 +158,7 @@ $transacciones = $venta->transacciones($idUsuario);
                                         <h5 class="font-weight-bolder">
                                             $
                                             <?php
-                                            $totalDiario = ($transacciones[0]->total_diario !== null) ? number_format($transacciones[0]->total_diario, 0, ',', '.') : '0';
+                                            $totalDiario = isset($transacciones[0]->total_diario) ? number_format($transacciones[0]->total_diario, 0, ',', '.') : '0';
                                             echo $totalDiario;
                                             ?>
                                         </h5>
@@ -184,7 +184,7 @@ $transacciones = $venta->transacciones($idUsuario);
                                         <h5 class="font-weight-bolder">
                                             $
                                             <?php
-                                            $totalDiario2 = ($transacciones[1]->total_diario !== null) ? number_format($transacciones[1]->total_diario, 0, ',', '.') : '0';
+                                            $totalDiario2  = isset($transacciones[1]->total_diario) ? number_format($transacciones[1]->total_diario, 0, ',', '.') : '0';
                                             echo $totalDiario2;
                                             ?>
                                         </h5>
