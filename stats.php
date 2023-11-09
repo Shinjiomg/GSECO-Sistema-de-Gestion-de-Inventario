@@ -284,22 +284,20 @@ $categorias = $cat->index();
                                     </div>
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label">Categoría</label>
-                                      <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
-                                        Selecciona una categoría
-
-                                      </button>
-                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <?php foreach($categorias as $c){?>
-                                        <li>
-                                          <a class="dropdown-item" href="#">
-                                             <?php echo $c->nombre?>
-                                          </a>
-                                        </li>
-                                        <?php }?>
-                                      </ul>
+                                      <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
+                                      <?php foreach ($categorias as $c) { ?>
+                                        <option value="<?php  echo $c->id_categoria?>"><?php  echo $c->nombre ?></option>
+                                      <?php } ?>
+                                       
+                                      </select>
+                                      
                                     </div>
                                   </div>
-                                  <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
+                                  <button 
+                                    type="button" 
+                                    id="confirmButton" 
+                                    onclick="saveProduct()"
+                                    class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
                                     producto</button>
                                 </div>
                               </form>
@@ -396,23 +394,10 @@ $categorias = $cat->index();
                       </td>
 
                       <td align="center" class="text-center text-black text-xxs font-weight-bolder">
-                       <a
-                          data-bs-toggle="tooltip"
-                          title="Editar"
-                          class="text-primary font-weight-bold text-xs"
-                          onclick="editProduct('<?php echo $art->id_articulo?>')"
-                          ><i
-                          class="fas fa-edit"
-                          style='font-size:24px'></i></a>
+                        <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" onclick="editProduct('<?php echo $art->id_articulo ?>')"><i class="fas fa-edit" style='font-size:24px'></i></a>
                       </td>
                       <td align="center" class="text-center text-black text-xxs font-weight-bolder">
-                        <a
-                          data-bs-toggle="tooltip"
-                          title="Borrar"
-                          class="text-danger font-weight-bold text-xs"
-                          href=""><i
-                          class="fas fa-trash"
-                          style='font-size:24px'></i></a>
+                        <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>
                       </td>
                     </tr>
                   <?php
