@@ -244,7 +244,7 @@ $Categoria = new Categoria()
                                                 $0
                                             </h5>
                                             <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-6">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="tipoPago"
                                                             onclick="habilitarBotonVenta()" id="customRadio1"

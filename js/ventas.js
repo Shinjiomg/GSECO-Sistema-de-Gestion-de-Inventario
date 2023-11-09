@@ -66,7 +66,7 @@ function GenerarVenta() {
     datos.append("tipo_pago", tipo_pago);
 
     Swal.fire({
-        title: `Desea Generar la venta?`,
+        title: `¿Quieres generar la venta?`,
 
         showCancelButton: true,
         confirmButtonText: 'Aceptar',
@@ -360,7 +360,7 @@ function removeProduct(id_articulo) {
     selectedProduct = products.find(p => p.id_articulo === id_articulo);
 
     Swal.fire({
-        title: `Desea borrar el producto ${selectedProduct.nombre} ?`,
+        title: `Quieres borrar el producto ${selectedProduct.nombre}?`,
 
         showCancelButton: true,
         confirmButtonText: 'Aceptar',
