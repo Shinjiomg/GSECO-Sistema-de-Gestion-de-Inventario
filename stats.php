@@ -13,6 +13,7 @@ $ultimaVenta = $nw->ultimaVenta(1);
 $articulos = $ar->index();
 $categorias = $cat->index();
 
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -285,8 +286,16 @@ $categorias = $cat->index();
                                       <label for="" class="col-form-label">Categoría</label>
                                       <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
                                         Selecciona una categoría
+
                                       </button>
                                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <?php foreach($categorias as $c){?>
+                                        <li>
+                                          <a class="dropdown-item" href="#">
+                                             <?php echo $c->nombre?>
+                                          </a>
+                                        </li>
+                                        <?php }?>
                                       </ul>
                                     </div>
                                   </div>
@@ -346,7 +355,7 @@ $categorias = $cat->index();
                         <?php
                         if ($art->estado == 1 && $art->stock > 0) {
                           echo '<span class="badge badge-sm bg-gradient-success">Disponible</span>';
-                        } else if($art->estado == 0){
+                        } else if ($art->estado == 0) {
                           echo '<span class="badge badge-sm bg-gradient-danger">No disponible</span>';
                         }
                         if ($art->stock == 0 && $art->estado == 1) {
