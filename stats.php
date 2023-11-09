@@ -1,6 +1,19 @@
 <?php
 include_once("conexion.php");
 include_once("Consultas.php");
+
+require('./models/venta.php');
+require('./models/articulo.php');
+require('./models/categoria.php');
+$nw = new Venta();
+$ar = new Articulo();
+$cat = new Categoria();
+$ventas = $nw->ventas(1);
+$ultimaVenta = $nw->ultimaVenta(1);
+$articulos = $ar->index();
+$categorias = $cat->index();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -9,10 +22,10 @@ include_once("Consultas.php");
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/logo-ct-dark.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./img/logo.png">
+  <link rel="icon" type="image/png" href="./img/logo.png">
   <title>
-    Artículos
+    Tienda del soldado GSECO
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -24,17 +37,19 @@ include_once("Consultas.php");
   <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0">
-        <img src="./assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">Nombre de cliente</span>
+      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0 mr-4">
+        <img src="./img/logo.png" class="navbar-brand-img h-100 mr-5" alt="main_logo">
+        <span class="ms-1 font-weight-bold">GSECO</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -57,6 +72,14 @@ include_once("Consultas.php");
               <i class="ni ni-cart text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Ventas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="bills.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Facturas</span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -82,16 +105,13 @@ include_once("Consultas.php");
       <div class="container-fluid py-1 px-3">
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group">
-              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="search" name="buscar" class="form-control" placeholder="Buscar...">
-            </div>
+
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <a class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">
+                <span class="d-sm-inline d-none text-capitalize">
                   <?php echo $nombreUsuario; ?>
                 </span>
                 <div class="wrap">
@@ -111,38 +131,15 @@ include_once("Consultas.php");
                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
-            <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-              </ul>
-            </li> -->
           </ul>
         </div>
       </div>
     </nav>
     <div class="container-fluid py-4">
       <!-- Cards -->
-      <div class="row mt-4">
-        <div class="col-xl-6  mb-4">
-          <div class="card z-index-2 h-100">
-            <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize">Resumen de ventas</h6>
-              <p class="text-sm mb-0">
-                <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% más</span> en 2023
-              </p>
-            </div>
-            <div class="card-body p-3">
-              <div class="chart">
-                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-6 mt-1">
-          <div class="card mb-4">
+      <div class="row">
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -150,12 +147,11 @@ include_once("Consultas.php");
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas totales</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <!-- <?php echo $Fila['registros']; ?> -->
+                      <?php
+                      $ventasTotales = ($ultimaVenta->total_ultimo_mes !== null) ? number_format($ultimaVenta->total_ultimo_mes, 0, ',', '.') : '0';
+                      echo $ventasTotales;
+                      ?>
                     </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
-                      desde el mes pasado
-                    </p>
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -166,7 +162,9 @@ include_once("Consultas.php");
               </div>
             </div>
           </div>
-          <div class="card mb-4">
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -174,12 +172,11 @@ include_once("Consultas.php");
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas diarias</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <!-- <?php echo $FilaValor['Valores']; ?>  -->
+                      <?php
+                      $totalVenta = ($ventas->total_diario !== null) ? number_format($ultimaVenta->total_diario, 0, ',', '.') : '0';
+                      echo $totalVenta;
+                      ?>
                     </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
-                      desde ayer
-                    </p>
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -190,6 +187,8 @@ include_once("Consultas.php");
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
@@ -198,12 +197,11 @@ include_once("Consultas.php");
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Última venta</p>
                     <h5 class="font-weight-bolder">
                       $
-                      <!-- <?php echo $FilaValor['Valores']; ?>  -->
+                      <?php
+                      $ultimaVenta = ($ultimaVenta->ultima_venta !== null) ? number_format($ultimaVenta->ultima_venta, 0, ',', '.') : '0';
+                      echo $ultimaVenta;
+                      ?>
                     </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
-                      desde la última venta
-                    </p>
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -217,16 +215,100 @@ include_once("Consultas.php");
         </div>
       </div>
       <!-- main content -->
+
       <div class="row mt-4">
         <div class="col-xl-12">
           <div class="card">
             <div class="card-header pb-4">
+              <?php
+              // Variable para almacenar los nombres de los productos agotándose
+              $productosAgotandose = [];
+
+              foreach ($articulos as $art) {
+                $total = $art->stock_deseado;
+                $actual = $art->stock;
+                $porcentaje = ($actual / $total) * 100;
+
+                if ($porcentaje <= 40) {
+                  $productosAgotandose[] = $art->nombre; // Agregar el nombre del producto al array
+                }
+              }
+
+              // Mostrar la alerta solo si hay productos agotándose
+              if (!empty($productosAgotandose)) {
+              ?>
+                <div class="alert alert-warning lowercase" role="alert" style="color: white">
+                  <strong>¡Aviso!</strong> Se están agotando los siguientes productos:
+                  <strong>
+                    <?php echo implode(', ', $productosAgotandose); ?>
+                  </strong>
+                </div>
+              <?php } ?>
               <div class="row pb-2 p-3">
                 <div class="col-6 d-flex align-items-center">
-                  <h6>Artículos</h6>
+                  <h6>Productos</h6>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-dark mb-0" href="javascript:;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir producto</a>
+                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-product"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</a>
+                  <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Añadir producto</h5>
+                        </div>
+
+                        <div class="modal-body p-0">
+                          <div class="card card-plain">
+                            <div class="card-body text-start">
+                              <form role="form text-left">
+                                <div class="form-group">
+                                  <div class="row">
+                                    <div class="col-xl-9">
+                                      <label for="" class="col-form-label">Nombre
+                                        del producto</label>
+                                      <input id="product_name" type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
+                                    </div>
+                                    <div class="col-xl-3">
+                                      <label for="" class="col-form-label">Cantidad</label>
+                                      <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad" oninput="validarCantidad(this)">
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-xl-4">
+                                      <label for="" class="col-form-label">Valor unitario</label>
+                                      <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
+                                    </div>
+                                    <div class="col-xl-4">
+                                      <label for="" class="col-form-label">Stock máximo</label>
+                                      <input class="form-control" type="number" id="stock_maximo" placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
+                                    </div>
+                                    <div class="col-xl-4">
+                                      <label for="" class="col-form-label">Categoría</label>
+                                      <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
+                                        Selecciona una categoría
+
+                                      </button>
+                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <?php foreach($categorias as $c){?>
+                                        <li>
+                                          <a class="dropdown-item" href="#">
+                                             <?php echo $c->nombre?>
+                                          </a>
+                                        </li>
+                                        <?php }?>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
+                                    producto</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -234,91 +316,103 @@ include_once("Consultas.php");
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                      Nombre del artículo</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      Nombre del producto</th>
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
                       Precio de venta</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                      Cantidad</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      Unidades</th>
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Estado</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                       Categoría</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Meta
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      Stock máximo</th>
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      Inventario</th>
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                     </th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                      Porcentaje</th>
-                    <th align="center" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php
-                  $numerofila = 0;
-                  while ($mostrar = mysqli_fetch_array($queryProductos)) {
-                    $total = $mostrar['Meta'];
-                    $actual = $mostrar['Cantidad'];
-                    $porcentaje = round(($actual / $total) * 100, 1);
-                  ?>
-                    <tr id="Resultado">
-                      <td align="center">
-                        <?php echo $mostrar['id_Producto']; ?>
+                  <?php foreach ($articulos as $art) { ?>
+                    <tr>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                        <?php echo $art->nombre ?>
                       </td>
-                      <td align="center">
-                        <?php echo $mostrar['Nombre']; ?>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">$
+                        <?php
+                        $precioVenta = number_format($art->precio_venta, 0, ',', '.');
+                        echo $precioVenta;
+                        ?>
                       </td>
-                      <td align="center">
-                        <?php echo $mostrar['Cantidad']; ?>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                        <?php echo $art->stock ?>
                       </td>
-                      <td align="center">
-                        <?php echo $mostrar['Meta']; ?>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder">
+                        <?php
+                        if ($art->estado == 1 && $art->stock > 0) {
+                          echo '<span class="badge badge-sm bg-gradient-success">Disponible</span>';
+                        } else if ($art->estado == 0) {
+                          echo '<span class="badge badge-sm bg-gradient-danger">No disponible</span>';
+                        }
+                        if ($art->stock == 0 && $art->estado == 1) {
+                          echo '<span class="badge badge-sm bg-gradient-warning">Agotado</span>';
+                        }
+                        ?>
                       </td>
-                      <td align="center">
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                        <?php echo $art->categoria ?>
+                      </td>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                        <?php echo $art->stock_deseado ?>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder">
                         <div class="d-flex align-items-center justify-content-center">
                           <?php
-                          if ($porcentaje > 100) {
-                          ?>
-                            <span class="me-2 text-xs font-weight-bold">
-                              <?php echo 100; ?>%
-                            </span>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%"></div>
-                            <?php
-                          } else if ($porcentaje <= 100) {
-                            ?>
-                              <span class="me-2 text-xs font-weight-bold">
-                                <?php echo $porcentaje ?>%
-                              </span>
+                          $total = $art->stock_deseado;
+                          $actual = $art->stock;
+                          $porcentaje = ($actual / $total) * 100;
 
-                              <div>
-                                <div class="progress">
-                                  <?php
-                                  if ($porcentaje <= 40) {
-                                  ?>
-                                    <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%">
-                                    </div>
-                                  <?php
-                                  } else if ($porcentaje > 40 && $porcentaje <= 60) {
-                                  ?>
-                                    <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%">
-                                    </div>
-                                  <?php
-                                  } else if ($porcentaje > 60 && $porcentaje <= 100) {
-                                  ?>
-                                    <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje ?>%">
-                                    </div>
-                                  <?php
-                                  }
-                                  ?>
-                                </div>
-                              </div>
-                            </div>
-                          <?php
+                          if ($porcentaje > 100) {
+                            $porcentaje = 100;
                           }
                           ?>
+                          <span class="me-2 text-xs font-weight-bold">
+                            <?php echo $porcentaje; ?>%
+                          </span>
+
+                          <div class="progress">
+                            <?php if ($porcentaje <= 40) { ?>
+                              <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje; ?>%"></div>
+                            <?php } else if ($porcentaje > 40 && $porcentaje <= 60) { ?>
+                              <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje; ?>%"></div>
+                            <?php } else { ?>
+                              <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje; ?>%"></div>
+                            <?php } ?>
+                          </div>
+                        </div>
                       </td>
-                      <td class="align-middle">
-                        <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-settings" aria-hidden="true"></i></button>
+
+                      <td align="center" class="text-center text-black text-xxs font-weight-bolder">
+                       <a
+                          data-bs-toggle="tooltip"
+                          title="Editar"
+                          class="text-primary font-weight-bold text-xs"
+                          onclick="editProduct('<?php echo $art->id_articulo?>')"
+                          ><i
+                          class="fas fa-edit"
+                          style='font-size:24px'></i></a>
+                      </td>
+                      <td align="center" class="text-center text-black text-xxs font-weight-bolder">
+                        <a
+                          data-bs-toggle="tooltip"
+                          title="Borrar"
+                          class="text-danger font-weight-bold text-xs"
+                          href=""><i
+                          class="fas fa-trash"
+                          style='font-size:24px'></i></a>
                       </td>
                     </tr>
                   <?php
@@ -332,40 +426,87 @@ include_once("Consultas.php");
       </div>
       <!--secondary content -->
       <div class="row mt-4">
-        <div class="col-xl-4">
-          <div class="card mb-4">
-            <div class="card-header pb-0">
+        <div class="col-xl-6">
+          <div class="card">
+            <div class="card-header pb-4">
               <div class="row pb-2 p-3">
                 <div class="col-6 d-flex align-items-center">
                   <h6>Categorías</h6>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-dark mb-0" href=""><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
+                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
+                  <div class="modal fade" id="modal-form" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body p-0">
+                          <div class="card card-plain">
+                            <div class="card-body text-start">
+                              <form role="form text-center">
+                                <div class="row">
+                                  <div class="col-xl-12">
+                                    <label for="" class="col-form-label">Nombre de la categoria</label>
+                                    <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría" class="form-control" />
+                                  </div>
+                                  <div class="text-center">
+                                    <button type="button" onClick="guardarCategoria()" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
+                                      categoría</button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="card-body p-3">
-              <ul class="list-group">
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                      <i class="ni ni-basket text-white opacity-10"></i>
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Categoría 1</h6>
-                      <span class="text-xs">250 en inventario <span class="font-weight-bold">346+ vendidos</span></span>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-settings" aria-hidden="true"></i></button>
-                  </div>
-                </li>
-
-              </ul>
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      Nombre</th>
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                      Estado</th>
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    </th>
+                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($categorias as $cat) { ?>
+                    <tr>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                        <?php echo $cat->nombre ?>
+                      </td>
+                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder">
+                        <?php
+                        if ($cat->estado == 1) {
+                          echo '<span class="badge badge-sm bg-gradient-success">Activo</span>';
+                        } else {
+                          echo '<span class="badge badge-sm bg-gradient-danger">Inactivo</span>';
+                        }
+                        ?>
+                      </td>
+                      <td align="center" class="text-center text-black text-xxs font-weight-bolder">
+                        <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" href=""><i class="fas fa-edit" style='font-size:24px'></i></a>
+                      </td>
+                      <td align="center" class="text-center text-black text-xxs font-weight-bolder">
+                        <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>
+                      </td>
+                    </tr>
+                  <?php
+                  }
+                  ?>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-        <div class="col-xl-8">
+        <div class="col-xl-6">
           <div class="card ">
             <div class="card-header pb-4">
               <div class="row pb-2 p-3">
@@ -377,7 +518,7 @@ include_once("Consultas.php");
             <div class="table-responsive">
               <table class="table align-items-center ">
                 <tbody>
-                  <tr>
+                  <!-- <tr>
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Vendedor:</p>
@@ -402,7 +543,7 @@ include_once("Consultas.php");
                         <h6 class="text-sm mb-0">29.9%</h6>
                       </div>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>
@@ -410,21 +551,6 @@ include_once("Consultas.php");
         </div>
       </div>
       <!-- footer -->
-      <footer class="footer pt-3  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                ©
-                <script>
-                  document.write(new Date().getFullYear())
-                </script> Jhonatan, Nicoll y Camilo,
-                Todos los derechos reservados
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
   </main>
   <!-- config interface -->
   <div class="fixed-plugin">
@@ -448,17 +574,20 @@ include_once("Consultas.php");
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
           </div>
         </div>
-        <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar Sesion</a>
+        <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
       </div>
     </div>
   </div>
   <!--   Core JS Files and scripts  -->
+  <script src="js/product.js"></script>
+  <script src="js/stats.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="assets/js/plugins/chartjs.min.js"></script>
   <script src="Js/Search.js"></script>
+  <script src="js/categoria.js"></script>
   <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
@@ -551,7 +680,7 @@ include_once("Consultas.php");
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="./assets/js/argon-dashboard.min.js?v=2.0.2"></script>
+  <script src="./assets/js/argon-dashboard.js"></script>
 </body>
 
 </html>

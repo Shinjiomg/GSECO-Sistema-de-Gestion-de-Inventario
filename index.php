@@ -15,16 +15,22 @@ if (isset($_POST['btningresar'])) {
 			if ($Usuario == $row['email'] && $Contraseña == $row['password']) {
 				$_SESSION['nombredelusuario'] = $Usuario;
 				$_SESSION['id_usuario'] = $row['id_usuario'];
-				header("location:stats.php");
+				$_SESSION['rol'] = $row['rol_id_rol'];
+				if (intval($row['rol_id_rol']) == 1) {
+					header("location:stats.php");
+				} else {
+					header("location:sales.php");
+				}
 			}
 		}
 	} else {
-        echo "<script>alert('correo y/o contraseña no coinciden');window.location= 'index.php' </script>"; 
+		echo "<script>alert('correo y/o contraseña no coinciden');window.location= 'index.php' </script>";
 	}
 }
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>test</title>
 	<link rel="stylesheet" href="./css/estilo.css">
@@ -33,8 +39,8 @@ if (isset($_POST['btningresar'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
-<body>
 
+<body>
 	<div class="container">
 		<div class="contenedor">
 			<h2 class="tituloempresa">TIENDA DEL SOLDADO</h2>
@@ -63,7 +69,7 @@ if (isset($_POST['btningresar'])) {
 							<input type="password" name="txtpassword" class="input">
 						</div>
 					</div>
-					<div class="btnpos"><input type="submit" class="btn" name= "btningresar" value="Ingresar">
+					<div class="btnpos"><input type="submit" class="btn" name="btningresar" value="Ingresar">
 					</div>
 				</form>
 			</div>
@@ -71,4 +77,5 @@ if (isset($_POST['btningresar'])) {
 	</div>
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
+
 </html>

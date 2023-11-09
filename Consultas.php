@@ -7,7 +7,7 @@
     while($mostrar = mysqli_fetch_array($queryUsuarios))
     {
         $idUsuario = $mostrar['id_usuario'];
-        $nombreUsuario = $mostrar['email'];
+        $nombreUsuario = $mostrar['nombres'] . ' ' . $mostrar['apellidos'];
     } 
     //Consulta para mostrar el Id Asignado con el que se identificara el registros//
     $query= mysqli_query($conn,"SELECT MAX(id_articulo+1) AS id FROM articulo");
@@ -30,5 +30,3 @@
     // Consulta para sumar los registros de la tabla 
     $queryValor = mysqli_query($conn,"SELECT SUM(stock) AS Valores FROM articulo");
     $FilaValor = mysqli_fetch_assoc($queryValor);
-
-?>

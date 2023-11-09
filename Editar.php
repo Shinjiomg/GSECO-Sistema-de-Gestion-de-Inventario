@@ -281,7 +281,7 @@
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
           </div>
         </div>
-        <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar Sesion</a>
+        <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
       </div>
     </div>
   </div>

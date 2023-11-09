@@ -9,10 +9,10 @@ include_once("Consultas.php");
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="./assets/img/logo-ct-dark.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./img/logo.png">
+    <link rel="icon" type="image/png" href="./img/logo.png">
     <title>
-        Artículos
+        Tienda del soldado GSECO
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -26,15 +26,18 @@ include_once("Consultas.php");
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
-    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
-                <img src="./assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-                <span class="ms-1 font-weight-bold">Nombre de cliente</span>
+                <img src="./img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
+                <span class="ms-1 font-weight-bold">GSECO</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0">
@@ -45,18 +48,29 @@ include_once("Consultas.php");
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Estadísticas</span>
+                        <span class="nav-link-text ms-1  text-black">Estadísticas</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="sales.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Ventas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="bills.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Facturas</span>
                     </a>
                 </li>
                 <li class="nav-item mt-3">
@@ -64,7 +78,8 @@ include_once("Consultas.php");
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="user-administration.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Usuarios</span>
@@ -78,20 +93,18 @@ include_once("Consultas.php");
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+            data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group">
-                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                            <input type="search" name="buscar" class="form-control" placeholder="Buscar...">
-                        </div>
+
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
                             <a class="nav-link text-white font-weight-bold px-0">
                                 <i class="fa fa-user me-sm-1"></i>
-                                <span class="d-sm-inline d-none">
+                                <span class="d-sm-inline d-none text-capitalize">
                                     <?php echo $nombreUsuario; ?>
                                 </span>
                                 <div class="wrap">
@@ -124,21 +137,176 @@ include_once("Consultas.php");
         </nav>
         <div class="container-fluid py-4">
             <!-- main content -->
-            <!-- <footer class="footer pt-3  ">
-                <div class="container-fluid">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 mb-lg-0 mb-4">
-                            <div class="copyright text-center text-sm text-muted text-lg-start">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script> Jhonatan, Nicoll y Camilo,
-                                Todos los derechos reservados
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <div class="row pb-2 p-3">
+                                <div class="col-6 d-flex align-items-center">
+                                    <h6>Roles</h6>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal"
+                                        data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir
+                                        rol</a>
+                                    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog"
+                                        aria-labelledby="modal-form" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body p-0">
+                                                    <div class="card card-plain">
+                                                        <div class="card-body">
+                                                            <form role="form text-left">
+                                                                <div class="text-center">
+                                                                    <button type="button"
+                                                                        class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Añadir
+                                                                        rol</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="text-uppercase text-black text-xxs font-weight-bolder opacity-7 pl-2">
+                                                Rol</th>
+                                            <th class="text-black opacity-7"></th>
+                                            <th class="text-black opacity-7"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-3 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">Administrador</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" class="text-black font-weight-bold text-xs"
+                                                    data-toggle="tooltip" data-original-title="Edit user">
+                                                    Editar
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" class="text-danger font-weight-bold text-xs"
+                                                    data-toggle="tooltip" data-original-title="Delete user">
+                                                    Borrar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </footer> -->
+                <div class="col-xl-8">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <div class="row pb-2 p-3">
+                                <div class="col-8 d-flex align-items-center">
+                                    <h6>Usuarios</h6>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal"
+                                        data-bs-target="#modal-form-user"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir
+                                        usuario</a>
+                                    <div class="modal fade" id="modal-form-user" tabindex="-1" role="dialog"
+                                        aria-labelledby="modal-form" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body p-0">
+                                                    <div class="card card-plain">
+                                                        <div class="card-body">
+                                                            <form role="form text-left">
+                                                                <div class="text-center">
+                                                                    <button type="button"
+                                                                        class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Añadir
+                                                                        usuario</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                                                Nombre</th>
+                                            <th
+                                                class="text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Rol</th>
+                                            <th
+                                                class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                                                Estado</th>
+                                            <th class="text-black opacity-7"></th>
+                                            <th class="text-black opacity-7">
+                                                <a href="./reports/usuarios.php" target="_blank">
+                                                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
+                                                        <i class="fas fa-file-pdf text-lg me-1"></i> PDF
+                                                    </button>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-3 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">John Michael</h6>
+                                                        <p class="text-xs text-black mb-0">john@creative-tim.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">Manager</p>
+                                                <p class="text-xs text-black mb-0">Organization</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="badge badge-sm bg-gradient-success">Activo</span>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" class="text-primary font-weight-bold text-xs"
+                                                    data-toggle="tooltip" data-original-title="Edit user">
+                                                    Editar
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" class="text-danger font-weight-bold text-xs"
+                                                    data-toggle="tooltip" data-original-title="Delete user">
+                                                    Borrar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
         </div>
     </main>
     <!-- config interface -->
@@ -160,10 +328,11 @@ include_once("Consultas.php");
                 <div class="mt-2 mb-5 d-flex">
                     <h6 class="mb-0">Tema claro / oscuro</h6>
                     <div class="form-check form-switch ps-0 ms-auto my-auto">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
+                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version"
+                            onclick="darkMode(this)">
                     </div>
                 </div>
-                <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar Sesion</a>
+                <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
             </div>
         </div>
     </div>
@@ -266,7 +435,7 @@ include_once("Consultas.php");
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="./assets/js/argon-dashboard.min.js?v=2.0.2"></script>
+    <script src="./assets/js/argon-dashboard.js"></script>
 </body>
 
 </html>
