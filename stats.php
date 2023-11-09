@@ -396,10 +396,23 @@ $categorias = $cat->index();
                       </td>
 
                       <td align="center" class="text-center text-black text-xxs font-weight-bolder">
-                        <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" href=""><i class="fas fa-edit" style='font-size:24px'></i></a>
+                       <a
+                          data-bs-toggle="tooltip"
+                          title="Editar"
+                          class="text-primary font-weight-bold text-xs"
+                          onclick="editProduct('<?php echo $art->id_articulo?>')"
+                          ><i
+                          class="fas fa-edit"
+                          style='font-size:24px'></i></a>
                       </td>
                       <td align="center" class="text-center text-black text-xxs font-weight-bolder">
-                        <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>
+                        <a
+                          data-bs-toggle="tooltip"
+                          title="Borrar"
+                          class="text-danger font-weight-bold text-xs"
+                          href=""><i
+                          class="fas fa-trash"
+                          style='font-size:24px'></i></a>
                       </td>
                     </tr>
                   <?php
@@ -566,6 +579,7 @@ $categorias = $cat->index();
     </div>
   </div>
   <!--   Core JS Files and scripts  -->
+  <script src="js/product.js"></script>
   <script src="js/stats.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>

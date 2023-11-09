@@ -9,3 +9,15 @@ if(isset($_POST["id_categoria"])){
 	echo json_encode($producto -> articuloByCategory($category));
 
 }
+
+if(isset($_POST["id_articulo"])){
+
+	$producto = new Articulo();
+	$id_articulo = intval($_POST["id_articulo"]);
+    
+	echo json_encode($producto -> articuloByCategory($id_articulo));
+
+}
+
+
+
