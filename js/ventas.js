@@ -86,7 +86,8 @@ function GenerarVenta() {
                     Swal.fire({
                         title: "Generar venta",
                         text: "La venta se generó de forma exitosa",
-                        icon: "success"
+                        icon: "success",
+                        timer: 1500
                     });
                     this.products = [];
                     resetTipoPago();
@@ -197,7 +198,8 @@ function addProductTable(pr) {
         Swal.fire({
             title: "Agregar un producto",
             text: "El producto ya se encuentra en el carrito de compras",
-            icon: "warning"
+            icon: "warning",
+            timer: 1500
         });
         return;
     } else {
@@ -232,7 +234,8 @@ function confirmQuantity() {
             Swal.fire({
                 title: "Editar producto",
                 text: "El registro fue editado exitosamente",
-                icon: "success"
+                icon: "success",
+                timer: 1500
             });
             renderTable();
             return;
@@ -241,7 +244,8 @@ function confirmQuantity() {
             Swal.fire({
                 title: "Agregar producto",
                 text: "El producto fue agregado al carrito de compras",
-                icon: "success"
+                icon: "success",
+                timer: 1500
             });
         }
         quantityInput.value = 0;
@@ -251,7 +255,8 @@ function confirmQuantity() {
         Swal.fire({
             title: "Error",
             text: "El inventario es insuficiente",
-            icon: "error"
+            icon: "error",
+            timer: 1500
         });
     }
 }

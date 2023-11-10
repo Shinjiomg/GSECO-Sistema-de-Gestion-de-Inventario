@@ -54,7 +54,8 @@ function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria)
             Swal.fire({
                 title: "Generar Producto",
                 text: "El producto se guardó correctamente",
-                icon: "success"
+                icon: "success",
+                timer: 1500
             });
             let newProduct = JSON.parse(response);
             products.push({ ...newProduct })
@@ -227,7 +228,8 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
             Swal.fire({
                 title: "Productos",
                 text: "El producto fue editado de forma exitosa",
-                icon: "success"
+                icon: "success",
+                timer: 1500
             });
 
             products = products.map(ar => {
