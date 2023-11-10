@@ -20,7 +20,7 @@ function getProducts() {
         processData: false,
         success: function (response) {
             renderProduct(response)
-        
+
         }
     });
 
@@ -56,7 +56,10 @@ function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 text: "El producto se guardó correctamente",
                 icon: "success"
             });
-            /* renderTable(); */
+            let newProduct = JSON.parse(response);
+            products.push({...newProduct})
+
+            renderTable();
             $('#modal-form-product').modal('hide');
         }
     });
@@ -88,15 +91,66 @@ function renderTable() {
 
     let filas = tabla.getElementsByTagName("tr");
 
-    sumaTotales = 0;
 
     for (var i = filas.length - 1; i > 0; i--) {
         tabla.deleteRow(i);
     }
 
+   
+    products.forEach(pr => {
+
+        let nuevaFila = document.createElement("tr");
+
+        // Define el contenido de cada celda
+        let contenidoCeldas = [
+            pr.nombre,
+            pr.precio_venta,
+            pr.stock,
+           ( pr.stock > 0 && pr.estado === 1) ?'<span class="badge badge-sm bg-gradient-success">Disponible</span>': ( pr.estado === 0)?'<span class="badge badge-sm bg-gradient-danger">No disponible</span>': '<span class="badge badge-sm bg-gradient-warning">Agotado</span>',
+            pr.categoria,
+            pr.stock_deseado,
+            `<div class="d-flex align-items-center justify-content-center">
+    
+            <span class="me-2 text-xs font-weight-bold">
+             ${(pr.stock/pr.stock_deseado)*100}
+            </span>
+
+            <div class="progress">
+              
+                ${((pr.stock/pr.stock_deseado)*100) <= 40 ?  
+                    '<div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje; ?>%"></div>':
+                    (((pr.stock/pr.stock_deseado)*100) >= 40 &&  ((pr.stock/pr.stock_deseado)*100) <=60 )?
+                   ' <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje; ?>%"></div>':
+                    '<div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje; ?>%"></div>'
+              
+                }
+            </div>
+          </div>`,
+        ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" onclick="editProduct(${pr.id_articulo})"><i class="fas fa-edit" style='font-size:24px'></i></a>`,
+        ` <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>`
+        ];
+
+        // Itera sobre el contenido de las celdas y crea celdas <td>
+        contenidoCeldas.forEach(function (contenido) {
+            var celda = document.createElement("td");
+            var parrafo = document.createElement("p");
+            parrafo.innerHTML = contenido;
+            celda.appendChild(parrafo);
+            nuevaFila.appendChild(celda);
+        });
+
+        // Agrega la nueva fila a la tabla
+        tabla.querySelector("tbody").appendChild(nuevaFila);
+
+    });
+
+
+
 }
 
-function renderProduct(data){
+function renderProduct(data) {
+    products = JSON.parse(data);
+    renderTable();
 
 }
 
@@ -163,7 +217,7 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 icon: "success"
             });
 
-            /* renderTable(); */
+            renderTable();
 
             $('#modal-form-product').modal('hide');
 

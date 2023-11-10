@@ -54,8 +54,9 @@ class Articulo extends Database
 		$query->bindParam(':precio_venta', $articulo->precio);
 		$query->bindParam(':stock_deseado', $articulo->stockMaximo);
 		$query->bindParam(':categoria_id_categoria', $articulo->selectCategoria);
-
 		$query->execute();
+		$lastInsertId = $this->pdo->lastInsertId();
+		return $this->show($lastInsertId);
 	}
 
 	function destroy($id_articulo){
