@@ -120,14 +120,14 @@ function renderTable() {
     products.forEach(pr => {
 
         let nuevaFila = document.createElement("tr");
-        nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xxs', 'font-weight-bolder','opacity-7');
+        nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
       
         // Define el contenido de cada celda
         let contenidoCeldas = [
             pr.nombre,
             pr.precio_venta,
             pr.stock,
-           ( pr.stock > 0 && pr.estado === 1) ?'<span class="badge badge-sm bg-gradient-success">Disponible</span>': ( pr.estado === 0)?'<span class="badge badge-sm bg-gradient-danger">No disponible</span>': '<span class="badge badge-sm bg-gradient-warning">Agotado</span>',
+           ( pr.stock > 0 && pr.estado === 1) ?'<span class="badge badge-sm bg-gradient-success">Stock disponible</span>': ( pr.estado === 0)?'<span class="badge badge-sm bg-gradient-danger">Stock no disponible</span>': '<span class="badge badge-sm bg-gradient-warning">Stock agotado</span>',
             pr.categoria,
             pr.stock_deseado,
             `<div class="d-flex align-items-center justify-content-center">

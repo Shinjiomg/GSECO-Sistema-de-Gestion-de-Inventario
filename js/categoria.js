@@ -83,12 +83,12 @@ function renderTableCategories(){
     categories.forEach(c => {
 
         let nuevaFila = document.createElement("tr");
-        nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xxs', 'font-weight-bolder','opacity-7');
+        nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
       
         // Define el contenido de cada celda
         let contenidoCeldas = [
             c.nombre,
-            c.estado === 1 ? '<span class="badge badge-sm bg-gradient-success">Disponible</span>': '<span class="badge badge-sm bg-gradient-danger">No disponible</span>',
+            c.estado === 1 ? '<span class="badge badge-sm bg-gradient-success">Stock disponible</span>': '<span class="badge badge-sm bg-gradient-danger">Stock no disponible</span>',
             ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" href=""><i class="fas fa-edit" style='font-size:24px'></i></a>`,
             `<a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>`
         ];

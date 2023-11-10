@@ -56,14 +56,14 @@ $articulos = $ar->index();
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Artículos</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ARTÍCULOS</h6>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="stats.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Estadísticas</span>
+            <span class="nav-link-text ms-1 font-weight-bolder">ESTADÍSTICAS</span>
           </a>
         </li>
         <li class="nav-item">
@@ -71,7 +71,7 @@ $articulos = $ar->index();
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-cart text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Ventas</span>
+            <span class="nav-link-text ms-1 font-weight-bolder">VENTAS</span>
           </a>
         </li>
         <li class="nav-item">
@@ -79,18 +79,18 @@ $articulos = $ar->index();
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Facturas</span>
+            <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE VENTA</span>
           </a>
         </li>
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ADMINISTRACIÓN</h6>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="user-administration.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Usuarios</span>
+            <span class="nav-link-text ms-1 font-weight-bolder">USUARIOS</span>
           </a>
         </li>
         <li class="sidenav-footer mx-3">
@@ -144,7 +144,7 @@ $articulos = $ar->index();
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas totales</p>
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas totales</p>
                     <h5 class="font-weight-bolder">
                       $
                       <?php
@@ -169,7 +169,7 @@ $articulos = $ar->index();
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Ventas diarias</p>
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas diarias</p>
                     <h5 class="font-weight-bolder">
                       $
                       <?php
@@ -194,7 +194,7 @@ $articulos = $ar->index();
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Última venta</p>
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">Última venta</p>
                     <h5 class="font-weight-bolder">
                       $
                       <?php
@@ -221,7 +221,6 @@ $articulos = $ar->index();
           <div class="card">
             <div class="card-header pb-4">
               <?php
-              // Variable para almacenar los nombres de los productos agotándose
               $productosAgotandose = [];
 
               foreach ($articulos as $art) {
@@ -230,11 +229,9 @@ $articulos = $ar->index();
                 $porcentaje = ($actual / $total) * 100;
 
                 if ($porcentaje <= 40) {
-                  $productosAgotandose[] = $art->nombre; // Agregar el nombre del producto al array
+                  $productosAgotandose[] = $art->nombre;
                 }
               }
-
-              // Mostrar la alerta solo si hay productos agotándose
               if (!empty($productosAgotandose)) {
               ?>
                 <div class="alert alert-warning lowercase" role="alert" style="color: white">
@@ -245,16 +242,16 @@ $articulos = $ar->index();
                 </div>
               <?php } ?>
               <div class="row pb-2 p-3">
-                <div class="col-6 d-flex align-items-center">
-                  <h6>Productos</h6>
+                <div class="col-6 d-flex align-items-center text-uppercase">
+                  <h4 class="font-weight-bolder">Productos</h4>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-product"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</a>
+                  <a class="btn bg-gradient-primary mb-0 text-uppercase" data-bs-toggle="modal" data-bs-target="#modal-form-product"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</a>
                   <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title">Añadir producto</h5>
+                          <h4 class="modal-title text-uppercase font-weight-bold">Añadir producto</h4>
                         </div>
 
                         <div class="modal-body p-0">
@@ -264,41 +261,37 @@ $articulos = $ar->index();
                                 <div class="form-group">
                                   <div class="row">
                                     <div class="col-xl-9">
-                                      <label for="" class="col-form-label">Nombre
+                                      <label for="" class="col-form-label text-uppercase">Nombre
                                         del producto</label>
                                       <input id="product_name" type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
                                     </div>
                                     <div class="col-xl-3">
-                                      <label for="" class="col-form-label">Cantidad</label>
+                                      <label for="" class="col-form-label text-uppercase">Cantidad</label>
                                       <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad" oninput="validarCantidad(this)">
                                     </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-xl-4">
-                                      <label for="" class="col-form-label">Valor unitario</label>
+                                      <label for="" class="col-form-label text-uppercase">Valor unitario</label>
                                       <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
-                                      <label for="" class="col-form-label">Stock máximo</label>
+                                      <label for="" class="col-form-label text-uppercase">Stock máximo</label>
                                       <input class="form-control" type="number" id="stock_maximo" placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
-                                      <label for="" class="col-form-label">Categoría</label>
+                                      <label for="" class="col-form-label text-uppercase">Categoría</label>
                                       <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
-                                      <?php foreach ($categorias as $c) { ?>
-                                        <option value="<?php  echo $c->id_categoria?>"><?php  echo $c->nombre ?></option>
-                                      <?php } ?>
-                                       
+                                        <?php foreach ($categorias as $c) { ?>
+                                          <option value="<?php echo $c->id_categoria ?>"><?php echo $c->nombre ?></option>
+                                        <?php } ?>
+
                                       </select>
-                                      
+
                                     </div>
                                   </div>
-                                  <button 
-                                    type="button" 
-                                    id="confirmButton" 
-                                    onclick="saveProduct()"
-                                    class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">guardar
-                                    </button>
+                                  <button type="button" id="confirmButton" onclick="saveProduct()" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase">guardar
+                                  </button>
                                 </div>
                               </form>
                             </div>
@@ -314,29 +307,28 @@ $articulos = $ar->index();
               <table class="table align-items-center mb-0" id="data_table">
                 <thead>
                   <tr>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
                       Nombre del producto</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
                       Precio de venta</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
                       Unidades</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
                       Estado</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
                       Categoría</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
                       Stock máximo</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
                       Inventario</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                     </th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                
-                <tbody >
+
                 </tbody>
               </table>
             </div>
@@ -349,11 +341,11 @@ $articulos = $ar->index();
           <div class="card">
             <div class="card-header pb-4">
               <div class="row pb-2 p-3">
-                <div class="col-6 d-flex align-items-center">
-                  <h6>Categorías</h6>
+                <div class="col-6 d-flex align-items-center text-uppercase">
+                  <h4 class="font-weight-bolder">Categorías</h4>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
+                  <a class="btn bg-gradient-primary mb-0 text-uppercase" data-bs-toggle="modal" data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
                   <div class="modal fade" id="modal-form" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                       <div class="modal-content">
@@ -363,11 +355,11 @@ $articulos = $ar->index();
                               <form role="form text-center">
                                 <div class="row">
                                   <div class="col-xl-12">
-                                    <label for="" class="col-form-label">Nombre de la categoria</label>
+                                    <label for="" class="col-form-label text-uppercase">Nombre de la categoria</label>
                                     <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría" class="form-control" />
                                   </div>
                                   <div class="text-center">
-                                    <button type="button" onClick="guardarCategoria()" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Añadir
+                                    <button type="button" onClick="guardarCategoria()" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase">Añadir
                                       categoría</button>
                                   </div>
                                 </div>
@@ -385,13 +377,13 @@ $articulos = $ar->index();
               <table class="table align-items-center mb-0" id="categories_table">
                 <thead>
                   <tr>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
                       Nombre</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
                       Estado</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                     </th>
-                    <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                     </th>
                   </tr>
                 </thead>
@@ -406,14 +398,14 @@ $articulos = $ar->index();
             <div class="card-header pb-4">
               <div class="row pb-2 p-3">
                 <div class="col-6 d-flex align-items-center">
-                  <h6>Ventas por empleado</h6>
+                  <h4 class="text-uppercase font-weight-bolder">Ventas por empleado</h4>
                 </div>
               </div>
             </div>
             <div class="table-responsive">
               <table class="table align-items-center ">
                 <tbody>
-                  
+
                 </tbody>
               </table>
             </div>
