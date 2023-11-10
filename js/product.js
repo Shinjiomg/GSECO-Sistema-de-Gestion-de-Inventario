@@ -218,6 +218,23 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 icon: "success"
             });
 
+            products = products.map(ar => {
+                if(ar.id_articulo === selectProduct.id_articulo){
+                    return {
+                        ...ar,
+                        nombre: nombre,
+                        precio_venta:precio,
+                        stock: cantidad,
+                        categoria_id_categoria: selectCategoria,
+                        stock_deseado:stockMaximo,
+                    }
+
+                }
+                return ar
+            })
+
+          
+
             renderTable();
 
             $('#modal-form-product').modal('hide');
