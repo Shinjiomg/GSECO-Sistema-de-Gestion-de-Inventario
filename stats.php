@@ -7,7 +7,8 @@ require('./models/articulo.php');
 require('./models/categoria.php');
 $nw = new Venta();
 $ar = new Articulo();
-
+$c = new Categoria();
+$categorias = $c->index();
 $ventas = $nw->ventas(1);
 $ultimaVenta = $nw->ultimaVenta(1);
 $articulos = $ar->index();

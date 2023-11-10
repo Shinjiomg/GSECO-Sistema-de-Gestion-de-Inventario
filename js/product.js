@@ -205,6 +205,10 @@ function saveProduct() {
 
 function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria) {
 
+    let category = document.getElementById('categories_select');
+    
+    var selectedText = category.options[category.selectedIndex].text;
+
     let datos = new FormData();
 
     let product_edit = {
@@ -215,7 +219,7 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
         selectCategoria,
         id_articulo: selectProduct.id_articulo
     }
-
+  
 
     datos.append("product_edit", JSON.stringify(product_edit));
     $.ajax({
@@ -231,7 +235,7 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 text: "El producto fue editado de forma exitosa",
                 icon: "success"
             });
-
+           
             products = products.map(ar => {
                 if(ar.id_articulo === selectProduct.id_articulo){
                     return {
@@ -241,6 +245,7 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
                         stock: cantidad,
                         categoria_id_categoria: selectCategoria,
                         stock_deseado:stockMaximo,
+                        categoria: selectedText
                     }
 
                 }
