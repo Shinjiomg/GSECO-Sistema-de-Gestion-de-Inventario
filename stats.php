@@ -233,7 +233,7 @@ $articulos = $ar->index();
                   <h4 class="font-weight-bolder">Productos</h4>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-primary mb-0 text-uppercase" data-bs-toggle="modal" data-bs-target="#modal-form-product"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</a>
+                  <a class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</a>
                   <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                       <div class="modal-content">
@@ -277,7 +277,7 @@ $articulos = $ar->index();
 
                                     </div>
                                   </div>
-                                  <button type="button" id="confirmButton" onclick="saveProduct()" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase">guardar
+                                  <button type="button" id="confirmButton" onclick="saveProduct()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
                                   </button>
                                 </div>
                               </form>
@@ -332,7 +332,7 @@ $articulos = $ar->index();
                   <h4 class="font-weight-bolder">Categorías</h4>
                 </div>
                 <div class="col-6 text-end">
-                  <a class="btn bg-gradient-primary mb-0 text-uppercase" data-bs-toggle="modal" data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
+                  <a class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
                   <div class="modal fade" id="modal-form" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                       <div class="modal-content">
@@ -346,7 +346,7 @@ $articulos = $ar->index();
                                     <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría" class="form-control" />
                                   </div>
                                   <div class="text-center">
-                                    <button type="button" onClick="guardarCategoria()" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase">Añadir
+                                    <button type="button" onClick="guardarCategoria()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Añadir
                                       categoría</button>
                                   </div>
                                 </div>
@@ -544,6 +544,7 @@ $articulos = $ar->index();
 
   .table-responsive::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
     /* Ancho de la barra de desplazamiento */
   }
 
