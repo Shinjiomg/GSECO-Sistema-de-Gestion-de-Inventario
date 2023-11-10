@@ -100,7 +100,8 @@ function renderTable() {
     products.forEach(pr => {
 
         let nuevaFila = document.createElement("tr");
-
+        nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xxs', 'font-weight-bolder','opacity-7');
+      
         // Define el contenido de cada celda
         let contenidoCeldas = [
             pr.nombre,
@@ -112,16 +113,16 @@ function renderTable() {
             `<div class="d-flex align-items-center justify-content-center">
     
             <span class="me-2 text-xs font-weight-bold">
-             ${(pr.stock/pr.stock_deseado)*100}
+             ${((pr.stock/pr.stock_deseado)*100).toFixed(1) + '%'}
             </span>
 
             <div class="progress">
               
                 ${((pr.stock/pr.stock_deseado)*100) <= 40 ?  
-                    '<div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje; ?>%"></div>':
+                    `<div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock/pr.stock_deseado)*100).toFixed(1)}%"></div>`:
                     (((pr.stock/pr.stock_deseado)*100) >= 40 &&  ((pr.stock/pr.stock_deseado)*100) <=60 )?
-                   ' <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje; ?>%"></div>':
-                    '<div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentaje; ?>%"></div>'
+                   `<div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${((pr.stock/pr.stock_deseado)*100).toFixed(1)}%"></div>`:
+                    `<div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock/pr.stock_deseado)*100).toFixed(1)}%"></div>`
               
                 }
             </div>
