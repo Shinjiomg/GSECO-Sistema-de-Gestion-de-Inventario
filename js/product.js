@@ -1,4 +1,30 @@
 selectProduct = null;
+products = [];
+
+window.onload = function () {
+    getProducts();
+};
+
+function getProducts() {
+
+    let datos = new FormData();
+
+    datos.append('all', 'all');
+
+    $.ajax({
+        url: "ajax/productos.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            renderProduct(response)
+        
+        }
+    });
+
+}
 
 
 
@@ -30,6 +56,7 @@ function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 text: "El producto se guardó correctamente",
                 icon: "success"
             });
+            /* renderTable(); */
             $('#modal-form-product').modal('hide');
         }
     });
@@ -55,6 +82,24 @@ function editProduct(id) {
     });
 }
 
+function renderTable() {
+
+    let tabla = document.getElementById("data_table");
+
+    let filas = tabla.getElementsByTagName("tr");
+
+    sumaTotales = 0;
+
+    for (var i = filas.length - 1; i > 0; i--) {
+        tabla.deleteRow(i);
+    }
+
+}
+
+function renderProduct(data){
+
+}
+
 
 
 function saveProduct() {
@@ -65,7 +110,7 @@ function saveProduct() {
     let stockMaximo = document.getElementById('stock_maximo').value;
     let selectCategoria = document.getElementById('categories_select').value;
 
-    if(selectProduct){
+    if (selectProduct) {
         saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria);
         return;
     }
@@ -117,6 +162,8 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 text: "El producto fue editado de forma exitosa",
                 icon: "success"
             });
+
+            /* renderTable(); */
 
             $('#modal-form-product').modal('hide');
 
