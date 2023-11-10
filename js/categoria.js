@@ -1,14 +1,14 @@
 selectCategory = null;
 categories = [];
 
-window.onload = function () {
-    getCategories();
-};
+
+getCategories();
+
 
 
 function getCategories(){
     let datos = new FormData();
-
+  
     datos.append('all', 'all');
 
     $.ajax({
@@ -27,7 +27,7 @@ function getCategories(){
 
 function renderCategories(data) {
     categories = JSON.parse(data);
-    renderTable();
+    renderTableCategories();
 }
 
 
@@ -55,6 +55,10 @@ function createCategory(categoria){
         contentType: false,
         processData: false,
         success: function (response) {
+            categories.push({
+                ...JSON.parse(response)
+            })
+            renderTableCategories();
             Swal.fire({
                 title: "Generar categoria",
                 text: "La categoria se guardó correctamente",
@@ -66,7 +70,7 @@ function createCategory(categoria){
 
 }
 
-function renderTable(){
+function renderTableCategories(){
     let tabla = document.getElementById("categories_table");
 
     let filas = tabla.getElementsByTagName("tr");
@@ -75,6 +79,34 @@ function renderTable(){
     for (var i = filas.length - 1; i > 0; i--) {
         tabla.deleteRow(i);
     }
+
+    categories.forEach(c => {
+
+        let nuevaFila = document.createElement("tr");
+        nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xxs', 'font-weight-bolder','opacity-7');
+      
+        // Define el contenido de cada celda
+        let contenidoCeldas = [
+            c.nombre,
+            c.estado === 1 ? '<span class="badge badge-sm bg-gradient-success">Disponible</span>': '<span class="badge badge-sm bg-gradient-danger">No disponible</span>',
+            ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" href=""><i class="fas fa-edit" style='font-size:24px'></i></a>`,
+            `<a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>`
+        ];
+
+        // Itera sobre el contenido de las celdas y crea celdas <td>
+        contenidoCeldas.forEach(function (contenido) {
+            var celda = document.createElement("td");
+            var parrafo = document.createElement("p");
+            parrafo.innerHTML = contenido;
+            celda.appendChild(parrafo);
+            nuevaFila.appendChild(celda);
+        });
+
+        // Agrega la nueva fila a la tabla
+        tabla.querySelector("tbody").appendChild(nuevaFila);
+
+    });
+
 
 
 }

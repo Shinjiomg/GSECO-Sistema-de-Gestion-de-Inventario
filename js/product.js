@@ -1,9 +1,9 @@
 selectProduct = null;
 products = [];
 
-window.onload = function () {
-    getProducts();
-};
+
+getProducts();
+
 
 function getProducts() {
 
@@ -86,7 +86,7 @@ function editProduct(id) {
 }
 
 function renderTable() {
-
+    console.log(products);
     let tabla = document.getElementById("data_table");
 
     let filas = tabla.getElementsByTagName("tr");

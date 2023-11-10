@@ -7,11 +7,11 @@ require('./models/articulo.php');
 require('./models/categoria.php');
 $nw = new Venta();
 $ar = new Articulo();
-$cat = new Categoria();
+
 $ventas = $nw->ventas(1);
 $ultimaVenta = $nw->ultimaVenta(1);
 $articulos = $ar->index();
-$categorias = $cat->index();
+
 
 
 ?>
@@ -394,30 +394,6 @@ $categorias = $cat->index();
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($categorias as $cat) { ?>
-                    <tr>
-                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
-                        <?php echo $cat->nombre ?>
-                      </td>
-                      <td align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder">
-                        <?php
-                        if ($cat->estado == 1) {
-                          echo '<span class="badge badge-sm bg-gradient-success">Disponible</span>';
-                        } else {
-                          echo '<span class="badge badge-sm bg-gradient-danger">No disponible</span>';
-                        }
-                        ?>
-                      </td>
-                      <td align="center" class="text-center text-black text-xxs font-weight-bolder">
-                        <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" href=""><i class="fas fa-edit" style='font-size:24px'></i></a>
-                      </td>
-                      <td align="center" class="text-center text-black text-xxs font-weight-bolder">
-                        <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>
-                      </td>
-                    </tr>
-                  <?php
-                  }
-                  ?>
                 </tbody>
               </table>
             </div>
@@ -503,7 +479,7 @@ $categorias = $cat->index();
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="assets/js/plugins/chartjs.min.js"></script>
-  <script src="Js/Search.js"></script>
+  <!-- <script src="Js/Search.js"></script> -->
   <script src="js/categoria.js"></script>
   <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
