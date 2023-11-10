@@ -17,19 +17,20 @@ class pdf extends FPDF
 		$this->SetY(20);
 		$this->SetFont('Arial', 'B', 30);
 		$this->SetTextColor(255, 255, 255);
-		$this->Write(-10, 'FACTURA DE COMPRA');
+		$this->Write(-20, 'Tienda del soldado GSECO');
+		$this->Ln();
+		$this->Write(45, 'FACTURA DE VENTA');
 		$this->Ln();
 		$this->SetFont('Arial', 'I', 20);
-		$this->Write(30, '#GSECO-');
-		$this->Write(30, $order->id_venta);
+		$this->Write(-25, '#GSECO-');
+		$this->Write(-25, $order->id_venta);
 		$this->Image('../img/logo.png', 150, 2, 60, 50);
 		$this->Ln();
 		$this->SetFont('Arial', 'I', 10);
-		$this->Write(-8, 'Tienda del soldado GSECO');
 		$this->Ln();
-		$this->Write(16, 'jose.jairo.fuentes@gmail.com');
+		$this->Write(90, 'jose.jairo.fuentes@gmail.com');
 		$this->Ln();
-		$this->Write(-8, '123-456-7890');
+		$this->Write(-80, '123-456-7890');
 	}
 
 	public function footer()
