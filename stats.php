@@ -43,7 +43,7 @@ $articulos = $ar->index();
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+  <div class="h-100 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
@@ -83,24 +83,10 @@ $articulos = $ar->index();
             <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE VENTA</span>
           </a>
         </li>
-        <!-- <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ADMINISTRACIÓN</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="user-administration.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1 font-weight-bolder">USUARIOS</span>
-          </a>
-        </li> -->
-        <li class="sidenav-footer mx-3">
-
-        </li>
       </ul>
     </div>
   </aside>
-  <main class="main-content position-relative border-radius-lg ">
+  <main class="main-content position-relative border-radius-lg">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
@@ -413,7 +399,6 @@ $articulos = $ar->index();
           </div>
         </div>
       </div>
-      <!-- footer -->
   </main>
   <!-- config interface -->
   <div class="fixed-plugin">
@@ -551,45 +536,28 @@ $articulos = $ar->index();
 <style>
   @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-  .search {
-    width: 100%;
-    position: relative;
-    display: flex;
+  .table-responsive {
+    max-height: 210px;
+    /* Ajusta la altura máxima según tus necesidades */
+    overflow-y: auto;
   }
 
-  .searchTerm {
-    width: 100%;
-    border: 3px solid #596CFF;
-    border-right: none;
-    padding: 5px;
-    height: 36px;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    color: black;
+  .table-responsive::-webkit-scrollbar {
+    width: 8px;
+    /* Ancho de la barra de desplazamiento */
   }
 
-  .searchTerm:focus {
-    color: #596CFF;
+  .table-responsive::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Color del "pulgón" de la barra de desplazamiento */
+    border-radius: 4px;
+    /* Bordes redondeados del pulgón */
   }
 
-  .searchButton {
-    width: 40px;
-    height: 36px;
-    border: 1px solid #596CFF;
-    background: #596CFF;
-    text-align: center;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 20px;
-  }
-
-  /*Resize the wrap to see the search bar change!*/
-  .wrap {
-    width: 30%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .table-responsive::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    /* Color del fondo de la barra de desplazamiento */
+    border-radius: 4px;
+    /* Bordes redondeados del fondo de la barra de desplazamiento */
   }
 </style>

@@ -36,7 +36,7 @@ $Categoria = new Categoria()
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <div class="h-100 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
@@ -337,46 +337,4 @@ $Categoria = new Categoria()
 <!-- style -->
 <style>
     @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-    .search {
-        width: 100%;
-        position: relative;
-        display: flex;
-    }
-
-    .searchTerm {
-        width: 100%;
-        border: 3px solid #596CFF;
-        border-right: none;
-        padding: 5px;
-        height: 36px;
-        border-radius: 5px 0 0 5px;
-        outline: none;
-        color: black;
-    }
-
-    .searchTerm:focus {
-        color: #596CFF;
-    }
-
-    .searchButton {
-        width: 40px;
-        height: 36px;
-        border: 1px solid #596CFF;
-        background: #596CFF;
-        text-align: center;
-        color: #fff;
-        border-radius: 0 5px 5px 0;
-        cursor: pointer;
-        font-size: 20px;
-    }
-
-    /*Resize the wrap to see the search bar change!*/
-    .wrap {
-        width: 30%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 </style>
