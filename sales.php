@@ -245,7 +245,7 @@ $Categoria = new Categoria()
                                             </div>
                                         </div>
                                         <div class="col-4 text-end mt-xl-3">
-                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #285c27" onclick="GenerarVenta()" id="btnCrearVenta" disabled>
+                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarVenta()" id="btnCrearVenta" disabled>
                                                 </i>Crear venta
                                             </button>
                                         </div>

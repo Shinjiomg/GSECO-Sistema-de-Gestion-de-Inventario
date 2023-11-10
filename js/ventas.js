@@ -146,7 +146,6 @@ function renderProducts(data) {
             btn.className = "btn btn-primary";
             btn.style.background = "#c3c3c3";
             btn.style.color = "black";
-
             // Crear un div para el nombre del producto
             var nombreDiv = document.createElement("div");
             nombreDiv.textContent = pr.id_articulo + " - " + pr.nombre;
@@ -178,7 +177,7 @@ function renderProducts(data) {
             divContainer.appendChild(colDiv);
         });
     } else {
-        msg = '<div class="col-md-12 text-center"><h5>No se encontraron articulos</h5></div>';
+        msg = '<div class="col-md-12 text-center"><h5>No se encontraron artículos</h5></div>';
         divContainer.innerHTML = msg;
     }
 }
@@ -211,7 +210,8 @@ function addProductTable(pr) {
 
 function renderSumTotal(value) {
     let total = document.getElementById('total');
-    total.textContent = '$' + value;
+    var precioVentaFormateado = parseFloat(value).toLocaleString('es-CO');
+    total.textContent = '$' + precioVentaFormateado;
 
 }
 
@@ -386,6 +386,7 @@ function removeProduct(id_articulo) {
             });
 
             // Actualizar el elemento HTML del total
+
             renderSumTotal(sumaTotales)
             renderTable();
         }

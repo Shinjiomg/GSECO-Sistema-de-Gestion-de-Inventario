@@ -284,7 +284,7 @@ $articulos = $ar->index();
                                       <label for="" class="col-form-label text-uppercase">Categoría</label>
                                       <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
                                         <?php foreach ($categorias as $c) { ?>
-                                          <option value="<?php echo $c->id_categoria ?>"><?php echo $c->nombre ?></option>
+                                          <option value="<?php echo $c->id_categoria ?>" selected="true"><?php echo $c->nombre ?></option>
                                         <?php } ?>
 
                                       </select>
