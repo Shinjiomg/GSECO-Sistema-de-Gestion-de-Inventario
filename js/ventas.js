@@ -102,6 +102,7 @@ function GenerarVenta() {
                     renderSumTotal(0);
                     selectedProduct = null;
                     sumaTotales = 0;
+                    products = [];
 
                 }
 
