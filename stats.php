@@ -83,7 +83,7 @@ $articulos = $ar->index();
             <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE VENTA</span>
           </a>
         </li>
-        <li class="nav-item mt-3">
+        <!-- <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ADMINISTRACIÓN</h6>
         </li>
         <li class="nav-item">
@@ -93,7 +93,7 @@ $articulos = $ar->index();
             </div>
             <span class="nav-link-text ms-1 font-weight-bolder">USUARIOS</span>
           </a>
-        </li>
+        </li> -->
         <li class="sidenav-footer mx-3">
 
         </li>

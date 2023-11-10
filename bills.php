@@ -58,7 +58,7 @@ $transacciones = $venta->transacciones($idUsuario);
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Estadísticas</span>
+                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -66,7 +66,7 @@ $transacciones = $venta->transacciones($idUsuario);
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Ventas</span>
+                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -74,10 +74,10 @@ $transacciones = $venta->transacciones($idUsuario);
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Facturas</span>
+                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
                     </a>
                 </li>
-                <?php
+                <!-- <?php
                 if ($rol == 1) {
                 ?>
                     <li class="nav-item mt-3">
@@ -89,12 +89,12 @@ $transacciones = $venta->transacciones($idUsuario);
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Usuarios</span>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
                         </a>
                     </li>
                 <?php
                 }
-                ?>
+                ?> -->
                 <li class="sidenav-footer mx-3">
 
                 </li>
@@ -153,7 +153,7 @@ $transacciones = $venta->transacciones($idUsuario);
                             <div class="row">
                                 <div class="col-8">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en
+                                        <p class="text-md mb-0 text-uppercase font-weight-bold">Transacciones en
                                             efectivo</p>
                                         <h5 class="font-weight-bolder">
                                             $
@@ -179,7 +179,7 @@ $transacciones = $venta->transacciones($idUsuario);
                             <div class="row">
                                 <div class="col-8">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Transacciones en Nequi
+                                        <p class="text-md mb-0 text-uppercase font-weight-bold">Transacciones en Nequi
                                         </p>
                                         <h5 class="font-weight-bolder">
                                             $
@@ -207,12 +207,9 @@ $transacciones = $venta->transacciones($idUsuario);
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center">
-                                    <h6 class="mb-0">Transacciones
-                                    </h6>
+                                    <h4 class="mb-0 text-uppercase font-weight-bolder">Transacciones
+                                    </h4>
                                 </div>
-                                <!-- <div class="col-6 text-end">
-                                    <button class="btn btn-outline-primary btn-sm mb-0">Ver todo</button>
-                                </div> -->
                             </div>
                         </div>
                         <div class="card-body p-3 pb-0">
@@ -229,21 +226,21 @@ $transacciones = $venta->transacciones($idUsuario);
                                 <ul class="list-group">
                                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                         <div class="d-flex align-items-center">
-                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
+                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
                                             <div class="d-flex flex-column">
-                                                <h6 class="mb-1 text-dark font-weight-bold text-sm">
+                                                <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
                                                     <?php echo $f->nombres_productos; ?>
                                                 </h6>
-                                                <span class="text-xs">
+                                                <span class="text-sm text-uppercase font-weight-bolder">
                                                     <?php echo $f->fecha_venta; ?>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="column">
-                                            <div class="d-flex justify-content-end align-items-center text-sm font-weight-bold">
+                                            <div class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
                                                 <?php echo $f->tipo_pago; ?>
                                             </div>
-                                            <div class="d-flex justify-content-end text-success align-items-center text-gradient text-sm font-weight-bold">
+                                            <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
                                                 + $
                                                 <?php echo number_format($f->total, 0, ',', '.'); ?>
                                             </div>

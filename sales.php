@@ -76,7 +76,7 @@ $Categoria = new Categoria()
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
                     </a>
                 </li>
-                <?php
+                <!-- <?php
                 if ($rol == 1) {
                 ?>
                     <li class="nav-item mt-3">
@@ -93,7 +93,7 @@ $Categoria = new Categoria()
                     </li>
                 <?php
                 }
-                ?>
+                ?> -->
                 <li class="sidenav-footer mx-3">
 
                 </li>
