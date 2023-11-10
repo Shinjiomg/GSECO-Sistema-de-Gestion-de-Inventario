@@ -32,6 +32,15 @@ if(isset($_POST["product_edit"])){
 
 }
 
+if(isset($_DELETE["product_delect"])){
+
+	$producto = new Articulo();
+	$product_delect= $_DELETE["product_delect"];
+    
+	echo json_encode($producto -> destroy($product_delect));
+
+}
+
 if(isset($_POST["id_articulo"])){
 
 	$producto = new Articulo();

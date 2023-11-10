@@ -62,6 +62,24 @@ function editProduct(id) {
     });
 }
 
+function eliminarProducto(){
+    let datos = new FormData();
+
+    datos.remove("id_articulo", id);
+
+    $.ajax({
+        url: "ajax/productos.ajax.php",
+        method: "DELETE",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+        }
+    });
+
+}
+
 function saveProduct() {
 
     let nombre = document.getElementById('product_name').value;
