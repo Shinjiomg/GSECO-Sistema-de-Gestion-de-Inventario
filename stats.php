@@ -296,7 +296,7 @@ $categorias = $cat->index();
                                   <button 
                                     type="button" 
                                     id="confirmButton" 
-                                    onclick="saveProduct()"
+                                    onclick="guardarProducto()"
                                     class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">guardar
                                     </button>
                                 </div>

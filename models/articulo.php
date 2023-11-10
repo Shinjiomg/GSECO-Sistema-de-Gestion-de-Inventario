@@ -41,4 +41,28 @@ class Articulo extends Database
 		// Ejecuta la consulta UPDATE
 		$updateQuery->execute();
 	}
+
+	function store($articulo){
+
+		$articulo = json_decode($articulo);
+
+		$query = $this->pdo->prepare('INSERT INTO articulo (nombre,stock,precio_venta,stock_deseado, categoria_id_categoria) VALUES (:nombre, :stock, :precio_venta, :stock_deseado, :categoria_id_categoria)');
+	
+	
+		$query->bindParam(':nombre', $articulo->nombre);
+		$query->bindParam(':stock', $articulo->cantidad);
+		$query->bindParam(':precio_venta', $articulo->precio);
+		$query->bindParam(':stock_deseado', $articulo->stockMaximo);
+		$query->bindParam(':categoria_id_categoria', $articulo->selectCategoria);
+
+		$query->execute();
+	}
+
+	function destroy($id_articulo){
+
+		$query = $this->pdo->prepare('DELETE from articulo where id_articulo = '.$id_articulo);
+		$query->execute();
+
+	}
+
 }

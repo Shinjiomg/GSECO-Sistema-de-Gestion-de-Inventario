@@ -1,5 +1,48 @@
 selectProduct = null;
 
+
+
+
+function guardarProducto() {
+
+    let nombre = document.getElementById('product_name').value;
+    let cantidad = document.getElementById('product_stock').value;
+    let precio = document.getElementById('product_price').value;
+    let stockMaximo = document.getElementById('stock_maximo').value;
+    let selectCategoria = document.getElementById('categories_select').value;
+    console.log(nombre)
+
+    let newProduct = {
+        nombre,
+        cantidad,
+        precio,
+        stockMaximo,
+        selectCategoria
+    }
+
+    let datos = new FormData();
+
+    datos.append('new_product', JSON.stringify(newProduct));
+
+    $.ajax({
+        url: "ajax/productos.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            Swal.fire({
+                title: "Generar Producto",
+                text: "El producto se guardo correctamente",
+                icon: "success"
+            });
+            $('#modal-form').modal('hide');
+        }
+    });
+}
+
+
 function editProduct(id) {
     let datos = new FormData();
 
