@@ -410,7 +410,7 @@ $categorias = $cat->index();
         </div>
       </div>
       <!--secondary content -->
-      <div class="row mt-4">
+      <div class="row mt-4 mb-4">
         <div class="col-xl-6">
           <div class="card">
             <div class="card-header pb-4">

@@ -13,7 +13,7 @@ function guardarCategoria(){
         success: function (response) {
             Swal.fire({
                 title: "Generar categoria",
-                text: "La categoria se guardo correctamente",
+                text: "La categoria se guardó correctamente",
                 icon: "success"
             });
             $('#modal-form').modal('hide');

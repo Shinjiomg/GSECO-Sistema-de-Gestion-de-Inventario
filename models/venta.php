@@ -61,7 +61,7 @@ class Venta extends Database
 
 
 		if ($query->rowCount() > 0) {
-			echo "Se guardo correctamente";
+			echo "Se guardó correctamente";
 		} else {
 
 			echo "Error en la inserción.";

@@ -34,7 +34,7 @@ function guardarProducto() {
         success: function (response) {
             Swal.fire({
                 title: "Generar Producto",
-                text: "El producto se guardo correctamente",
+                text: "El producto se guardó correctamente",
                 icon: "success"
             });
             $('#modal-form').modal('hide');

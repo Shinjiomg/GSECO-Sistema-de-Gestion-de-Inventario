@@ -91,7 +91,7 @@ foreach ($order_details as $detail) {
 $fpdf->Ln();
 $fpdf->Ln();
 $fpdf->SetFont('Arial', 'B', 16);
-$fpdf->SetX(154);
+$fpdf->SetX(150);
 $fpdf->Write(0, 'TOTAL: ');
 $totalEnPesos = number_format($order->total, 0, '', '.');
 $fpdf->SetFont('Arial', '', 16);
