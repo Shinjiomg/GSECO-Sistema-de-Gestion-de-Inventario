@@ -10,3 +10,7 @@ if(isset($_POST["categoria"])){
     $cat->store($nombre);
 
 }
+
+if(isset($_POST["all"])){
+
+}

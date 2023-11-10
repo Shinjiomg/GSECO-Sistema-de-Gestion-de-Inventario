@@ -380,7 +380,7 @@ $categorias = $cat->index();
               </div>
             </div>
             <div class="table-responsive">
-              <table class="table align-items-center mb-0">
+              <table class="table align-items-center mb-0" id="categories_table">
                 <thead>
                   <tr>
                     <th align="center" class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
