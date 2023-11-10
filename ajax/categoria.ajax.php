@@ -7,6 +7,12 @@ if(isset($_POST["categoria"])){
 
 	$nombre= $_POST["categoria"];
     
-    $cat->store($nombre);
+    echo json_encode( $cat->store($nombre));
+
+}
+
+if(isset($_POST["all"])){
+	$cat = new Categoria();
+    echo json_encode($cat->index());
 
 }

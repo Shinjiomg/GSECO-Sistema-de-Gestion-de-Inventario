@@ -2,6 +2,12 @@
 require_once "../models/articulo.php";
 
 
+if(isset($_POST["all"])){
+
+	$producto = new Articulo();
+	echo json_encode($producto -> index());
+
+}
 
 
 
