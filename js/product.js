@@ -57,7 +57,7 @@ function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 icon: "success"
             });
             let newProduct = JSON.parse(response);
-            products.push({...newProduct})
+            products.push({ ...newProduct })
 
             renderTable();
             $('#modal-form-product').modal('hide');
@@ -86,7 +86,7 @@ function editProduct(id) {
 }
 
 
-function eliminarProducto(id_articulo){
+function eliminarProducto(id_articulo) {
     let datos = new FormData();
     datos.append("id_eliminar", id_articulo);
 
@@ -116,41 +116,40 @@ function renderTable() {
         tabla.deleteRow(i);
     }
 
-   
+
     products.forEach(pr => {
 
         let nuevaFila = document.createElement("tr");
         nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
-      
+        var precioVentaFormateado = parseFloat(pr.precio_venta).toLocaleString('es-CO');
         // Define el contenido de cada celda
         let contenidoCeldas = [
             pr.nombre,
-            pr.precio_venta,
+            "$" + precioVentaFormateado,
             pr.stock,
-           ( pr.stock > 0 && pr.estado === 1) ?'<span class="badge badge-sm bg-gradient-success">Stock disponible</span>': ( pr.estado === 0)?'<span class="badge badge-sm bg-gradient-danger">Stock no disponible</span>': '<span class="badge badge-sm bg-gradient-warning">Stock agotado</span>',
+            (pr.stock > 0 && pr.estado === 1) ? '<span class="badge badge-sm bg-gradient-success">Stock disponible</span>' : (pr.estado === 0) ? '<span class="badge badge-sm bg-gradient-danger">Stock no disponible</span>' : '<span class="badge badge-sm bg-gradient-warning">Stock agotado</span>',
             pr.categoria,
             pr.stock_deseado,
             `<div class="d-flex align-items-center justify-content-center">
     
             <span class="me-2 text-xs font-weight-bold">
-             ${((pr.stock/pr.stock_deseado)*100).toFixed(1) + '%'}
+             ${((pr.stock / pr.stock_deseado) * 100).toFixed(1) + '%'}
             </span>
 
             <div class="progress">
               
-                ${((pr.stock/pr.stock_deseado)*100) <= 40 ?  
-                    `<div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock/pr.stock_deseado)*100).toFixed(1)}%"></div>`:
-                    (((pr.stock/pr.stock_deseado)*100) >= 40 &&  ((pr.stock/pr.stock_deseado)*100) <=60 )?
-                   `<div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${((pr.stock/pr.stock_deseado)*100).toFixed(1)}%"></div>`:
-                    `<div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock/pr.stock_deseado)*100).toFixed(1)}%"></div>`
-              
-                }
+                ${((pr.stock / pr.stock_deseado) * 100) <= 40 ?
+                `<div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>` :
+                (((pr.stock / pr.stock_deseado) * 100) >= 40 && ((pr.stock / pr.stock_deseado) * 100) <= 60) ?
+                    `<div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>` :
+                    `<div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>`
+
+            }
             </div>
           </div>`,
-        ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" onclick="editProduct(${pr.id_articulo})"><i class="fas fa-edit" style='font-size:24px'></i></a>`,
-        ` <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs"   onclick="eliminarProducto(${pr.id_articulo})"><i class="fas fa-trash" style='font-size:24px'></i></a>`
+            ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" onclick="editProduct(${pr.id_articulo})"><i class="fas fa-edit" style='font-size:24px'></i></a>`,
+            ` <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs"   onclick="eliminarProducto(${pr.id_articulo})"><i class="fas fa-trash" style='font-size:24px'></i></a>`
         ];
-
         // Itera sobre el contenido de las celdas y crea celdas <td>
         contenidoCeldas.forEach(function (contenido) {
             var celda = document.createElement("td");
@@ -159,14 +158,9 @@ function renderTable() {
             celda.appendChild(parrafo);
             nuevaFila.appendChild(celda);
         });
-
         // Agrega la nueva fila a la tabla
         tabla.querySelector("tbody").appendChild(nuevaFila);
-
     });
-
-
-
 }
 
 function renderProduct(data) {
@@ -206,7 +200,7 @@ function saveProduct() {
 function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria) {
 
     let category = document.getElementById('categories_select');
-    
+
     var selectedText = category.options[category.selectedIndex].text;
 
     let datos = new FormData();
@@ -219,7 +213,7 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
         selectCategoria,
         id_articulo: selectProduct.id_articulo
     }
-  
+
 
     datos.append("product_edit", JSON.stringify(product_edit));
     $.ajax({
@@ -235,16 +229,16 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 text: "El producto fue editado de forma exitosa",
                 icon: "success"
             });
-           
+
             products = products.map(ar => {
-                if(ar.id_articulo === selectProduct.id_articulo){
+                if (ar.id_articulo === selectProduct.id_articulo) {
                     return {
                         ...ar,
                         nombre: nombre,
-                        precio_venta:precio,
+                        precio_venta: precio,
                         stock: cantidad,
                         categoria_id_categoria: selectCategoria,
-                        stock_deseado:stockMaximo,
+                        stock_deseado: stockMaximo,
                         categoria: selectedText
                     }
 
@@ -252,7 +246,7 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 return ar
             })
 
-          
+
 
             renderTable();
 

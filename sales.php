@@ -8,7 +8,7 @@ $rol = intval($_SESSION['rol']);
 $Categoria = new Categoria()
 
 
-    ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <!-- librerías -->
@@ -30,9 +30,7 @@ $Categoria = new Categoria()
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 </head>
@@ -40,12 +38,9 @@ $Categoria = new Categoria()
 <body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
-    <aside
-        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
-        id="sidenav-main">
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-                aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
                 <img src="./img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">GSECO</span>
@@ -59,48 +54,44 @@ $Categoria = new Categoria()
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Estadísticas</span>
+                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="sales.php">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Ventas</span>
+                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="bills.php">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Facturas</span>
+                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
                     </a>
                 </li>
                 <?php
                 if ($rol == 1) {
-                    ?>
+                ?>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="user-administration.php">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Usuarios</span>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
                         </a>
                     </li>
-                    <?php
+                <?php
                 }
                 ?>
                 <li class="sidenav-footer mx-3">
@@ -111,8 +102,7 @@ $Categoria = new Categoria()
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-            data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -158,38 +148,40 @@ $Categoria = new Categoria()
 
             <div class="row">
                 <div class="col-xl-12 col-sm-6 mb-xl-0">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-12">
-                                    <button class="btn btn-outline-primary dropdown-toggle w-100" type="button"
-                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
-                                        Selecciona una categoría
-                                    </button>
-                                    <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                                        <?php
-                                        foreach ($Categoria->index() as $c) {
-                                            ?>
-                                            <li
-                                                onclick="showProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')">
-                                                <a class="dropdown-item">
-                                                    <?php echo $c->nombre ?>
-                                                </a>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <?php
+                    // Obtén las categorías y ordénalas alfabéticamente
+                    $categorias = $Categoria->index();
+                    usort($categorias, function ($a, $b) {
+                        return strcasecmp($a->nombre, $b->nombre);
+                    });
+
+                    ?>
+
+                    <div class="row">
+                        <button class="btn dropdown-toggle text-uppercase font-weight-bolder" style="background: #c3c3c3; color:black; border: 0px solid black !important; height: 70px !important" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
+                            Selecciona una categoría
+                        </button>
+                        <ul class="dropdown-menu" style="border: 1px solid black !important" aria-labelledby="dropdownMenuButton">
+                            <?php
+                            foreach ($categorias as $c) {
+                            ?>
+                                <li onclick="showProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')">
+                                    <a class="dropdown-item text-uppercase font-weight-bolder">
+                                        <?php echo $c->nombre ?>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        </ul>
                     </div>
+
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-xl-6 mb-4">
                     <div class="card p-4">
                         <div class="col-md-12 ">
-                            <h5>Selecciona los productos</h5>
-                            <p><em>Categoría seleccionada:</em> <strong id="selected_category"></strong></p>
+                            <h4 class="text-uppercase font-weight-bolder">Selecciona los productos</h4>
+                            <p class="text-uppercase font-weight-bolder"><em>Categoría seleccionada:</em> <strong id="selected_category"></strong></p>
                         </div>
                         <div class="row" id="products_category">
                         </div>
@@ -200,30 +192,24 @@ $Categoria = new Categoria()
                         <form>
                             <div class="row">
                                 <div class="col-md-8">
-                                    <h5>Productos seleccionados</h5>
+                                    <h4 class="text-uppercase font-weight-bolder">Productos seleccionados</h4>
                                 </div>
                                 <div>
                                     <div class="table-responsive">
                                         <table id="data_table" class="table align-items-center">
                                             <thead>
                                                 <tr>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Producto</th>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Cantidad</th>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Precio unitario</th>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Total </th>
-                                                    <th
-                                                        class=" text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                     </th>
-                                                    <th
-                                                        class=" text-uppercase text-black text-xxs font-weight-bolder opacity-7">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -246,27 +232,20 @@ $Categoria = new Categoria()
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="tipoPago"
-                                                            onclick="habilitarBotonVenta()" id="customRadio1"
-                                                            value="Efectivo">
-                                                        <label class="custom-control-label"
-                                                            for="customRadio1">Efectivo</label>
+                                                        <input class="form-check-input" type="radio" name="tipoPago" onclick="habilitarBotonVenta()" id="customRadio1" value="Efectivo">
+                                                        <label class="custom-control-label text-uppercase font-weight-bolder" for="customRadio1">Efectivo</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="tipoPago"
-                                                            id="customRadio2" onclick="habilitarBotonVenta()"
-                                                            value="Nequi">
-                                                        <label class="custom-control-label"
-                                                            for="customRadio2">Nequi</label>
+                                                        <input class="form-check-input" type="radio" name="tipoPago" id="customRadio2" onclick="habilitarBotonVenta()" value="Nequi">
+                                                        <label class="custom-control-label text-uppercase font-weight-bolder" for="customRadio2">Nequi</label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-4 text-end mt-xl-3">
-                                            <button type="button" class="btn btn-outline-success mb-0"
-                                                onclick="GenerarVenta()" id="btnCrearVenta" disabled>
+                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #285c27" onclick="GenerarVenta()" id="btnCrearVenta" disabled>
                                                 </i>Crear venta
                                             </button>
                                         </div>
@@ -299,8 +278,7 @@ $Categoria = new Categoria()
                 <div class="mt-2 mb-5 d-flex">
                     <h6 class="mb-0">Tema claro / oscuro</h6>
                     <div class="form-check form-switch ps-0 ms-auto my-auto">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version"
-                            onclick="darkMode(this)">
+                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
                     </div>
                 </div>
                 <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
@@ -312,19 +290,17 @@ $Categoria = new Categoria()
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="titleModal"></h5>
+                    <h5 class="modal-title text-uppercase font-weight-bolder" id="titleModal"></h5>
                 </div>
                 <div class="modal-body p-0">
                     <div class="card card-plain">
                         <div class="card-body">
                             <form role="form text-left">
                                 <div class="form-group">
-                                    <label for="productQuantity" class="col-form-label">Cantidad:</label>
-                                    <input class="form-control" type="number" id="productQuantity"
-                                        oninput="validarCantidad(this)">
-                                    <p><em>Unidades disponibles:</em> <strong id="stock"></strong></p>
-                                    <button type="button" id="confirmButton"
-                                        class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Guardar</button>
+                                    <label for="productQuantity" class="col-form-label text-uppercase font-weight-bolder">Cantidad:</label>
+                                    <input class="form-control" type="number" id="productQuantity" oninput="validarCantidad(this)">
+                                    <p class="text-uppercase font-weight-bolder"><em>Unidades disponibles:</em> <strong id="stock"></strong></p>
+                                    <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase font-weight-bolder">Guardar</button>
                                 </div>
                             </form>
                         </div>
@@ -342,86 +318,6 @@ $Categoria = new Categoria()
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/js/plugins/chartjs.min.js"></script>
     <script src="Js/Search.js"></script>
-    <script>
-        var ctx1 = document.getElementById("chart-line").getContext("2d");
-        var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-        gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-        gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-        new Chart(ctx1, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Mobile apps",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#5e72e4",
-                    backgroundColor: gradientStroke1,
-                    borderWidth: 3,
-                    fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                    maxBarThickness: 6
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#fbfbfb',
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#ccc',
-                            padding: 20,
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
-            },
-        });
-    </script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {

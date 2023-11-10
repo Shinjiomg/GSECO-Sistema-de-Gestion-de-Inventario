@@ -28,19 +28,19 @@ function showProductsByCategory(category, name) {
 
 }
 
-function resetTitle(){
+function resetTitle() {
     title = document.getElementById('selected_category')
     title.textContent = '';
 }
 
-function resetTipoPago(){
+function resetTipoPago() {
     let radios = document.getElementsByName('tipoPago');
-    radios.forEach(function(checkbox) {
+    radios.forEach(function (checkbox) {
         checkbox.checked = false;
     });
 }
 
-function resetButtonVenta(){
+function resetButtonVenta() {
     const btnCrearVenta = document.getElementById("btnCrearVenta");
     btnCrearVenta.disabled = true;
 }
@@ -82,10 +82,10 @@ function GenerarVenta() {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log('entro')
+                    console.log('nice')
                     Swal.fire({
                         title: "Generar venta",
-                        text: "La venta fue generada de forma exitosa",
+                        text: "La venta se generó de forma exitosa",
                         icon: "success"
                     });
                     this.products = [];
@@ -143,10 +143,23 @@ function renderProducts(data) {
 
             // Crear un botón
             var btn = document.createElement("a");
-            btn.className = "btn btn-outline-primary";
-            /*      btn.setAttribute("data-bs-toggle", "modal");
-                 btn.setAttribute("data-bs-target", "#modal-form-product"); */
-            btn.textContent = pr.id_articulo + " - " + pr.nombre + ' $' + pr.precio_venta;
+            btn.className = "btn btn-primary";
+            btn.style.background = "#c3c3c3";
+            btn.style.color = "black";
+
+            // Crear un div para el nombre del producto
+            var nombreDiv = document.createElement("div");
+            nombreDiv.textContent = pr.id_articulo + " - " + pr.nombre;
+
+            // Crear un div para el precio de venta
+            var precioNumerico = parseFloat(pr.precio_venta);
+            var precioFormateado = precioNumerico.toLocaleString('es-CO');
+            var precioDiv = document.createElement("div");
+            precioDiv.textContent = '$' + precioFormateado;
+
+            // Agregar los divs al botón
+            btn.appendChild(nombreDiv);
+            btn.appendChild(precioDiv);
 
             // Crear un div para el modal
             var modalDiv = document.createElement("div");
@@ -157,22 +170,19 @@ function renderProducts(data) {
             modalDiv.setAttribute("aria-labelledby", "modal-form");
             modalDiv.setAttribute("aria-hidden", "true");
 
-
             productoDiv.appendChild(btn);
 
             colDiv.appendChild(productoDiv);
             colDiv.appendChild(modalDiv);
 
             divContainer.appendChild(colDiv);
-
         });
     } else {
-        msg = '<div class="col-md-12 text-center"><h5>No se encontraron articulos</h5></div>'
+        msg = '<div class="col-md-12 text-center"><h5>No se encontraron articulos</h5></div>';
         divContainer.innerHTML = msg;
     }
-
-
 }
+
 
 
 function addProductTable(pr) {
@@ -261,7 +271,9 @@ function renderTable() {
     products.forEach(pr => {
 
         let nuevaFila = document.createElement("tr");
-        let subtotal = pr.cantidad * pr.precio_venta;
+        var precioVentaFormateado = parseFloat(pr.precio_venta).toLocaleString('es-CO');
+        var subtotal = pr.cantidad * pr.precio_venta;
+        var subtotalFormateado = subtotal.toLocaleString('es-CO');
 
         sumaTotales += subtotal;
 
@@ -269,12 +281,12 @@ function renderTable() {
         let contenidoCeldas = [
             pr.nombre,
             pr.cantidad,
-            pr.precio_venta,
-            "$" + subtotal,
+            "$" + precioVentaFormateado,
+            "$" + subtotalFormateado,
             // Celda con el botón "Editar"
-            '<a class="text-primary font-weight-bold text-xs" onclick="editProduct(' + pr.id_articulo + ')" data-original-title="Delete user">Editar</a>',
+            '<a class="text-primary font-weight-bold text-md" onclick="editProduct(' + pr.id_articulo + ')" data-original-title="Delete user">Editar</a>',
             // Celda con el botón "Borrar"
-            '<a class="text-danger font-weight-bold text-xs"  onclick="removeProduct(' + pr.id_articulo + ')" data-original-title="Delete user">Borrar</a>',
+            '<a class="text-danger font-weight-bold text-md"  onclick="removeProduct(' + pr.id_articulo + ')" data-original-title="Delete user">Borrar</a>',
         ];
 
         // Itera sobre el contenido de las celdas y crea celdas <td>
@@ -302,12 +314,12 @@ function habilitarBotonVenta() {
     let radios = document.getElementsByName('tipoPago');
     let metododePagoSeleccionado = false;
 
-    radios.forEach(function(checkbox) {
+    radios.forEach(function (checkbox) {
         if (checkbox.checked) {
             metododePagoSeleccionado = true;
         }
-      });
-      
+    });
+
     const tabla = document.getElementById("data_table");
     const btnCrearVenta = document.getElementById("btnCrearVenta");
 
@@ -360,7 +372,7 @@ function removeProduct(id_articulo) {
     selectedProduct = products.find(p => p.id_articulo === id_articulo);
 
     Swal.fire({
-        title: `Quieres borrar el producto ${selectedProduct.nombre}?`,
+        title: `¿Quieres borrar el producto ${selectedProduct.nombre}?`,
 
         showCancelButton: true,
         confirmButtonText: 'Aceptar',
