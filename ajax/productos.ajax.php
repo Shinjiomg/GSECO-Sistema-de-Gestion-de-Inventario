@@ -38,10 +38,10 @@ if(isset($_POST["product_edit"])){
 
 }
 
-if(isset($_DELETE["id_eliminar"])){
+if(isset($_POST["id_eliminar"])){
 
 	$producto = new Articulo();
-	$id_eliminar= $_DELETE["id_eliminar"];
+	$id_eliminar= $_POST["id_eliminar"];
     
 	echo json_encode($producto -> destroy($id_eliminar));
 

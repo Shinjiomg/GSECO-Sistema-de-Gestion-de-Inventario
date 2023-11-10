@@ -61,7 +61,7 @@ class Articulo extends Database
 
 	function destroy($id_articulo){
 
-		$query = $this->pdo->prepare('DELETE from articulo where id_articulo = '.$id_articulo);
+		$query = $this->pdo->prepare('UPDATE articulo set estado = 0 where id_articulo ='.$id_articulo);
 		$query->execute();
 
 	}

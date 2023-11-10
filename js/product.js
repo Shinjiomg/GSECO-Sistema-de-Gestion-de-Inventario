@@ -88,17 +88,18 @@ function editProduct(id) {
 
 function eliminarProducto(id_articulo){
     let datos = new FormData();
-
     datos.append("id_eliminar", id_articulo);
 
     $.ajax({
         url: "ajax/productos.ajax.php",
-        method: "DELETE",
+        method: "POST",
         data: datos,
         cache: false,
         contentType: false,
         processData: false,
         success: function (response) {
+            products = products.filter(p => p.id_articulo !== id_articulo)
+            renderTable();
         }
     });
 
@@ -147,7 +148,7 @@ function renderTable() {
             </div>
           </div>`,
         ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" onclick="editProduct(${pr.id_articulo})"><i class="fas fa-edit" style='font-size:24px'></i></a>`,
-        ` <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>`
+        ` <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs"   onclick="eliminarProducto(${pr.id_articulo})"><i class="fas fa-trash" style='font-size:24px'></i></a>`
         ];
 
         // Itera sobre el contenido de las celdas y crea celdas <td>
