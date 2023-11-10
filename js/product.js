@@ -86,10 +86,10 @@ function editProduct(id) {
 }
 
 
-function eliminarProducto(){
+function eliminarProducto(id_articulo){
     let datos = new FormData();
 
-    datos.remove("id_articulo", id);
+    datos.append("id_eliminar", id_articulo);
 
     $.ajax({
         url: "ajax/productos.ajax.php",
