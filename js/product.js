@@ -3,14 +3,7 @@ selectProduct = null;
 
 
 
-function guardarProducto() {
-
-    let nombre = document.getElementById('product_name').value;
-    let cantidad = document.getElementById('product_stock').value;
-    let precio = document.getElementById('product_price').value;
-    let stockMaximo = document.getElementById('stock_maximo').value;
-    let selectCategoria = document.getElementById('categories_select').value;
-    console.log(nombre)
+function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria) {
 
     let newProduct = {
         nombre,
@@ -37,7 +30,7 @@ function guardarProducto() {
                 text: "El producto se guardó correctamente",
                 icon: "success"
             });
-            $('#modal-form').modal('hide');
+            $('#modal-form-product').modal('hide');
         }
     });
 }
@@ -62,6 +55,8 @@ function editProduct(id) {
     });
 }
 
+
+
 function saveProduct() {
 
     let nombre = document.getElementById('product_name').value;
@@ -69,9 +64,20 @@ function saveProduct() {
     let precio = document.getElementById('product_price').value;
     let stockMaximo = document.getElementById('stock_maximo').value;
     let selectCategoria = document.getElementById('categories_select').value;
-    saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria);
+
+    if(selectProduct){
+        saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria);
+        return;
+    }
+
+    guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria);
+
+
+
 
 }
+
+
 
 
 
@@ -106,12 +112,13 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
         contentType: false,
         processData: false,
         success: function (response) {
-
             Swal.fire({
                 title: "Productos",
                 text: "El producto fue editado de forma exitosa",
                 icon: "success"
             });
+
+            $('#modal-form-product').modal('hide');
 
 
         }
@@ -122,7 +129,6 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
 function renderData(data) {
     selectProduct = JSON.parse(data);
 
-    console.log(selectProduct)
     let nombre = document.getElementById('product_name');
     let cantidad = document.getElementById('product_stock');
     let precio = document.getElementById('product_price');
