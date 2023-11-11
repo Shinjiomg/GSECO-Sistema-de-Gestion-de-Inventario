@@ -90,19 +90,31 @@ function editProduct(id) {
 function eliminarProducto(id_articulo) {
     let datos = new FormData();
     datos.append("id_eliminar", id_articulo);
+    Swal.fire({
+        title: `¿Quieres borrar el producto?`,
 
-    $.ajax({
-        url: "ajax/productos.ajax.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            products = products.filter(p => p.id_articulo !== id_articulo)
-            renderTable();
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "ajax/productos.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    products = products.filter(p => p.id_articulo !== id_articulo)
+                    renderTable();
+                }
+            });  
+           
         }
-    });
+    })
+
+    
 
 }
 

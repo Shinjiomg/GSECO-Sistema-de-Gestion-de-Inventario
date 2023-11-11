@@ -42,6 +42,32 @@ function guardarCategoria(){
     createCategory(categoria);
    
 }
+function eliminarCategoria(id_categoria) {
+    let datos = new FormData();
+    datos.append("id_eliminar", id_categoria);
+    Swal.fire({
+        title: `¿Quieres borrar la categoria?`,
+
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "ajax/categoria.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    categories = categories.filter(c => c.id_categoria !== id_categoria)
+                    renderTableCategories();
+                }
+            });  
+           
+        }
+    })}
 
 function createCategory(categoria){
 
@@ -90,7 +116,7 @@ function renderTableCategories(){
             c.nombre,
             c.estado === 1 ? '<span class="badge badge-sm bg-gradient-success">Stock disponible</span>': '<span class="badge badge-sm bg-gradient-danger">Stock no disponible</span>',
             ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" href=""><i class="fas fa-edit" style='font-size:24px'></i></a>`,
-            `<a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs" href=""><i class="fas fa-trash" style='font-size:24px'></i></a>`
+            `<a data-bs-toggle="tooltip" onclick='eliminarCategoria(${c.id_categoria})' title="Borrar" class="text-danger font-weight-bold text-xs"><i class="fas fa-trash" style='font-size:24px'></i></a>`
         ];
 
         // Itera sobre el contenido de las celdas y crea celdas <td>

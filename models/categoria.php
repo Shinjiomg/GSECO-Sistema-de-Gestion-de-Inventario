@@ -25,6 +25,12 @@ class Categoria extends Database
 		return $this->show($lastInsertId);
 	}
 	
-	
+	function destroy($id_categoria){
+
+		$query = $this->pdo->prepare('UPDATE categoria set estado = 0 where id_categoria ='.$id_categoria);
+		$query->execute();
+
+	}
 }
+
 

@@ -16,3 +16,11 @@ if(isset($_POST["all"])){
     echo json_encode($cat->index());
 
 }
+if(isset($_POST["id_eliminar"])){
+
+	$categoria = new Categoria();
+	$id_eliminar= $_POST["id_eliminar"];
+    
+	echo json_encode($categoria -> destroy($id_eliminar));
+
+}
