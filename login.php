@@ -43,14 +43,14 @@ if (isset($_POST['btningresar'])) {
 
 <body>
 	<div class="container">
-		<div class="contenedor">
-			<h2 class="tituloempresa">TIENDA DEL SOLDADO</h2>
+	    <div class="contenedor">
+			<h2 class="tituloempresa">TIENDA DEL SOLDADO GSECO</h2>
 			<div class="img">
 				<img src="img/logo.png">
 			</div>
 			<div class="login-content">
 				<form method="POST">
-					<h3 class="titulo" id="titulo1">GSECO</h3>
+					<h3 class="titulo" id="titulo1">BIENVENIDO</h3>
 					<h3 class="titulo" id="titulo3">Iniciar Sesión</h3>
 					<div class="input-div one">
 						<div class="i">
