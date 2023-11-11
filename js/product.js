@@ -260,6 +260,7 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
 
 
             renderTable();
+            selectProduct = null;
 
             $('#modal-form-product').modal('hide');
 
