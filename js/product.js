@@ -206,9 +206,6 @@ function saveProduct() {
 }
 
 
-//! Todo: realizar el de creacion
-
-
 
 function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria) {
 

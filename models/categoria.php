@@ -24,6 +24,21 @@ class Categoria extends Database
 		$lastInsertId = $this->pdo->lastInsertId();
 		return $this->show($lastInsertId);
 	}
+
+	public function editCategory($category)
+	{
+		$category = json_decode($category);
+
+		$updateQuery = $this->pdo->prepare('UPDATE categoria SET nombre = :nombre  WHERE id_categoria = :id');
+
+		// Reemplaza "columna1", "columna2", etc. con los nombres reales de tus columnas y :valor1, :valor2 con los valores actualizados.
+		$updateQuery->bindParam(':nombre', $category->nombre);
+		$updateQuery->bindParam(':id', $category->id_categoria);
+		
+
+		// Ejecuta la consulta UPDATE
+		$updateQuery->execute();
+	}
 	
 	function destroy($id_categoria){
 

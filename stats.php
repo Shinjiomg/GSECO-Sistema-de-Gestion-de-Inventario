@@ -333,7 +333,7 @@ $articulos = $ar->index();
                 </div>
                 <div class="col-6 text-end">
                   <a class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</a>
-                  <div class="modal fade" id="modal-form" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                  <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                       <div class="modal-content">
                         <div class="modal-body p-0">

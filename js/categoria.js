@@ -30,12 +30,44 @@ function renderCategories(data) {
     renderTableCategories();
 }
 
+function editCategoria(id_categoria){
+
+    let datos = new FormData();
+
+    datos.append("id_categoria", id_categoria);
+
+    $.ajax({
+        url: "ajax/categoria.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            renderDataCategories(response)
+            $('.modal-title').text('Editar Categoria');
+        }
+    });
+
+}
+
+function renderDataCategories(data) {
+   
+    selectCategory = JSON.parse(data);
+
+    let nombre = document.getElementById('categoria');
+    nombre.value = selectCategory.nombre;
+    $('#modal-form-categories').modal('show');
+
+}
+
 
 function guardarCategoria(){
     let categoria = document.getElementById("categoria").value
    
     if(selectCategory){
         //! Todo realizar edit category
+        saveEditCategory(categoria);
         return;
     }
 
@@ -69,6 +101,54 @@ function eliminarCategoria(id_categoria) {
         }
     })}
 
+function saveEditCategory(nombre){
+   
+    console.log(nombre)
+    let datos = new FormData();
+
+    let editCategory = {
+        ...selectCategory,
+        nombre
+    }
+
+    datos.append('edit_category', JSON.stringify(editCategory));
+
+    $.ajax({
+        url: "ajax/categoria.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            Swal.fire({
+                title: "Categoría",
+                text: "La categoría fue editado de forma exitosa",
+                icon: "success",
+                timer: 1500
+            });
+
+            categories = categories.map(c => {
+                if (c.id_categoria === selectCategory.id_categoria) {
+                    return {
+                        ...c,
+                        nombre: nombre,
+                    }
+
+                }
+                return c
+            })
+
+            renderTableCategories();
+            $('#modal-form-categories').modal('hide');
+
+        }
+
+    });
+}
+
+
+
 function createCategory(categoria){
 
     let datos = new FormData();
@@ -90,7 +170,7 @@ function createCategory(categoria){
                 text: "La categoria se guardó correctamente",
                 icon: "success"
             });
-            $('#modal-form').modal('hide');
+            $('#modal-form-categories').modal('hide');
         }
     });
 
@@ -115,7 +195,7 @@ function renderTableCategories(){
         let contenidoCeldas = [
             c.nombre,
             c.estado === 1 ? '<span class="badge badge-sm bg-gradient-success">Stock disponible</span>': '<span class="badge badge-sm bg-gradient-danger">Stock no disponible</span>',
-            ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" href=""><i class="fas fa-edit" style='font-size:24px'></i></a>`,
+            ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs"  onclick="editCategoria(${c.id_categoria})" ><i class="fas fa-edit" style='font-size:24px'></i></a>`,
             `<a data-bs-toggle="tooltip" onclick='eliminarCategoria(${c.id_categoria})' title="Borrar" class="text-danger font-weight-bold text-xs"><i class="fas fa-trash" style='font-size:24px'></i></a>`
         ];
 
