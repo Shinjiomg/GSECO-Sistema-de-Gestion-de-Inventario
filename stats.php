@@ -433,7 +433,18 @@ $articulos = $ar->index();
               </div>
             </div>
             <div class="table-responsive">
-              <table class="table align-items-center ">
+              <table id="ventas_rango" class="table align-items-center">
+                <thead>
+                  <tr>
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                      Usuario
+                    </th>
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                      Total
+                    </th>
+
+                  </tr>
+                </thead>
                 <tbody>
 
                 </tbody>
@@ -507,7 +518,7 @@ $articulos = $ar->index();
       console.log(end.format('YYYY-MM-DD'));
 
       let rangeDates = {
-        start:  start.format('YYYY-MM-DD'),
+        start: start.format('YYYY-MM-DD'),
         end: end.format('YYYY-MM-DD')
       }
 
@@ -523,7 +534,34 @@ $articulos = $ar->index();
         contentType: false,
         processData: false,
         success: function(response) {
-          console.log(response);
+          let tabla = document.getElementById('ventas_rango');
+          ventas = JSON.parse(response);
+
+          ventas.forEach(v => {
+
+            let nuevaFila = document.createElement("tr");
+            nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
+            var precioVentaFormateado = parseFloat(v.total_venta).toLocaleString('es-CO');
+            
+
+            let contenidoCeldas = [
+              v.nombres + ' ' + v.apellidos,
+              "$" + precioVentaFormateado,
+            ];
+           
+            contenidoCeldas.forEach(function(contenido) {
+              var celda = document.createElement("td");
+              var parrafo = document.createElement("p");
+              parrafo.innerHTML = contenido;
+              celda.appendChild(parrafo);
+              nuevaFila.appendChild(celda);
+            });
+            // Agrega la nueva fila a la tabla
+            tabla.querySelector("tbody").appendChild(nuevaFila);
+          });
+
+
+
 
         }
       });
