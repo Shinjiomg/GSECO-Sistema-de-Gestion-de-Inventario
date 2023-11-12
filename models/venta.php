@@ -96,27 +96,37 @@ class Venta extends Database
 
 	public function transacciones($id_usuario)
 	{
+
 		$currentDate = date('Y-m-d');
-		$query = $this->pdo->query("SELECT  COALESCE(SUM(total), 0) as total_diario FROM venta WHERE Usuario_id_usuario = {$id_usuario} AND DATE(fecha) = '{$currentDate}' GROUP BY tipo_pago");
-		return $query->fetchAll();
+		/* $query = $this->pdo->query("SELECT  COALESCE(SUM(total), 0) as total_diario FROM venta WHERE Usuario_id_usuario = {$id_usuario} AND DATE(fecha) = '{$currentDate}' GROUP BY tipo_pago"); */
+		$query = $this->pdo->query("SELECT
+		COALESCE(SUM(CASE WHEN dv.tipo_pago = 'Nequi' THEN dv.cantidad * dv.precio ELSE 0 END), 0) AS nequi,
+		COALESCE(SUM(CASE WHEN dv.tipo_pago = 'Efectivo' THEN dv.cantidad * dv.precio ELSE 0 END), 0) AS efectivo
+	FROM
+		detalle_venta dv
+	JOIN
+		venta v ON dv.Venta_id_venta = v.id_venta
+	WHERE
+		v.Usuario_id_usuario = {$id_usuario}
+		AND DATE(v.fecha) = '{$currentDate}'");
+
+		return $query->fetch();
 	}
 
 	public function ventasPorRango($rango)
 	{
 		$id_usuario =  $_SESSION['id_usuario'];
-		$rol = $_SESSION['rol']; 
+		$rol = $_SESSION['rol'];
 		$rango =  json_decode($rango);
 
-		if($rol === 1){
+		if ($rol === 1) {
 			/* unicamente toma el del cajero */
 			$query = $this->pdo->query("SELECT  SUM(venta.total) as total_venta, usuario.nombres, usuario.apellidos FROM venta JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario  WHERE venta.Usuario_id_usuario = {$id_usuario} AND DATE(venta.fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
-		}else{
+		} else {
 			/* Solo administrador */
 			$query = $this->pdo->query("SELECT  SUM(venta.total) as total_venta, usuario.nombres, usuario.apellidos FROM venta
 				JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario WHERE  DATE(venta.fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
 		}
 		return $query->fetchAll();
 	}
-
-
 }
