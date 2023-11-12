@@ -1,5 +1,5 @@
 <?php
-session_start();
+/* session_start();
 if (isset($_POST['btningresar'])) {
 	$dbhost = "localhost";
 	$dbuser = "root";
@@ -26,7 +26,7 @@ if (isset($_POST['btningresar'])) {
 	} else {
 		echo "<script>alert('correo y/o contraseña no coinciden');window.location= 'login.php' </script>";
 	}
-}
+} */
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,9 @@ if (isset($_POST['btningresar'])) {
 	<link rel="stylesheet" href="./css/estilo.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link rel="icon" type="image/png" href="./img/logo.png">
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
@@ -58,7 +60,7 @@ if (isset($_POST['btningresar'])) {
 						</div>
 						<div class="div">
 							<h5>Correo Electrónico</h5>
-							<input type="email" name="txtusuario" class="input">
+							<input id="user" type="email" name="txtusuario" class="input">
 						</div>
 					</div>
 					<div class="input-div pass">
@@ -67,16 +69,23 @@ if (isset($_POST['btningresar'])) {
 						</div>
 						<div class="div">
 							<h5>Contraseña</h5>
-							<input type="password" name="txtpassword" class="input">
+							<input id="user_password" type="password" name="txtpassword" class="input">
 						</div>
 					</div>
-					<div class="btnpos"><input type="submit" class="btn" name="btningresar" value="Ingresar">
+					<div class="btnpos">
+						<input
+						  type="button"
+						  class="btn"
+						  onclick="autenthicated()"
+						  name="btningresar"
+						  value="Ingresar">
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/main.js"></script>
+	<script src="./js/login.js"></script>
 </body>
 
 </html>
