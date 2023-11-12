@@ -40,6 +40,11 @@ $articulos = $ar->index();
   <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 </head>
 
 <body class="g-sidenav-show" style="background-color: #009ad5;">
@@ -418,8 +423,12 @@ $articulos = $ar->index();
           <div class="card ">
             <div class="card-header pb-4">
               <div class="row pb-2 p-3">
-                <div class="col-6 d-flex align-items-center">
+                <div class="col-12 d-flex align-items-center justify-content-between">
                   <h4 class="text-uppercase font-weight-bolder">Ventas por empleado</h4>
+
+                  <input type="text" name="daterange" value="11/05/2023 - 11/05/2023" />
+
+
                 </div>
               </div>
             </div>
@@ -460,6 +469,7 @@ $articulos = $ar->index();
       </div>
     </div>
   </div>
+
   <!--   Core JS Files and scripts  -->
   <script src="js/product.js"></script>
   <script src="js/stats.js"></script>
@@ -470,6 +480,8 @@ $articulos = $ar->index();
   <script src="assets/js/plugins/chartjs.min.js"></script>
   <!-- <script src="Js/Search.js"></script> -->
   <script src="js/categoria.js"></script>
+
+  <!-- Date picker -->
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -484,6 +496,41 @@ $articulos = $ar->index();
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/argon-dashboard.js"></script>
 </body>
+
+<script>
+  $(function() {
+    $('input[name="daterange"]').daterangepicker({
+      opens: 'left'
+    }, function(start, end, label) {
+
+      console.log(start.format('YYYY-MM-DD'));
+      console.log(end.format('YYYY-MM-DD'));
+
+      let rangeDates = {
+        start:  start.format('YYYY-MM-DD'),
+        end: end.format('YYYY-MM-DD')
+      }
+
+      let datos = new FormData();
+
+      datos.append('range_dates', JSON.stringify(rangeDates));
+
+      $.ajax({
+        url: "ajax/ventas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+          console.log(response);
+
+        }
+      });
+
+    });
+  });
+</script>
 
 </html>
 <!-- style -->

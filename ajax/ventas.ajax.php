@@ -16,3 +16,12 @@ if(isset($_POST["productos"])){
     $venta->store($var_session, $total, $productos, $tipoPago);
 
 }
+
+if(isset($_POST["range_dates"])){
+	$venta = new Venta();
+
+	$range= $_POST["range_dates"];
+
+	echo json_encode($venta -> ventasPorRango($range));
+
+}

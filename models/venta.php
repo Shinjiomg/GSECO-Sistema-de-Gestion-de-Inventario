@@ -100,4 +100,15 @@ class Venta extends Database
 		$query = $this->pdo->query("SELECT  COALESCE(SUM(total), 0) as total_diario FROM venta WHERE Usuario_id_usuario = {$id_usuario} AND DATE(fecha) = '{$currentDate}' GROUP BY tipo_pago");
 		return $query->fetchAll();
 	}
+
+	public function ventasPorRango($rango)
+	{
+		$id_usuario =  $_SESSION['id_usuario'];
+		$rango =  json_decode($rango);
+
+		$query = $this->pdo->query("SELECT  SUM(total) as total_venta FROM venta WHERE Usuario_id_usuario = {$id_usuario} AND DATE(fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
+		return $query->fetchAll();
+	}
+
+
 }
