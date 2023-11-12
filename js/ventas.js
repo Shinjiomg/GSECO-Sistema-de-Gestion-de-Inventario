@@ -133,7 +133,7 @@ function renderProducts(data) {
         data.forEach(pr => {
             // Crear un contenedor div con clase "col-md-4"
             var colDiv = document.createElement("div");
-            colDiv.className = "col-md-4";
+            colDiv.className = "col-xl-4";
             colDiv.addEventListener("click", function () {
                 // Llama a la función addProductTable con el valor de pr
                 addProductTable(pr);
@@ -148,6 +148,13 @@ function renderProducts(data) {
             btn.className = "btn btn-primary";
             btn.style.background = "#c3c3c3";
             btn.style.color = "black";
+            btn.style.width = "100%"; // Asegura que todos los botones tengan el mismo ancho
+            btn.style.overflow = "hidden";
+            btn.style.textOverflow = "ellipsis";
+            btn.style.whiteSpace = "nowrap";
+            btn.setAttribute("data-toggle", "tooltip");
+            btn.setAttribute("data-placement", "top");
+            btn.setAttribute("title", pr.nombre); // Agrega el nombre del artículo como título del tooltip
             // Crear un div para el nombre del producto
             var nombreDiv = document.createElement("div");
             nombreDiv.textContent = pr.id_articulo + " - " + pr.nombre;
@@ -177,6 +184,7 @@ function renderProducts(data) {
             colDiv.appendChild(modalDiv);
 
             divContainer.appendChild(colDiv);
+            $(btn).tooltip();
         });
     } else {
         msg = '<div class="col-md-12 text-center"><h5>No se encontraron artículos</h5></div>';

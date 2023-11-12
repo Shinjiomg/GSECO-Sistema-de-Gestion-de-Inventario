@@ -42,7 +42,7 @@ $articulos = $ar->index();
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
-<body class="g-sidenav-show bg-gray-100">
+<body class="g-sidenav-show" style="background-color: #009ad5;">
   <div class="h-100 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
@@ -83,6 +83,43 @@ $articulos = $ar->index();
             <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE VENTA</span>
           </a>
         </li>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="purchases.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="purchases-bills.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
+          </a>
+        </li>
+        <!-- <?php
+              if ($rol == 1) {
+              ?>
+                      <li class="nav-item mt-3">
+                          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
+                      </li>
+  
+                      <li class="nav-item">
+                          <a class="nav-link" href="user-administration.php">
+                              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                  <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                              </div>
+                              <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
+                          </a>
+                      </li>
+                  <?php
+                }
+                  ?> -->
       </ul>
     </div>
   </aside>
@@ -240,7 +277,6 @@ $articulos = $ar->index();
                         <div class="modal-header">
                           <h4 class="modal-title text-uppercase font-weight-bold">Añadir producto</h4>
                         </div>
-
                         <div class="modal-body p-0">
                           <div class="card card-plain">
                             <div class="card-body text-start">
@@ -272,9 +308,7 @@ $articulos = $ar->index();
                                         <?php foreach ($categorias as $c) { ?>
                                           <option value="<?php echo $c->id_categoria ?>" selected="true"><?php echo $c->nombre ?></option>
                                         <?php } ?>
-
                                       </select>
-
                                     </div>
                                   </div>
                                   <button type="button" id="confirmButton" onclick="saveProduct()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
@@ -436,86 +470,6 @@ $articulos = $ar->index();
   <script src="assets/js/plugins/chartjs.min.js"></script>
   <!-- <script src="Js/Search.js"></script> -->
   <script src="js/categoria.js"></script>
-  <script>
-    var ctx1 = document.getElementById("chart-line").getContext("2d");
-    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-    gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-    new Chart(ctx1, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Mobile apps",
-          tension: 0.4,
-          borderWidth: 0,
-          pointRadius: 0,
-          borderColor: "#5e72e4",
-          backgroundColor: gradientStroke1,
-          borderWidth: 3,
-          fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-          maxBarThickness: 6
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: '#fbfbfb',
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#ccc',
-              padding: 20,
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
-  </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

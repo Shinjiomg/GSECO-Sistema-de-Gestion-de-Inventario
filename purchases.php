@@ -61,7 +61,7 @@ $Categoria = new Categoria()
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="sales.php">
+                    <a class="nav-link " href="sales.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
@@ -80,7 +80,7 @@ $Categoria = new Categoria()
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="purchases.php">
+                    <a class="nav-link active" href="purchases.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
@@ -151,13 +151,6 @@ $Categoria = new Categoria()
                                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
-                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-              </ul>
-            </li> -->
                     </ul>
                 </div>
             </div>
@@ -225,8 +218,6 @@ $Categoria = new Categoria()
                                                     <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Precio unitario</th>
                                                     <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                                                        Método de pago</th>
-                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Total </th>
                                                     <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                     </th>
@@ -244,44 +235,16 @@ $Categoria = new Categoria()
                                 </div>
                                 <div class="col-xl-12 mt-4">
                                     <div class="row">
-                                        <div class="col-4">
-                                            <p class="text-md mb-0 text-uppercase font-weight-bold">Total de la venta
+                                        <div class="col-8">
+                                            <p class="text-md mb-0 text-uppercase font-weight-bold">Total de la compra
                                             </p>
                                             <h5 id="total" class="font-weight-bolder">
                                                 $0
                                             </h5>
                                         </div>
                                         <div class="col-4 text-end">
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-form-change" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" id="btnCalcularCambio">
-                                                </i>Calcular cambio
-                                            </button>
-                                            <div class="modal fade" id="modal-form-change" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title text-uppercase font-weight-bold">Calcular cambio</h4>
-                                                        </div>
-                                                        <div class="modal-body p-0">
-                                                            <div class="card card-plain">
-                                                                <div class="card-body text-start">
-                                                                    <form role="form text-left">
-                                                                        <div class="form-group">
-                                                                            <p class="text-uppercase font-weight-bolder"><strong>¿Con cuánto efectivo pagará el cliente?</strong></p>
-                                                                            <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor exacto de lo que te entregó el cliente">
-                                                                            <p class="mb-0"><em>Debes devolverle al cliente </em><strong>$20.000</strong> <em> de cambio</em></p>
-                                                                            <button type="button" id="" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Calcular</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 text-end">
                                             <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarVenta()" id="btnCrearVenta">
-                                                </i>Crear venta
+                                                </i>Crear compra
                                             </button>
                                         </div>
                                     </div>
@@ -334,13 +297,6 @@ $Categoria = new Categoria()
                                 <div class="form-group">
                                     <label for="productQuantity" class="col-form-label text-uppercase font-weight-bolder">Cantidad:</label>
                                     <input class="form-control" type="number" id="productQuantity" oninput="validarCantidad(this)">
-                                    <p class="text-uppercase font-weight-bolder"><em>Unidades disponibles:</em> <strong id="stock"></strong></p>
-                                    <label for="" class="col-form-label text-uppercase">Método de pago:</label>
-                                    <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
-                                        <?php foreach ($categorias as $c) { ?>
-                                            <option value="<?php echo $c->id_categoria ?>" selected="true"><?php echo $c->nombre ?></option>
-                                        <?php } ?>
-                                    </select>
                                     <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase font-weight-bolder">Guardar</button>
                                 </div>
                             </form>

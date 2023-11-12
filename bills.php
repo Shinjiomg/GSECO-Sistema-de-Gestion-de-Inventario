@@ -36,8 +36,8 @@ $transacciones = $venta->transacciones($idUsuario);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body class="g-sidenav-show bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+<body class="g-sidenav-show" style="background-color: #009ad5;">
+    <div class="h-100 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
@@ -77,9 +77,28 @@ $transacciones = $venta->transacciones($idUsuario);
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
                     </a>
                 </li>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="purchases.php">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="purchases-bills.php">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
+                    </a>
+                </li>
                 <!-- <?php
-                if ($rol == 1) {
-                ?>
+                        if ($rol == 1) {
+                        ?>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                     </li>
@@ -93,7 +112,7 @@ $transacciones = $venta->transacciones($idUsuario);
                         </a>
                     </li>
                 <?php
-                }
+                        }
                 ?> -->
                 <li class="sidenav-footer mx-3">
 

@@ -1,6 +1,14 @@
 <?php
 include_once("conexion.php");
 include_once("Consultas.php");
+require('./models/venta.php');
+$rol = intval($_SESSION['rol']);
+$idUsuario = intval($_SESSION['id_usuario']);
+$venta = new Venta();
+$transacciones = $venta->transacciones($idUsuario);
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,6 +32,8 @@ include_once("Consultas.php");
     <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="g-sidenav-show" style="background-color: #009ad5;">
@@ -48,7 +58,7 @@ include_once("Consultas.php");
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1  text-black">Estadísticas</span>
+                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -56,15 +66,15 @@ include_once("Consultas.php");
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Ventas</span>
+                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="bills.php">
+                    <a class="nav-link " href="bills.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Facturas</span>
+                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
                     </a>
                 </li>
                 <li class="nav-item mt-3">
@@ -79,24 +89,31 @@ include_once("Consultas.php");
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="purchases-bills.php">
+                    <a class="nav-link active" href="purchases-bills.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
                     </a>
                 </li>
-                <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="user-administration.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Usuarios</span>
-                    </a>
-                </li>
+                <!-- <?php
+                        if ($rol == 1) {
+                        ?>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="user-administration.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
+                        </a>
+                    </li>
+                <?php
+                        }
+                ?> -->
                 <li class="sidenav-footer mx-3">
 
                 </li>
@@ -148,163 +165,61 @@ include_once("Consultas.php");
         </nav>
         <div class="container-fluid py-4">
             <!-- main content -->
-            <div class="row">
-                <div class="col-xl-4">
-                    <div class="card mb-4">
-                        <div class="card-header pb-0">
-                            <div class="row pb-2 p-3">
+            <div class="row mt-0">
+                <div class="col-xl-12">
+                    <div class="card h-100">
+                        <div class="card-header pb-0 p-3">
+                            <div class="row">
                                 <div class="col-6 d-flex align-items-center">
-                                    <h6>Roles</h6>
-                                </div>
-                                <div class="col-6 text-end">
-                                    <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir
-                                        rol</a>
-                                    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-body p-0">
-                                                    <div class="card card-plain">
-                                                        <div class="card-body">
-                                                            <form role="form text-left">
-                                                                <div class="text-center">
-                                                                    <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Añadir
-                                                                        rol</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <h4 class="mb-0 text-uppercase font-weight-bolder">Compras realizadas
+                                    </h4>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body px-0 pt-0 pb-2">
-                            <div class="table-responsive">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-uppercase text-black text-xxs font-weight-bolder opacity-7 pl-2">
-                                                Rol</th>
-                                            <th class="text-black opacity-7"></th>
-                                            <th class="text-black opacity-7"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-3 py-1">
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Administrador</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-black font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Editar
-                                                </a>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
-                                                    Borrar
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="card-body p-3 pb-0">
+                            <?php  // Obtener las facturas
+                            $facturas = $venta->facturas($idUsuario);
+
+                            // Ordenar las facturas por fecha de venta de forma descendente
+                            usort($facturas, function ($a, $b) {
+                                return strtotime($b->fecha_venta) - strtotime($a->fecha_venta);
+                            });
+
+                            // Iterar sobre las facturas ordenadas
+                            foreach ($facturas as $f) {  ?>
+                                <ul class="list-group">
+                                    <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                        <div class="d-flex align-items-center">
+                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
+                                            <div class="d-flex flex-column">
+                                                <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
+                                                    <?php echo $f->nombres_productos; ?>
+                                                </h6>
+                                                <span class="text-sm text-uppercase font-weight-bolder">
+                                                    <?php echo $f->fecha_venta; ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="column">
+                                            <div class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
+                                                <?php echo $f->tipo_pago; ?>
+                                            </div>
+                                            <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
+                                                + $
+                                                <?php echo number_format($f->total, 0, ',', '.'); ?>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-8">
-                    <div class="card mb-4">
-                        <div class="card-header pb-0">
-                            <div class="row pb-2 p-3">
-                                <div class="col-8 d-flex align-items-center">
-                                    <h6>Usuarios</h6>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <a class="btn bg-gradient-primary mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-user"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir
-                                        usuario</a>
-                                    <div class="modal fade" id="modal-form-user" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-body p-0">
-                                                    <div class="card card-plain">
-                                                        <div class="card-body">
-                                                            <form role="form text-left">
-                                                                <div class="text-center">
-                                                                    <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Añadir
-                                                                        usuario</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body px-0 pt-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-uppercase text-black text-xxs font-weight-bolder opacity-7">
-                                                Nombre</th>
-                                            <th class="text-uppercase text-black text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Rol</th>
-                                            <th class="text-center text-uppercase text-black text-xxs font-weight-bolder opacity-7">
-                                                Estado</th>
-                                            <th class="text-black opacity-7"></th>
-                                            <th class="text-black opacity-7">
-                                                <a href="./reports/usuarios.php" target="_blank">
-                                                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
-                                                        <i class="fas fa-file-pdf text-lg me-1"></i> PDF
-                                                    </button>
-                                                </a>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-3 py-1">
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">John Michael</h6>
-                                                        <p class="text-xs text-black mb-0">john@creative-tim.com</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                                <p class="text-xs text-black mb-0">Organization</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-success">Activo</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-primary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Editar
-                                                </a>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
-                                                    Borrar
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
             <!-- footer -->
+
         </div>
     </main>
     <!-- config interface -->
@@ -334,6 +249,7 @@ include_once("Consultas.php");
         </div>
     </div>
     <!--   Core JS Files and scripts  -->
+    <script src="./js/factura.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
