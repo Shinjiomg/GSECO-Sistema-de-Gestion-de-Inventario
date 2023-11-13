@@ -505,6 +505,14 @@ $articulos = $ar->index();
         lengthMenu: [5, 10, 25, 50, 75, 100], // Configuramos las opciones de cantidad por página
         pageLength: 10
       });
+      $('#data_table').DataTable({
+        dom: '<"top"lfB>rt<"bottom"ip><"clear">',
+        buttons: [
+          'excel', 'print'
+        ],
+        lengthMenu: [5, 10, 25, 50, 75, 100], // Configuramos las opciones de cantidad por página
+        pageLength: 10
+      });
     });
   </script>
 
