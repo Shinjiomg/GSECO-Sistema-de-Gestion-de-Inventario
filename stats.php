@@ -498,20 +498,72 @@ $articulos = $ar->index();
     $(document).ready(function() {
 
       $('#categories_table').DataTable({
-        dom: '<"top"lfB>rt<"bottom"ip><"clear">',
+        dom: 'Blfrtip',
+        "order": [[ 1, "asc" ]],
         buttons: [
           'excel', 'print'
         ],
         lengthMenu: [5, 10, 25, 50, 75, 100], // Configuramos las opciones de cantidad por página
-        pageLength: 10
+        pageLength: 10,
+        "language": {
+              "sProcessing":     "",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "searchPlaceholder": "Escribe aquí para buscar..",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "<img style='display: block;width:100px;margin:0 auto;' src='assets/img/loading.gif' />",
+              "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+              },
+              "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+            }
       });
       $('#data_table').DataTable({
-        dom: '<"top"lfB>rt<"bottom"ip><"clear">',
+        dom: 'Blfrtip',
+        "order": [[ 1, "asc" ]],
         buttons: [
           'excel', 'print'
         ],
         lengthMenu: [5, 10, 25, 50, 75, 100], // Configuramos las opciones de cantidad por página
-        pageLength: 10
+        pageLength: 10,
+        "language": {
+              "sProcessing":     "",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "searchPlaceholder": "Escribe aquí para buscar..",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "<img style='display: block;width:100px;margin:0 auto;' src='assets/img/loading.gif' />",
+              "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+              },
+              "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+            }
       });
     });
   </script>
