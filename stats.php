@@ -45,6 +45,19 @@ $articulos = $ar->index();
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+
 </head>
 
 <body class="g-sidenav-show" style="background-color: #009ad5;">
@@ -481,7 +494,22 @@ $articulos = $ar->index();
     </div>
   </div>
 
+  <script>
+    $(document).ready(function() {
+
+      $('#categories_table').DataTable({
+        dom: '<"top"lfB>rt<"bottom"ip><"clear">',
+        buttons: [
+          'excel', 'print'
+        ],
+        lengthMenu: [5, 10, 25, 50, 75, 100], // Configuramos las opciones de cantidad por página
+        pageLength: 10
+      });
+    });
+  </script>
+
   <!--   Core JS Files and scripts  -->
+  <script src="js/categoria.js"></script>
   <script src="js/product.js"></script>
   <script src="js/stats.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
@@ -490,7 +518,7 @@ $articulos = $ar->index();
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="assets/js/plugins/chartjs.min.js"></script>
   <!-- <script src="Js/Search.js"></script> -->
-  <script src="js/categoria.js"></script>
+
 
   <!-- Date picker -->
   <script>
@@ -542,13 +570,13 @@ $articulos = $ar->index();
             let nuevaFila = document.createElement("tr");
             nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
             var precioVentaFormateado = parseFloat(v.total_venta).toLocaleString('es-CO');
-            
+
 
             let contenidoCeldas = [
               v.nombres + ' ' + v.apellidos,
               "$" + precioVentaFormateado,
             ];
-           
+
             contenidoCeldas.forEach(function(contenido) {
               var celda = document.createElement("td");
               var parrafo = document.createElement("p");
