@@ -75,7 +75,7 @@ function GenerarVenta() {
         if (result.isConfirmed) {
 
             $.ajax({
-                url: "ajax/ventas.ajax.php",
+                url: "ajax/compras.ajax.php",
                 method: "POST",
                 data: datos,
                 cache: false,
@@ -84,8 +84,8 @@ function GenerarVenta() {
                 success: function (response) {
                     console.log('nice')
                     Swal.fire({
-                        title: "Generar venta",
-                        text: "La venta se generó de forma exitosa",
+                        title: "Generar compra",
+                        text: "La compra se generó de forma exitosa",
                         icon: "success",
                         timer: 1500
                     });

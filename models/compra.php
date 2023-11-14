@@ -1,7 +1,7 @@
 <?php
 require_once('db.php');
 
-class Venta extends Database
+class Compra extends Database
 {
 
 
@@ -13,7 +13,7 @@ class Venta extends Database
 
 
 
-    public function store($idUsuario, $total, $productos, $tipoPago)
+    public function store($idUsuario, $total, $productos)
     {
 
         $query = $this->pdo->prepare('INSERT INTO ingreso (Usuario_id_usuario, total, fecha) VALUES (:usuario_id, :total, :fecha)');

@@ -1,19 +1,19 @@
 <?php
-require_once "../models/compra.php";
+require_once "../models/venta.php";
 
 session_start();
 $var_session = $_SESSION['id_usuario'];
 
 if(isset($_POST["productos"])){
 
-	$venta = new Venta();
+	$compra = new Compra();
 
 	$productos= $_POST["productos"];
 	$total= $_POST["total"];
-	$tipoPago = $_POST["tipo_pago"];
+
 	 
 
-    $venta->store($var_session, $total, $productos, $tipoPago);
+    $compra->store($var_session, $total, $productos);
 
 }
 
