@@ -38,9 +38,7 @@ $articulos = $ar->index();
   <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -50,8 +48,7 @@ $articulos = $ar->index();
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
-  <script type="text/javascript" charset="utf8"
-    src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
@@ -66,12 +63,9 @@ $articulos = $ar->index();
 <body class="g-sidenav-show" style="background-color: #009ad5;">
   <div class="h-100 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
-  <aside
-    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
-    id="sidenav-main">
+  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-        aria-hidden="true" id="iconSidenav"></i>
+      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0 mr-4">
         <img src="./img/logo.png" class="navbar-brand-img h-100 mr-5" alt="main_logo">
         <span class="ms-1 font-weight-bold">GSECO</span>
@@ -85,8 +79,7 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="stats.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1 font-weight-bolder">ESTADÍSTICAS</span>
@@ -94,8 +87,7 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link" href="sales.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-cart text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1 font-weight-bolder">VENTAS</span>
@@ -103,8 +95,7 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link" href="bills.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE VENTA</span>
@@ -115,8 +106,7 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link" href="purchases.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
@@ -124,16 +114,15 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link" href="purchases-bills.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
           </a>
         </li>
         <!-- <?php
-        if ($rol == 1) {
-          ?>
+              if ($rol == 1) {
+              ?>
                       <li class="nav-item mt-3">
                           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                       </li>
@@ -147,15 +136,14 @@ $articulos = $ar->index();
                           </a>
                       </li>
                   <?php
-        }
-        ?> -->
+                }
+                  ?> -->
       </ul>
     </div>
   </aside>
   <main class="main-content position-relative border-radius-lg">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-      data-scroll="false">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -287,7 +275,7 @@ $articulos = $ar->index();
                 }
               }
               if (!empty($productosAgotandose)) {
-                ?>
+              ?>
                 <div class="alert alert-warning lowercase" role="alert" style="color: white">
                   <strong>¡Aviso!</strong> Se están agotando los siguientes productos:
                   <strong>
@@ -301,18 +289,19 @@ $articulos = $ar->index();
                 </div>
                 <div class="col-md-6 text-end">
                   <div class="d-flex justify-content-end">
-                    <div class="me-xl-2" id="botonera">
+                    <div class="text-end text-uppercase" id="botonera">
+
+                    </div>
+                    <div class="me-xl-2" id="register1">
 
                     </div>
                     <div>
-                      <a class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white"
-                        data-bs-target="#modal-form-product">
+                      <a class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">
                         <i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto
                       </a>
                     </div>
                   </div>
-                  <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog"
-                    aria-labelledby="modal-form" aria-hidden="true">
+                  <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -327,31 +316,25 @@ $articulos = $ar->index();
                                     <div class="col-xl-9">
                                       <label for="" class="col-form-label text-uppercase">Nombre
                                         del producto</label>
-                                      <input id="product_name" type="text" placeholder="Ingresa el nombre del producto"
-                                        class="form-control" />
+                                      <input id="product_name" type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
                                     </div>
                                     <div class="col-xl-3">
                                       <label for="" class="col-form-label text-uppercase">Cantidad</label>
-                                      <input class="form-control" type="number" id="product_stock"
-                                        placeholder="Ingresa la cantidad" oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad" oninput="validarCantidad(this)">
                                     </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label text-uppercase">Valor unitario</label>
-                                      <input class="form-control" type="number" id="product_price"
-                                        placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label text-uppercase">Stock máximo</label>
-                                      <input class="form-control" type="number" id="stock_maximo"
-                                        placeholder="Ingresa el stock máximo del producto"
-                                        oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="stock_maximo" placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label text-uppercase">Categoría</label>
-                                      <select class="form-control" name="choices-button" id="categories_select"
-                                        placeholder="Departure">
+                                      <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
                                         <?php foreach ($categorias as $c) { ?>
                                           <option value="<?php echo $c->id_categoria ?>" selected="true">
                                             <?php echo $c->nombre ?>
@@ -360,9 +343,7 @@ $articulos = $ar->index();
                                       </select>
                                     </div>
                                   </div>
-                                  <button type="button" id="confirmButton" onclick="saveProduct()"
-                                    class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
-                                    style="background: #5e72e4; color:white">guardar
+                                  <button type="button" id="confirmButton" onclick="saveProduct()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
                                   </button>
                                 </div>
                               </form>
@@ -373,13 +354,7 @@ $articulos = $ar->index();
                     </div>
                   </div>
                 </div>
-                <div class="p-1 col-md-10 text-end text-uppercase" id="filter1">
-
-                </div>
-                <div class="p-1 col-md-2 pb-0 text-uppercase" id="register1">
-
-                </div>
-
+                <div class="p-1 col-md-12 text-end text-uppercase" id="filter1"></div>
               </div>
             </div>
             <div class="table-responsive">
@@ -429,13 +404,11 @@ $articulos = $ar->index();
 
                     </div>
                     <div>
-                      <a class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal"
-                        data-bs-target="#modal-form-categories"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir
+                      <a class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir
                         categoría</a>
                     </div>
                   </div>
-                  <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog"
-                    aria-labelledby="modal-form" aria-hidden="true">
+                  <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                       <div class="modal-content">
                         <div class="modal-body p-0">
@@ -445,13 +418,10 @@ $articulos = $ar->index();
                                 <div class="row">
                                   <div class="col-xl-12">
                                     <label for="" class="col-form-label text-uppercase">Nombre de la categoria</label>
-                                    <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría"
-                                      class="form-control" />
+                                    <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría" class="form-control" />
                                   </div>
                                   <div class="text-center">
-                                    <button type="button" onClick="guardarCategoria()"
-                                      class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
-                                      style="background: #5e72e4; color:white">Añadir
+                                    <button type="button" onClick="guardarCategoria()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Añadir
                                       categoría</button>
                                   </div>
                                 </div>
@@ -463,13 +433,12 @@ $articulos = $ar->index();
                     </div>
                   </div>
                 </div>
-                <div class="p-1 col-md-7 pb-0 text-uppercase" id="filter2">
+                <div class="p-1 col-md-6 pb-0 text-uppercase" id="filter2">
 
                 </div>
-                <div class="p-1 col-md-5 text-uppercase" id="register2">
+                <div class="p-1 col-md-6 text-end text-uppercase" id="register2">
 
                 </div>
-
               </div>
             </div>
             <div class="table-responsive">
@@ -499,7 +468,7 @@ $articulos = $ar->index();
                 <div class="col-12 d-flex align-items-center justify-content-between">
                   <h4 class="text-uppercase font-weight-bolder">Ventas por empleado</h4>
 
-                  <input type="text" name="daterange" class="custom-daterangepicker" />
+                  <input type="text" name="daterange" value="11/05/2023 - 11/05/2023" class="custom-daterangepicker"/>
 
 
                 </div>
@@ -555,13 +524,14 @@ $articulos = $ar->index();
   </div>
 
   <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
 
       var categories = $('#categories_table').DataTable({
         dom: 'Blfrtip',
-        "order": [[1, "asc"]],
-        buttons: [
-          {
+        "order": [
+          [1, "asc"]
+        ],
+        buttons: [{
             extend: 'excel',
             text: '<i class="fas fa-file-excel"></i>', // Icono para Excel (puedes cambiar la clase del icono)
             titleAttr: 'Exportar a Excel' // Texto de información al pasar el ratón sobre el icono
@@ -610,9 +580,10 @@ $articulos = $ar->index();
       $('#register2').append($('#categories_table').closest('.dataTables_wrapper').find('.dataTables_length'));
       var products = $('#data_table').DataTable({
         dom: 'Blfrtip',
-        "order": [[1, "asc"]],
-        buttons: [
-          {
+        "order": [
+          [1, "asc"]
+        ],
+        buttons: [{
             extend: 'excel',
             text: '<i class="fas fa-file-excel"></i>', // Icono para Excel (puedes cambiar la clase del icono)
             titleAttr: 'Exportar a Excel' // Texto de información al pasar el ratón sobre el icono
@@ -671,8 +642,8 @@ $articulos = $ar->index();
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="assets/js/plugins/chartjs.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
       // Obtiene la fecha actual
       const currentDate = new Date();
       const formattedDate = currentDate.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
@@ -681,7 +652,7 @@ $articulos = $ar->index();
       const dateRangeInput = document.querySelector('input[name="daterange"]');
       dateRangeInput.value = formattedDate;
     });
-  </script>
+  </script> -->
   <!-- <script src="Js/Search.js"></script> -->
 
 
@@ -702,10 +673,10 @@ $articulos = $ar->index();
 </body>
 
 <script>
-  $(function () {
+  $(function() {
     $('input[name="daterange"]').daterangepicker({
       opens: 'left'
-    }, function (start, end, label) {
+    }, function(start, end, label) {
 
       console.log(start.format('YYYY-MM-DD'));
       console.log(end.format('YYYY-MM-DD'));
@@ -726,7 +697,7 @@ $articulos = $ar->index();
         cache: false,
         contentType: false,
         processData: false,
-        success: function (response) {
+        success: function(response) {
           let tabla = document.getElementById('ventas_rango');
           ventas = JSON.parse(response);
 
@@ -742,7 +713,7 @@ $articulos = $ar->index();
               "$" + precioVentaFormateado,
             ];
 
-            contenidoCeldas.forEach(function (contenido) {
+            contenidoCeldas.forEach(function(contenido) {
               var celda = document.createElement("td");
               var parrafo = document.createElement("p");
               parrafo.innerHTML = contenido;
@@ -808,7 +779,9 @@ $articulos = $ar->index();
 
   div#data_table_wrapper {
     background-color: transparent !important;
-    padding: 10px border: none
+    padding: 10px;
+    padding-left: 10px;
+    border: none;
   }
 
   select {
@@ -822,7 +795,9 @@ $articulos = $ar->index();
 
   div#categories_table_wrapper {
     background-color: transparent !important;
-    padding: 10px
+    padding: 10px;
+    padding-left: 10px;
+    border: none;
   }
 
   .dataTables_paginate .pagination {
