@@ -244,7 +244,7 @@ $Categoria = new Categoria()
                                         </div>
                                         <div class="col-4 text-end">
                                             <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarVenta()" id="btnCrearVenta">
-                                                </i>Crear compra
+                                                </i>Generar compra
                                             </button>
                                         </div>
                                     </div>
@@ -308,7 +308,7 @@ $Categoria = new Categoria()
     </div>
 
     <!--   Core JS Files and scripts  -->
-    <script src="js/ventas.js"></script>
+    <script src="js/comnpras.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
