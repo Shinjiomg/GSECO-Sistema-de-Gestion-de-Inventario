@@ -470,7 +470,7 @@ $articulos = $ar->index();
                 <div class="col-12 d-flex align-items-center justify-content-between">
                   <h4 class="text-uppercase font-weight-bolder">Ventas por empleado</h4>
 
-                  <input type="text" name="daterange" value="11/05/2023 - 11/05/2023" class="custom-daterangepicker"/>
+                  <input type="text" id="daterange" name="daterange" value="11/05/2023 - 11/05/2023" class="custom-daterangepicker"/>
 
 
                 </div>
@@ -707,6 +707,7 @@ $articulos = $ar->index();
         contentType: false,
         processData: false,
         success: function(response) {
+          console.log(response);
           let tabla = document.getElementById('ventas_rango');
           ventas = JSON.parse(response);
 

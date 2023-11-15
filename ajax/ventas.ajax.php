@@ -1,5 +1,6 @@
 <?php
 require_once "../models/compra.php";
+require_once "../models/venta.php";
 
 session_start();
 $var_session = $_SESSION['id_usuario'];
