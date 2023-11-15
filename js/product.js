@@ -199,7 +199,7 @@ function saveProduct() {
     let precio = document.getElementById('product_price').value;
     let stockMaximo = document.getElementById('stock_maximo').value;
     let selectCategoria = document.getElementById('categories_select').value;
-
+    console.log('entro aca');
     if (selectProduct) {
         saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria);
         return;
