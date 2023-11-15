@@ -43,6 +43,10 @@ function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria)
 
     datos.append('new_product', JSON.stringify(newProduct));
 
+    let category = document.getElementById('categories_select');
+
+    var selectedText = category.options[category.selectedIndex].text;
+
     $.ajax({
         url: "ajax/productos.ajax.php",
         method: "POST",
@@ -58,7 +62,7 @@ function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 timer: 1500
             });
             let newProduct = JSON.parse(response);
-            products.push({ ...newProduct })
+            products.push({ ...newProduct, categoria: selectedText })
 
             renderTable();
             $('#modal-form-product').modal('hide');
