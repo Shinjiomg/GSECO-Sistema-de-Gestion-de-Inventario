@@ -121,10 +121,10 @@ class Venta extends Database
 
 		if ($rol === 1) {
 			/* unicamente toma el del cajero */
-			$query = $this->pdo->query("SELECT  SUM(venta.total) as total_venta, usuario.nombres, usuario.apellidos FROM venta JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario  WHERE venta.Usuario_id_usuario = {$id_usuario} AND DATE(venta.fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
+			$query = $this->pdo->query("SELECT  COALESCE(SUM(venta.total),0)as total_venta, usuario.nombres, usuario.apellidos FROM venta JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario  WHERE venta.Usuario_id_usuario = {$id_usuario} AND DATE(venta.fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
 		} else {
 			/* Solo administrador */
-			$query = $this->pdo->query("SELECT  SUM(venta.total) as total_venta, usuario.nombres, usuario.apellidos FROM venta
+			$query = $this->pdo->query("SELECT COALESCE(SUM(venta.total),0) as total_venta, usuario.nombres, usuario.apellidos FROM venta
 				JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario WHERE  DATE(venta.fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
 		}
 		return $query->fetchAll();
