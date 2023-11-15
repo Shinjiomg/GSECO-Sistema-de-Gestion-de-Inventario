@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2023 a las 18:04:13
+-- Tiempo de generación: 15-11-2023 a las 23:03:57
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -32,7 +32,7 @@ CREATE TABLE `articulo` (
   `nombre` varchar(45) NOT NULL,
   `precio_venta` decimal(11,2) NOT NULL,
   `stock` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL,
+  `descripcion` varchar(45) DEFAULT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT 1,
   `categoria_id_categoria` int(10) UNSIGNED NOT NULL,
   `stock_deseado` int(11) DEFAULT 0
@@ -43,30 +43,157 @@ CREATE TABLE `articulo` (
 --
 
 INSERT INTO `articulo` (`id_articulo`, `nombre`, `precio_venta`, `stock`, `descripcion`, `estado`, `categoria_id_categoria`, `stock_deseado`) VALUES
-(1, 'gaseosa coca cola', 1500.00, 37, 'coca cola', 0, 3, 41),
-(3, 'Fritos', 2000.00, 2, 'fritos', 0, 1, 10),
-(4, 'prueba', 1.00, 10, '', 0, 5, 7),
-(5, 'prueba45', 1200.00, 8, '', 0, 1, 30),
-(6, 'prueba n', 1200.00, 12, '', 0, 1, 1200),
-(7, 'm', 12.00, 12, '', 0, 1, 12),
-(8, 'u', 12.00, 12, '', 0, 1, 12),
-(9, 'mmmm', 12.00, 12, '', 0, 1, 12),
-(10, 'prueba505', 123.00, 12, '', 0, 5, 2),
-(11, 'prueba22323', 123.00, 4, '', 0, 2, 2),
-(12, 'gaseosa coca cola', 12.00, 12, '', 0, 1, 1),
-(13, 'gaseosa coca cola', 12.00, 4, '', 0, 6, 12),
-(14, 'prueba505', 123.00, 6, '', 1, 6, 2),
-(15, 'prueba 12345', 2.00, 6, '', 1, 6, 32),
-(16, 'prueba 12345', 1.00, 3, '', 1, 6, 1),
-(17, 'abc12345', 3000.00, 5, '', 0, 5, 12),
-(18, 'fffff', 3000.00, 5, '', 0, 3, 12),
-(19, 'mmmm', 12.00, 12, '', 1, 6, 12),
-(20, 'v', 6.00, 6, '', 1, 6, 6),
-(21, 'llllll', 7.00, 7, '', 1, 5, 8),
-(22, 'prueba', 1212.00, 1212, '', 1, 6, 12),
-(23, 'abc123', 1500.00, 12, '', 1, 6, 12),
-(24, 'DXDIAG', 12.00, 12, '', 1, 6, 1),
-(25, 'eeeeeeeee', 12.00, 12, '', 1, 6, 12);
+(1, 'AGUA CRISTAL CON GAS 600 ML', 2000.00, 0, NULL, 1, 3, 20),
+(2, 'AGUA CRISTAL MINI ', 700.00, 0, NULL, 1, 3, 20),
+(3, 'AGUACRISTAL SIN GAS 600 ML', 1600.00, 0, NULL, 1, 3, 20),
+(4, 'AGUS CRISTAL COCO', 2000.00, 0, NULL, 1, 3, 20),
+(5, 'AREPA DE HUEVO', 3200.00, 0, NULL, 1, 8, 20),
+(6, 'AREPA DE QUESO', 2500.00, 0, NULL, 1, 8, 20),
+(7, 'ARROZ - PORCI?N', 2000.00, 0, NULL, 1, 1, 20),
+(8, 'ARROZ CON LECHE', 3000.00, 0, NULL, 1, 10, 20),
+(9, 'AVENA BOLSA ', 1900.00, 0, NULL, 1, 10, 20),
+(10, 'AVENA VASO', 3100.00, 0, NULL, 1, 10, 20),
+(11, 'BAQUEANAS ', 3000.00, 0, NULL, 1, 4, 20),
+(12, 'BIANCHI BOMBONES', 500.00, 0, NULL, 1, 7, 20),
+(13, 'BOLIQUESOS', 2000.00, 0, NULL, 1, 4, 20),
+(14, 'BOMBON', 500.00, 0, NULL, 1, 7, 20),
+(15, 'BONBONBUM', 500.00, 0, NULL, 1, 7, 20),
+(16, 'BONYURT', 3700.00, 0, NULL, 1, 10, 20),
+(17, 'BRAZO DE REINA ', 2000.00, 0, NULL, 1, 4, 20),
+(18, 'BU?UELO', 2500.00, 0, NULL, 1, 8, 20),
+(19, 'CANADA DRY - GINGER 400 ML', 2000.00, 0, NULL, 1, 3, 20),
+(20, 'CANADA-DRY GINGER 1,5 LTS', 4000.00, 0, NULL, 1, 3, 20),
+(21, 'CANADA-DRY GINGER PET 400 ML', 2200.00, 0, NULL, 1, 3, 20),
+(22, 'CA?A', 1700.00, 0, NULL, 1, 11, 20),
+(23, 'CASERITAS', 2300.00, 0, NULL, 1, 4, 20),
+(24, 'CHEESE TRIS', 2000.00, 0, NULL, 1, 4, 20),
+(25, 'CHICA CHIRRIN', 2600.00, 0, NULL, 1, 4, 20),
+(26, 'CHICHARRON', 2000.00, 0, NULL, 1, 11, 20),
+(27, 'CHITOS NATURALES', 2000.00, 0, NULL, 1, 4, 20),
+(28, 'CHITOS PICANTES', 2000.00, 0, NULL, 1, 4, 20),
+(29, 'CHOCLITOS LIMON', 2000.00, 0, NULL, 1, 4, 20),
+(30, 'CHOCO CONO', 2000.00, 0, NULL, 1, 9, 20),
+(31, 'CHOCO RAMO', 2200.00, 0, NULL, 1, 4, 20),
+(32, 'CHOCO WAFFER ', 400.00, 0, NULL, 1, 7, 20),
+(33, 'CHOCOLATINA ALPLER', 2500.00, 0, NULL, 1, 7, 20),
+(34, 'CHOCOLATINA JET PEQUE?A', 800.00, 0, NULL, 1, 7, 20),
+(35, 'CHOCOLATINA JUMBO GRANDE ', 5000.00, 0, NULL, 1, 7, 20),
+(36, 'CHOCOLATINA JUMBO MINI', 900.00, 0, NULL, 1, 7, 20),
+(37, 'CHOCOLATINA JUMBO PERSONAL', 2700.00, 0, NULL, 1, 7, 20),
+(38, 'CHOKIS CHOCOLATE  ', 1500.00, 0, NULL, 1, 4, 20),
+(39, 'CHURRASCO', 13000.00, 0, NULL, 1, 5, 20),
+(40, 'CHURROS', 2000.00, 0, NULL, 1, 11, 20),
+(41, 'CHURROS MI CALI', 2000.00, 0, NULL, 1, 11, 20),
+(42, 'COCA-COLA 1,5 LITROS', 5000.00, 0, NULL, 1, 3, 20),
+(43, 'COCA-COLA 3 LITROS', 8000.00, 0, NULL, 1, 3, 20),
+(44, 'COCA-COLA 400 ML', 2500.00, 0, NULL, 1, 3, 20),
+(45, 'COCA-COLA LATA', 2100.00, 0, NULL, 1, 3, 20),
+(46, 'COCA-COLA LATA GRANDE', 3000.00, 0, NULL, 1, 3, 20),
+(47, 'COCA-COLA PEQUE?A', 2000.00, 0, NULL, 1, 3, 20),
+(48, 'CONO', 2000.00, 0, NULL, 1, 9, 20),
+(49, 'DETODITO', 2500.00, 0, NULL, 1, 4, 20),
+(50, 'DONUTS  CARMENZA', 2500.00, 0, NULL, 1, 11, 20),
+(51, 'DORITOS', 2000.00, 0, NULL, 1, 4, 20),
+(52, 'DORITOS DINAMITA', 2200.00, 0, NULL, 1, 4, 20),
+(53, 'EMPANADA PAPA-CARNE', 2200.00, 0, NULL, 1, 8, 20),
+(54, 'FRUTA - PORCI?N', 3000.00, 0, NULL, 1, 1, 20),
+(55, 'GALLETA COCOSETTE', 1700.00, 0, NULL, 1, 7, 20),
+(56, 'GALLETA FESTIVAL', 1500.00, 0, NULL, 1, 7, 20),
+(57, 'GALLETA MINI CHIPS', 1500.00, 0, NULL, 1, 7, 20),
+(58, 'GALLETA NUCITA', 1500.00, 0, NULL, 1, 7, 20),
+(59, 'GALLETAS CLUB SOCIAL', 1500.00, 0, NULL, 1, 7, 20),
+(60, 'GALLETAS TOSH', 1500.00, 0, NULL, 1, 4, 20),
+(61, 'GANSITO', 1700.00, 0, NULL, 1, 7, 20),
+(62, 'GASEOSA POSTOBON 1.5 LITROS', 4000.00, 0, NULL, 1, 3, 20),
+(63, 'GASEOSA POSTOBON 2.5 LITROS', 6000.00, 0, NULL, 1, 3, 20),
+(64, 'GASEOSA POSTOBON 250 ML', 1500.00, 0, NULL, 1, 3, 20),
+(65, 'GASEOSA POSTOBON 400 ML', 2000.00, 0, NULL, 1, 3, 20),
+(66, 'GATORADE', 3000.00, 0, NULL, 1, 3, 20),
+(67, 'GELATINA', 3000.00, 0, NULL, 1, 4, 20),
+(68, 'GOMAS TRULULU-BOLSITA', 2000.00, 0, NULL, 1, 7, 20),
+(69, 'GOMITAS TROLLI', 2000.00, 0, NULL, 1, 7, 20),
+(70, 'H2O POSTOBON', 2800.00, 0, NULL, 1, 3, 20),
+(71, 'HALL EN BARRA', 1500.00, 0, NULL, 1, 7, 20),
+(72, 'HALL EN PEPA ', 300.00, 0, NULL, 1, 7, 20),
+(73, 'HAMBURGUESA', 8000.00, 0, NULL, 1, 5, 20),
+(74, 'HAMBURGUESA ESPECIAL', 9000.00, 0, NULL, 1, 5, 20),
+(75, 'HELADO - VASO', 3000.00, 0, NULL, 1, 9, 20),
+(76, 'HELADO FRUPPYS', 3000.00, 0, NULL, 1, 9, 20),
+(77, 'HUEVOS', 2500.00, 0, NULL, 1, 6, 20),
+(78, 'HUEVOS PERICOS', 3000.00, 0, NULL, 1, 6, 20),
+(79, 'HUEVOS RANCHEROS', 5000.00, 0, NULL, 1, 6, 20),
+(80, 'JABON TOCADOR - BA?O', 2500.00, 0, NULL, 1, 2, 20),
+(81, 'JUGO DEL VALLE 1,5 LITROS', 4000.00, 0, NULL, 1, 3, 20),
+(82, 'JUGO DEL VALLE 400 ML', 1500.00, 0, NULL, 1, 3, 20),
+(83, 'JUGO DEL VALLE CAJA', 1500.00, 0, NULL, 1, 3, 20),
+(84, 'JUGO FRUTTO BOTELLA', 2600.00, 0, NULL, 1, 3, 20),
+(85, 'JUGO FRUTTO CAJA', 1500.00, 0, NULL, 1, 3, 20),
+(86, 'JUGO HIT 500 ML', 2400.00, 0, NULL, 1, 3, 20),
+(87, 'JUGO HIT 8 ONZ', 1500.00, 0, NULL, 1, 3, 20),
+(88, 'JUGO HIT CAJA GRANDE', 3500.00, 0, NULL, 1, 3, 20),
+(89, 'JUGO HIT LITRO', 4000.00, 0, NULL, 1, 3, 20),
+(90, 'LECHE ACHOCOLATADA ', 3000.00, 0, NULL, 1, 10, 20),
+(91, 'LECHE ENTERA', 2000.00, 0, NULL, 1, 10, 20),
+(92, 'LIBERAL', 1300.00, 0, NULL, 1, 11, 20),
+(93, 'LIBERAL YOYO', 1500.00, 0, NULL, 1, 11, 20),
+(94, 'LOKI?O - DULCE', 200.00, 0, NULL, 1, 7, 20),
+(95, 'LONCHEROS ', 2500.00, 0, NULL, 1, 4, 20),
+(96, 'MANI  CASERO', 1500.00, 0, NULL, 1, 7, 20),
+(97, 'MANI LA ESPECIAL ', 2000.00, 0, NULL, 1, 4, 20),
+(98, 'MANI MOTO AZUL', 1000.00, 0, NULL, 1, 4, 20),
+(99, 'MANI MOTO VARIOS', 2000.00, 0, NULL, 1, 4, 20),
+(100, 'MANI SURTIDO', 1500.00, 0, NULL, 1, 4, 20),
+(101, 'MANTECADA - TORTA', 2500.00, 0, NULL, 1, 11, 20),
+(102, 'MAQUINA DE AFEITAR 2 HOJAS ', 3000.00, 0, NULL, 1, 2, 20),
+(103, 'MAQUINA DE AFEITAR 3 HOJAS ', 3600.00, 0, NULL, 1, 2, 20),
+(104, 'MECHERAS', 1500.00, 0, NULL, 1, 2, 20),
+(105, 'MENTA SURTIDA', 200.00, 0, NULL, 1, 7, 20),
+(106, 'MILHOJAS ', 1700.00, 0, NULL, 1, 11, 20),
+(107, 'MINI BOM', 200.00, 0, NULL, 1, 7, 20),
+(108, 'MR TEA 500 ML', 2400.00, 0, NULL, 1, 3, 20),
+(109, 'NATUCHIP', 2000.00, 0, NULL, 1, 4, 20),
+(110, 'NUCITA', 700.00, 0, NULL, 1, 7, 20),
+(111, 'PALITO DE QUESO', 2500.00, 0, NULL, 1, 11, 20),
+(112, 'PAN ', 1600.00, 0, NULL, 1, 11, 20),
+(113, 'PAN 70 - LIBERAL', 1500.00, 0, NULL, 1, 11, 20),
+(114, 'PAN 70 LIBERAL', 1500.00, 0, NULL, 1, 11, 20),
+(115, 'PAN DE BONO ESTELA', 2200.00, 0, NULL, 1, 8, 20),
+(116, 'PAN LA GRAN SUIZA', 1600.00, 0, NULL, 1, 11, 20),
+(117, 'PAN PIZZA', 1800.00, 0, NULL, 1, 11, 20),
+(118, 'PANDEBONO', 2300.00, 0, NULL, 1, 8, 20),
+(119, 'PAPA PORCI?N', 3000.00, 0, NULL, 1, 1, 20),
+(120, 'PAPA RELENA', 3000.00, 0, NULL, 1, 8, 20),
+(121, 'PAPAS MARGARITAS', 2000.00, 0, NULL, 1, 4, 20),
+(122, 'PAPEL HIGIENICO ', 2500.00, 0, NULL, 1, 2, 20),
+(123, 'PASTECLO', 1500.00, 0, NULL, 1, 11, 20),
+(124, 'PASTEL DE CARNE', 3000.00, 0, NULL, 1, 8, 20),
+(125, 'PASTEL DE POLLO ', 2200.00, 0, NULL, 1, 11, 20),
+(126, 'PECHUGA ', 12000.00, 0, NULL, 1, 5, 20),
+(127, 'PERAS', 2000.00, 0, NULL, 1, 11, 20),
+(128, 'PONQUE GALA ', 2200.00, 0, NULL, 1, 11, 20),
+(129, 'PONY MALTA 1,5 LTS', 4500.00, 0, NULL, 1, 3, 20),
+(130, 'PONY MALTA PEQUE?A', 1500.00, 0, NULL, 1, 3, 20),
+(131, 'PONY MALTA PET 330 ML', 2000.00, 0, NULL, 1, 3, 20),
+(132, 'PRODUCTOS IN', 1800.00, 0, NULL, 1, 3, 20),
+(133, 'QUESADILLAS ', 2500.00, 0, NULL, 1, 10, 20),
+(134, 'REPOLLAS', 700.00, 0, NULL, 1, 11, 20),
+(135, 'SALCHIPAPA', 7500.00, 0, NULL, 1, 5, 20),
+(136, 'SALCHIPAPA ESPECIAL', 9000.00, 0, NULL, 1, 5, 20),
+(137, 'SANDWICH DE POLO', 3000.00, 0, NULL, 1, 11, 20),
+(138, 'SANDWICH LA CORRALEJA', 3000.00, 0, NULL, 1, 11, 20),
+(139, 'SAVILOE', 2500.00, 0, NULL, 1, 3, 20),
+(140, 'SODA BOTELLA GRIS', 2000.00, 0, NULL, 1, 3, 20),
+(141, 'SPEED MAX', 1600.00, 0, NULL, 1, 3, 20),
+(142, 'TAMAL-CHOCOLATE', 6500.00, 0, NULL, 1, 6, 20),
+(143, 'TORTA DE APOLA', 2500.00, 0, NULL, 1, 11, 20),
+(144, 'TORTA DE NARANJA ', 2500.00, 0, NULL, 1, 11, 20),
+(145, 'TORTA DE QUESO', 2500.00, 0, NULL, 1, 11, 20),
+(146, 'TORTA SURTIDAS', 2500.00, 0, NULL, 1, 11, 20),
+(147, 'TRIDENT', 1500.00, 0, NULL, 1, 7, 20),
+(148, 'VIVE 100', 2500.00, 0, NULL, 1, 3, 20),
+(149, 'WAFFER SABORES', 1000.00, 0, NULL, 1, 4, 20),
+(150, 'YOGO YOGO BOLSA', 2000.00, 0, NULL, 1, 10, 20),
+(151, 'YOGURT', 3000.00, 0, NULL, 1, 10, 20);
 
 -- --------------------------------------------------------
 
@@ -85,12 +212,17 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id_categoria`, `nombre`, `estado`) VALUES
-(1, 'bebida lactea', 0),
-(2, 'mmmmm', 0),
-(3, 'gggg', 1),
-(4, 'gggg', 1),
-(5, 'categoria de prueba', 1),
-(6, 'nueva', 1);
+(1, 'ALIMENTOS', 1),
+(2, 'ASEO', 1),
+(3, 'BEBIDAS', 1),
+(4, 'COMESTIBLES - PAQUETE', 1),
+(5, 'COMIDAS RAPIDAS', 1),
+(6, 'DESAYUNOS', 1),
+(7, 'DULCERIA', 1),
+(8, 'FRITOS', 1),
+(9, 'HELADOS', 1),
+(10, 'LACTEOS', 1),
+(11, 'PANADERIA-TORTAS', 1);
 
 -- --------------------------------------------------------
 
@@ -105,18 +237,6 @@ CREATE TABLE `detalle_ingreso` (
   `cantidad` int(11) NOT NULL,
   `precio` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `detalle_ingreso`
---
-
-INSERT INTO `detalle_ingreso` (`id_detalle_ingreso`, `Ingreso_id_ingreso`, `Articulo_id_articulo`, `cantidad`, `precio`) VALUES
-(1, 1, 4, 5, 1.00),
-(2, 2, 4, 2, 1.00),
-(3, 3, 4, 3, 1.00),
-(4, 4, 10, 3, 1000.00),
-(5, 5, 10, 3, 1000.00),
-(6, 6, 13, 1, 1500.00);
 
 -- --------------------------------------------------------
 
@@ -146,18 +266,6 @@ CREATE TABLE `ingreso` (
   `total` decimal(11,2) NOT NULL,
   `estado` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `ingreso`
---
-
-INSERT INTO `ingreso` (`id_ingreso`, `Usuario_id_usuario`, `fecha`, `total`, `estado`) VALUES
-(1, 1, '2023-11-15 16:34:34', 5.00, 1),
-(2, 1, '2023-11-15 16:34:57', 2.00, 1),
-(3, 1, '2023-11-15 16:35:24', 3.00, 1),
-(4, 1, '2023-11-15 17:21:45', 3000.00, 1),
-(5, 1, '2023-11-15 17:22:36', 3000.00, 1),
-(6, 1, '2023-11-15 17:25:44', 1500.00, 1);
 
 -- --------------------------------------------------------
 
@@ -212,7 +320,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombres`, `apellidos`, `tipo_documento`, `num_documento`, `email`, `user_password`, `estado`, `rol_id_rol`) VALUES
-(1, 'camilo', 'hernandez', 'CC', '1007159461', 'ah460218@gmail.com', '1234567', 1, 1);
+(2, 'camilo', 'hernánde', 'cc', '10023', 'nicollgm100@gmail.com', '123456789', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -227,30 +335,6 @@ CREATE TABLE `venta` (
   `total` decimal(11,2) NOT NULL,
   `tipo_pago` varchar(30) DEFAULT 'Efectivo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `venta`
---
-
-INSERT INTO `venta` (`id_venta`, `Usuario_id_usuario`, `fecha`, `total`, `tipo_pago`) VALUES
-(1, 1, '2023-11-05 18:12:57', 20000.00, 'Efectivo'),
-(2, 1, '2023-11-05 18:16:07', 1200.00, 'null'),
-(3, 1, '2023-11-05 18:17:10', 1200.00, 'Efectivo'),
-(4, 1, '2023-11-05 18:17:21', 1200.00, 'Efectivo'),
-(5, 1, '2023-11-05 18:17:55', 4800.00, 'Nequi'),
-(6, 1, '2023-11-07 17:41:53', 6000.00, 'Efectivo'),
-(7, 1, '2023-11-07 23:01:12', 24000.00, 'Efectivo'),
-(9, 1, '2023-11-08 21:19:55', 10000.00, 'Efectivo'),
-(10, 1, '2023-11-08 21:23:28', 3200.00, 'Efectivo'),
-(11, 1, '2023-11-08 21:51:10', 2400.00, 'Nequi'),
-(12, 1, '2023-11-09 02:52:33', 2400.00, 'Efectivo'),
-(13, 1, '2023-11-09 02:53:09', 2000.00, 'Nequi'),
-(14, 1, '2023-11-10 02:20:50', 6800.00, 'Efectivo'),
-(15, 1, '2023-11-10 02:51:10', 2401.00, 'Efectivo'),
-(16, 1, '2023-11-10 22:18:43', 3.00, 'Efectivo'),
-(17, 1, '2023-11-10 22:20:44', 2.00, 'Efectivo'),
-(18, 1, '2023-11-10 22:22:49', 1200.00, 'Efectivo'),
-(19, 1, '2023-11-10 22:51:09', 2400.00, 'Efectivo');
 
 --
 -- Índices para tablas volcadas
@@ -327,13 +411,13 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `id_articulo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_articulo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_categoria` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
@@ -369,7 +453,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
