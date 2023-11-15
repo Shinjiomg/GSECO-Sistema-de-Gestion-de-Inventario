@@ -729,6 +729,17 @@ $articulos = $ar->index();
               celda.appendChild(parrafo);
               nuevaFila.appendChild(celda);
             });
+
+            let tabla = document.getElementById("ventas_rango");
+
+            let filas = tabla.getElementsByTagName("tr");
+
+
+            for (var i = filas.length - 1; i > 0; i--) {
+                tabla.deleteRow(i);
+            }
+
+    
             // Agrega la nueva fila a la tabla
             tabla.querySelector("tbody").appendChild(nuevaFila);
           });
