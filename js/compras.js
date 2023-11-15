@@ -45,25 +45,17 @@ function resetButtonVenta() {
     btnCrearVenta.disabled = true;
 }
 
-function GenerarVenta() {
+function GenerarCompra() {
 
     let datos = new FormData();
 
-    let radios = document.getElementsByName('tipoPago');
+   
 
-    let tipo_pago = null;
-
-
-    for (var i = 0; i < radios.length; i++) {
-        if (radios[i].checked) {
-            tipo_pago = radios[i].value;
-            break;
-        }
-    }
+    
 
     datos.append("productos", JSON.stringify(products));
     datos.append("total", sumaTotales);
-    datos.append("tipo_pago", tipo_pago);
+
 
     Swal.fire({
         title: `¿Quieres generar la venta?`,
@@ -75,7 +67,7 @@ function GenerarVenta() {
         if (result.isConfirmed) {
 
             $.ajax({
-                url: "ajax/compras.ajax.php",
+                url: "ajax/ingreso.ajax.php",
                 method: "POST",
                 data: datos,
                 cache: false,
@@ -90,7 +82,7 @@ function GenerarVenta() {
                         timer: 1500
                     });
                     this.products = [];
-                    resetTipoPago();
+
                     let tabla = document.getElementById("data_table");
                     let filas = tabla.getElementsByTagName("tr");
 
@@ -201,6 +193,7 @@ function addProductTable(pr) {
         (art) => art.id_articulo === pr.id_articulo
     );
     let title = document.querySelector('#titleModal');
+    console.log(pr);
 
     if (rs?.length) {
         Swal.fire({
@@ -215,8 +208,8 @@ function addProductTable(pr) {
         $('#modal-form').modal('show');
         title.textContent = pr.nombre;
     }
-    let stock = document.getElementById('stock');
-    stock.textContent = selectedProduct.stock + ' productos';
+    /* let stock = document.getElementById('stock'); */
+    /* stock.textContent = selectedProduct.stock + ' productos'; */
 }
 
 function renderSumTotal(value) {

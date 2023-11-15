@@ -1,27 +1,24 @@
 <?php
-require_once "../models/venta.php";
+require_once "../models/ingreso.php";
 
 session_start();
 $var_session = $_SESSION['id_usuario'];
 
 if(isset($_POST["productos"])){
 
-	$compra = new Compra();
+	$ingreso = new Ingreso();
 
 	$productos= $_POST["productos"];
 	$total= $_POST["total"];
-
-	 
-
-    $compra->store($var_session, $total, $productos);
+    $ingreso->store($var_session, $total, $productos);
 
 }
 
 if(isset($_POST["range_dates"])){
-	$venta = new Venta();
+	$ingreso = new Ingreso();
 
 	$range= $_POST["range_dates"];
 
-	echo json_encode($venta -> ventasPorRango($range));
+	echo json_encode($ingreso -> ventasPorRango($range));
 
 }

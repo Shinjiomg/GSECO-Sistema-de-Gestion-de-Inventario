@@ -51,11 +51,13 @@ $articulos = $ar->index();
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+  
 
 
 </head>
@@ -544,9 +546,15 @@ $articulos = $ar->index();
           {
             extend: 'pdf',
             text: '<i class="fas fa-file-pdf"></i>', // Icono para Print (puedes cambiar la clase del icono)
-            titleAttr: 'Exportar a PDF' // Texto de información al pasar el ratón sobre el icono
+            titleAttr: 'Exportar a PDF', // Texto de información al pasar el ratón sobre el icono
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
           },
         ],
+        
         lengthMenu: [5, 10, 25, 50], // Configuramos las opciones de cantidad por página
         pageLength: 3,
         "language": {
@@ -634,6 +642,7 @@ $articulos = $ar->index();
   </script>
 
   <!--   Core JS Files and scripts  -->
+
   <script src="js/categoria.js"></script>
   <script src="js/product.js"></script>
   <script src="js/stats.js"></script>

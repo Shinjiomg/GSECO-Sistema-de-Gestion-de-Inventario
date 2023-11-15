@@ -1,10 +1,8 @@
 <?php
 require_once('db.php');
 
-class Compras extends Database
+class Ingreso extends Database
 {
-
-
     public function compras($id)
     {
         $query = $this->pdo->query('SELECT sum(total) as total_diario FROM ingreso WHERE Usuario_id_usuario =' . $id);
@@ -133,4 +131,5 @@ class Compras extends Database
         }
         return $query->fetchAll();
     }
+
 }

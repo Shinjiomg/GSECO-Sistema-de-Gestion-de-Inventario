@@ -243,7 +243,7 @@ $Categoria = new Categoria()
                                             </h5>
                                         </div>
                                         <div class="col-4 text-end">
-                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarVenta()" id="btnCrearVenta">
+                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarCompra()" id="btnCrearVenta">
                                                 </i>Generar compra
                                             </button>
                                         </div>
@@ -314,7 +314,7 @@ $Categoria = new Categoria()
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/js/plugins/chartjs.min.js"></script>
-    <script src="Js/Search.js"></script>
+    
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
