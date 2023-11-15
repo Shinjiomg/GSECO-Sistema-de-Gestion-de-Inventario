@@ -297,8 +297,13 @@ $Categoria = new Categoria()
                                 <div class="form-group">
                                     <label for="productQuantity" class="col-form-label text-uppercase font-weight-bolder">Cantidad:</label>
                                     <input class="form-control" type="number" id="productQuantity" oninput="validarCantidad(this)">
-                                    <button type="button" id="confirmButtonQuantity" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase font-weight-bolder">Guardar</button>
+                                    
                                 </div>
+                                <div class="form-group">
+                                    <label for="purchasePrice" class="col-form-label text-uppercase font-weight-bolder">Precio de compra:</label>
+                                    <input class="form-control" type="text" name="purchasePrice" id="purchasePrice">
+                                </div>
+                                <button type="button" id="confirmButtonQuantity" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase font-weight-bolder">Guardar</button>
                             </form>
                         </div>
                     </div>

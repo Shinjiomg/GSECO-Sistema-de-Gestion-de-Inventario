@@ -216,8 +216,11 @@ function renderSumTotalCompra(value) {
 
 function confirmQuantityCompra() {
     const quantityInput = document.getElementById('productQuantity');
+    const precio = document.getElementById('purchasePrice');
+
     const quantity = parseInt(quantityInput.value);
-    if (!isNaN(quantity) && selectedProduct.stock >= quantity) {
+    const precioCompra = parseFloat(precio.value);
+    if (!isNaN(quantity)) {
 
         const rs = products.filter(
             (art) => art.id_articulo === selectedProduct.id_articulo
@@ -226,6 +229,7 @@ function confirmQuantityCompra() {
         if (rs?.length) {
             prActualizado = products.find(art => art.id_articulo === selectedProduct.id_articulo)
             prActualizado.cantidad = quantity;
+            prActualizado.precio_venta = precioCompra;
             $('#modal-form-compras').modal('hide');
             Swal.fire({
                 title: "Editar producto",
@@ -236,7 +240,7 @@ function confirmQuantityCompra() {
             renderTableCompras();
             return;
         } else {
-            products.push({ ...selectedProduct, cantidad: quantity });
+            products.push({ ...selectedProduct, cantidad: quantity, precio_venta: precioCompra });
             Swal.fire({
                 title: "Agregar producto",
                 text: "El producto fue agregado al carrito de compras",
@@ -245,6 +249,7 @@ function confirmQuantityCompra() {
             });
         }
         quantityInput.value = 0;
+        precio.value = '';
         renderTableCompras();
 
     } else {
@@ -335,15 +340,21 @@ function habilitarBotonVenta() {
 window.onload = habilitarBotonVenta;
 
 function editProduct(id_articulo) {
+    console.log('entro');
     selectedProduct = products.find(p => p.id_articulo === id_articulo);
+    console.log(selectedProduct);
 
     title = document.getElementById('titleModal');
     title.textContent = selectedProduct.nombre;
 
+    precio = document.getElementById('purchasePrice');
+    precio.value = selectedProduct.precio_venta.toString();
+
     $('#modal-form-compras').modal('show');
     let cantidad = document.getElementById('productQuantity');
-    let stock = document.getElementById('stock');
-    stock.textContent = selectedProduct.stock + ' productos';
+
+   
+
     let cantidadValue = +selectedProduct.cantidad;
 
     if (cantidadValue <= 1) {
