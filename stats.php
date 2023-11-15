@@ -278,12 +278,12 @@ $articulos = $ar->index();
               }
               if (!empty($productosAgotandose)) {
               ?>
-                <div class="alert alert-warning lowercase" role="alert" style="color: white">
+                <!-- <div class="alert alert-warning lowercase" role="alert" style="color: white">
                   <strong>¡Aviso!</strong> Se están agotando los siguientes productos:
                   <strong>
                     <?php echo implode(', ', $productosAgotandose); ?>
                   </strong>
-                </div>
+                </div> -->
               <?php } ?>
               <div class="row pb-2 p-3">
                 <div class="col-6 d-flex align-items-center text-uppercase">
