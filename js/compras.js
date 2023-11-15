@@ -3,7 +3,7 @@ selectedProduct = null;
 sumaTotales = 0;
 
 
-function showProductsByCategory(category, name) {
+function ProductsByCategory(category, name) {
 
     let datos = new FormData();
 
@@ -21,7 +21,7 @@ function showProductsByCategory(category, name) {
         contentType: false,
         processData: false,
         success: function (response) {
-            renderProducts(response)
+            renderProductsTable(response)
         }
 
     });
@@ -33,16 +33,11 @@ function resetTitle() {
     title.textContent = '';
 }
 
-function resetTipoPago() {
-    let radios = document.getElementsByName('tipoPago');
-    radios.forEach(function (checkbox) {
-        checkbox.checked = false;
-    });
-}
+
 
 function resetButtonVenta() {
-    const btnCrearVenta = document.getElementById("btnCrearVenta");
-    btnCrearVenta.disabled = true;
+    const btnCrearCompra = document.getElementById("btnCrearCompra");
+    btnCrearCompra.disabled = true;
 }
 
 function GenerarCompra() {
@@ -83,7 +78,7 @@ function GenerarCompra() {
                     });
                     this.products = [];
 
-                    let tabla = document.getElementById("data_table");
+                    let tabla = document.getElementById("data_table_compras");
                     let filas = tabla.getElementsByTagName("tr");
 
                     for (var i = filas.length - 1; i > 0; i--) {
@@ -91,8 +86,8 @@ function GenerarCompra() {
                     }
                     resetButtonVenta();
                     resetTitle();
-                    clearProducts();
-                    renderSumTotal(0);
+                    clearProductsCategory();
+                    renderSumTotalCompra(0);
                     selectedProduct = null;
                     sumaTotales = 0;
                     products = [];
@@ -110,7 +105,7 @@ function GenerarCompra() {
 }
 
 
-function clearProducts() {
+function clearProductsCategory() {
     divContainer = document.getElementById('products_category')
 
     while (divContainer.firstChild) {
@@ -118,9 +113,9 @@ function clearProducts() {
     }
 }
 
-function renderProducts(data) {
+function renderProductsTable(data) {
     data = JSON.parse(data);
-    clearProducts();
+    clearProductsCategory();
     if (data.length > 0) {
         data.forEach(pr => {
             // Crear un contenedor div con clase "col-md-4"
@@ -128,7 +123,7 @@ function renderProducts(data) {
             colDiv.className = "col-xl-4";
             colDiv.addEventListener("click", function () {
                 // Llama a la función addProductTable con el valor de pr
-                addProductTable(pr);
+                addProductTableCompras(pr);
             });
 
             // Crear un div con clase "producto"
@@ -186,7 +181,7 @@ function renderProducts(data) {
 
 
 
-function addProductTable(pr) {
+function addProductTableCompras(pr) {
 
 
     const rs = products.filter(
@@ -205,21 +200,21 @@ function addProductTable(pr) {
         return;
     } else {
         selectedProduct = pr;
-        $('#modal-form').modal('show');
+        $('#modal-form-compras').modal('show');
         title.textContent = pr.nombre;
     }
     /* let stock = document.getElementById('stock'); */
     /* stock.textContent = selectedProduct.stock + ' productos'; */
 }
 
-function renderSumTotal(value) {
+function renderSumTotalCompra(value) {
     let total = document.getElementById('total');
     var precioVentaFormateado = parseFloat(value).toLocaleString('es-CO');
     total.textContent = '$' + precioVentaFormateado;
 
 }
 
-function confirmQuantity() {
+function confirmQuantityCompra() {
     const quantityInput = document.getElementById('productQuantity');
     const quantity = parseInt(quantityInput.value);
     if (!isNaN(quantity) && selectedProduct.stock >= quantity) {
@@ -231,14 +226,14 @@ function confirmQuantity() {
         if (rs?.length) {
             prActualizado = products.find(art => art.id_articulo === selectedProduct.id_articulo)
             prActualizado.cantidad = quantity;
-            $('#modal-form').modal('hide');
+            $('#modal-form-compras').modal('hide');
             Swal.fire({
                 title: "Editar producto",
                 text: "El registro fue editado exitosamente",
                 icon: "success",
                 timer: 1500
             });
-            renderTable();
+            renderTableCompras();
             return;
         } else {
             products.push({ ...selectedProduct, cantidad: quantity });
@@ -250,7 +245,7 @@ function confirmQuantity() {
             });
         }
         quantityInput.value = 0;
-        renderTable();
+        renderTableCompras();
 
     } else {
         Swal.fire({
@@ -264,8 +259,8 @@ function confirmQuantity() {
 
 
 
-function renderTable() {
-    let tabla = document.getElementById("data_table");
+function renderTableCompras() {
+    let tabla = document.getElementById("data_table_compras");
 
     let filas = tabla.getElementsByTagName("tr");
 
@@ -309,9 +304,9 @@ function renderTable() {
         tabla.querySelector("tbody").appendChild(nuevaFila);
 
         const modal = document.getElementById('modal');
-        renderSumTotal(sumaTotales)
+        renderSumTotalCompra(sumaTotales)
 
-        $('#modal-form').modal('hide');
+        $('#modal-form-compras').modal('hide');
     })
     habilitarBotonVenta();
 }
@@ -327,13 +322,13 @@ function habilitarBotonVenta() {
         }
     });
 
-    const tabla = document.getElementById("data_table");
-    const btnCrearVenta = document.getElementById("btnCrearVenta");
+    const tabla = document.getElementById("data_table_compras");
+    const btnCrearCompra = document.getElementById("btnCrearCompra");
 
     if (tabla && tabla.rows.length > 1 ) { // Verifica que la tabla tenga más de una fila (cabecera + al menos un elemento)
-        btnCrearVenta.disabled = false; // Habilita el botón
+        btnCrearCompra.disabled = false; // Habilita el botón
     } else {
-        btnCrearVenta.disabled = true; // Deshabilita el botón
+        btnCrearCompra.disabled = true; // Deshabilita el botón
     }
 }
 // Llama a la función para habilitar o deshabilitar el botón cuando se carga la página
@@ -345,7 +340,7 @@ function editProduct(id_articulo) {
     title = document.getElementById('titleModal');
     title.textContent = selectedProduct.nombre;
 
-    $('#modal-form').modal('show');
+    $('#modal-form-compras').modal('show');
     let cantidad = document.getElementById('productQuantity');
     let stock = document.getElementById('stock');
     stock.textContent = selectedProduct.stock + ' productos';
@@ -394,16 +389,16 @@ function removeProduct(id_articulo) {
 
             // Actualizar el elemento HTML del total
 
-            renderSumTotal(sumaTotales)
-            renderTable();
+            renderSumTotalCompra(sumaTotales)
+            renderTableCompras();
         }
     })
 
 
 }
 
-const confirmButton = document.getElementById('confirmButton');
-confirmButton.addEventListener('click', confirmQuantity);
+const confirmButton = document.getElementById('confirmButtonQuantity');
+confirmButton.addEventListener('click', confirmQuantityCompra);
 
 
 

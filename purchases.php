@@ -177,7 +177,7 @@ $Categoria = new Categoria()
                             <?php
                             foreach ($categorias as $c) {
                             ?>
-                                <li onclick="showProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')">
+                                <li onclick="ProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')">
                                     <a class="dropdown-item text-uppercase font-weight-bolder">
                                         <?php echo $c->nombre ?>
                                     </a>
@@ -208,7 +208,7 @@ $Categoria = new Categoria()
                                 </div>
                                 <div>
                                     <div class="table-responsive">
-                                        <table id="data_table" class="table align-items-center">
+                                        <table id="data_table_compras" class="table align-items-center">
                                             <thead>
                                                 <tr>
                                                     <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
@@ -243,7 +243,7 @@ $Categoria = new Categoria()
                                             </h5>
                                         </div>
                                         <div class="col-4 text-end">
-                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarCompra()" id="btnCrearVenta">
+                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarCompra()" id="btnCrearCompra">
                                                 </i>Generar compra
                                             </button>
                                         </div>
@@ -284,7 +284,7 @@ $Categoria = new Categoria()
         </div>
     </div>
 
-    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+    <div class="modal fade" id="modal-form-compras" tabindex="-1" role="dialog" aria-labelledby="modal-form-compras" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -297,7 +297,7 @@ $Categoria = new Categoria()
                                 <div class="form-group">
                                     <label for="productQuantity" class="col-form-label text-uppercase font-weight-bolder">Cantidad:</label>
                                     <input class="form-control" type="number" id="productQuantity" oninput="validarCantidad(this)">
-                                    <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase font-weight-bolder">Guardar</button>
+                                    <button type="button" id="confirmButtonQuantity" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase font-weight-bolder">Guardar</button>
                                 </div>
                             </form>
                         </div>
