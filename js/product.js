@@ -30,6 +30,7 @@ function getProducts() {
 
 
 function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria) {
+    console.log('entro');
 
     let newProduct = {
         nombre,
@@ -45,7 +46,9 @@ function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria)
 
     let category = document.getElementById('categories_select');
 
-    var selectedText = category.options[category.selectedIndex].text;
+    let selectedText = category.options[category.selectedIndex].text;
+
+    console.log(selectedText);
 
     $.ajax({
         url: "ajax/productos.ajax.php",
