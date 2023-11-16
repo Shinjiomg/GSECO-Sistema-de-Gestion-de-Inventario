@@ -24,7 +24,7 @@ if (isset($_POST['btningresar'])) {
 			}
 		}
 	} else {
-		echo "<script>alert('correo y/o contraseña no coinciden');window.location= 'login.php' </script>";
+		echo "<script>alert('correo y/o contraseña no coinciden');window.location= 'index.php' </script>";
 	}
 } */
 ?>

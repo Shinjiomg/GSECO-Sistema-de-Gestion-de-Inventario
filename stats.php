@@ -21,7 +21,7 @@ $articulos = $ar->index();
 <!-- librerías -->
 
 <head>
-  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html;" charset="ISO-8859-1" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="./img/logo.png">
   <link rel="icon" type="image/png" href="./img/logo.png">
@@ -51,13 +51,13 @@ $articulos = $ar->index();
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-  
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-  
+
 
 
 </head>
@@ -470,7 +470,7 @@ $articulos = $ar->index();
                 <div class="col-12 d-flex align-items-center justify-content-between">
                   <h4 class="text-uppercase font-weight-bolder">Ventas por empleado</h4>
 
-                  <input type="text" id="daterange" name="daterange" value="11/05/2023 - 11/05/2023" class="custom-daterangepicker"/>
+                  <input type="text" id="daterange" name="daterange" value="11/05/2023 - 11/05/2023" class="custom-daterangepicker" />
 
 
                 </div>
@@ -548,13 +548,13 @@ $articulos = $ar->index();
             text: '<i class="fas fa-file-pdf"></i>', // Icono para Print (puedes cambiar la clase del icono)
             titleAttr: 'Exportar a PDF', // Texto de información al pasar el ratón sobre el icono
             exportOptions: {
-                modifier: {
-                    page: 'current'
-                }
+              modifier: {
+                page: 'current'
+              }
             }
           },
         ],
-        
+
         lengthMenu: [5, 10, 25, 50], // Configuramos las opciones de cantidad por página
         pageLength: 3,
         "language": {
@@ -651,7 +651,7 @@ $articulos = $ar->index();
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="assets/js/plugins/chartjs.min.js"></script>
-  <!-- <script>
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Obtiene la fecha actual
       const currentDate = new Date();
@@ -661,8 +661,8 @@ $articulos = $ar->index();
       const dateRangeInput = document.querySelector('input[name="daterange"]');
       dateRangeInput.value = formattedDate;
     });
-  </script> -->
-  <!-- <script src="Js/Search.js"></script> -->
+  </script>
+  <script src="Js/Search.js"></script>
 
 
   <!-- Date picker -->
@@ -737,10 +737,10 @@ $articulos = $ar->index();
 
 
             for (var i = filas.length - 1; i > 0; i--) {
-                tabla.deleteRow(i);
+              tabla.deleteRow(i);
             }
 
-    
+
             // Agrega la nueva fila a la tabla
             tabla.querySelector("tbody").appendChild(nuevaFila);
           });

@@ -3,7 +3,7 @@
 session_start();
 if (isset($_SESSION['id_usuario'])) {
     session_destroy();
-    header('Location:login.php');
+    header('Location:index.php');
 }else {
     echo "no hay nada";
 }
