@@ -6,6 +6,8 @@ $id = $_GET['id_usuario'];
 $fecha_inicio = $_GET['fecha_inicio'];
 $fecha_final = $_GET['fecha_final'];
 $venta = new Venta();
+$ventas_rango = $venta->ventasPorRangoDetalle($id, $fecha_inicio, $fecha_final);
+
 
 class pdf extends FPDF
 {
@@ -21,11 +23,9 @@ class pdf extends FPDF
 		$this->SetTextColor(255, 255, 255);
 		$this->Write(-20, 'Tienda del soldado GSECO');
 		$this->Ln();
-		$this->Write(45, 'FACTURA DE VENTA');
+		$this->Write(45, 'VENTA POR RANGO');
 		$this->Ln();
 		$this->SetFont('Arial', 'I', 20);
-		/* $this->Write(-25, '#GSECO-');
-		$this->Write(-25, $order->id_venta); */
 		$this->Image('../img/logo.png', 150, 2, 60, 50);
 		$this->Ln();
 		$this->SetFont('Arial', 'I', 10);
@@ -47,50 +47,53 @@ $fpdf->AddPage('portrait', 'letter');
 $fpdf->SetMargins(10, 30, 20, 20);
 $fpdf->SetFont('Arial', 'I', 12);
 $fpdf->SetTextColor(0, 0, 0);
-$ventas_rango = $venta->ventasPorRangoDetalle($id, $fecha_inicio, $fecha_final);
 
 
 
-/* $fpdf->SetFillColor(0, 0, 0);
+
+$fpdf->SetFillColor(0, 0, 0);
 $fpdf->SetY(60);
 $fpdf->SetX(10);
 $fpdf->Write(5, 'Fecha:');
 $fpdf->SetX(25);
-$fechaFormateada = date("d/m/Y H:i", strtotime($order->fecha));
+$fechaFormateada = date("d/m/Y H:i");
 $fpdf->Write(5, $fechaFormateada);
-$fpdf->Ln(); */
+$fpdf->Ln();
+$fpdf->Ln();
 
 /* $fpdf->Write(5, 'Venta realizada por: ');
 $nombreCompleto = ucwords($order->nombre_completo);
 $fpdf->Write(5, $nombreCompleto);
 $fpdf->Ln();
-$fpdf->Ln();
+$fpdf->Ln(); */
 $fpdf->SetFont('Arial', '', 9);
 $fpdf->SetTextColor(255, 255, 255);
 $fpdf->SetFillColor(57, 38, 107);
+$fpdf->Cell(60, 10, 'NOMBRE COMPLETO', 0, 0, 'C', 1);
 $fpdf->Cell(60, 10, 'PRODUCTO', 0, 0, 'C', 1);
-$fpdf->Cell(60, 10, 'VALOR UNITARIO', 0, 0, 'C', 1);
 $fpdf->Cell(40, 10, 'CANTIDAD', 0, 0, 'C', 1);
 $fpdf->Cell(30, 10, 'SUBTOTAL', 0, 0, 'C', 1);
-$fpdf->Ln(); */
+$fpdf->Ln();
 
-/* $fpdf->SetTextColor(0, 0, 0);
+$fpdf->SetTextColor(0, 0, 0);
 $fpdf->SetFillColor(255, 255, 255);
-foreach ($order_details as $detail) {
-	$precio = number_format($detail->precio, 0, '', '.');
+foreach ($ventas_rango as $v) {
+	/* $precio = number_format($detail->precio, 0, '', '.');
 	$cantidad = number_format($detail->cantidad, 0, '', '.');
-	$total = number_format($detail->cantidad * $detail->precio, 0, '', '.');
-	$fpdf->Cell(60, 10, $detail->nombre, 0, 0, 'C', 1);
-	$fpdf->Cell(60, 10, "$" . $precio, 0, 0, 'C', 1);
-	$fpdf->Cell(40, 10, $cantidad, 0, 0, 'C', 1);
-	$fpdf->Cell(30, 10, "$" . $total, 0, 0, 'C', 1); */
-	/* 	$fpdf->Cell(60, 10, $detail->product_name, 0, 0, 'C', 1);
+	$total = number_format($detail->cantidad * $detail->precio, 0, '', '.'); */
+	$fpdf->Cell(60, 10, $v->nombres.' '.$v->apellidos, 0, 0, 'C', 1);
+	$fpdf->Cell(60, 10, $v->nombre, 0, 0, 'C', 1);
+	$fpdf->Cell(30, 10, $v->cantidad_total, 0, 0, 'C', 1); 
+	$fpdf->Cell(40, 10,'$ '.$v->subtotal, 0, 0, 'C', 1);
+	/* 
+	$fpdf->Cell(30, 10, "$" . $total, 0, 0, 'C', 1); 
+	$fpdf->Cell(60, 10, $detail->product_name, 0, 0, 'C', 1);
 	$fpdf->Cell(60, 10, $detail->description, 0, 0, 'C', 1);
 	$fpdf->Cell(20, 10, $detail->unit_price, 0, 0, 'C', 1);
 	$fpdf->Cell(20, 10, $detail->quantity, 0, 0, 'C', 1);
 	$fpdf->Cell(30, 10, $detail->uni_price * $detail->quantity, 0, 0, 'C', 1); */
-	/* $fpdf->Ln();
-} */
+	$fpdf->Ln();
+}
 /* $fpdf->Ln();
 $fpdf->Ln();
 $fpdf->SetFont('Arial', 'B', 16);

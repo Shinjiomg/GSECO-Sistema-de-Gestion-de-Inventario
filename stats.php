@@ -685,8 +685,12 @@ $articulos = $ar->index();
 </body>
 
 <script>
-  function viewPDFVentas(id_usuario, fecha_inicio, fecha_final) {
-    const url = `reports/venta_rango.php?id_usuario=${id_usuario}&fecha_inicio=${fecha_inicio}&fecha_final=${fecha_final}`;
+  let rangeDates;
+
+  function viewPDFVentas(id_usuario) {
+
+ 
+    const url = `reports/venta_rango.php?id_usuario=${id_usuario}&fecha_inicio=${rangeDates.start}&fecha_final=${rangeDates.end}`;
 
     // Abre una ventana emergente
     window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
@@ -699,7 +703,7 @@ $articulos = $ar->index();
 
     
 
-      let rangeDates = {
+      rangeDates = {
         start: start.format('YYYY-MM-DD'),
         end: end.format('YYYY-MM-DD')
       }
@@ -730,7 +734,7 @@ $articulos = $ar->index();
             let contenidoCeldas = [
               v.nombres + ' ' + v.apellidos,
               "$" + precioVentaFormateado,
-              `<a class="text-danger font-weight-bold text-md"  onclick="viewPDFVentas( ${v.id_usuario},${start.format('YYYY-MM-DD')}, ${end.format('YYYY-MM-DD')})" data-original-title="Delete user"><i class="fas fa-file-pdf"></i></a>`,
+              `<a class="text-danger font-weight-bold text-md"  onclick="viewPDFVentas( ${v.id_usuario})" data-original-title="Delete user"><i class="fas fa-file-pdf"></i></a>`,
             ];
 
             contenidoCeldas.forEach(function(contenido) {
