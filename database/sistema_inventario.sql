@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2023 a las 23:03:57
+-- Tiempo de generación: 17-11-2023 a las 17:17:20
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -140,7 +140,7 @@ INSERT INTO `articulo` (`id_articulo`, `nombre`, `precio_venta`, `stock`, `descr
 (95, 'LONCHEROS ', 2500.00, 0, NULL, 1, 4, 20),
 (96, 'MANI  CASERO', 1500.00, 0, NULL, 1, 7, 20),
 (97, 'MANI LA ESPECIAL ', 2000.00, 0, NULL, 1, 4, 20),
-(98, 'MANI MOTO AZUL', 1000.00, 0, NULL, 1, 4, 20),
+(98, 'MANI MOTO AZUL', 1000.00, 0, NULL, 1, 4, 28),
 (99, 'MANI MOTO VARIOS', 2000.00, 0, NULL, 1, 4, 20),
 (100, 'MANI SURTIDO', 1500.00, 0, NULL, 1, 4, 20),
 (101, 'MANTECADA - TORTA', 2500.00, 0, NULL, 1, 11, 20),
@@ -251,6 +251,19 @@ CREATE TABLE `detalle_venta` (
   `cantidad` int(11) NOT NULL,
   `precio` decimal(11,2) NOT NULL,
   `metodo_pago` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `gastos`
+--
+
+CREATE TABLE `gastos` (
+  `id_gasto` int(10) UNSIGNED NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  `total` decimal(11,2) NOT NULL,
+  `id_usuario` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -371,6 +384,13 @@ ALTER TABLE `detalle_venta`
   ADD KEY `metodo_pago` (`metodo_pago`);
 
 --
+-- Indices de la tabla `gastos`
+--
+ALTER TABLE `gastos`
+  ADD PRIMARY KEY (`id_gasto`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
 -- Indices de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
@@ -432,6 +452,12 @@ ALTER TABLE `detalle_venta`
   MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
+-- AUTO_INCREMENT de la tabla `gastos`
+--
+ALTER TABLE `gastos`
+  MODIFY `id_gasto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
@@ -485,6 +511,12 @@ ALTER TABLE `detalle_venta`
   ADD CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`Venta_id_venta`) REFERENCES `venta` (`id_venta`),
   ADD CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`Articulo_id_articulo`) REFERENCES `articulo` (`id_articulo`),
   ADD CONSTRAINT `detalle_venta_ibfk_3` FOREIGN KEY (`metodo_pago`) REFERENCES `metodos_pago` (`id_metodo_pago`);
+
+--
+-- Filtros para la tabla `gastos`
+--
+ALTER TABLE `gastos`
+  ADD CONSTRAINT `gastos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
 -- Filtros para la tabla `ingreso`
