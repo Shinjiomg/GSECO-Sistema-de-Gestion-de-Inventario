@@ -486,6 +486,9 @@ $articulos = $ar->index();
                     <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
                       Total
                     </th>
+                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+
+                    </th>
 
                   </tr>
                 </thead>
@@ -682,13 +685,19 @@ $articulos = $ar->index();
 </body>
 
 <script>
+  function viewPDFVentas(id_usuario, fecha_inicio, fecha_final) {
+    const url = `reports/venta_rango.php?id_usuario=${id_usuario}&fecha_inicio=${fecha_inicio}&fecha_final=${fecha_final}`;
+
+    // Abre una ventana emergente
+    window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
+  }
+
   $(function() {
     $('input[name="daterange"]').daterangepicker({
       opens: 'left'
     }, function(start, end, label) {
 
-      console.log(start.format('YYYY-MM-DD'));
-      console.log(end.format('YYYY-MM-DD'));
+    
 
       let rangeDates = {
         start: start.format('YYYY-MM-DD'),
@@ -707,7 +716,7 @@ $articulos = $ar->index();
         contentType: false,
         processData: false,
         success: function(response) {
-          console.log(response);
+
           let tabla = document.getElementById('ventas_rango');
           ventas = JSON.parse(response);
 
@@ -721,6 +730,7 @@ $articulos = $ar->index();
             let contenidoCeldas = [
               v.nombres + ' ' + v.apellidos,
               "$" + precioVentaFormateado,
+              `<a class="text-danger font-weight-bold text-md"  onclick="viewPDFVentas( ${v.id_usuario},${start.format('YYYY-MM-DD')}, ${end.format('YYYY-MM-DD')})" data-original-title="Delete user"><i class="fas fa-file-pdf"></i></a>`,
             ];
 
             contenidoCeldas.forEach(function(contenido) {
