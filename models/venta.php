@@ -132,7 +132,11 @@ class Venta extends Database
 	public function ventasPorRangoDetalle($id_usuario, $fecha_inicio, $fecha_final)
 	{
 
-		$query = $this->pdo->query("SELECT  usuario.nombres, usuario.apellidos FROM venta JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario  WHERE venta.Usuario_id_usuario = {$id_usuario} AND DATE(venta.fecha) BETWEEN '{$fecha_inicio}' AND '{$fecha_final}'");
+		$query = $this->pdo->query("SELECT  usuario.nombres, usuario.apellidos, sum(detalle_venta.cantidad * detalle_venta.precio) FROM venta 
+		JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario  
+		INNER JOIN detalle_venta ON detalle_venta.Articulo_id_articulo = articulo.id_articulo
+		JOIN articulo ON detalle_venta.Articulo_id_articulo = articulo.id_articulo
+		WHERE venta.Usuario_id_usuario = {$id_usuario} AND DATE(venta.fecha) BETWEEN '{$fecha_inicio}' AND '{$fecha_final}'");
 		
 		return $query->fetchAll();
 	}
