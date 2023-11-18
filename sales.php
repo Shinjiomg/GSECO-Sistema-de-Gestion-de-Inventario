@@ -2,10 +2,12 @@
 include_once("conexion.php");
 include_once("Consultas.php");
 require('./models/categoria.php');
+require('./models/metodos_pago.php');
 
 $rol = intval($_SESSION['rol']);
 
-$Categoria = new Categoria()
+$Categoria = new Categoria();
+$MetodosPago = new MetodosPago();
 
 
 ?>
@@ -336,9 +338,9 @@ $Categoria = new Categoria()
                                     <input class="form-control" type="number" id="productQuantity" oninput="validarCantidad(this)">
                                     <p class="text-uppercase font-weight-bolder"><em>Unidades disponibles:</em> <strong id="stock"></strong></p>
                                     <label for="" class="col-form-label text-uppercase">Método de pago:</label>
-                                    <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
-                                        <?php foreach ($categorias as $c) { ?>
-                                            <option value="<?php echo $c->id_categoria ?>" selected="true"><?php echo $c->nombre ?></option>
+                                    <select class="form-control" name="choices-button" id="metodos_pagos" placeholder="Departure">
+                                        <?php foreach ($MetodosPago->index() as $mp) { ?>
+                                            <option value="<?php echo $mp->id_metodo_pago ?>" selected="true"><?php echo $mp->nombre ?></option>
                                         <?php } ?>
                                     </select>
                                     <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase font-weight-bolder">Guardar</button>
