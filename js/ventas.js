@@ -229,6 +229,11 @@ function renderSumTotal(value) {
 function confirmQuantity() {
     const quantityInput = document.getElementById('productQuantity');
     const quantity = parseInt(quantityInput.value);
+
+    const metodo_pago = document.getElementById('metodos_pagos');
+    const indiceSeleccionado = metodo_pago.selectedIndex;
+
+
     if (!isNaN(quantity) && selectedProduct.stock >= quantity) {
 
         const rs = products.filter(
@@ -238,6 +243,8 @@ function confirmQuantity() {
         if (rs?.length) {
             prActualizado = products.find(art => art.id_articulo === selectedProduct.id_articulo)
             prActualizado.cantidad = quantity;
+            prActualizado.metodo_pago_id =  metodo_pago.value;
+            prActualizado.metodo_pago_text =  metodo_pago.options[indiceSeleccionado].text;
             $('#modal-form').modal('hide');
             Swal.fire({
                 title: "Editar producto",
@@ -248,7 +255,12 @@ function confirmQuantity() {
             renderTable();
             return;
         } else {
-            products.push({ ...selectedProduct, cantidad: quantity });
+            products.push({ 
+                ...selectedProduct, 
+                cantidad: quantity,
+                metodo_pago_id: metodo_pago.value,
+                metodo_pago_text:  metodo_pago.options[indiceSeleccionado].text
+            });
             Swal.fire({
                 title: "Agregar producto",
                 text: "El producto fue agregado al carrito de compras",
@@ -296,6 +308,7 @@ function renderTable() {
             pr.nombre,
             pr.cantidad,
             "$" + precioVentaFormateado,
+            pr.metodo_pago_text,
             "$" + subtotalFormateado,
             // Celda con el botón "Editar"
             '<a class="text-primary font-weight-bold text-md" onclick="editProduct(' + pr.id_articulo + ')" data-original-title="Delete user">Editar</a>',
