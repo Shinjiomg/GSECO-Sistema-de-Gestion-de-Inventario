@@ -33,12 +33,7 @@ function resetTitle() {
     title.textContent = '';
 }
 
-function resetTipoPago() {
-    let radios = document.getElementsByName('tipoPago');
-    radios.forEach(function (checkbox) {
-        checkbox.checked = false;
-    });
-}
+
 
 function resetButtonVenta() {
     const btnCrearVenta = document.getElementById("btnCrearVenta");
@@ -49,22 +44,12 @@ function GenerarVenta() {
 
     let datos = new FormData();
 
-    let radios = document.getElementsByName('tipoPago');
-
-    let tipo_pago = null;
 
 
-    for (var i = 0; i < radios.length; i++) {
-        if (radios[i].checked) {
-            tipo_pago = radios[i].value;
-            break;
-        }
-    }
 
     datos.append("productos", JSON.stringify(products));
     datos.append("total", sumaTotales);
-    datos.append("tipo_pago", tipo_pago);
-
+  
     Swal.fire({
         title: `¿Quieres generar la venta?`,
 
@@ -90,7 +75,7 @@ function GenerarVenta() {
                         timer: 1500
                     });
                     this.products = [];
-                    resetTipoPago();
+                    
                     let tabla = document.getElementById("data_table");
                     let filas = tabla.getElementsByTagName("tr");
 
@@ -288,12 +273,13 @@ function renderTable() {
     let filas = tabla.getElementsByTagName("tr");
 
     sumaTotales = 0;
+    sumaEfectivo = 0;
 
     for (var i = filas.length - 1; i > 0; i--) {
         tabla.deleteRow(i);
     }
     products.forEach(pr => {
-        let sumaEfectivo = 0;
+        sumaEfectivo = 0;
         let nuevaFila = document.createElement("tr");
         var precioVentaFormateado = parseFloat(pr.precio_venta).toLocaleString('es-CO');
         var subtotal = pr.cantidad * pr.precio_venta;

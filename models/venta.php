@@ -11,16 +11,16 @@ class Venta extends Database
 		return $query->fetch();
 	}
 
-	public function store($idUsuario, $total, $productos, $tipoPago)
+	public function store($idUsuario, $total, $productos)
 	{
 
-		$query = $this->pdo->prepare('INSERT INTO venta (Usuario_id_usuario, total, fecha, tipo_pago) VALUES (:usuario_id, :total, :fecha, :tipo_pago)');
+		$query = $this->pdo->prepare('INSERT INTO venta (Usuario_id_usuario, total, fecha) VALUES (:usuario_id, :total, :fecha)');
 
 
 		$query->bindParam(':usuario_id', $idUsuario);
 		$query->bindParam(':total', $total);
 		$query->bindParam(':fecha', date('Y-m-d H:i:s'));
-		$query->bindParam(':tipo_pago', $tipoPago);
+		
 		$query->execute();
 
 
@@ -29,7 +29,7 @@ class Venta extends Database
 			$id_venta = $this->pdo->lastInsertId();
 			$productos = json_decode($productos);
 			foreach ($productos as $articulo) {
-				$this->insertDetalleVenta($id_venta, $articulo->id_articulo, $articulo->cantidad, $articulo->precio_venta);
+				$this->insertDetalleVenta($id_venta, $articulo->id_articulo, $articulo->cantidad, $articulo->precio_venta, $articulo->metodo_pago_id);
 				$this->discountProduct($articulo->id_articulo, $articulo->cantidad);
 			}
 		} else {
@@ -47,16 +47,17 @@ class Venta extends Database
 
 
 
-	public function insertDetalleVenta($id_venta, $id_articulo, $cantidad, $precio)
+	public function insertDetalleVenta($id_venta, $id_articulo, $cantidad, $precio, $metodo_pago_id)
 	{
 
-		$query = $this->pdo->prepare('INSERT INTO detalle_venta (Venta_id_venta, Articulo_id_articulo, cantidad, precio) VALUES (:id_venta, :id_articulo, :cantidad, :precio)');
+		$query = $this->pdo->prepare('INSERT INTO detalle_venta (Venta_id_venta, Articulo_id_articulo, cantidad, precio, metodo_pago) VALUES (:id_venta, :id_articulo, :cantidad, :precio, :metodo_pago)');
 
 
 		$query->bindParam(':id_venta', $id_venta);
 		$query->bindParam(':id_articulo', $id_articulo);
 		$query->bindParam(':cantidad', $cantidad);
 		$query->bindParam(':precio', $precio);
+		$query->bindParam(':metodo_pago', $metodo_pago_id);
 		$query->execute();
 
 
