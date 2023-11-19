@@ -233,9 +233,7 @@ function confirmQuantity() {
     const metodo_pago = document.getElementById('metodos_pagos');
     const indiceSeleccionado = metodo_pago.selectedIndex;
 
-
-    if (!isNaN(quantity) && selectedProduct.stock >= quantity) {
-
+    if (!isNaN(quantity) && (selectedProduct.categoria_id_categoria === 8 || selectedProduct.stock >= quantity)) {
         const rs = products.filter(
             (art) => art.id_articulo === selectedProduct.id_articulo
         );
@@ -243,8 +241,8 @@ function confirmQuantity() {
         if (rs?.length) {
             prActualizado = products.find(art => art.id_articulo === selectedProduct.id_articulo)
             prActualizado.cantidad = quantity;
-            prActualizado.metodo_pago_id =  metodo_pago.value;
-            prActualizado.metodo_pago_text =  metodo_pago.options[indiceSeleccionado].text;
+            prActualizado.metodo_pago_id = metodo_pago.value;
+            prActualizado.metodo_pago_text = metodo_pago.options[indiceSeleccionado].text;
             $('#modal-form').modal('hide');
             Swal.fire({
                 title: "Editar producto",
@@ -255,11 +253,11 @@ function confirmQuantity() {
             renderTable();
             return;
         } else {
-            products.push({ 
-                ...selectedProduct, 
+            products.push({
+                ...selectedProduct,
                 cantidad: quantity,
                 metodo_pago_id: metodo_pago.value,
-                metodo_pago_text:  metodo_pago.options[indiceSeleccionado].text
+                metodo_pago_text: metodo_pago.options[indiceSeleccionado].text
             });
             Swal.fire({
                 title: "Agregar producto",
@@ -338,19 +336,10 @@ function renderTable() {
 
 function habilitarBotonVenta() {
 
-    let radios = document.getElementsByName('tipoPago');
-    let metododePagoSeleccionado = false;
-
-    radios.forEach(function (checkbox) {
-        if (checkbox.checked) {
-            metododePagoSeleccionado = true;
-        }
-    });
-
     const tabla = document.getElementById("data_table");
     const btnCrearVenta = document.getElementById("btnCrearVenta");
 
-    if (tabla && tabla.rows.length > 1 && metododePagoSeleccionado) { // Verifica que la tabla tenga más de una fila (cabecera + al menos un elemento)
+    if (tabla && tabla.rows.length > 1) { // Verifica que la tabla tenga más de una fila (cabecera + al menos un elemento)
         btnCrearVenta.disabled = false; // Habilita el botón
     } else {
         btnCrearVenta.disabled = true; // Deshabilita el botón
