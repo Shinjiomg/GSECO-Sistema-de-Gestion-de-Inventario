@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2023 a las 17:10:56
+-- Tiempo de generación: 19-11-2023 a las 17:26:45
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -272,7 +272,8 @@ CREATE TABLE `gastos` (
   `id_gasto` int(10) UNSIGNED NOT NULL,
   `descripcion` varchar(100) NOT NULL,
   `total` decimal(11,2) NOT NULL,
-  `id_usuario` int(10) UNSIGNED NOT NULL
+  `id_usuario` int(10) UNSIGNED NOT NULL,
+  `fecha` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
