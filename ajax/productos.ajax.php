@@ -22,7 +22,7 @@ if(isset($_POST["id_categoria"])){
 if(isset($_POST["term"])){
 
 	$producto = new Articulo();
-	$term= intval($_POST["term"]);
+	$term= $_POST["term"];
     
 	echo json_encode($producto -> articuloByTerm($term));
 

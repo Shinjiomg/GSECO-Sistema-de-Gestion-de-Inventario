@@ -21,7 +21,7 @@ class Articulo extends Database
 	public function articuloByTerm($term)
 	{
 
-		$termWithWildcards = '%' . strtoupper($term) . '%'; // Agregar los caracteres % alrededor del término
+		$termWithWildcards = '%' . $term . '%'; // Agregar los caracteres % alrededor del término
 
 		$query = $this->pdo->prepare("SELECT * FROM articulo WHERE nombre LIKE :term AND estado = 1");
 		$query->bindValue(':term', $termWithWildcards, PDO::PARAM_STR);
