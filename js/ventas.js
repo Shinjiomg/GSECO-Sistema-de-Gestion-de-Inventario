@@ -419,23 +419,11 @@ function removeProduct(id_articulo) {
 }
 
 function generarCierre(){
-    let datos = new FormData();
 
-    datos.append("cierre", true);
+    const url = `reports/cierreCaja.php`;
 
-
-    $.ajax({
-        url: "ajax/ventas.ajax.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            
-        }
-
-    });
+    // Abre una ventana emergente
+    window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
 
 
 }

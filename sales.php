@@ -167,13 +167,21 @@ $MetodosPago = new MetodosPago();
         
         <div class="container-fluid py-4">
         <div class="row d-flex justify-content-end mb-2">
-            <button  
+        <a 
+            onclick="generarCierre()"
+            target="_blank" 
+            style="background: #008000; color:white; width: 200px;" 
+            class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
+            <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
+            Generar cierre
+        </a>
+            <!-- <button  
                 style="background: #008000; color:white; width: 200px;" 
                 type="button" 
                 onclick="generarCierre()"
                 class="btn mb-0 text-uppercase">
                         Generar cierre
-            </button>
+            </button> -->
         </div>
             <!-- main content -->
             <div class="row">

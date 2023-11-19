@@ -155,12 +155,12 @@ class Venta extends Database
 	public function cierreCaja($id_usuario){
 		$currentDate = date('Y-m-d');
 
-		$query = $this->pdo->query("SELECT (SELECT sum(total) from venta where DATE(fecha) = '{$currentDate}' AND Usuario_id_usuario = '{$id_usuario}') as ventas,
-		(SELECT sum(total) from ingreso where DATE(fecha) = '{$currentDate}' AND Usuario_id_usuario = '{$id_usuario}' ) as ingresos,
-		(SELECT sum(total) from gastos where DATE(fecha) = '{$currentDate}' AND id_usuario = '{$id_usuario}' ) as gastos");
+		$query = $this->pdo->query("SELECT (SELECT COALESCE(sum(total), 0) from venta where DATE(fecha) = '{$currentDate}' AND Usuario_id_usuario = '{$id_usuario}') as ventas,
+		(SELECT COALESCE(sum(total), 0) from ingreso where DATE(fecha) = '{$currentDate}' AND Usuario_id_usuario = '{$id_usuario}' ) as ingresos,
+		(SELECT COALESCE(sum(total), 0) from gastos where DATE(fecha) = '{$currentDate}' AND id_usuario = '{$id_usuario}' ) as gastos");
 
 
-		return $query->fetch();
+		return $query->fetchAll();
 
 	}
 }
