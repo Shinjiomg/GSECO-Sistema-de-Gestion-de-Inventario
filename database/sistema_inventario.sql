@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2023 a las 17:17:20
+-- Tiempo de generación: 19-11-2023 a las 17:10:56
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -47,7 +47,7 @@ INSERT INTO `articulo` (`id_articulo`, `nombre`, `precio_venta`, `stock`, `descr
 (2, 'AGUA CRISTAL MINI ', 700.00, 0, NULL, 1, 3, 20),
 (3, 'AGUACRISTAL SIN GAS 600 ML', 1600.00, 0, NULL, 1, 3, 20),
 (4, 'AGUS CRISTAL COCO', 2000.00, 0, NULL, 1, 3, 20),
-(5, 'AREPA DE HUEVO', 3200.00, 0, NULL, 1, 8, 20),
+(5, 'AREPA DE HUEVO', 3200.00, -3, NULL, 1, 8, 20),
 (6, 'AREPA DE QUESO', 2500.00, 0, NULL, 1, 8, 20),
 (7, 'ARROZ - PORCI?N', 2000.00, 0, NULL, 1, 1, 20),
 (8, 'ARROZ CON LECHE', 3000.00, 0, NULL, 1, 10, 20),
@@ -253,6 +253,15 @@ CREATE TABLE `detalle_venta` (
   `metodo_pago` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `detalle_venta`
+--
+
+INSERT INTO `detalle_venta` (`id_detalle_venta`, `Venta_id_venta`, `Articulo_id_articulo`, `cantidad`, `precio`, `metodo_pago`) VALUES
+(26, 20, 1, 1, 1200.00, 1),
+(27, 21, 1, 1, 1200.00, 1),
+(28, 22, 5, 3, 3200.00, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -290,6 +299,13 @@ CREATE TABLE `metodos_pago` (
   `id_metodo_pago` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `metodos_pago`
+--
+
+INSERT INTO `metodos_pago` (`id_metodo_pago`, `nombre`) VALUES
+(1, 'efectivo');
 
 -- --------------------------------------------------------
 
@@ -345,9 +361,17 @@ CREATE TABLE `venta` (
   `id_venta` int(10) UNSIGNED NOT NULL,
   `Usuario_id_usuario` int(10) UNSIGNED NOT NULL,
   `fecha` datetime NOT NULL,
-  `total` decimal(11,2) NOT NULL,
-  `tipo_pago` varchar(30) DEFAULT 'Efectivo'
+  `total` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`id_venta`, `Usuario_id_usuario`, `fecha`, `total`) VALUES
+(20, 2, '2023-11-17 22:45:56', 20000.00),
+(21, 2, '2023-11-17 23:06:08', 20000.00),
+(22, 2, '2023-11-19 17:07:51', 9600.00);
 
 --
 -- Índices para tablas volcadas
@@ -449,7 +473,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `gastos`
@@ -467,7 +491,7 @@ ALTER TABLE `ingreso`
 -- AUTO_INCREMENT de la tabla `metodos_pago`
 --
 ALTER TABLE `metodos_pago`
-  MODIFY `id_metodo_pago` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_metodo_pago` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -485,7 +509,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
