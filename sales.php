@@ -166,7 +166,15 @@ $MetodosPago = new MetodosPago();
         </nav>
         
         <div class="container-fluid py-4">
-        <div class="row d-flex justify-content-end mb-2">
+        <div class="row d-flex mb-2 justify-content-end">
+          <div class="col-6">
+              <input 
+                type="text" 
+                class="form-control" 
+                id="keyword"
+                name="keyword"
+                placeholder="Buscar por...">   
+          </div>              
         <a 
             onclick="generarCierre()"
             target="_blank" 
@@ -371,6 +379,7 @@ $MetodosPago = new MetodosPago();
     </div>
 
     <!--   Core JS Files and scripts  -->
+    
     <script src="js/ventas.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>

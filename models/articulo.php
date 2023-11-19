@@ -18,6 +18,18 @@ class Articulo extends Database
 		return $query->fetchAll();
 	}
 
+	public function articuloByTerm($term)
+	{
+
+		$termWithWildcards = '%' . strtoupper($term) . '%'; // Agregar los caracteres % alrededor del término
+
+		$query = $this->pdo->prepare("SELECT * FROM articulo WHERE nombre LIKE :term AND estado = 1");
+		$query->bindValue(':term', $termWithWildcards, PDO::PARAM_STR);
+		$query->execute();
+
+		return $query->fetchAll();
+	}
+
 	public function show($id_articulo)
 	{
 		$query = $this->pdo->query('SELECT * FROM articulo where id_articulo =' . $id_articulo);
@@ -42,13 +54,14 @@ class Articulo extends Database
 		$updateQuery->execute();
 	}
 
-	function store($articulo){
+	function store($articulo)
+	{
 
 		$articulo = json_decode($articulo);
 
 		$query = $this->pdo->prepare('INSERT INTO articulo (nombre,stock,precio_venta,stock_deseado, categoria_id_categoria) VALUES (:nombre, :stock, :precio_venta, :stock_deseado, :categoria_id_categoria)');
-	
-	
+
+
 		$query->bindParam(':nombre', $articulo->nombre);
 		$query->bindParam(':stock', $articulo->cantidad);
 		$query->bindParam(':precio_venta', $articulo->precio);
@@ -59,11 +72,10 @@ class Articulo extends Database
 		return $this->show($lastInsertId);
 	}
 
-	function destroy($id_articulo){
+	function destroy($id_articulo)
+	{
 
-		$query = $this->pdo->prepare('UPDATE articulo set estado = 0 where id_articulo ='.$id_articulo);
+		$query = $this->pdo->prepare('UPDATE articulo set estado = 0 where id_articulo =' . $id_articulo);
 		$query->execute();
-
 	}
-
 }

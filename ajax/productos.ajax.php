@@ -19,6 +19,16 @@ if(isset($_POST["id_categoria"])){
 	echo json_encode($producto -> articuloByCategory($category));
 
 }
+if(isset($_POST["term"])){
+
+	$producto = new Articulo();
+	$term= intval($_POST["term"]);
+    
+	echo json_encode($producto -> articuloByTerm($term));
+
+}
+
+
 
 if(isset($_POST["new_product"])){
 
