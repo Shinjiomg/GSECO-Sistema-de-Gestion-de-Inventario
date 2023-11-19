@@ -418,6 +418,28 @@ function removeProduct(id_articulo) {
 
 }
 
+function generarCierre(){
+    let datos = new FormData();
+
+    datos.append("cierre", true);
+
+
+    $.ajax({
+        url: "ajax/ventas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            
+        }
+
+    });
+
+
+}
+
 const confirmButton = document.getElementById('confirmButton');
 confirmButton.addEventListener('click', confirmQuantity);
 

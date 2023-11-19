@@ -24,4 +24,11 @@ if(isset($_POST["range_dates"])){
 
 	echo json_encode($venta -> ventasPorRango($range));
 
+
+}
+if(isset($_POST["cierre"])){
+	$venta = new Venta();
+
+	echo json_encode($venta -> cierreCaja($var_session));
+
 }
