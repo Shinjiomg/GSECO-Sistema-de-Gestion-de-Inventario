@@ -152,13 +152,14 @@ function renderProducts(data) {
             btn.style.overflow = "hidden";
             btn.style.textOverflow = "ellipsis";
             btn.style.whiteSpace = "nowrap";
+            btn.style.maxWidth = "100%";
             btn.setAttribute("data-toggle", "tooltip");
             btn.setAttribute("data-placement", "top");
             btn.setAttribute("title", pr.nombre); // Agrega el nombre del artículo como título del tooltip
             // Crear un div para el nombre del producto
             var nombreDiv = document.createElement("div");
             nombreDiv.textContent = pr.id_articulo + " - " + pr.nombre;
-
+            nombreDiv.style.overflow = "hidden";
             // Crear un div para el precio de venta
             var precioNumerico = parseFloat(pr.precio_venta);
             var precioFormateado = precioNumerico.toLocaleString('es-CO');
@@ -291,16 +292,17 @@ function renderTable() {
     for (var i = filas.length - 1; i > 0; i--) {
         tabla.deleteRow(i);
     }
-
     products.forEach(pr => {
-
+        let sumaEfectivo = 0;
         let nuevaFila = document.createElement("tr");
         var precioVentaFormateado = parseFloat(pr.precio_venta).toLocaleString('es-CO');
         var subtotal = pr.cantidad * pr.precio_venta;
         var subtotalFormateado = subtotal.toLocaleString('es-CO');
 
         sumaTotales += subtotal;
-
+        if (pr.metodo_pago_text === "Efectivo") {
+            sumaEfectivo += subtotal;
+        }
         // Define el contenido de cada celda
         let contenidoCeldas = [
             pr.nombre,
@@ -331,7 +333,26 @@ function renderTable() {
 
         $('#modal-form').modal('hide');
     })
+    const modalFormChange = document.getElementById('modal-form-change');
+    modalFormChange.dataset.sumaEfectivo = sumaEfectivo;
+
+    renderSumTotal(sumaTotales);
     habilitarBotonVenta();
+}
+
+function calcularCambio() {
+    // Obtén el valor ingresado por el usuario
+    var montoIngresado = parseFloat(document.getElementById('product_price').value);
+
+    // Obtén la suma de "Efectivo" guardada en el modal
+    var sumaEfectivo = parseFloat(document.getElementById('modal-form-change').dataset.sumaEfectivo);
+
+    // Realiza la resta para calcular el cambio
+    var cambio = montoIngresado - sumaEfectivo;
+
+    // Muestra el cambio en algún lugar del modal (por ejemplo, puedes agregar un elemento <p> en el modal para mostrar el cambio)
+    var cambioElement = document.getElementById('cambio_resultado');
+    cambioElement.textContent = "Debes devolverle al cliente $" + cambio.toLocaleString('es-CO');
 }
 
 function habilitarBotonVenta() {
@@ -415,12 +436,6 @@ const confirmButton = document.getElementById('confirmButton');
 confirmButton.addEventListener('click', confirmQuantity);
 
 
-
-
-
-
-
-
-
-
-
+document.getElementById('btnCalcular').addEventListener('click', function () {
+    calcularCambio();
+});

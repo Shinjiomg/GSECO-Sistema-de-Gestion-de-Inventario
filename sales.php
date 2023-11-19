@@ -255,7 +255,7 @@ $MetodosPago = new MetodosPago();
                                         </div>
                                         <div class="col-4 text-end">
                                             <button type="button" data-bs-toggle="modal" data-bs-target="#modal-form-change" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" id="btnCalcularCambio">
-                                                </i>Calcular cambio
+                                                Calcular cambio
                                             </button>
                                             <div class="modal fade" id="modal-form-change" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
@@ -263,24 +263,23 @@ $MetodosPago = new MetodosPago();
                                                         <div class="modal-header">
                                                             <h4 class="modal-title text-uppercase font-weight-bold">Calcular cambio</h4>
                                                         </div>
-                                                        <div class="modal-body p-0">
-                                                            <div class="card card-plain">
-                                                                <div class="card-body text-start">
-                                                                    <form role="form text-left">
-                                                                        <div class="form-group">
-                                                                            <p class="text-uppercase font-weight-bolder"><strong>¿Con cuánto efectivo pagará el cliente?</strong></p>
-                                                                            <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor exacto de lo que te entregó el cliente">
-                                                                            <p class="mb-0"><em>Debes devolverle al cliente </em><strong>$20.000</strong> <em> de cambio</em></p>
-                                                                            <button type="button" id="" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Calcular</button>
-                                                                        </div>
-                                                                    </form>
+                                                        <div class="modal-body p-3"> <!-- Ajusté el padding -->
+                                                            <form role="form text-left">
+                                                                <div class="form-group">
+                                                                    <label for="product_price" class="text-uppercase font-weight-bolder"><strong>¿Con cuánto efectivo pagará el cliente?</strong></label>
+                                                                    <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor exacto de lo que te entregó el cliente">
+                                                                    <!-- Cambié el mensaje de devolución por uno más dinámico -->
+                                                                    <p id="cambio_resultado" class="mb-0"><em>Debes devolverle al cliente </em><strong>$0.00</strong> <em> de cambio</em></p>
+                                                                    <!-- Añadí un ID al botón de calcular para poder referenciarlo en el JavaScript -->
+                                                                    <button type="button" id="btnCalcular" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Calcular</button>
                                                                 </div>
-                                                            </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-4 text-end">
                                             <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarVenta()" id="btnCrearVenta">
                                                 </i>Crear venta
