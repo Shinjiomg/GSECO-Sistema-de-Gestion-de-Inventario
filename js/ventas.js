@@ -2,11 +2,14 @@ products = [];
 selectedProduct = null;
 sumaTotales = 0;
 
+
+
+
 // Función que se ejecutará al cambiar el valor del input
 function handleChange(event) {
     console.log(event.target.value);
 
-    if(event.target.value === ''){
+    if (event.target.value === '') {
         clearProducts();
         return;
     }
@@ -256,9 +259,24 @@ function addProductTable(pr) {
         });
         return;
     } else {
+
         selectedProduct = pr;
+
         $('#modal-form').modal('show');
         title.textContent = pr.nombre;
+
+        let cant = document.getElementById('productQuantity');
+
+        cant.addEventListener('keypress', function (event) {
+            // Verifica si la tecla presionada es 'Enter' (cuyo código es 13)
+            if (event.key === 'Enter') {
+                // Evita que el formulario se envíe (si está dentro de un formulario)
+                event.preventDefault();
+
+                // Llama a la función que deseas ejecutar al presionar 'Enter'
+                confirmQuantity();
+            }
+        });
     }
     let stock = document.getElementById('stock');
     stock.textContent = selectedProduct.stock + ' productos';
