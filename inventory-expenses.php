@@ -89,7 +89,7 @@ $transacciones = $venta->transacciones($idUsuario);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="purchases-bills.php">
+                    <a class="nav-link" href="purchases-bills.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
@@ -240,12 +240,6 @@ $transacciones = $venta->transacciones($idUsuario);
             </div>
             <div class="card-body pt-sm-3 pt-0 overflow-auto">
                 <!-- Sidenav Type -->
-                <div class="mt-2 mb-5 d-flex">
-                    <h6 class="mb-0">Tema claro / oscuro</h6>
-                    <div class="form-check form-switch ps-0 ms-auto my-auto">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
-                    </div>
-                </div>
                 <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
             </div>
         </div>

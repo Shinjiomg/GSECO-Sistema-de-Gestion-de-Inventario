@@ -95,6 +95,14 @@ $Categoria = new Categoria()
                         <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="inventory-expenses.php">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
+                    </a>
+                </li>
                 <!-- <?php
                         if ($rol == 1) {
                         ?>
@@ -273,12 +281,6 @@ $Categoria = new Categoria()
             </div>
             <div class="card-body pt-sm-3 pt-0 overflow-auto">
                 <!-- Sidenav Type -->
-                <div class="mt-2 mb-5 d-flex">
-                    <h6 class="mb-0">Tema claro / oscuro</h6>
-                    <div class="form-check form-switch ps-0 ms-auto my-auto">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
-                    </div>
-                </div>
                 <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
             </div>
         </div>
@@ -297,7 +299,7 @@ $Categoria = new Categoria()
                                 <div class="form-group">
                                     <label for="productQuantity" class="col-form-label text-uppercase font-weight-bolder">Cantidad:</label>
                                     <input class="form-control" type="number" id="productQuantity" oninput="validarCantidad(this)">
-                                    
+
                                 </div>
                                 <div class="form-group">
                                     <label for="purchasePrice" class="col-form-label text-uppercase font-weight-bolder">Precio de compra:</label>
@@ -319,7 +321,7 @@ $Categoria = new Categoria()
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/js/plugins/chartjs.min.js"></script>
-    
+
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
