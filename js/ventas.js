@@ -4,6 +4,12 @@ sumaTotales = 0;
 
 // Función que se ejecutará al cambiar el valor del input
 function handleChange(event) {
+    console.log(event.target.value);
+
+    if(event.target.value === ''){
+        clearProducts();
+        return;
+    }
 
     let datos = new FormData();
 
