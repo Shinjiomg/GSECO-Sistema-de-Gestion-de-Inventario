@@ -322,7 +322,7 @@ $articulos = $ar->index();
                                     </div>
                                     <div class="col-xl-3">
                                       <label for="" class="col-form-label text-uppercase">Cantidad</label>
-                                      <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad" oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad">
                                     </div>
                                   </div>
                                   <div class="row">
