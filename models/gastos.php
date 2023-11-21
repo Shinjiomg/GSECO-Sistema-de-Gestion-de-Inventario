@@ -5,6 +5,11 @@ class Gastos extends Database
 {
   
 
+    public function index($id){
+        $currentDate = date('Y-m-d');
+        $query = $this->pdo->prepare("SELECT FROM gastos WHERE id_usuario = {$id} AND DATE(fecha) = '{$currentDate}'");
+        return $query->fetchAll();
+    }
 
 
     public function store($descripcion, $total, $id_usuario)
