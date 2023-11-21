@@ -97,7 +97,7 @@ $transacciones = $venta->transacciones($idUsuario);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="inventory-expenses.php">
+                    <a class="nav-link active" href="purchases-bills.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
@@ -107,18 +107,7 @@ $transacciones = $venta->transacciones($idUsuario);
                 <!-- <?php
                         if ($rol == 1) {
                         ?>
-                    <li class="nav-item mt-3">
-                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="user-administration.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
-                        </a>
-                    </li>
+                   
                 <?php
                         }
                 ?> -->
@@ -160,23 +149,28 @@ $transacciones = $venta->transacciones($idUsuario);
                                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
-                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-              </ul>
-            </li> -->
+
                     </ul>
                 </div>
             </div>
         </nav>
         <div class="container-fluid py-4">
+            <div class="row d-flex mb-2 justify-content-end">
+                <div class="col-6">
+                   
+                </div>
+                <a target="_blank" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
+                    <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
+                    Generar cierre
+                </a>
+
+            </div>
             <!-- main content -->
             <div class="row mt-0">
                 <div class="col-xl-12">
                     <div class="card h-100">
                         <div class="card-header pb-0 p-3">
+
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center">
                                     <h4 class="mb-0 text-uppercase font-weight-bolder">Compras realizadas
