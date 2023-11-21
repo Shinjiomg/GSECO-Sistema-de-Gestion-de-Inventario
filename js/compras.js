@@ -372,8 +372,8 @@ function editProduct(id_articulo) {
 }
 
 function validarCantidad(input) {
-    if (input.value < 1) {
-        input.value = 1;
+    if (input.value < 0) {
+        input.value = 0;
     }
 }
 

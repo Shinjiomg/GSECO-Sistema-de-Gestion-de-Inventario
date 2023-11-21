@@ -116,12 +116,12 @@ function eliminarProducto(id_articulo) {
                     products = products.filter(p => p.id_articulo !== id_articulo)
                     renderTable();
                 }
-            });  
-           
+            });
+
         }
     })
 
-    
+
 
 }
 
@@ -189,11 +189,7 @@ function renderProduct(data) {
 
 }
 
-
-
-
 function saveProduct() {
-
     let nombre = document.getElementById('product_name').value;
     let cantidad = document.getElementById('product_stock').value;
     let precio = document.getElementById('product_price').value;
@@ -204,15 +200,8 @@ function saveProduct() {
         saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria);
         return;
     }
-
     guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria);
-
-
-
-
 }
-
-
 
 function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria) {
 
@@ -230,7 +219,6 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
         selectCategoria,
         id_articulo: selectProduct.id_articulo
     }
-
 
     datos.append("product_edit", JSON.stringify(product_edit));
     $.ajax({
@@ -264,16 +252,11 @@ function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria)
                 return ar
             })
 
-
-
             renderTable();
             selectProduct = null;
 
             $('#modal-form-product').modal('hide');
-
-
         }
-
     });
 }
 

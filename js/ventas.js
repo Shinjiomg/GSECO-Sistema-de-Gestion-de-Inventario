@@ -4,7 +4,7 @@ sumaTotales = 0;
 
 // Función que se ejecutará al cambiar el valor del input
 function handleChange(event) {
-    
+
     let datos = new FormData();
 
     datos.append("term", event.target.value);
@@ -332,7 +332,6 @@ function renderTable() {
         tabla.deleteRow(i);
     }
     products.forEach(pr => {
-        sumaEfectivo = 0;
         let nuevaFila = document.createElement("tr");
         var precioVentaFormateado = parseFloat(pr.precio_venta).toLocaleString('es-CO');
         var subtotal = pr.cantidad * pr.precio_venta;
@@ -383,16 +382,27 @@ function calcularCambio() {
     // Obtén el valor ingresado por el usuario
     var montoIngresado = parseFloat(document.getElementById('product_price').value);
 
-    // Obtén la suma de "Efectivo" guardada en el modal
+    if (isNaN(montoIngresado) || montoIngresado <= 0) {
+        alert("Por favor, ingresa un valor válido para el monto.");
+        return;
+    }
     var sumaEfectivo = parseFloat(document.getElementById('modal-form-change').dataset.sumaEfectivo);
 
     // Realiza la resta para calcular el cambio
     var cambio = montoIngresado - sumaEfectivo;
 
+    if (montoIngresado < sumaEfectivo) {
+        alert("Por favor, ingresa un valor válido para el monto.");
+        return;
+    }
     // Muestra el cambio en algún lugar del modal (por ejemplo, puedes agregar un elemento <p> en el modal para mostrar el cambio)
     var cambioElement = document.getElementById('cambio_resultado');
     cambioElement.textContent = "Debes devolverle al cliente $" + cambio.toLocaleString('es-CO');
 }
+
+document.getElementById('btnCalcular').addEventListener('click', function () {
+    calcularCambio();
+});
 
 function habilitarBotonVenta() {
 
@@ -435,8 +445,8 @@ function editProduct(id_articulo) {
 }
 
 function validarCantidad(input) {
-    if (input.value < 1) {
-        input.value = 1;
+    if (input.value < 0) {
+        input.value = 0;
     }
 }
 
@@ -485,6 +495,3 @@ const confirmButton = document.getElementById('confirmButton');
 confirmButton.addEventListener('click', confirmQuantity);
 
 
-document.getElementById('btnCalcular').addEventListener('click', function () {
-    calcularCambio();
-});

@@ -97,6 +97,14 @@ $MetodosPago = new MetodosPago();
                         <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="inventory-expenses.php">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
+                    </a>
+                </li>
                 <!-- <?php
                         if ($rol == 1) {
                         ?>
@@ -164,33 +172,23 @@ $MetodosPago = new MetodosPago();
                 </div>
             </div>
         </nav>
-        
         <div class="container-fluid py-4">
-        <div class="row d-flex mb-2 justify-content-end">
-          <div class="col-6">
-              <input 
-                type="text" 
-                class="form-control" 
-                id="keyword"
-                name="keyword"
-                placeholder="Buscar por...">   
-          </div>              
-        <a 
-            onclick="generarCierre()"
-            target="_blank" 
-            style="background: #008000; color:white; width: 200px;" 
-            class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
-            <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
-            Generar cierre
-        </a>
-            <!-- <button  
+            <div class="row d-flex mb-2 justify-content-end">
+                <div class="col-6">
+                    <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Buscar por...">
+                </div>
+                <a onclick="generarCierre()" target="_blank" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
+                    <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
+                    Generar cierre
+                </a>
+                <!-- <button  
                 style="background: #008000; color:white; width: 200px;" 
                 type="button" 
                 onclick="generarCierre()"
                 class="btn mb-0 text-uppercase">
                         Generar cierre
             </button> -->
-        </div>
+            </div>
             <!-- main content -->
             <div class="row">
                 <div class="col-xl-12 col-sm-6 mb-xl-0">
@@ -289,17 +287,19 @@ $MetodosPago = new MetodosPago();
                                                         <div class="modal-header">
                                                             <h4 class="modal-title text-uppercase font-weight-bold">Calcular cambio</h4>
                                                         </div>
-                                                        <div class="modal-body p-3"> <!-- Ajusté el padding -->
-                                                            <form role="form text-left">
-                                                                <div class="form-group">
-                                                                    <label for="product_price" class="text-uppercase font-weight-bolder"><strong>¿Con cuánto efectivo pagará el cliente?</strong></label>
-                                                                    <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor exacto de lo que te entregó el cliente">
-                                                                    <!-- Cambié el mensaje de devolución por uno más dinámico -->
-                                                                    <p id="cambio_resultado" class="mb-0"><em>Debes devolverle al cliente </em><strong>$0.00</strong> <em> de cambio</em></p>
-                                                                    <!-- Añadí un ID al botón de calcular para poder referenciarlo en el JavaScript -->
-                                                                    <button type="button" id="btnCalcular" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Calcular</button>
+                                                        <div class="modal-body p-0">
+                                                            <div class="card card-plain">
+                                                                <div class="card-body text-start">
+                                                                    <form role="form text-left">
+                                                                        <div class="form-group">
+                                                                            <label for="product_price" class="text-uppercase font-weight-bolder"><strong>¿Con cuánto efectivo pagará el cliente?</strong></label>
+                                                                            <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor exacto de lo que te entregó el cliente">
+                                                                            <p id="cambio_resultado" class="mb-0"><em>Debes devolverle al cliente </em><strong>$0.00</strong> <em> de cambio</em></p>
+                                                                            <button type="button" id="btnCalcular" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Calcular</button>
+                                                                        </div>
+                                                                    </form>
                                                                 </div>
-                                                            </form>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -337,12 +337,6 @@ $MetodosPago = new MetodosPago();
             </div>
             <div class="card-body pt-sm-3 pt-0 overflow-auto">
                 <!-- Sidenav Type -->
-                <div class="mt-2 mb-5 d-flex">
-                    <h6 class="mb-0">Tema claro / oscuro</h6>
-                    <div class="form-check form-switch ps-0 ms-auto my-auto">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
-                    </div>
-                </div>
                 <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
             </div>
         </div>
@@ -379,7 +373,6 @@ $MetodosPago = new MetodosPago();
     </div>
 
     <!--   Core JS Files and scripts  -->
-    
     <script src="js/ventas.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
