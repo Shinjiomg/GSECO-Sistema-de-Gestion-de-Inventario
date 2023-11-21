@@ -157,7 +157,7 @@ $transacciones = $venta->transacciones($idUsuario);
         <div class="container-fluid py-4">
             <div class="row d-flex mb-2 justify-content-end">
                 <div class="col-6">
-                   
+
                 </div>
                 <a onclick="gastos()" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
                     <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
@@ -166,11 +166,10 @@ $transacciones = $venta->transacciones($idUsuario);
 
             </div>
             <!-- main content -->
-            <div class="row mt-0">
-                <div class="col-xl-12">
+            <div class="row mt-4">
+                <div class="col-xl-12 pb-2">
                     <div class="card h-100">
                         <div class="card-header pb-0 p-3">
-
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center">
                                     <h4 class="mb-0 text-uppercase font-weight-bolder">Gastos Generales
@@ -178,19 +177,10 @@ $transacciones = $venta->transacciones($idUsuario);
                                 </div>
                             </div>
                         </div>
-
-                        <div class="container-fluid py-4">
-            <!-- main content -->
-            <div class="row">
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        
-                        </div>
+                    </div>
+                    <div class="card-body p-3 pb-0">
                     </div>
                 </div>
-            </div>
-            <div class="row mt-4">
-
                 <div class="col-xl-12">
                     <div class="card h-100">
                         <div class="card-header pb-0 p-3">
@@ -202,131 +192,119 @@ $transacciones = $venta->transacciones($idUsuario);
                             </div>
                         </div>
                         <div class="modal fade" id="modal-gastos" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title text-uppercase font-weight-bold"> Añadir Gasto</h4>
-                        </div>
-                        <div class="modal-body p-0">
-                          <div class="card card-plain">
-                            <div class="card-body text-start">
-                              <form role="form text-left">
-                                <div class="form-group">
-                                  <div class="row">
-                                    <div class="col-xl-9">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title text-uppercase font-weight-bold"> Añadir Gasto</h4>
+                                    </div>
+                                    <div class="modal-body p-0">
+                                        <div class="card card-plain">
+                                            <div class="card-body text-start">
+                                                <form role="form text-left">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-xl-9">
 
-                                      <label for="" class="col-form-label text-uppercase">Descripción del Gasto
-                                        </label>
-                                      <input id="description_bills" type="text" placeholder="Ingresa el gasto" class="form-control" />
+                                                                <label for="" class="col-form-label text-uppercase">Descripción del Gasto
+                                                                </label>
+                                                                <input id="description_bills" type="text" placeholder="Ingresa el gasto" class="form-control" />
+                                                            </div>
+                                                            <div class="col-xl-3">
+                                                                <label for="" class="col-form-label text-uppercase">Total</label>
+                                                                <input id="total_bills" type="text" placeholder="Total" class="form-control" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <button type="button" id="confirmButton" onclick="guardar()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
+                                                    </button>
+                                            </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="col-xl-3">
-                                      <label for="" class="col-form-label text-uppercase">Total</label>
-                                      <input id="total_bills" type="text" placeholder="Total" class="form-control" />
-                                    </div>
-                                  </div>
-                                  
-                                  </div>
-                                  <button type="button" id="confirmButton" onclick="guardar()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
-                                  </button>
                                 </div>
-                              </form>
                             </div>
-                          </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                  
-                        <div class="card-body p-3 pb-0">
-                            <?php  // Obtener las facturas
-                            $facturas = $venta->facturas($idUsuario);
 
-                            // Ordenar las facturas por fecha de venta de forma descendente
-                            usort($facturas, function ($a, $b) {
-                                return strtotime($b->fecha_venta) - strtotime($a->fecha_venta);
-                            });
+                    <div class="card-body p-3 pb-0">
+                        <?php  // Obtener las facturas
+                        $facturas = $venta->facturas($idUsuario);
 
-                            // Iterar sobre las facturas ordenadas
-                            foreach ($facturas as $f) {  ?>
-                                <ul class="list-group">
-                                    <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                        <div class="d-flex align-items-center">
-                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
-                                            <div class="d-flex flex-column">
-                                                <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
-                                                    <?php echo $f->nombres_productos; ?>
-                                                </h6>
-                                                <span class="text-sm text-uppercase font-weight-bolder">
-                                                    <?php echo $f->fecha_venta; ?>
-                                                </span>
-                                            </div>
+                        // Ordenar las facturas por fecha de venta de forma descendente
+                        usort($facturas, function ($a, $b) {
+                            return strtotime($b->fecha_venta) - strtotime($a->fecha_venta);
+                        });
+
+                        // Iterar sobre las facturas ordenadas
+                        foreach ($facturas as $f) {  ?>
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
+                                                <?php echo $f->nombres_productos; ?>
+                                            </h6>
+                                            <span class="text-sm text-uppercase font-weight-bolder">
+                                                <?php echo $f->fecha_venta; ?>
+                                            </span>
                                         </div>
-                                        <div class="column">
-                                            <div class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
-                                                <?php echo $f->tipo_pago; ?>
-                                            </div>
-                                            <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
-                                                + $
-                                                <?php echo number_format($f->total, 0, ',', '.'); ?>
-                                            </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
+                                            <?php echo $f->tipo_pago; ?>
                                         </div>
-                                    </li>
-                                </ul>
-                            <?php } ?>
-                        </div>
+                                        <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
+                                            + $
+                                            <?php echo number_format($f->total, 0, ',', '.'); ?>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        <?php } ?>
                     </div>
                 </div>
-
             </div>
-
-            <!-- footer -->
-
         </div>
-                        <div class="card-body p-3 pb-0">
-                            <?php  // Obtener las facturas
-                            $facturas = $venta->facturas($idUsuario);
+        <div class="card-body p-3 pb-0">
+            <?php  // Obtener las facturas
+            $facturas = $venta->facturas($idUsuario);
 
-                            // Ordenar las facturas por fecha de venta de forma descendente
-                            usort($facturas, function ($a, $b) {
-                                return strtotime($b->fecha_venta) - strtotime($a->fecha_venta);
-                            });
+            // Ordenar las facturas por fecha de venta de forma descendente
+            usort($facturas, function ($a, $b) {
+                return strtotime($b->fecha_venta) - strtotime($a->fecha_venta);
+            });
 
-                            // Iterar sobre las facturas ordenadas
-                            foreach ($facturas as $f) {  ?>
-                                <ul class="list-group">
-                                    <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                        <div class="d-flex align-items-center">
-                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
-                                            <div class="d-flex flex-column">
-                                                <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
-                                                    <?php echo $f->nombres_productos; ?>
-                                                </h6>
-                                                <span class="text-sm text-uppercase font-weight-bolder">
-                                                    <?php echo $f->fecha_venta; ?>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="column">
-                                            <div class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
-                                                <?php echo $f->tipo_pago; ?>
-                                            </div>
-                                            <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
-                                                + $
-                                                <?php echo number_format($f->total, 0, ',', '.'); ?>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            <?php } ?>
+            // Iterar sobre las facturas ordenadas
+            foreach ($facturas as $f) {  ?>
+                <ul class="list-group">
+                    <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                        <div class="d-flex align-items-center">
+                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
+                            <div class="d-flex flex-column">
+                                <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
+                                    <?php echo $f->nombres_productos; ?>
+                                </h6>
+                                <span class="text-sm text-uppercase font-weight-bolder">
+                                    <?php echo $f->fecha_venta; ?>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- footer -->
-
+                        <div class="column">
+                            <div class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
+                                <?php echo $f->tipo_pago; ?>
+                            </div>
+                            <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
+                                + $
+                                <?php echo number_format($f->total, 0, ',', '.'); ?>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            <?php } ?>
         </div>
+        <!-- footer -->
     </main>
     <!-- config interface -->
     <div class="fixed-plugin">
