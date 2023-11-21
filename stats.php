@@ -294,10 +294,10 @@ $articulos = $ar->index();
                 </div> -->
               <?php } ?>
               <div class="row pb-2 p-3">
-                <div class="col-6 d-flex align-items-center text-uppercase">
+                <div class="col-4 d-flex align-items-center text-uppercase">
                   <h4 class="font-weight-bolder">Productos</h4>
                 </div>
-                <div class="col-md-6 text-end">
+                <div class="col-md-8 text-end">
                   <div class="d-flex justify-content-end">
                     <div class="text-end text-uppercase" id="botonera">
 
@@ -794,6 +794,8 @@ $articulos = $ar->index();
     line-height: 1.5;
     font-size: 0.875rem;
     font-weight: 700;
+    height: 50px;
+    width: 50px;
   }
 
   .dataTables_wrapper .dataTables_paginate .paginate_button {
