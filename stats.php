@@ -87,6 +87,7 @@ $articulos = $ar->index();
             <span class="nav-link-text ms-1 font-weight-bolder">ESTADÍSTICAS</span>
           </a>
         </li>
+        <?php if($rol === 1){ ?>
         <li class="nav-item">
           <a class="nav-link" href="sales.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -95,6 +96,7 @@ $articulos = $ar->index();
             <span class="nav-link-text ms-1 font-weight-bolder">VENTAS</span>
           </a>
         </li>
+        <?php }?>
         <li class="nav-item">
           <a class="nav-link" href="bills.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
