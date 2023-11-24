@@ -1,6 +1,8 @@
 <?php
 require_once('db.php');
 
+session_start();
+
 class Venta extends Database
 {
 
@@ -142,14 +144,28 @@ class Venta extends Database
 	public function ventasPorRangoDetalle($id_usuario, $fecha_inicio, $fecha_final)
 	{
 
+		$rol = $_SESSION['rol'];
+
+		if($rol === 1){
+			$query = $this->pdo->query("SELECT  usuario.nombres, usuario.apellidos,sum(detalle_venta.cantidad) as cantidad_total,sum(detalle_venta.cantidad * detalle_venta.precio) as subtotal, articulo.nombre FROM venta 
+			INNER JOIN usuario ON venta.Usuario_id_usuario = usuario.id_usuario
+			INNER JOIN detalle_venta ON venta.id_venta = detalle_venta.Venta_id_venta
+			INNER JOIN articulo ON articulo.id_articulo = detalle_venta.Articulo_id_articulo
+			WHERE venta.Usuario_id_usuario = {$id_usuario} AND DATE(venta.fecha) BETWEEN '{$fecha_inicio}' AND '{$fecha_final}' GROUP BY articulo.nombre");
+			
+			return $query->fetchAll();
+			
+		}else{
+			$query = $this->pdo->query("SELECT  usuario.nombres, usuario.apellidos,sum(detalle_venta.cantidad) as cantidad_total,sum(detalle_venta.cantidad * detalle_venta.precio) as subtotal, articulo.nombre FROM venta 
+			INNER JOIN usuario ON venta.Usuario_id_usuario = usuario.id_usuario
+			INNER JOIN detalle_venta ON venta.id_venta = detalle_venta.Venta_id_venta
+			INNER JOIN articulo ON articulo.id_articulo = detalle_venta.Articulo_id_articulo
+			AND DATE(venta.fecha) BETWEEN '{$fecha_inicio}' AND '{$fecha_final}' GROUP BY articulo.nombre");
+			
+			return $query->fetchAll();
+
+		}
 	
-		$query = $this->pdo->query("SELECT  usuario.nombres, usuario.apellidos,sum(detalle_venta.cantidad) as cantidad_total,sum(detalle_venta.cantidad * detalle_venta.precio) as subtotal, articulo.nombre FROM venta 
-		INNER JOIN usuario ON venta.Usuario_id_usuario = usuario.id_usuario
-		INNER JOIN detalle_venta ON venta.id_venta = detalle_venta.Venta_id_venta
-		INNER JOIN articulo ON articulo.id_articulo = detalle_venta.Articulo_id_articulo
-		WHERE venta.Usuario_id_usuario = {$id_usuario} AND DATE(venta.fecha) BETWEEN '{$fecha_inicio}' AND '{$fecha_final}' GROUP BY articulo.nombre");
-		
-		return $query->fetchAll();
 	}
 
 	public function cierreCaja($id_usuario){
