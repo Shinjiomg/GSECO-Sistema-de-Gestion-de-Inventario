@@ -17,6 +17,8 @@ function getGastos(){
         processData: false,
         success: function (response) {
            console.log(response);
+           gastos = [...response];
+           
         }
 
     });
