@@ -62,7 +62,7 @@ $gastos = new Gastos();
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
                     </a>
                 </li>
-                <?php if ($rol === 1) { ?>
+                <?php if ($rol === 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="sales.php">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -73,7 +73,7 @@ $gastos = new Gastos();
                     </li>
                 <?php } ?>
                 <li class="nav-item">
-                    <a class="nav-link active" href="bills.php">
+                    <a class="nav-link" href="bills.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
@@ -102,7 +102,7 @@ $gastos = new Gastos();
                     </li>
                 <?php } ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="inventory-expenses.php">
+                    <a class="nav-link active" href="inventory-expenses.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>

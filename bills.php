@@ -61,7 +61,7 @@ $transacciones = $venta->transacciones($idUsuario);
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
                     </a>
                 </li>
-                <?php if($rol === 1){ ?>
+                <?php if($rol === 2){ ?>
                 <li class="nav-item">
                     <a class="nav-link" href="sales.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">

@@ -123,7 +123,7 @@ class Compras extends Database
         $rol = $_SESSION['rol'];
         $rango =  json_decode($rango);
 
-        if ($rol === 1) {
+        if ($rol === 2) {
             /* unicamente toma el del cajero */
             $query = $this->pdo->query("SELECT  SUM(venta.total) as total_venta, usuario.nombres, usuario.apellidos FROM venta JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario  WHERE venta.Usuario_id_usuario = {$id_usuario} AND DATE(venta.fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
         } else {

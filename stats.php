@@ -12,9 +12,6 @@ $categorias = $c->index();
 $ventas = $nw->ventas(1);
 $ultimaVenta = $nw->ultimaVenta(1);
 $articulos = $ar->index();
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -57,11 +54,7 @@ $articulos = $ar->index();
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-
-
-
 </head>
-
 <body class="g-sidenav-show" style="background-color: #009ad5;">
   <div class="h-100 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
@@ -87,16 +80,16 @@ $articulos = $ar->index();
             <span class="nav-link-text ms-1 font-weight-bolder">ESTADÍSTICAS</span>
           </a>
         </li>
-        <?php if($rol === 1){ ?>
-        <li class="nav-item">
-          <a class="nav-link" href="sales.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-cart text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1 font-weight-bolder">VENTAS</span>
-          </a>
-        </li>
-        <?php }?>
+        <?php if ($rol === 2) { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="sales.php">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-cart text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1 font-weight-bolder">VENTAS</span>
+            </a>
+          </li>
+        <?php } ?>
         <li class="nav-item">
           <a class="nav-link" href="bills.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -108,24 +101,24 @@ $articulos = $ar->index();
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
         </li>
-        <?php if($rol === 2){ ?>
-        <li class="nav-item">
-          <a class="nav-link" href="purchases.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="purchases-bills.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
-          </a>
-        </li>
-        <?php }?>
+        <?php if ($rol === 2) { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="purchases.php">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="purchases-bills.php">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
+            </a>
+          </li>
+        <?php } ?>
         <li class="nav-item">
           <a class="nav-link" href="inventory-expenses.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -310,18 +303,16 @@ $articulos = $ar->index();
 
                     </div>
                     <div>
-                      <?php 
-                        if($rol === 1){
-                          echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product" disabled>';
-                          echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
-                          
-                        }else{
-                          echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">';
-                          echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
-
-                        }
+                      <?php
+                      if ($rol === 2) {
+                        echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product" disabled>';
+                        echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
+                      } else {
+                        echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">';
+                        echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
+                      }
                       ?>
-                     
+
                     </div>
                   </div>
                   <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -428,15 +419,14 @@ $articulos = $ar->index();
                     </div>
                     <div>
                       <?php
-                          if($rol === 1){
-                            echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories" disabled>';
-                            echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
-                          }else{
-                            echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories">';
-                            echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
-                          }                
+                      if ($rol === 2) {
+                        echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories" disabled>';
+                        echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
+                      } else {
+                        echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories">';
+                        echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
+                      }
                       ?>
-                    
                     </div>
                   </div>
                   <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">

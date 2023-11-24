@@ -130,7 +130,7 @@ class Venta extends Database
 		$rol = $_SESSION['rol'];
 		$rango =  json_decode($rango);
 
-		if ($rol === 1) {
+		if ($rol === 2) {
 			/* unicamente toma el del cajero */
 			$query = $this->pdo->query("SELECT  COALESCE(SUM(venta.total),0)as total_venta, usuario.nombres, usuario.apellidos, usuario.id_usuario FROM venta JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario  WHERE venta.Usuario_id_usuario = {$id_usuario} AND DATE(venta.fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
 		} else {
@@ -145,7 +145,7 @@ class Venta extends Database
 		session_start();
 		$rol = $_SESSION['rol'];
 
-		if($rol === 1){
+		if($rol === 2){
 			$query = $this->pdo->query("SELECT  usuario.nombres, usuario.apellidos,sum(detalle_venta.cantidad) as cantidad_total,sum(detalle_venta.cantidad * detalle_venta.precio) as subtotal, articulo.nombre FROM venta 
 			INNER JOIN usuario ON venta.Usuario_id_usuario = usuario.id_usuario
 			INNER JOIN detalle_venta ON venta.id_venta = detalle_venta.Venta_id_venta

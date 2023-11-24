@@ -103,24 +103,15 @@ function resetButtonVenta() {
 }
 
 function GenerarVenta() {
-
     let datos = new FormData();
-
-
-
-
     datos.append("productos", JSON.stringify(products));
     datos.append("total", sumaTotales);
-
     Swal.fire({
         title: `¿Quieres generar la venta?`,
-
         showCancelButton: true,
         confirmButtonText: 'Aceptar',
     }).then((result) => {
-
         if (result.isConfirmed) {
-
             $.ajax({
                 url: "ajax/ventas.ajax.php",
                 method: "POST",
@@ -129,7 +120,6 @@ function GenerarVenta() {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log('nice')
                     Swal.fire({
                         title: "Generar venta",
                         text: "La venta se generó de forma exitosa",
@@ -137,7 +127,6 @@ function GenerarVenta() {
                         timer: 1500
                     });
                     this.products = [];
-
                     let tabla = document.getElementById("data_table");
                     let filas = tabla.getElementsByTagName("tr");
 
@@ -151,19 +140,11 @@ function GenerarVenta() {
                     selectedProduct = null;
                     sumaTotales = 0;
                     products = [];
-
                 }
-
             });
-
-
         }
-    })
-
-
-
+    });
 }
-
 
 function clearProducts() {
     divContainer = document.getElementById('products_category')
