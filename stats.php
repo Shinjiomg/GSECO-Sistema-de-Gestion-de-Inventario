@@ -106,6 +106,7 @@ $articulos = $ar->index();
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
         </li>
+        <?php if($rol === 2){ ?>
         <li class="nav-item">
           <a class="nav-link" href="purchases.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -122,6 +123,7 @@ $articulos = $ar->index();
             <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
           </a>
         </li>
+        <?php }?>
         <li class="nav-item">
           <a class="nav-link" href="inventory-expenses.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
