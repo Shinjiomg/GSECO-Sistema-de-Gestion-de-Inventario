@@ -306,9 +306,18 @@ $articulos = $ar->index();
 
                     </div>
                     <div>
-                      <a class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">
-                        <i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto
-                      </a>
+                      <?php 
+                        if($rol === 1){
+                          echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product" disabled>';
+                          echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
+                          
+                        }else{
+                          echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">';
+                          echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
+
+                        }
+                      ?>
+                     
                     </div>
                   </div>
                   <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -414,8 +423,16 @@ $articulos = $ar->index();
 
                     </div>
                     <div>
-                      <a class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories"><i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir
-                        categoría</a>
+                      <?php
+                          if($rol === 1){
+                            echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories" disabled>';
+                            echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
+                          }else{
+                            echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories">';
+                            echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
+                          }                
+                      ?>
+                    
                     </div>
                   </div>
                   <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
