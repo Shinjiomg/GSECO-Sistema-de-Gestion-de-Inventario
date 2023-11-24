@@ -13,6 +13,7 @@ $var_session = $_SESSION['id_usuario'];
 
 if(isset($_POST["descripcion"])){
 
+	echo 'entro';
 	$gasto = new Gastos();
 
 	$descripcion= $_POST["descripcion"];

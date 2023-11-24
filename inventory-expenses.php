@@ -62,15 +62,15 @@ $gastos = $gasto->index($idUsuario);
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
                     </a>
                 </li>
-                <?php if($rol === 1){ ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="sales.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-cart text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
-                    </a>
-                </li>
+                <?php if ($rol === 1) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sales.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-cart text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
+                        </a>
+                    </li>
                 <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link " href="bills.php">
@@ -83,24 +83,24 @@ $gastos = $gasto->index($idUsuario);
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
                 </li>
-                <?php if($rol === 2){ ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="purchases.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="purchases-bills.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
-                    </a>
-                </li>
-                <?php }?>
+                <?php if ($rol === 2) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="purchases.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="purchases-bills.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
+                        </a>
+                    </li>
+                <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link active" href="purchases-bills.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -177,98 +177,82 @@ $gastos = $gasto->index($idUsuario);
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center">
-                                    <h4 class="mb-0 text-uppercase font-weight-bolder">Gastos Generales
+                                    <h4 class="mb-0 text-uppercase font-weight-bolder">Gastos
                                     </h4>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body p-3 pb-0">
-                    </div>
-                </div>
-                <div class="col-xl-12">
-                    
-                       
-                        <div class="modal fade" id="modal-gastos" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title text-uppercase font-weight-bold"> Añadir Gasto</h4>
-                                    </div>
-                                    <div class="modal-body p-0">
-                                        <div class="card card-plain">
-                                            <div class="card-body text-start">
-                                                <form role="form text-left">
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-xl-9">
-
-                                                                <label for="" class="col-form-label text-uppercase">Descripción del Gasto
-                                                                </label>
-                                                                <input id="description_bills" type="text" placeholder="Ingresa el gasto" class="form-control" />
-                                                            </div>
-                                                            <div class="col-xl-3">
-                                                                <label for="" class="col-form-label text-uppercase">Total</label>
-                                                                <input id="total_bills" type="text" placeholder="Total" class="form-control" />
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <button type="button" id="confirmButton" onclick="guardar()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
-                                                    </button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                     <div class="card h-100">
-                        <div class="card-header pb-0 p-3">
-                            <div class="row">
-                                <div class="col-6 d-flex align-items-center">
-                                    <h4 class="mb-0 text-uppercase font-weight-bolder">Transacciones
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                   
-
                     <div class="card-body p-3 pb-0">
                         <?php  // Obtener las facturas
-                    
-                        // Iterar sobre las facturas ordenadas
-                        foreach ($gastos as $ga) {  ?>
+                       
+                        foreach ($gastos as $g) {  ?>
                             <ul class="list-group">
                                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                     <div class="d-flex align-items-center">
-                                        <a onclick="viewPDF(<?php echo $ga->id_gasto ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
+                                        <a target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
                                         <div class="d-flex flex-column">
                                             <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
-                                                <?php echo $ga->descripcion; ?>
+                                                <?php echo $g->descripcion; ?>
                                             </h6>
                                             <span class="text-sm text-uppercase font-weight-bolder">
-                                                <?php echo $ga->fecha; ?>
+                                                <?php echo $g->fecha; ?>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="column">
-                                       
+                                        
                                         <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
                                             + $
-                                            <?php echo number_format($ga->total, 0, ',', '.'); ?>
+                                            <?php echo number_format($g->total, 0, ',', '.'); ?>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                         <?php } ?>
                     </div>
-                     </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="modal fade" id="modal-gastos" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-uppercase font-weight-bold"> Añadir Gasto</h4>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="card card-plain">
+                            <div class="card-body text-start">
+                                <form role="form text-left">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xl-9">
+
+                                                <label for="" class="col-form-label text-uppercase">Descripción del Gasto
+                                                </label>
+                                                <input id="description_bills" type="text" placeholder="Ingresa el gasto" class="form-control" />
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <label for="" class="col-form-label text-uppercase">Total</label>
+                                                <input id="total_bills" type="text" placeholder="Total" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <button type="button" id="confirmButton" onclick="guardar()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
+                                    </button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- footer -->
     </main>
     <!-- config interface -->

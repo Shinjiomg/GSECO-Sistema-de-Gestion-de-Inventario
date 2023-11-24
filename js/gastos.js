@@ -1,6 +1,6 @@
 gastos = [];
 
-getGastos();
+/* getGastos(); */
 
 function getGastos(){
 
