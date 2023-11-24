@@ -186,7 +186,7 @@ $transacciones = $venta->transacciones($idUsuario);
                     </div>
                 </div>
                 <div class="col-xl-12">
-                    <div class="card h-100">
+                    <div class="card h-100" id="inventory_list">
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center">
