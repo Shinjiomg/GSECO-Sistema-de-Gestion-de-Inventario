@@ -160,6 +160,14 @@ $gastos = new Gastos();
             </div>
         </nav>
         <div class="container-fluid py-4">
+            <div class="row mt-4">
+                <div class="col-xl-12 text-end">
+                    <a onclick="gastos()" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
+                        <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
+                        Nuevo Gasto
+                    </a>
+                </div>
+            </div>
 
             <?php  // Obtener las facturas
             $expenses = $gastos->all($idUsuario);
@@ -204,15 +212,51 @@ $gastos = new Gastos();
                                         </div>
                                     </li>
                                 </ul>
-                            
+
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <?php } ?>
+            <?php } ?>
 
-                <!-- footer -->
+            <!-- footer -->
+            <div class="modal fade" id="modal-gastos" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title text-uppercase font-weight-bold"> Añadir Gasto</h4>
+                        </div>
+                        <div class="modal-body p-0">
+                          <div class="card card-plain">
+                            <div class="card-body text-start">
+                              <form role="form text-left">
+                                <div class="form-group">
+                                  <div class="row">
+                                    <div class="col-xl-9">
+
+                                      <label for="" class="col-form-label text-uppercase">Descripción del Gasto
+                                        </label>
+                                      <input id="description_bills" type="text" placeholder="Ingresa el gasto" class="form-control" />
+                                    </div>
+                                    <div class="col-xl-3">
+                                      <label for="" class="col-form-label text-uppercase">Total</label>
+                                      <input id="total_bills" type="text" placeholder="Total" class="form-control" />
+                                    </div>
+                                  </div>
+
+                                  </div>
+                                  <button type="button" id="confirmButton" onclick="guardar()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
+                                  </button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
 
         </div>
     </main>
