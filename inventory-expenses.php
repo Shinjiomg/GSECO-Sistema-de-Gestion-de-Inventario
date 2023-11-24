@@ -162,100 +162,52 @@ $gastos = new Gastos();
         <div class="container-fluid py-4">
             <div class="row mt-4">
                 <div class="col-xl-12 text-end">
-                    <a onclick="gastos()" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
+                    <button id="nuevo_gasto" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
                         <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
                         Nuevo Gasto
-                    </a>
+                    </button>
                 </div>
             </div>
-
-            <?php  // Obtener las facturas
-            $expenses = $gastos->all($idUsuario);
-
-
-
-            // Iterar sobre las facturas ordenadas
-            foreach ($expenses  as $g) {  ?>
-                <div class="row mt-4">
-
-                    <div class="col-xl-12">
-                        <div class="card h-100">
-                            <div class="card-header pb-0 p-3">
-                                <div class="row">
-                                    <div class="col-6 d-flex align-items-center">
-                                        <h4 class="mb-0 text-uppercase font-weight-bolder">Gastos
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body p-3 pb-0">
-
-                                <ul class="list-group">
-                                    <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                        <div class="d-flex align-items-center">
-                                            <a target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
-                                            <div class="d-flex flex-column">
-                                                <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
-                                                    <?php echo $g->descripcion; ?>
-                                                </h6>
-                                                <span class="text-sm text-uppercase font-weight-bolder">
-                                                    <?php echo $g->fecha; ?>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="column">
-
-                                            <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
-                                                + $
-                                                <?php echo number_format($g->total, 0, ',', '.'); ?>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            <?php } ?>
+        </div>
+        <div class="container-fluid py-4" id="contenedor-gastos">
 
             <!-- footer -->
-            <div class="modal fade" id="modal-gastos" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title text-uppercase font-weight-bold"> Añadir Gasto</h4>
-                        </div>
-                        <div class="modal-body p-0">
-                          <div class="card card-plain">
-                            <div class="card-body text-start">
-                              <form role="form text-left">
-                                <div class="form-group">
-                                  <div class="row">
-                                    <div class="col-xl-9">
 
-                                      <label for="" class="col-form-label text-uppercase">Descripción del Gasto
-                                        </label>
-                                      <input id="description_bills" type="text" placeholder="Ingresa el gasto" class="form-control" />
-                                    </div>
-                                    <div class="col-xl-3">
-                                      <label for="" class="col-form-label text-uppercase">Total</label>
-                                      <input id="total_bills" type="text" placeholder="Total" class="form-control" />
-                                    </div>
-                                  </div>
-
-                                  </div>
-                                  <button type="button" id="confirmButton" onclick="guardar()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
-                                  </button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+        </div>
+        <div class="modal fade" id="modal-gastos" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-uppercase font-weight-bold"> Añadir Gasto</h4>
                     </div>
-                  </div>
+                    <div class="modal-body p-0">
+                        <div class="card card-plain">
+                            <div class="card-body text-start">
+                                <form role="form text-left">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xl-9">
+
+                                                <label for="" class="col-form-label text-uppercase">Descripción del Gasto
+                                                </label>
+                                                <input id="description_bills" type="text" placeholder="Ingresa el gasto" class="form-control" />
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <label for="" class="col-form-label text-uppercase">Total</label>
+                                                <input id="total_bills" type="text" placeholder="Total" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <button type="button" id="confirmButton" onclick="guardar()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
+                                    </button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         </div>
@@ -281,7 +233,7 @@ $gastos = new Gastos();
         </div>
     </div>
     <!--   Core JS Files and scripts  -->
-    <script src="./js/gastos.js"></script>
+    <script src="js/gastos.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>

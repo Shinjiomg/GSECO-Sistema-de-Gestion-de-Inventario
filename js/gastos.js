@@ -1,8 +1,26 @@
 gastos = [];
 
+let nuevo_gasto = document.getElementById('nuevo_gasto');
+let contenedorGastos = document.getElementById('contenedor-gastos');
+
+nuevo_gasto.addEventListener('click', ()=>{
+    openModalGastos();
+
+})
+
 getGastos();
 
-function getGastos(){
+function openModalGastos() {
+    $('#modal-gastos').modal('show');
+}
+
+function removeDataGastos(){
+    while (contenedorGastos.firstChild) {
+        contenedorGastos.removeChild(contenedorGastos.firstChild);
+    }
+}
+
+function getGastos() {
 
     let gastos = new FormData();
 
@@ -16,25 +34,66 @@ function getGastos(){
         contentType: false,
         processData: false,
         success: function (response) {
-           console.log(response);
-           gastos = [...response];
-           
+            removeDataGastos();
+            gastos = JSON.parse(response);
+            renderDataGastos(gastos)
+
         }
 
     });
 
 }
 
-function viewPDF(id_gasto){
+function renderDataGastos(gastos) {
+    
+    console.log(gastos);
+    gastos.forEach(g => {
+        const nuevoDiv = document.createElement('div');
+        nuevoDiv.classList.add('row', 'mt-4');
+        nuevoDiv.innerHTML = `
+        <div class="col-xl-12">
+            <div class="card h-100">
+                <div class="card-header pb-0 p-3">
+                    <div class="row">
+                        <div class="col-6 d-flex align-items-center">
+                            <h4 class="mb-0 text-uppercase font-weight-bolder">Gastos</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-3 pb-0">
+                    <ul class="list-group">
+                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex flex-column">
+                                    <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
+                                        ${g.descripcion}
+                                    </h6>
+                                    <span class="text-sm text-uppercase font-weight-bolder">
+                                        ${g.fecha}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
+                                    + $ ${g.total.toLocaleString('es-ES')}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    `;
+        // Agregar el nuevo elemento al contenedor
+        contenedorGastos.appendChild(nuevoDiv);
+
+    });
 
 }
 
 
-function gastos(){
-    $('#modal-gastos').modal('show');
-}
 
-function guardar(){
+function guardar() {
     let descripcion = document.getElementById("description_bills").value
     let total = document.getElementById("total_bills").value
 
@@ -51,16 +110,14 @@ function guardar(){
         contentType: false,
         processData: false,
         success: function (response) {
-            console.log(response);
+          
             $('#modal-gastos').modal('hide');
+            getGastos();
         }
 
     });
 
 }
 
-function renderFacturas(){
-    let container = document.getElementById('inventory_list');
 
-}
 
