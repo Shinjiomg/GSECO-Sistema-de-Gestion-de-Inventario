@@ -3,11 +3,11 @@ require_once "../models/gastos.php";
 session_start();
 $var_session = $_SESSION['id_usuario'];
 
-/* if($_POST["all"]){
+if(isset($_POST["all"])){
 	$gasto = new Gastos();
-	echo json_encode( $gasto->index($var_session));
+	echo json_encode( $gasto->all($var_session));
 	
-} */
+}
 
 
 

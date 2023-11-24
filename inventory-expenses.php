@@ -1,12 +1,12 @@
 <?php
 include_once("conexion.php");
 include_once("Consultas.php");
-require('./models/venta.php');
 require('./models/gastos.php');
+
 $rol = intval($_SESSION['rol']);
 $idUsuario = intval($_SESSION['id_usuario']);
-$gasto = new Gastos();
-$gastos = $gasto->index($idUsuario);
+$gastos = new Gastos();
+
 
 
 
@@ -73,7 +73,7 @@ $gastos = $gasto->index($idUsuario);
                     </li>
                 <?php } ?>
                 <li class="nav-item">
-                    <a class="nav-link " href="bills.php">
+                    <a class="nav-link active" href="bills.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
@@ -102,20 +102,14 @@ $gastos = $gasto->index($idUsuario);
                     </li>
                 <?php } ?>
                 <li class="nav-item">
-                    <a class="nav-link active" href="purchases-bills.php">
+                    <a class="nav-link" href="inventory-expenses.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
                     </a>
                 </li>
-                <!-- <?php
-                        if ($rol == 1) {
-                        ?>
-                   
-                <?php
-                        }
-                ?> -->
+
                 <li class="sidenav-footer mx-3">
 
                 </li>
@@ -154,106 +148,73 @@ $gastos = $gasto->index($idUsuario);
                                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
-
+                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell cursor-pointer"></i>
+              </a>
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+              </ul>
+            </li> -->
                     </ul>
                 </div>
             </div>
         </nav>
         <div class="container-fluid py-4">
-            <div class="row d-flex mb-2 justify-content-end">
-                <div class="col-6">
 
-                </div>
-                <a onclick="gastos()" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
-                    <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
-                    Nuevo Gasto
-                </a>
+            <?php  // Obtener las facturas
+            $expenses = $gastos->all($idUsuario);
 
-            </div>
-            <!-- main content -->
-            <div class="row mt-4">
-                <div class="col-xl-12 pb-2">
-                    <div class="card h-100">
-                        <div class="card-header pb-0 p-3">
-                            <div class="row">
-                                <div class="col-6 d-flex align-items-center">
-                                    <h4 class="mb-0 text-uppercase font-weight-bolder">Gastos
-                                    </h4>
+
+
+            // Iterar sobre las facturas ordenadas
+            foreach ($expenses  as $g) {  ?>
+                <div class="row mt-4">
+
+                    <div class="col-xl-12">
+                        <div class="card h-100">
+                            <div class="card-header pb-0 p-3">
+                                <div class="row">
+                                    <div class="col-6 d-flex align-items-center">
+                                        <h4 class="mb-0 text-uppercase font-weight-bolder">Gastos
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card-body p-3 pb-0">
-                        <?php  // Obtener las facturas
-                       
-                        foreach ($gastos as $g) {  ?>
-                            <ul class="list-group">
-                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <a target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
-                                                <?php echo $g->descripcion; ?>
-                                            </h6>
-                                            <span class="text-sm text-uppercase font-weight-bolder">
-                                                <?php echo $g->fecha; ?>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="column">
-                                        
-                                        <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
-                                            + $
-                                            <?php echo number_format($g->total, 0, ',', '.'); ?>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        <?php } ?>
-                    </div>
-                </div>
+                            <div class="card-body p-3 pb-0">
 
-            </div>
-        </div>
-
-
-
-        <div class="modal fade" id="modal-gastos" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title text-uppercase font-weight-bold"> Añadir Gasto</h4>
-                    </div>
-                    <div class="modal-body p-0">
-                        <div class="card card-plain">
-                            <div class="card-body text-start">
-                                <form role="form text-left">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xl-9">
-
-                                                <label for="" class="col-form-label text-uppercase">Descripción del Gasto
-                                                </label>
-                                                <input id="description_bills" type="text" placeholder="Ingresa el gasto" class="form-control" />
-                                            </div>
-                                            <div class="col-xl-3">
-                                                <label for="" class="col-form-label text-uppercase">Total</label>
-                                                <input id="total_bills" type="text" placeholder="Total" class="form-control" />
+                                <ul class="list-group">
+                                    <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                        <div class="d-flex align-items-center">
+                                            <a target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
+                                            <div class="d-flex flex-column">
+                                                <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
+                                                    <?php echo $g->descripcion; ?>
+                                                </h6>
+                                                <span class="text-sm text-uppercase font-weight-bolder">
+                                                    <?php echo $g->fecha; ?>
+                                                </span>
                                             </div>
                                         </div>
+                                        <div class="column">
 
-                                    </div>
-                                    <button type="button" id="confirmButton" onclick="guardar()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
-                                    </button>
+                                            <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
+                                                + $
+                                                <?php echo number_format($g->total, 0, ',', '.'); ?>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            
                             </div>
-                            </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- footer -->
+                </div>
+                <?php } ?>
+
+                <!-- footer -->
+
+        </div>
     </main>
     <!-- config interface -->
     <div class="fixed-plugin">
@@ -276,14 +237,13 @@ $gastos = $gasto->index($idUsuario);
         </div>
     </div>
     <!--   Core JS Files and scripts  -->
-    <script src="./js/factura.js"></script>
+    <script src="./js/gastos.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/js/plugins/chartjs.min.js"></script>
     <script src="Js/Search.js"></script>
-    <script src="Js/gastos.js"></script>
     <script>
         var ctx1 = document.getElementById("chart-line").getContext("2d");
         var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);

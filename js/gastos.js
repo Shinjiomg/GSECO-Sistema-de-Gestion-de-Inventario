@@ -1,6 +1,6 @@
 gastos = [];
 
-/* getGastos(); */
+getGastos();
 
 function getGastos(){
 
@@ -25,6 +25,10 @@ function getGastos(){
 
 }
 
+function viewPDF(id_gasto){
+
+}
+
 
 function gastos(){
     $('#modal-gastos').modal('show');
@@ -38,7 +42,6 @@ function guardar(){
 
     gastos.append("descripcion", descripcion);
     gastos.append("total", total);
-
 
     $.ajax({
         url: "ajax/gastos.ajax.php",
@@ -58,9 +61,6 @@ function guardar(){
 
 function renderFacturas(){
     let container = document.getElementById('inventory_list');
-
-
-
 
 }
 
