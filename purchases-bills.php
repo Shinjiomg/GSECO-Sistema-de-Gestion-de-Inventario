@@ -3,6 +3,7 @@
 include_once("conexion.php");
 include_once("Consultas.php");
 require('./models/venta.php');
+require('./models/compra.php');
 if( !isset($_SESSION['id_usuario'])){
     header("Location: index.php");
     exit();
@@ -12,7 +13,7 @@ $rol = intval($_SESSION['rol']);
 $idUsuario = intval($_SESSION['id_usuario']);
 $venta = new Venta();
 $transacciones = $venta->transacciones($idUsuario);
-
+$compras = new Compras();
 
 
 ?>
@@ -194,31 +195,26 @@ $transacciones = $venta->transacciones($idUsuario);
                         </div>
                         <div class="card-body p-3 pb-0">
                             <?php  // Obtener las facturas
-                            $facturas = $venta->facturas($idUsuario);
-
-                            // Ordenar las facturas por fecha de venta de forma descendente
-                            usort($facturas, function ($a, $b) {
-                                return strtotime($b->fecha_venta) - strtotime($a->fecha_venta);
-                            });
+                            
 
                             // Iterar sobre las facturas ordenadas
-                            foreach ($facturas as $f) {  ?>
+                            foreach ($compras->facturas($idUsuario) as $f) {  ?>
                                 <ul class="list-group">
                                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                         <div class="d-flex align-items-center">
-                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
+                                            <a onclick="viewPDF(<?php echo $f->id_ingreso ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
                                             <div class="d-flex flex-column">
                                                 <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
                                                     <?php echo $f->nombres_productos; ?>
                                                 </h6>
                                                 <span class="text-sm text-uppercase font-weight-bolder">
-                                                    <?php echo $f->fecha_venta; ?>
+                                                    <?php echo $f->fecha_ingreso; ?>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="column">
                                             <div class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
-                                                <?php echo $f->tipo_pago; ?>
+                                                Efectivo
                                             </div>
                                             <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
                                                 + $
@@ -260,7 +256,7 @@ $transacciones = $venta->transacciones($idUsuario);
     </div>
     <!--   Core JS Files and scripts  -->
     <script src="js/login.js"></script>
-    <script src="./js/factura.js"></script>
+    <script src="js/factura_compras.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>

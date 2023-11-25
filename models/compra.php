@@ -86,12 +86,12 @@ class Compras extends Database
     {
         $currentDate = date('Y-m-d');
 
-        $query = $this->pdo->query("SELECT ingreso.id_ingreso,  DATE_FORMAT(ingreso.fecha, '%d/%m/%Y %H:%i') AS fecha_ingreso, GROUP_CONCAT(articulo.nombre SEPARATOR ', ') AS nombres_productos, ROUND(ingreso.total) AS total, 
-    FROM ingreso 
-    JOIN detalle_ingreso ON ingreso.id_ingreso = detalle_ingreso.Ingreso_id_ingreso 
-    JOIN articulo ON detalle_ingreso.Articulo_id_articulo = articulo.id_articulo
-    WHERE ingreso.Usuario_id_usuario = {$id_usuario} AND DATE(ingreso.fecha) = '{$currentDate}'
-    GROUP BY ingreso.id_venta");
+        $query = $this->pdo->query("SELECT ingreso.id_ingreso,  DATE_FORMAT(ingreso.fecha, '%d/%m/%Y %H:%i') AS fecha_ingreso, GROUP_CONCAT(articulo.nombre SEPARATOR ', ') AS nombres_productos, ROUND(ingreso.total) AS total 
+        FROM ingreso 
+        INNER JOIN detalle_ingreso ON ingreso.id_ingreso = detalle_ingreso.Ingreso_id_ingreso 
+        INNER JOIN articulo ON detalle_ingreso.Articulo_id_articulo  = articulo.id_articulo
+        WHERE ingreso.Usuario_id_usuario = {$id_usuario} AND DATE(ingreso.fecha) = '{$currentDate}'
+        GROUP BY ingreso.id_ingreso");
         return $query->fetchAll();
     }
 
