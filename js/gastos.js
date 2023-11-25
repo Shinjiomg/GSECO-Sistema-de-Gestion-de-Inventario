@@ -3,7 +3,7 @@ gastos = [];
 let nuevo_gasto = document.getElementById('nuevo_gasto');
 let contenedorGastos = document.getElementById('contenedor-gastos');
 
-nuevo_gasto.addEventListener('click', ()=>{
+nuevo_gasto.addEventListener('click', () => {
     openModalGastos();
 
 })
@@ -14,7 +14,7 @@ function openModalGastos() {
     $('#modal-gastos').modal('show');
 }
 
-function removeDataGastos(){
+function removeDataGastos() {
     while (contenedorGastos.firstChild) {
         contenedorGastos.removeChild(contenedorGastos.firstChild);
     }
@@ -54,7 +54,7 @@ function renderDataGastos(gastos) {
                 <div class="card-header pb-0 p-3">
                     <div class="row">
                         <div class="col-6 d-flex align-items-center">
-                            <h4 class="mb-0 text-uppercase font-weight-bolder">Gastos</h4>
+                            <h4 class="mb-0 text-uppercase font-weight-bolder">Gasto realizado</h4>
                         </div>
                     </div>
                 </div>
@@ -72,8 +72,8 @@ function renderDataGastos(gastos) {
                                 </div>
                             </div>
                             <div class="column">
-                                <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
-                                    + $ ${g.total.toLocaleString('es-ES')}
+                                <div class="d-flex justify-content-end text-danger align-items-center text-gradient text-md text-uppercase font-weight-bolder">
+                                    - $ ${g.total.toLocaleString('es-ES')}
                                 </div>
                             </div>
                         </li>
@@ -92,14 +92,22 @@ function renderDataGastos(gastos) {
 
 
 function guardar() {
-    let descripcion = document.getElementById("description_bills").value
-    let total = document.getElementById("total_bills").value
+    // Obtener los valores de los campos
+    let descripcion = document.getElementById("description_bills").value;
+    let total = document.getElementById("total_bills").value;
 
+    // Validar que los campos no estén vacíos
+    if (!descripcion || !total) {
+        alert("Por favor, completa todos los campos antes de guardar.");
+        return; // Detener la ejecución si los campos no están llenos
+    }
+
+    // Crear FormData y agregar los valores
     let gastos = new FormData();
-
     gastos.append("descripcion", descripcion);
     gastos.append("total", total);
 
+    // Realizar la solicitud AJAX
     $.ajax({
         url: "ajax/gastos.ajax.php",
         method: "POST",
@@ -108,14 +116,13 @@ function guardar() {
         contentType: false,
         processData: false,
         success: function (response) {
-          
+            // Cerrar el modal y actualizar la información
             $('#modal-gastos').modal('hide');
             getGastos();
         }
-
     });
-
 }
+
 
 
 

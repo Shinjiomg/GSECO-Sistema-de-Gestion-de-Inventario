@@ -183,7 +183,7 @@ $MetodosPago = new MetodosPago();
         </nav>
         <div class="container-fluid py-4">
             <div class="row d-flex mb-2 justify-content-end">
-                <div class="col-6">
+                <div class="col-xl-6 mb-2">
                     <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Buscar por...">
                 </div>
                 <a onclick="generarCierre()" target="_blank" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
@@ -279,15 +279,15 @@ $MetodosPago = new MetodosPago();
                                 </div>
                                 <div class="col-xl-12 mt-4">
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-xl-4">
                                             <p class="text-md mb-0 text-uppercase font-weight-bold">Total de la venta
                                             </p>
                                             <h5 id="total" class="font-weight-bolder">
                                                 $0
                                             </h5>
                                         </div>
-                                        <div class="col-4 text-end">
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-form-change" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" id="btnCalcularCambio">
+                                        <div class="col-xl-4 text-end mb-2">
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-form-change" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100" style="background: #008000" id="btnCalcularCambio">
                                                 Calcular cambio
                                             </button>
                                             <div class="modal fade" id="modal-form-change" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -315,8 +315,8 @@ $MetodosPago = new MetodosPago();
                                             </div>
                                         </div>
 
-                                        <div class="col-4 text-end">
-                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarVenta()" id="btnCrearVenta">
+                                        <div class="col-xl-4 text-end">
+                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100" style="background: #008000" onclick="GenerarVenta()" id="btnCrearVenta">
                                                 </i>Crear venta
                                             </button>
                                         </div>

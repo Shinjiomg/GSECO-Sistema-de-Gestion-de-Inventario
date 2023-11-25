@@ -6,7 +6,7 @@ require('./models/venta.php');
 require('./models/articulo.php');
 require('./models/categoria.php');
 
-if( !isset($_SESSION['id_usuario'])){
+if (!isset($_SESSION['id_usuario'])) {
   header("Location: index.php");
   exit();
 }
@@ -63,6 +63,7 @@ $articulos = $ar->index();
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 </head>
+
 <body class="g-sidenav-show" style="background-color: #009ad5;">
   <div class="h-100 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
@@ -74,8 +75,7 @@ $articulos = $ar->index();
         <span class="ms-1 font-weight-bold">GSECO</span>
       </a>
     </div>
-    <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse  w-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ARTÍCULOS</h6>
@@ -299,17 +299,11 @@ $articulos = $ar->index();
                 </div> -->
               <?php } ?>
               <div class="row pb-2 p-3">
-                <div class="col-4 d-flex align-items-center text-uppercase">
+                <div class="col-xl-4 d-flex align-items-center text-uppercase">
                   <h4 class="font-weight-bolder">Productos</h4>
                 </div>
-                <div class="col-md-8 text-end">
-                  <div class="d-flex justify-content-end">
-                    <div class="text-end text-uppercase" id="botonera">
-
-                    </div>
-                    <div class="me-xl-2" id="register1">
-
-                    </div>
+                <div class="col-xl-8 text-end">
+                  <div class="d-flex justify-content-end mb-2">
                     <div>
                       <?php
                       if ($rol === 2) {
@@ -376,7 +370,9 @@ $articulos = $ar->index();
                     </div>
                   </div>
                 </div>
-                <div class="p-1 col-md-12 text-end text-uppercase" id="filter1"></div>
+                <div class="" id="register1"></div>
+                <div class="text-end text-uppercase" id="botonera"></div>
+                <div class="p-1 col-sm-12 text-end text-uppercase" id="filter1"></div>
               </div>
             </div>
             <div class="table-responsive">
@@ -422,9 +418,6 @@ $articulos = $ar->index();
                 </div>
                 <div class="col-md-8 text-end">
                   <div class="d-flex justify-content-end">
-                    <div class="me-md-2" id="botonera2">
-
-                    </div>
                     <div>
                       <?php
                       if ($rol === 2) {
@@ -462,10 +455,9 @@ $articulos = $ar->index();
                     </div>
                   </div>
                 </div>
-                <div class="p-1 col-md-6 pb-0 text-uppercase" id="filter2">
-
-                </div>
-                <div class="p-1 col-md-6 text-end text-uppercase" id="register2">
+                <div class="p-1 pb-0 text-uppercase" id="filter2"></div>
+                <div class="me-md-2" id="botonera2"></div>
+                <div class="p-1 text-end text-uppercase" id="register2">
 
                 </div>
               </div>
@@ -494,11 +486,11 @@ $articulos = $ar->index();
           <div class="card ">
             <div class="card-header pb-4">
               <div class="row pb-2 p-3">
-                <div class="col-12 d-flex align-items-center justify-content-between">
+                <div class="col-xl-8 d-flex">
                   <h4 class="text-uppercase font-weight-bolder">Ventas por empleado</h4>
-
+                </div>
+                <div class="col-xl-4">
                   <input type="text" id="daterange" name="daterange" value="11/05/2023 - 11/05/2023" class="custom-daterangepicker" />
-
 
                 </div>
               </div>
@@ -544,7 +536,7 @@ $articulos = $ar->index();
       </div>
       <div class="card-body pt-sm-3 pt-0 overflow-auto">
         <!-- Sidenav Type -->
-        <a class="btn btn-danger w-100" onclick="logout()" >Cerrar sesión</a>
+        <a class="btn btn-danger w-100" onclick="logout()">Cerrar sesión</a>
       </div>
     </div>
   </div>

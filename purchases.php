@@ -207,7 +207,7 @@ $Categoria = new Categoria()
             <div class="row mt-4">
                 <div class="col-xl-6 mb-4">
                     <div class="card p-4">
-                        <div class="col-md-12 ">
+                        <div class="col-xl-12 ">
                             <h4 class="text-uppercase font-weight-bolder">Selecciona los productos</h4>
                             <p class="text-uppercase font-weight-bolder"><em>Categoría seleccionada:</em> <strong id="selected_category"></strong></p>
                         </div>
@@ -251,14 +251,14 @@ $Categoria = new Categoria()
                                 </div>
                                 <div class="col-xl-12 mt-4">
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-xl-8">
                                             <p class="text-md mb-0 text-uppercase font-weight-bold">Total de la compra
                                             </p>
                                             <h5 id="total" class="font-weight-bolder">
                                                 $0
                                             </h5>
                                         </div>
-                                        <div class="col-4 text-end">
+                                        <div class="col-xl-4 text-end">
                                             <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarCompra()" id="btnCrearCompra">
                                                 </i>Generar compra
                                             </button>
