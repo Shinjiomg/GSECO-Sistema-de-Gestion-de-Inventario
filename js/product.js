@@ -30,8 +30,6 @@ function getProducts() {
 
 
 function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria) {
-    console.log('entro');
-
     let newProduct = {
         nombre,
         cantidad,
@@ -47,9 +45,6 @@ function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria)
     let category = document.getElementById('categories_select');
 
     let selectedText = category.options[category.selectedIndex].text;
-
-    console.log(selectedText);
-
     $.ajax({
         url: "ajax/productos.ajax.php",
         method: "POST",
@@ -126,7 +121,6 @@ function eliminarProducto(id_articulo) {
 }
 
 function renderTable() {
-    console.log(products);
     let tabla = document.getElementById("data_table");
 
     let filas = tabla.getElementsByTagName("tr");
@@ -195,7 +189,6 @@ function saveProduct() {
     let precio = document.getElementById('product_price').value;
     let stockMaximo = document.getElementById('stock_maximo').value;
     let selectCategoria = document.getElementById('categories_select').value;
-    console.log('entro aca');
     if (selectProduct) {
         saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria);
         return;

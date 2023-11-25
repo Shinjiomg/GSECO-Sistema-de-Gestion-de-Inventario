@@ -1,7 +1,7 @@
-function ventasPorRango(fecha_inicio, fecha_final) {
-    console.log(fecha_inicio)
-    console.log(fecha_final)
-}
+// function ventasPorRango(fecha_inicio, fecha_final) {
+//     console.log(fecha_inicio)
+//     console.log(fecha_final)
+// }
 
 function viewPDFVentas(id_usuario) {
     const url = `reports/venta_rango.php?id_usuario=${id_usuario}&fecha_inicio=${fecha_inicio}&fecha_final=${fecha_final}`;

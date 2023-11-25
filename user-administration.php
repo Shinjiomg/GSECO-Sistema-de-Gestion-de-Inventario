@@ -347,7 +347,6 @@ if( !isset($_SESSION['id_usuario'])){
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/js/plugins/chartjs.min.js"></script>
-    <script src="Js/Search.js"></script>
     <script>
         var ctx1 = document.getElementById("chart-line").getContext("2d");
         var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);

@@ -3,7 +3,6 @@
 function autenthicated(){
     let user = document.getElementById('user').value?? '';
     let password = document.getElementById('user_password').value?? '';
-    console.log(user, password)
     let credentials = {
         user,
         password

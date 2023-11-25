@@ -69,7 +69,6 @@ function GenerarCompra() {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log('nice')
                     Swal.fire({
                         title: "Generar compra",
                         text: "La compra se generó de forma exitosa",
@@ -188,7 +187,6 @@ function addProductTableCompras(pr) {
         (art) => art.id_articulo === pr.id_articulo
     );
     let title = document.querySelector('#titleModal');
-    console.log(pr);
 
     if (rs?.length) {
         Swal.fire({
@@ -340,9 +338,7 @@ function habilitarBotonVenta() {
 window.onload = habilitarBotonVenta;
 
 function editProduct(id_articulo) {
-    console.log('entro');
     selectedProduct = products.find(p => p.id_articulo === id_articulo);
-    console.log(selectedProduct);
 
     title = document.getElementById('titleModal');
     title.textContent = selectedProduct.nombre;

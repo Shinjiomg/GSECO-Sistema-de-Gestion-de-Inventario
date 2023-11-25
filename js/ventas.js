@@ -7,8 +7,6 @@ sumaTotales = 0;
 
 // Función que se ejecutará al cambiar el valor del input
 function handleChange(event) {
-    console.log(event.target.value);
-
     if (event.target.value === '') {
         clearProducts();
         return;
@@ -27,7 +25,6 @@ function handleChange(event) {
         contentType: false,
         processData: false,
         success: function (response) {
-            console.log(response);
             clearProducts();
             renderProducts(response)
         }

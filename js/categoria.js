@@ -103,7 +103,6 @@ function eliminarCategoria(id_categoria) {
 
 function saveEditCategory(nombre){
    
-    console.log(nombre)
     let datos = new FormData();
 
     let editCategory = {

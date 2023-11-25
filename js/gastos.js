@@ -45,8 +45,6 @@ function getGastos() {
 }
 
 function renderDataGastos(gastos) {
-    
-    console.log(gastos);
     gastos.forEach(g => {
         const nuevoDiv = document.createElement('div');
         nuevoDiv.classList.add('row', 'mt-4');

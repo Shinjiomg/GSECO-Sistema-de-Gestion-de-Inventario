@@ -687,9 +687,6 @@ $articulos = $ar->index();
       dateRangeInput.value = formattedDate;
     });
   </script>
-  <script src="Js/Search.js"></script>
-
-
   <!-- Date picker -->
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
