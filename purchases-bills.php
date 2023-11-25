@@ -169,13 +169,7 @@ $compras = new Compras();
                                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
-                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-              </ul>
-            </li> -->
+                       
                     </ul>
                 </div>
             </div>
@@ -202,7 +196,7 @@ $compras = new Compras();
                                 <ul class="list-group">
                                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                         <div class="d-flex align-items-center">
-                                            <a onclick="viewPDF(<?php echo $f->id_ingreso ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
+                                            <a onclick="viewPDFCompra(<?php echo $f->id_ingreso ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
                                             <div class="d-flex flex-column">
                                                 <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
                                                     <?php echo $f->nombres_productos; ?>

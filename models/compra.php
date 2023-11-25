@@ -11,6 +11,25 @@ class Compras extends Database
         return $query->fetch();
     }
 
+    public function getCompra(int $id)
+	{
+		$query = $this->pdo->query('SELECT id_ingreso, fecha, total, CONCAT(usuario.nombres, " ", usuario.apellidos) AS nombre_completo, usuario.nombres, usuario.apellidos
+		 FROM ingreso
+		 JOIN usuario ON usuario.id_usuario = Usuario_id_usuario
+		 WHERE id_ingreso = '.$id);
+	
+		return $query->fetch();
+	}
+
+    public function getCompraDetails(int $id)
+	{
+		$query = $this->pdo->query('SELECT Articulo_id_articulo, cantidad, precio, articulo.nombre, articulo.descripcion
+				FROM detalle_ingreso
+				JOIN articulo ON articulo.id_articulo = Articulo_id_articulo
+				WHERE detalle_ingreso.Ingreso_id_ingreso = '.$id);
+		return $query->fetchAll();
+	}
+
 
 
     public function store($idUsuario, $total, $productos)

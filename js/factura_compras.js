@@ -18,3 +18,12 @@ function ProductsByCategory() {
     });
 
 }
+
+function viewPDFCompra(id_compra){
+
+    const url = `reports/compra.php?id_compra=${id_compra}`;
+
+    // Abre una ventana emergente
+    window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
+
+}
