@@ -75,6 +75,7 @@ $articulos = $ar->index();
         <span class="ms-1 font-weight-bold">GSECO</span>
       </a>
     </div>
+    <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item mt-3">
