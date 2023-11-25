@@ -1,13 +1,13 @@
 <?php
+include_once("conexion.php");
+include_once("Consultas.php");
+require('./models/categoria.php');
 
 if( !isset($_SESSION['id_usuario'])){
     header("Location: index.php");
     exit();
 }
 
-include_once("conexion.php");
-include_once("Consultas.php");
-require('./models/categoria.php');
 
 $rol = intval($_SESSION['rol']);
 
