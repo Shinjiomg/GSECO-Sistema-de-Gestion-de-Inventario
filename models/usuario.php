@@ -12,6 +12,7 @@ class Usuario extends Database
 	}
 
 	public function logout(){
+		session_start();
 		session_destroy();
 	}
 
