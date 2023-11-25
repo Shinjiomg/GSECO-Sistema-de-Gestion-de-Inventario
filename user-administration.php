@@ -331,11 +331,12 @@ include_once("Consultas.php");
             </div>
             <div class="card-body pt-sm-3 pt-0 overflow-auto">
                 <!-- Sidenav Type -->
-                <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
+                <a class="btn btn-danger w-100" onclick="logout()">Cerrar sesión</a>
             </div>
         </div>
     </div>
     <!--   Core JS Files and scripts  -->
+    <script src="js/login.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>

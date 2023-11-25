@@ -11,6 +11,10 @@ class Usuario extends Database
 		return $query->fetchAll();
 	}
 
+	public function logout(){
+		session_destroy();
+	}
+
 	public function authenticated($credentials)
 	{
 		$credentials = json_decode($credentials);

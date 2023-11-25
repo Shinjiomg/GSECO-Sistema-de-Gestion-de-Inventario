@@ -5,6 +5,8 @@ include_once("Consultas.php");
 require('./models/venta.php');
 require('./models/articulo.php');
 require('./models/categoria.php');
+
+
 $nw = new Venta();
 $ar = new Articulo();
 $c = new Categoria();
@@ -536,7 +538,7 @@ $articulos = $ar->index();
       </div>
       <div class="card-body pt-sm-3 pt-0 overflow-auto">
         <!-- Sidenav Type -->
-        <a class="btn btn-danger w-100" href="Cerrar.php">Cerrar sesión</a>
+        <a class="btn btn-danger w-100" onclick="logout()" >Cerrar sesión</a>
       </div>
     </div>
   </div>
@@ -660,6 +662,7 @@ $articulos = $ar->index();
   <!--   Core JS Files and scripts  -->
 
   <script src="js/categoria.js"></script>
+  <script src="js/login.js"></script>
   <script src="js/product.js"></script>
   <script src="js/stats.js"></script>
   <script src="assets/js/core/popper.min.js"></script>

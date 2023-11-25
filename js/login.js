@@ -51,3 +51,23 @@ function autenthicated(){
     });
 
 }
+
+function logout(){
+    let datos = new FormData();
+
+    datos.append('logout', 'logout');
+  
+
+    $.ajax({
+        url: "ajax/login.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            window.location.href = './index.php';
+        }
+    });
+
+}
