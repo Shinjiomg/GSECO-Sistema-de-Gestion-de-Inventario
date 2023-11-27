@@ -1,7 +1,6 @@
 <?php
 include_once("conexion.php");
 include_once("Consultas.php");
-
 require('./models/venta.php');
 require('./models/articulo.php');
 require('./models/categoria.php');
@@ -12,7 +11,7 @@ if (!isset($_SESSION['id_usuario'])) {
 }
 
 
-
+$rol = intval($_SESSION['rol']);
 $nw = new Venta();
 $ar = new Articulo();
 $c = new Categoria();
@@ -26,14 +25,14 @@ $articulos = $ar->index();
 <!-- librerías -->
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html;" charset="ISO-8859-1" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="./img/logo.png">
   <link rel="icon" type="image/png" href="./img/logo.png">
-  <title>
-    Tienda del soldado GSECO
-  </title>
-  <!--     Fonts and icons     -->
+  <title>Tienda del soldado GSECO</title>
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Fonts and icons -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
   <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
@@ -41,22 +40,21 @@ $articulos = $ar->index();
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
+  <!-- Argon Dashboard CSS -->
   <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- SweetAlert2 -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+  <!-- DateRangePicker -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
-
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
+  <!-- DataTables CSS -->
+  <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" rel="stylesheet">
+  <!-- DataTables JS y sus dependencias -->
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-
+  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.jqueryui.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
@@ -67,44 +65,50 @@ $articulos = $ar->index();
 <body class="g-sidenav-show" style="background-color: #009ad5;">
   <div class="h-100 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
-  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+  <aside
+    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+    id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0 mr-4">
         <img src="./img/logo.png" class="navbar-brand-img h-100 mr-5" alt="main_logo">
         <span class="ms-1 font-weight-bold">GSECO</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-100" id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ARTÍCULOS</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Artículos</h6>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="stats.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1 font-weight-bolder">ESTADÍSTICAS</span>
+            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
           </a>
         </li>
         <?php if ($rol === 2) { ?>
           <li class="nav-item">
             <a class="nav-link" href="sales.php">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-cart text-primary text-sm opacity-10"></i>
               </div>
-              <span class="nav-link-text ms-1 font-weight-bolder">VENTAS</span>
+              <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
             </a>
           </li>
         <?php } ?>
         <li class="nav-item">
           <a class="nav-link" href="bills.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE VENTA</span>
+            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -113,15 +117,18 @@ $articulos = $ar->index();
         <?php if ($rol === 2) { ?>
           <li class="nav-item">
             <a class="nav-link" href="purchases.php">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
               </div>
               <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="purchases-bills.php">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
               </div>
               <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
@@ -130,36 +137,38 @@ $articulos = $ar->index();
         <?php } ?>
         <li class="nav-item">
           <a class="nav-link" href="inventory-expenses.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
           </a>
         </li>
         <!-- <?php
-              if ($rol == 1) {
-              ?>
-                      <li class="nav-item mt-3">
-                          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
-                      </li>
-  
-                      <li class="nav-item">
-                          <a class="nav-link" href="user-administration.php">
-                              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                  <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
-                              </div>
-                              <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
-                          </a>
-                      </li>
-                  <?php
-                }
-                  ?> -->
+        if ($rol == 1) {
+          ?>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="user-administration.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
+                        </a>
+                    </li>
+                <?php
+        }
+        ?> -->
       </ul>
     </div>
   </aside>
   <main class="main-content position-relative border-radius-lg">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+      data-scroll="false">
       <div class="container-fluid py-1 px-3">
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -291,7 +300,7 @@ $articulos = $ar->index();
                 }
               }
               if (!empty($productosAgotandose)) {
-              ?>
+                ?>
                 <!-- <div class="alert alert-warning lowercase" role="alert" style="color: white">
                   <strong>¡Aviso!</strong> Se están agotando los siguientes productos:
                   <strong>
@@ -318,11 +327,14 @@ $articulos = $ar->index();
 
                     </div>
                   </div>
-                  <div class="modal fade" id="modal-form-product" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                  <div class="modal fade" id="modal-form-product" tabindex="999999" style="z-index: 9999999"
+                    role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h4 class="modal-title text-uppercase font-weight-bold">Añadir producto</h4>
+                          <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
+
                         </div>
                         <div class="modal-body p-0">
                           <div class="card card-plain">
@@ -333,25 +345,31 @@ $articulos = $ar->index();
                                     <div class="col-xl-9">
                                       <label for="" class="col-form-label text-uppercase">Nombre
                                         del producto</label>
-                                      <input id="product_name" type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
+                                      <input id="product_name" type="text" placeholder="Ingresa el nombre del producto"
+                                        class="form-control" />
                                     </div>
                                     <div class="col-xl-3">
                                       <label for="" class="col-form-label text-uppercase">Cantidad</label>
-                                      <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad">
+                                      <input class="form-control" type="number" id="product_stock"
+                                        placeholder="Ingresa la cantidad">
                                     </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label text-uppercase">Valor unitario</label>
-                                      <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="product_price"
+                                        placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label text-uppercase">Stock máximo</label>
-                                      <input class="form-control" type="number" id="stock_maximo" placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="stock_maximo"
+                                        placeholder="Ingresa el stock máximo del producto"
+                                        oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label text-uppercase">Categoría</label>
-                                      <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
+                                      <select class="form-control" name="choices-button" id="categories_select"
+                                        placeholder="Departure">
                                         <?php foreach ($categorias as $c) { ?>
                                           <option value="<?php echo $c->id_categoria ?>" selected="true">
                                             <?php echo $c->nombre ?>
@@ -360,7 +378,9 @@ $articulos = $ar->index();
                                       </select>
                                     </div>
                                   </div>
-                                  <button type="button" id="confirmButton" onclick="saveProduct()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
+                                  <button type="button" id="confirmButton" onclick="saveProduct()"
+                                    class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
+                                    style="background: #5e72e4; color:white">guardar
                                   </button>
                                 </div>
                               </form>
@@ -431,9 +451,15 @@ $articulos = $ar->index();
                       ?>
                     </div>
                   </div>
-                  <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                  <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog"
+                    aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                       <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title text-uppercase font-weight-bold">Añadir categoría</h4>
+                          <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
+
+                        </div>
                         <div class="modal-body p-0">
                           <div class="card card-plain">
                             <div class="card-body text-start">
@@ -441,10 +467,13 @@ $articulos = $ar->index();
                                 <div class="row">
                                   <div class="col-xl-12">
                                     <label for="" class="col-form-label text-uppercase">Nombre de la categoria</label>
-                                    <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría" class="form-control" />
+                                    <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría"
+                                      class="form-control" />
                                   </div>
                                   <div class="text-center">
-                                    <button type="button" onClick="guardarCategoria()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Añadir
+                                    <button type="button" onClick="guardarCategoria()"
+                                      class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
+                                      style="background: #5e72e4; color:white">Añadir
                                       categoría</button>
                                   </div>
                                 </div>
@@ -487,12 +516,12 @@ $articulos = $ar->index();
           <div class="card ">
             <div class="card-header pb-4">
               <div class="row pb-2 p-3">
-                <div class="col-xl-8 d-flex">
+                <div class="col-xl-12 d-flex">
                   <h4 class="text-uppercase font-weight-bolder">Ventas por empleado</h4>
                 </div>
-                <div class="col-xl-4">
-                  <input type="text" id="daterange" name="daterange" value="11/05/2023 - 11/05/2023" class="custom-daterangepicker" />
-
+                <div class="col-xl-12">
+                  <input type="text" id="daterange" name="daterange" value="11/05/2023 - 11/05/2023"
+                    class="custom-daterangepicker" />
                 </div>
               </div>
             </div>
@@ -542,135 +571,19 @@ $articulos = $ar->index();
     </div>
   </div>
 
-  <script>
-    $(document).ready(function() {
-
-      var categories = $('#categories_table').DataTable({
-        dom: 'Blfrtip',
-        "order": [
-          [1, "asc"]
-        ],
-        buttons: [{
-            extend: 'excel',
-            text: '<i class="fas fa-file-excel"></i>', // Icono para Excel (puedes cambiar la clase del icono)
-            titleAttr: 'Exportar a Excel' // Texto de información al pasar el ratón sobre el icono
-          },
-          {
-            extend: 'print',
-            text: '<i class="fas fa-print"></i>', // Icono para Print (puedes cambiar la clase del icono)
-            titleAttr: 'Imprimir' // Texto de información al pasar el ratón sobre el icono
-          },
-          {
-            extend: 'pdf',
-            text: '<i class="fas fa-file-pdf"></i>', // Icono para Print (puedes cambiar la clase del icono)
-            titleAttr: 'Exportar a PDF', // Texto de información al pasar el ratón sobre el icono
-            exportOptions: {
-              modifier: {
-                page: 'current'
-              }
-            }
-          },
-        ],
-
-        lengthMenu: [5, 10, 25, 50], // Configuramos las opciones de cantidad por página
-        pageLength: 3,
-        "language": {
-          "sProcessing": "",
-          "sLengthMenu": "Mostrar _MENU_ registros",
-          "sZeroRecords": "No se encontraron resultados",
-          "sEmptyTable": "Ningún dato disponible en esta tabla",
-          "sInfo": "_TOTAL_ registros",
-          "sInfoEmpty": "Mostrando 0 registros",
-          "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-          "sInfoPostFix": "",
-          "sSearch": "",
-          "searchPlaceholder": "Buscar...",
-          "sUrl": "",
-          "sInfoThousands": ",",
-          "sLoadingRecords": "<img style='display: block;width:100px;margin:0 auto;' src='assets/img/loading.gif' />",
-          "oPaginate": {
-            "sFirst": "Primero",
-            "sLast": "Último",
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-          },
-          "oAria": {
-            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-          }
-        }
-      });
-      $('#botonera2').append(categories.buttons().container());
-      $('#filter2').append($('#categories_table').closest('.dataTables_wrapper').find('.dataTables_filter'));
-      $('#register2').append($('#categories_table').closest('.dataTables_wrapper').find('.dataTables_length'));
-      var products = $('#data_table').DataTable({
-        dom: 'Blfrtip',
-        "order": [
-          [1, "asc"]
-        ],
-        buttons: [{
-            extend: 'excel',
-            text: '<i class="fas fa-file-excel"></i>', // Icono para Excel (puedes cambiar la clase del icono)
-            titleAttr: 'Exportar a Excel' // Texto de información al pasar el ratón sobre el icono
-          },
-          {
-            extend: 'print',
-            text: '<i class="fas fa-print"></i>', // Icono para Print (puedes cambiar la clase del icono)
-            titleAttr: 'Imprimir' // Texto de información al pasar el ratón sobre el icono
-          },
-          {
-            extend: 'pdf',
-            text: '<i class="fas fa-file-pdf"></i>', // Icono para Print (puedes cambiar la clase del icono)
-            titleAttr: 'Exportar a PDF' // Texto de información al pasar el ratón sobre el icono
-          },
-        ],
-        lengthMenu: [5, 10, 25, 50], // Configuramos las opciones de cantidad por página
-        pageLength: 5,
-        "language": {
-          "sProcessing": "",
-          "sLengthMenu": "Mostrar _MENU_ registros",
-          "sZeroRecords": "No se encontraron resultados",
-          "sEmptyTable": "Ningún dato disponible en esta tabla",
-          "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-          "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-          "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-          "sInfoPostFix": "",
-          "sSearch": "",
-          "searchPlaceholder": "Buscar...",
-          "sUrl": "",
-          "sInfoThousands": ",",
-          "sLoadingRecords": "<img style='display: block;width:100px;margin:0 auto;' src='assets/img/loading.gif' />",
-          "oPaginate": {
-            "sFirst": "Primero",
-            "sLast": "Último",
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-          },
-          "oAria": {
-            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-          }
-        }
-      });
-      $('#botonera').append(products.buttons().container());
-      $('#register1').append($('#data_table').closest('.dataTables_wrapper').find('.dataTables_filter'));
-      $('#filter1').append($('#data_table').closest('.dataTables_wrapper').find('.dataTables_length'));
-    });
-  </script>
-
-  <!--   Core JS Files and scripts  -->
-
-  <script src="js/categoria.js"></script>
-  <script src="js/login.js"></script>
-  <script src="js/product.js"></script>
-  <script src="js/stats.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="assets/js/plugins/chartjs.min.js"></script>
+  <!-- Tus archivos JavaScript -->
+  <script src="js/categoria.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/product.js"></script>
+  <script src="js/stats.js"></script>
+
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
       // Obtiene la fecha actual
       const currentDate = new Date();
       const formattedDate = currentDate.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
@@ -690,96 +603,70 @@ $articulos = $ar->index();
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-  <!-- Github buttons -->
+  <script>
+    let rangeDates;
+    function viewPDFVentas(id_usuario) {
+      const url = `reports/venta_rango.php?id_usuario=${id_usuario}&fecha_inicio=${rangeDates.start}&fecha_final=${rangeDates.end}`;
+      // Abre una ventana emergente
+      window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
+    }
+    $(function () {
+      $('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+      }, function (start, end, label) {
+        rangeDates = {
+          start: start.format('YYYY-MM-DD'),
+          end: end.format('YYYY-MM-DD')
+        }
+        let datos = new FormData();
+        datos.append('range_dates', JSON.stringify(rangeDates));
+        $.ajax({
+          url: "ajax/ventas.ajax.php",
+          method: "POST",
+          data: datos,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (response) {
+            let tabla = document.getElementById('ventas_rango');
+            ventas = JSON.parse(response);
+
+            ventas.forEach(v => {
+
+              let nuevaFila = document.createElement("tr");
+              nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
+              var precioVentaFormateado = parseFloat(v.total_venta).toLocaleString('es-CO');
+
+
+              let contenidoCeldas = [
+                v.nombres + ' ' + v.apellidos,
+                "$" + precioVentaFormateado,
+                `<a class="text-danger font-weight-bold text-md"  onclick="viewPDFVentas( ${v.id_usuario})" data-original-title="Delete user"><i class="fas fa-file-pdf"></i></a>`,
+              ];
+              contenidoCeldas.forEach(function (contenido) {
+                var celda = document.createElement("td");
+                var parrafo = document.createElement("p");
+                parrafo.innerHTML = contenido;
+                celda.appendChild(parrafo);
+                nuevaFila.appendChild(celda);
+              });
+              let tabla = document.getElementById("ventas_rango");
+              let filas = tabla.getElementsByTagName("tr");
+              for (var i = filas.length - 1; i > 0; i--) {
+                tabla.deleteRow(i);
+              }
+              // Agrega la nueva fila a la tabla
+              tabla.querySelector("tbody").appendChild(nuevaFila);
+            });
+          }
+        });
+
+      });
+    });
+  </script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/argon-dashboard.js"></script>
 </body>
-
-<script>
-  let rangeDates;
-
-  function viewPDFVentas(id_usuario) {
-
-
-    const url = `reports/venta_rango.php?id_usuario=${id_usuario}&fecha_inicio=${rangeDates.start}&fecha_final=${rangeDates.end}`;
-
-    // Abre una ventana emergente
-    window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
-  }
-
-  $(function() {
-    $('input[name="daterange"]').daterangepicker({
-      opens: 'left'
-    }, function(start, end, label) {
-
-
-
-      rangeDates = {
-        start: start.format('YYYY-MM-DD'),
-        end: end.format('YYYY-MM-DD')
-      }
-
-      let datos = new FormData();
-
-      datos.append('range_dates', JSON.stringify(rangeDates));
-
-      $.ajax({
-        url: "ajax/ventas.ajax.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function(response) {
-
-          let tabla = document.getElementById('ventas_rango');
-          ventas = JSON.parse(response);
-
-          ventas.forEach(v => {
-
-            let nuevaFila = document.createElement("tr");
-            nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
-            var precioVentaFormateado = parseFloat(v.total_venta).toLocaleString('es-CO');
-
-
-            let contenidoCeldas = [
-              v.nombres + ' ' + v.apellidos,
-              "$" + precioVentaFormateado,
-              `<a class="text-danger font-weight-bold text-md"  onclick="viewPDFVentas( ${v.id_usuario})" data-original-title="Delete user"><i class="fas fa-file-pdf"></i></a>`,
-            ];
-
-            contenidoCeldas.forEach(function(contenido) {
-              var celda = document.createElement("td");
-              var parrafo = document.createElement("p");
-              parrafo.innerHTML = contenido;
-              celda.appendChild(parrafo);
-              nuevaFila.appendChild(celda);
-            });
-
-            let tabla = document.getElementById("ventas_rango");
-
-            let filas = tabla.getElementsByTagName("tr");
-
-
-            for (var i = filas.length - 1; i > 0; i--) {
-              tabla.deleteRow(i);
-            }
-
-
-            // Agrega la nueva fila a la tabla
-            tabla.querySelector("tbody").appendChild(nuevaFila);
-          });
-
-
-
-
-        }
-      });
-
-    });
-  });
-</script>
 
 </html>
 <!-- style -->
