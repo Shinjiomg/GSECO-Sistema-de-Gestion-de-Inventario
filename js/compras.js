@@ -43,17 +43,10 @@ function resetButtonVenta() {
 function GenerarCompra() {
 
     let datos = new FormData();
-
-   
-
-    
-
     datos.append("productos", JSON.stringify(products));
     datos.append("total", sumaTotales);
-
-
     Swal.fire({
-        title: `¿Quieres generar la venta?`,
+        title: `¿Quieres generar la compra?`,
 
         showCancelButton: true,
         confirmButtonText: 'Aceptar',
@@ -144,6 +137,9 @@ function renderProductsTable(data) {
             // Crear un div para el nombre del producto
             var nombreDiv = document.createElement("div");
             nombreDiv.textContent = pr.id_articulo + " - " + pr.nombre;
+            nombreDiv.style.whiteSpace = "nowrap";
+            nombreDiv.style.overflow = "hidden";
+            nombreDiv.style.textOverflow = "ellipsis";
 
             // Crear un div para el precio de venta
             var precioNumerico = parseFloat(pr.precio_venta);
@@ -328,7 +324,7 @@ function habilitarBotonVenta() {
     const tabla = document.getElementById("data_table_compras");
     const btnCrearCompra = document.getElementById("btnCrearCompra");
 
-    if (tabla && tabla.rows.length > 1 ) { // Verifica que la tabla tenga más de una fila (cabecera + al menos un elemento)
+    if (tabla && tabla.rows.length > 1) { // Verifica que la tabla tenga más de una fila (cabecera + al menos un elemento)
         btnCrearCompra.disabled = false; // Habilita el botón
     } else {
         btnCrearCompra.disabled = true; // Deshabilita el botón
@@ -349,7 +345,7 @@ function editProduct(id_articulo) {
     $('#modal-form-compras').modal('show');
     let cantidad = document.getElementById('productQuantity');
 
-   
+
 
     let cantidadValue = +selectedProduct.cantidad;
 

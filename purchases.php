@@ -188,7 +188,7 @@ $Categoria = new Categoria()
                     ?>
 
                     <div class="row">
-                        <button class="btn dropdown-toggle text-uppercase font-weight-bolder" style="background: #c3c3c3; color:black; border: 0px solid black !important; height: 70px !important" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
+                        <button class="btn dropdown-toggle text-uppercase font-weight-bolder" style="background: #c3c3c3; color:black; border: 0px solid black !important; height: 50px !important" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
                             Selecciona una categoría
                         </button>
                         <ul class="dropdown-menu" style="border: 1px solid black !important" aria-labelledby="dropdownMenuButton">

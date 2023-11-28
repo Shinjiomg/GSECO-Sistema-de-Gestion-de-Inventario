@@ -122,17 +122,11 @@ function eliminarProducto(id_articulo) {
 
 function renderTable() {
     let tabla = document.getElementById("data_table");
-
     let filas = tabla.getElementsByTagName("tr");
-
-
     for (var i = filas.length - 1; i > 0; i--) {
         tabla.deleteRow(i);
     }
-
-
     products.forEach(pr => {
-
         let nuevaFila = document.createElement("tr");
         nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
         var precioVentaFormateado = parseFloat(pr.precio_venta).toLocaleString('es-CO');
@@ -157,7 +151,6 @@ function renderTable() {
                 (((pr.stock / pr.stock_deseado) * 100) >= 40 && ((pr.stock / pr.stock_deseado) * 100) <= 60) ?
                     `<div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>` :
                     `<div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>`
-
             }
             </div>
           </div>`,

@@ -184,7 +184,9 @@ function renderProducts(data) {
             // Crear un div para el nombre del producto
             var nombreDiv = document.createElement("div");
             nombreDiv.textContent = pr.id_articulo + " - " + pr.nombre;
+            nombreDiv.style.whiteSpace = "nowrap";
             nombreDiv.style.overflow = "hidden";
+            nombreDiv.style.textOverflow = "ellipsis";
             // Crear un div para el precio de venta
             var precioNumerico = parseFloat(pr.precio_venta);
             var precioFormateado = precioNumerico.toLocaleString('es-CO');
@@ -217,8 +219,6 @@ function renderProducts(data) {
         divContainer.innerHTML = msg;
     }
 }
-
-
 
 function addProductTable(pr) {
 

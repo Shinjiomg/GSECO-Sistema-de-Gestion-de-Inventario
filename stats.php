@@ -48,17 +48,6 @@ $articulos = $ar->index();
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  <!-- DataTables CSS -->
-  <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" rel="stylesheet">
-  <!-- DataTables JS y sus dependencias -->
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.jqueryui.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 </head>
 
 <body class="g-sidenav-show" style="background-color: #009ad5;">
@@ -371,13 +360,10 @@ $articulos = $ar->index();
                     </div>
                   </div>
                 </div>
-                <div class="" id="register1"></div>
-                <div class="text-end text-uppercase" id="botonera"></div>
-                <div class="p-1 col-sm-12 text-end text-uppercase" id="filter1"></div>
               </div>
             </div>
             <div class="table-responsive">
-              <table class="table align-items-center mb-0" id="data_table">
+              <table class="table align-items-center mb-0" id="data_table" data-page-length="10">
                 <thead>
                   <tr>
                     <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
@@ -573,8 +559,6 @@ $articulos = $ar->index();
       dateRangeInput.value = formattedOneMonthAgo + ' - ' + formattedDate;
     });
   </script>
-
-
   <!-- Date picker -->
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
