@@ -160,18 +160,18 @@ $gastos = new Gastos();
         <div class="container-fluid">
             <div class="row mt-1">
                 <div class="col-xl-6 text-end mb-2">
-                    <button id="nuevo_gasto" style="background: #252850; box-shadow: 4px 4px 8px #303030;; color:white; height: 50px !important" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
+                    <button id="nuevo_gasto" style="background: #252850; box-shadow: 4px 4px 8px #303030; color:white; height: 50px !important" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
                         <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
                         Nuevo Gasto
                     </button>
                 </div>
                 <div class="col-xl-6 text-end mb-2">
-                    <input type="text" id="daterange" name="daterange" class="custom-daterangepicker" style="height: 50px !important;" />
+                    <input type="text" id="daterange" name="daterange" style="height: 50px !important; width: auto; box-shadow: 4px 4px 8px #303030;" />
                 </div>
             </div>
         </div>
         <div class="container-fluid">
-            <div class="row mt-0 mb-4"  id="contenedor-gastos">
+            <div class="row mt-0 mb-4" id="contenedor-gastos">
             </div>
         </div>
         <div class="modal fade" id="modal-gastos" tabindex="999999" style="z-index: 9999999" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -433,5 +433,23 @@ $gastos = new Gastos();
     .card {
         box-shadow: 4px 8px 8px #303030;
         /* Personaliza los valores según tus preferencias */
+    }
+
+    #daterange {
+        width: 200px;
+        /* ajusta el ancho según sea necesario */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        height: 50px;
+        font-size: 16px;
+    }
+
+    #daterange:focus {
+        outline: none;
+        border-color: #66afe9;
+        /* Cambia el color del borde al enfocar el input */
+        box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+        /* Agrega una ligera sombra al enfocar el input */
     }
 </style>
