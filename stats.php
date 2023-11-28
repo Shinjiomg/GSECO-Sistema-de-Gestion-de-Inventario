@@ -16,8 +16,8 @@ $nw = new Venta();
 $ar = new Articulo();
 $c = new Categoria();
 $categorias = $c->index();
-$ventas = $nw->ventas(1);
-$ultimaVenta = $nw->ultimaVenta(1);
+$ventas = $nw->ventas($_SESSION['id_usuario']);
+$ultimaVenta = $nw->ultimaVenta($_SESSION['id_usuario']);
 $articulos = $ar->index();
 ?>
 <!DOCTYPE html>
