@@ -320,9 +320,14 @@ function confirmQuantity() {
     }
 }
 
+function clearDataModal(){
+    document.getElementById('productQuantity').value = 0;
+}
 
 
 function renderTable() {
+
+    clearDataModal();
     let tabla = document.getElementById("data_table");
 
     let filas = tabla.getElementsByTagName("tr");
