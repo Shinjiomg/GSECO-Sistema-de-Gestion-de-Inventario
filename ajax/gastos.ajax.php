@@ -9,6 +9,16 @@ if(isset($_POST["all"])){
 	
 }
 
+if(isset($_POST["range_dates"])){
+	$gastos = new Gastos();
+
+	$range= $_POST["range_dates"];
+
+	echo json_encode($gastos -> ventasPorRango($range));
+
+
+}
+
 
 
 if(isset($_POST["descripcion"])){

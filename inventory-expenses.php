@@ -41,6 +41,9 @@ $gastos = new Gastos();
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
 <body class="g-sidenav-show" style="background-color: #009ad5;">
@@ -168,6 +171,7 @@ $gastos = new Gastos();
                         <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
                         Nuevo Gasto
                     </button>
+                    <input type="text" id="daterange" name="daterange" class="custom-daterangepicker" />
                 </div>
             </div>
         </div>
@@ -321,6 +325,55 @@ $gastos = new Gastos();
             },
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtiene la fecha actual
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
+
+            // Calcula la fecha que será exactamente un mes antes
+            const oneMonthAgo = new Date(currentDate);
+            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+            const formattedOneMonthAgo = oneMonthAgo.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
+
+            // Obtiene el campo de fecha por su nombre y establece la fecha actual y la fecha de un mes antes como valores
+            const dateRangeInput = document.querySelector('input[name="daterange"]');
+            dateRangeInput.value = formattedOneMonthAgo + ' - ' + formattedDate;
+        });
+    </script>
+     <script>
+    let rangeDates;
+
+    $(function() {
+      $('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+      }, function(start, end, label) {
+        rangeDates = {
+          start: start.format('YYYY-MM-DD'),
+          end: end.format('YYYY-MM-DD')
+        }
+        
+
+        let datos = new FormData();
+        datos.append('range_dates', JSON.stringify(rangeDates));
+        $.ajax({
+          url: "ajax/gastos.ajax.php",
+          method: "POST",
+          data: datos,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            
+            gastos = JSON.parse(response);
+            console.log(response);
+
+          }
+        });
+
+      });
+    });
+  </script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
