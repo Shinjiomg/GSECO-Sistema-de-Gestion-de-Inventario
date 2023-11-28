@@ -43,10 +43,10 @@ $MetodosPago = new MetodosPago();
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show" style="background-color: #009ad5;">
+<body class="g-sidenav-hidden" style="background-color: #009ad5;">
     <div class="h-100 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
-    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-1" id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
@@ -55,11 +55,11 @@ $MetodosPago = new MetodosPago();
             </a>
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
-                <li class="nav-item mt-3">
+                <!-- <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Artículos</h6>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -86,9 +86,9 @@ $MetodosPago = new MetodosPago();
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
                     </a>
                 </li>
-                <li class="nav-item mt-3">
+                <!-- <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
-                </li>
+                </li> -->
                 <?php if ($rol === 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="purchases.php">
@@ -116,31 +116,10 @@ $MetodosPago = new MetodosPago();
                         <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
                     </a>
                 </li>
-                <!-- <?php
-                        if ($rol == 1) {
-                        ?>
-                    <li class="nav-item mt-3">
-                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="user-administration.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
-                        </a>
-                    </li>
-                <?php
-                        }
-                ?> -->
-                <li class="sidenav-footer mx-3">
-
-                </li>
             </ul>
         </div>
     </aside>
-    <main class="main-content position-relative border-radius-lg ">
+    <main class="main-content position-relative border-radius-lg">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
@@ -178,7 +157,7 @@ $MetodosPago = new MetodosPago();
                 </div>
             </div>
         </nav>
-        <div class="container-fluid py-2">
+        <div class="container-fluid py-0">
             <div class="row d-flex mb-4 justify-content-between">
                 <div class="col-xl-10 col-sm-6 mb-xl-0">
                     <?php
@@ -224,7 +203,7 @@ $MetodosPago = new MetodosPago();
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6">
+                <div class="col-xl-6 pb-3">
                     <div class="card p-4">
                         <form>
                             <div class="row">
@@ -275,7 +254,8 @@ $MetodosPago = new MetodosPago();
                                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title text-uppercase font-weight-bold">Calcular cambio</h4>
+                                                            <h4 class="modal-title text-uppercase font-weight-bold">
+                                                                Calcular cambio</h4>
                                                             <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
 
                                                         </div>
@@ -284,9 +264,15 @@ $MetodosPago = new MetodosPago();
                                                                 <div class="card-body text-start">
                                                                     <form role="form text-left">
                                                                         <div class="form-group">
-                                                                            <label for="product_price" class="text-uppercase font-weight-bolder"><strong>¿Con cuánto efectivo pagará el cliente?</strong></label>
+                                                                            <label for="product_price" class="text-uppercase font-weight-bolder"><strong>¿Con
+                                                                                    cuánto efectivo pagará el
+                                                                                    cliente?</strong></label>
                                                                             <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor exacto de lo que te entregó el cliente">
-                                                                            <p id="cambio_resultado" class="mb-0"><em>Debes devolverle al cliente </em><strong>$0.00</strong> <em> de cambio</em></p>
+                                                                            <p id="cambio_resultado" class="mb-0">
+                                                                                <em>Debes devolverle al cliente
+                                                                                </em><strong>$0.00</strong> <em> de
+                                                                                    cambio</em>
+                                                                            </p>
                                                                             <button type="button" id="btnCalcular" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Calcular</button>
                                                                         </div>
                                                                     </form>
@@ -352,7 +338,8 @@ $MetodosPago = new MetodosPago();
                                     <label for="" class="col-form-label text-uppercase">Método de pago:</label>
                                     <select class="form-control" name="choices-button" id="metodos_pagos" placeholder="Departure">
                                         <?php foreach ($MetodosPago->index() as $mp) { ?>
-                                            <option value="<?php echo $mp->id_metodo_pago ?>" <?php echo ($mp->nombre === 'Efectivo') ? 'selected' : ''; ?>><?php echo $mp->nombre ?></option>
+                                            <option value="<?php echo $mp->id_metodo_pago ?>" <?php echo ($mp->nombre === 'Efectivo') ? 'selected' : ''; ?>>
+                                                <?php echo $mp->nombre ?></option>
                                         <?php } ?>
                                     </select>
                                     <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase font-weight-bolder">Guardar</button>
@@ -396,5 +383,9 @@ $MetodosPago = new MetodosPago();
     .card {
         box-shadow: 4px 8px 8px #303030;
         /* Personaliza los valores según tus preferencias */
+    }
+
+    .sidenav {
+        display: none;
     }
 </style>

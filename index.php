@@ -1,5 +1,5 @@
 <?php
-/* session_start();
+session_start();
 if (isset($_POST['btningresar'])) {
 	$dbhost = "localhost";
 	$dbuser = "root";
@@ -26,7 +26,7 @@ if (isset($_POST['btningresar'])) {
 	} else {
 		echo "<script>alert('correo y/o contraseña no coinciden');window.location= 'index.php' </script>";
 	}
-} */
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,12 +73,7 @@ if (isset($_POST['btningresar'])) {
 						</div>
 					</div>
 					<div class="btnpos">
-						<input
-						  type="button"
-						  class="btn"
-						  onclick="autenthicated()"
-						  name="btningresar"
-						  value="Ingresar">
+						<input type="button" class="btn" onclick="autenthicated()" name="btningresar" value="Ingresar">
 					</div>
 				</form>
 			</div>

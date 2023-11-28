@@ -239,7 +239,7 @@ $articulos = $ar->index();
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">última venta realizada</p>
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">última venta</p>
                     <h5 class="font-weight-bolder">
                       $
                       <?php
@@ -266,13 +266,13 @@ $articulos = $ar->index();
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">gastos diarios</p>
                     <h5 class="font-weight-bolder">
-                      $
+                      $0
                     </h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-danger text-center rounded-circle">
-                    <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="icon icon-shape bg-gradient-info shadow-danger text-center rounded-circle">
+                    <i class="ni ni-shop text-lg opacity-10" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>
@@ -290,13 +290,13 @@ $articulos = $ar->index();
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en efectivo</p>
                     <h5 class="font-weight-bolder">
-                      $
+                      $0
                     </h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="icon icon-shape bg-gradient-warning shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>
@@ -311,13 +311,13 @@ $articulos = $ar->index();
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en nequi</p>
                     <h5 class="font-weight-bolder">
-                      $
+                      $0
                     </h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="icon icon-shape bg-gradient-info shadow-danger text-center rounded-circle">
+                    <i class="ni ni-mobile-button text-lg opacity-10" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>
@@ -332,13 +332,13 @@ $articulos = $ar->index();
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en daviplata</p>
                     <h5 class="font-weight-bolder">
-                      $
+                      $0
                     </h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-danger text-center rounded-circle">
-                    <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="icon icon-shape bg-gradient-primary shadow-danger text-center rounded-circle">
+                    <i class="ni ni-tablet-button text-lg opacity-10" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>
@@ -353,13 +353,13 @@ $articulos = $ar->index();
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Otros métodos</p>
                     <h5 class="font-weight-bolder">
-                      $
+                      $0
                     </h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-danger text-center rounded-circle">
-                    <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-diamond text-lg opacity-10" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>
@@ -373,11 +373,11 @@ $articulos = $ar->index();
           <div class="card ">
             <div class="card-header pb-4">
               <div class="row pb-2 p-3">
-                <div class="col-xl-12 d-flex">
+                <div class="col-xl-6 d-flex">
                   <h4 class="text-uppercase font-weight-bolder">Reporte de ventas</h4>
                 </div>
-                <div class="col-xl-12">
-                  <input type="text" id="daterange" name="daterange" class="custom-daterangepicker" />
+                <div class="col-xl-6 text-end">
+                  <input type="text" id="daterange" name="daterange" style="height: 50px !important; width: auto; box-shadow: 4px 4px 8px #303030;"/>
                 </div>
               </div>
             </div>
@@ -853,5 +853,23 @@ $articulos = $ar->index();
   .card {
     box-shadow: 4px 8px 8px #303030;
     /* Personaliza los valores según tus preferencias */
+  }
+
+  #daterange {
+    width: 200px;
+    /* ajusta el ancho según sea necesario */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  #daterange:focus {
+    outline: none;
+    border-color: #66afe9;
+    /* Cambia el color del borde al enfocar el input */
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+    /* Agrega una ligera sombra al enfocar el input */
   }
 </style>
