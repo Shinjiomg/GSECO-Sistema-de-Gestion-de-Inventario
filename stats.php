@@ -261,6 +261,7 @@ $articulos = $ar->index();
       </div>
       <!-- main content -->
 
+      <?php  if($_SESSION['rol'] === 1){?>
       <div class="row mt-4">
         <div class="col-xl-12">
           <div class="card">
@@ -286,6 +287,7 @@ $articulos = $ar->index();
                   </strong>
                 </div> -->
               <?php } ?>
+
               <div class="row pb-2 p-3">
                 <div class="col-xl-4 d-flex align-items-center text-uppercase">
                   <h4 class="font-weight-bolder">Productos</h4>
@@ -394,8 +396,11 @@ $articulos = $ar->index();
           </div>
         </div>
       </div>
+      <?php }?>
       <!--secondary content -->
+     
       <div class="row mt-4">
+      <?php  if($_SESSION['rol'] === 1){?>
         <div class="col-xl-6 mb-4">
           <div class="card">
             <div class="card-header pb-4">
@@ -474,6 +479,7 @@ $articulos = $ar->index();
             </div>
           </div>
         </div>
+        <?php }?>
         <div class="col-xl-6">
           <div class="card ">
             <div class="card-header pb-4">
@@ -510,6 +516,7 @@ $articulos = $ar->index();
           </div>
         </div>
       </div>
+      
   </main>
   <!-- config interface -->
   <div class="fixed-plugin">
