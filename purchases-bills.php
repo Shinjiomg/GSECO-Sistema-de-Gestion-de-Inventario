@@ -191,8 +191,6 @@ $compras = new Compras();
                         </div>
                         <div class="card-body p-3 pb-0">
                             <?php  // Obtener las facturas
-
-
                             // Iterar sobre las facturas ordenadas
                             foreach ($compras->facturas($idUsuario) as $f) {  ?>
                                 <ul class="list-group">

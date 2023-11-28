@@ -153,32 +153,26 @@ $gastos = new Gastos();
                                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
-                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-              </ul>
-            </li> -->
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container-fluid py-4">
-            <div class="row mt-4">
-                <div class="col-xl-12 text-end">
+        <div class="container-fluid">
+            <div class="row mt-1">
+                <div class="col-xl-6 text-end mb-2">
                     <button id="nuevo_gasto" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
                         <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
                         Nuevo Gasto
                     </button>
+                </div>
+                <div class="col-xl-6 text-end mb-2">
                     <input type="text" id="daterange" name="daterange" class="custom-daterangepicker" />
                 </div>
             </div>
         </div>
-        <div class="container-fluid py-4" id="contenedor-gastos">
-
-            <!-- footer -->
-
+        <div class="container-fluid">
+            <div class="row mt-0 mb-4"  id="contenedor-gastos">
+            </div>
         </div>
         <div class="modal fade" id="modal-gastos" tabindex="999999" style="z-index: 9999999" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -341,39 +335,39 @@ $gastos = new Gastos();
             dateRangeInput.value = formattedOneMonthAgo + ' - ' + formattedDate;
         });
     </script>
-     <script>
-    let rangeDates;
+    <script>
+        let rangeDates;
 
-    $(function() {
-      $('input[name="daterange"]').daterangepicker({
-        opens: 'left'
-      }, function(start, end, label) {
-        rangeDates = {
-          start: start.format('YYYY-MM-DD'),
-          end: end.format('YYYY-MM-DD')
-        }
-        
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                rangeDates = {
+                    start: start.format('YYYY-MM-DD'),
+                    end: end.format('YYYY-MM-DD')
+                }
 
-        let datos = new FormData();
-        datos.append('range_dates', JSON.stringify(rangeDates));
-        $.ajax({
-          url: "ajax/gastos.ajax.php",
-          method: "POST",
-          data: datos,
-          cache: false,
-          contentType: false,
-          processData: false,
-          success: function(response) {
-            
-            gastos = JSON.parse(response);
-            console.log(response);
 
-          }
+                let datos = new FormData();
+                datos.append('range_dates', JSON.stringify(rangeDates));
+                $.ajax({
+                    url: "ajax/gastos.ajax.php",
+                    method: "POST",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+
+                        gastos = JSON.parse(response);
+                        console.log(response);
+
+                    }
+                });
+
+            });
         });
-
-      });
-    });
-  </script>
+    </script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
