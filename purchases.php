@@ -188,7 +188,7 @@ $Categoria = new Categoria()
                     ?>
 
                     <div class="row">
-                        <button class="btn dropdown-toggle text-uppercase font-weight-bolder" style="background: #c3c3c3; color:black; border: 0px solid black !important; height: 50px !important" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
+                        <button class="btn dropdown-toggle text-uppercase font-weight-bolder" style="background: #c3c3c3; color:black; border: 0px solid black !important; height: 50px !important; box-shadow: 4px 4px 8px #303030;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
                             Selecciona una categoría
                         </button>
                         <ul class="dropdown-menu" style="border: 1px solid black !important" aria-labelledby="dropdownMenuButton">
@@ -225,7 +225,7 @@ $Categoria = new Categoria()
                                     <h4 class="text-uppercase font-weight-bolder">Productos seleccionados</h4>
                                 </div>
                                 <div>
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" style="min-height: 400px;">
                                         <table id="data_table_compras" class="table align-items-center">
                                             <thead>
                                                 <tr>
@@ -261,7 +261,7 @@ $Categoria = new Categoria()
                                             </h5>
                                         </div>
                                         <div class="col-xl-4 text-end">
-                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #008000" onclick="GenerarCompra()" id="btnCrearCompra">
+                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100 h-100" style="background: #252850; box-shadow: 4px 8px 8px #303030;" onclick="GenerarCompra()" id="btnCrearCompra">
                                                 </i>Generar compra
                                             </button>
                                         </div>
@@ -301,6 +301,7 @@ $Categoria = new Categoria()
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-uppercase font-weight-bolder" id="titleModal"></h5>
+                    <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
                 </div>
                 <div class="modal-body p-0">
                     <div class="card card-plain">

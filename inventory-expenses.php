@@ -160,13 +160,13 @@ $gastos = new Gastos();
         <div class="container-fluid">
             <div class="row mt-1">
                 <div class="col-xl-6 text-end mb-2">
-                    <button id="nuevo_gasto" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
+                    <button id="nuevo_gasto" style="background: #252850; box-shadow: 4px 4px 8px #303030;; color:white; height: 50px !important" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
                         <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
                         Nuevo Gasto
                     </button>
                 </div>
                 <div class="col-xl-6 text-end mb-2">
-                    <input type="text" id="daterange" name="daterange" class="custom-daterangepicker" />
+                    <input type="text" id="daterange" name="daterange" class="custom-daterangepicker" style="height: 50px !important;" />
                 </div>
             </div>
         </div>

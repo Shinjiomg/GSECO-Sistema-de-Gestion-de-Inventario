@@ -207,9 +207,6 @@ $compras = new Compras();
                                             </div>
                                         </div>
                                         <div class="column">
-                                            <div class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
-                                                Efectivo
-                                            </div>
                                             <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
                                                 + $
                                                 <?php echo number_format($f->total, 0, ',', '.'); ?>

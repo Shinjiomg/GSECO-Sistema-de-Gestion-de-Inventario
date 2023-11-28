@@ -196,7 +196,11 @@ function renderProducts(data) {
             // Agregar los divs al botón
             btn.appendChild(nombreDiv);
             btn.appendChild(precioDiv);
+            // Destruir el tooltip existente antes de asignar uno nuevo
+            $(btn).tooltip('dispose');
 
+            // Agregar el nuevo tooltip
+            $(btn).tooltip();
             // Crear un div para el modal
             var modalDiv = document.createElement("div");
             modalDiv.className = "modal fade";
@@ -274,7 +278,7 @@ function confirmQuantity() {
     const metodo_pago = document.getElementById('metodos_pagos');
     const indiceSeleccionado = metodo_pago.selectedIndex;
 
-    if (!isNaN(quantity) && (selectedProduct.categoria_id_categoria === 8 || selectedProduct.stock >= quantity)) {
+    if (!isNaN(quantity) && (selectedProduct.categoria_id_categoria === 8 || selectedProduct.categoria_id_categoria === 6 || selectedProduct.stock >= quantity)) {
         const rs = products.filter(
             (art) => art.id_articulo === selectedProduct.id_articulo
         );
@@ -320,14 +324,8 @@ function confirmQuantity() {
     }
 }
 
-function clearDataModal(){
-    document.getElementById('productQuantity').value = 0;
-}
-
 
 function renderTable() {
-
-    clearDataModal();
     let tabla = document.getElementById("data_table");
 
     let filas = tabla.getElementsByTagName("tr");
@@ -377,6 +375,7 @@ function renderTable() {
         renderSumTotal(sumaTotales)
 
         $('#modal-form').modal('hide');
+        document.getElementById('productQuantity').value = '';
     })
     const modalFormChange = document.getElementById('modal-form-change');
     modalFormChange.dataset.sumaEfectivo = sumaEfectivo;
@@ -437,9 +436,7 @@ function editProduct(id_articulo) {
     stock.textContent = selectedProduct.stock + ' productos';
     let cantidadValue = +selectedProduct.cantidad;
 
-    if (cantidadValue <= 1) {
-        cantidad.value = 1; // Establece la cantidad en 1 si es 0 o menor
-    } else {
+    if (!cantidad.value) {
         cantidad.value = cantidadValue;
     }
 

@@ -150,7 +150,11 @@ function renderProductsTable(data) {
             // Agregar los divs al botón
             btn.appendChild(nombreDiv);
             btn.appendChild(precioDiv);
+            // Destruir el tooltip existente antes de asignar uno nuevo
+            $(btn).tooltip('dispose');
 
+            // Agregar el nuevo tooltip
+            $(btn).tooltip();
             // Crear un div para el modal
             var modalDiv = document.createElement("div");
             modalDiv.className = "modal fade";
@@ -255,8 +259,6 @@ function confirmQuantityCompra() {
         });
     }
 }
-
-
 
 function renderTableCompras() {
     let tabla = document.getElementById("data_table_compras");
