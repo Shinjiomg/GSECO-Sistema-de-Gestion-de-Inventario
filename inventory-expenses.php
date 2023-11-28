@@ -115,7 +115,7 @@ $gastos = new Gastos();
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
+                        <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
                     </a>
                 </li>
             </ul>
@@ -434,5 +434,10 @@ $gastos = new Gastos();
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .card {
+        box-shadow: 4px 8px 8px #303030;
+        /* Personaliza los valores según tus preferencias */
     }
 </style>

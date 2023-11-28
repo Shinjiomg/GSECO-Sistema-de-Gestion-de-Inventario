@@ -113,7 +113,7 @@ $MetodosPago = new MetodosPago();
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
+                        <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
                     </a>
                 </li>
                 <!-- <?php
@@ -146,7 +146,9 @@ $MetodosPago = new MetodosPago();
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-
+                        <div class="col-xl-6 mb-2">
+                            <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Buscar por..." style="box-shadow: 4px 4px 8px #303030; width: auto">
+                        </div>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
@@ -172,49 +174,22 @@ $MetodosPago = new MetodosPago();
                                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
-                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-              </ul>
-            </li> -->
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container-fluid py-4">
-            <div class="row d-flex mb-2 justify-content-end">
-                <div class="col-xl-6 mb-2">
-                    <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Buscar por...">
-                </div>
-                <a onclick="generarCierre()" target="_blank" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
-                    <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
-                    Generar cierre
-                </a>
-                <!-- <button  
-                style="background: #008000; color:white; width: 200px;" 
-                type="button" 
-                onclick="generarCierre()"
-                class="btn mb-0 text-uppercase">
-                        Generar cierre
-            </button> -->
-            </div>
-            <!-- main content -->
-            <div class="row">
-                <div class="col-xl-12 col-sm-6 mb-xl-0">
+        <div class="container-fluid py-2">
+            <div class="row d-flex mb-4 justify-content-between">
+                <div class="col-xl-10 col-sm-6 mb-xl-0">
                     <?php
                     // Obtén las categorías y ordénalas alfabéticamente
                     $categorias = $Categoria->index();
                     usort($categorias, function ($a, $b) {
                         return strcasecmp($a->nombre, $b->nombre);
                     });
-
                     ?>
-
-
                     <div class="row">
-                        <button class="btn dropdown-toggle text-uppercase font-weight-bolder" style="background: #c3c3c3; color:black; border: 0px solid black !important; height: 50px !important" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
+                        <button class="btn dropdown-toggle text-uppercase font-weight-bolder" style="background: #c3c3c3; color:black; border: 0px solid black !important; height: 60px !important; box-shadow: 4px 4px 8px #303030;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
                             Selecciona una categoría
                         </button>
                         <ul class="dropdown-menu" style="border: 1px solid black !important" aria-labelledby="dropdownMenuButton">
@@ -229,13 +204,19 @@ $MetodosPago = new MetodosPago();
                             <?php } ?>
                         </ul>
                     </div>
-
+                </div>
+                <div class="col-xl-2">
+                    <a onclick="generarCierre()" target="_blank" style="background: #252850; box-shadow: 4px 4px 8px #303030; color:white; height: 60px !important" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
+                        <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
+                        Generar cierre
+                    </a>
                 </div>
             </div>
+            <!-- main content -->
             <div class="row mt-4">
                 <div class="col-xl-6 mb-4">
                     <div class="card p-4">
-                        <div class="col-md-12 ">
+                        <div class="col-md-12">
                             <h4 class="text-uppercase font-weight-bolder">Selecciona los productos</h4>
                             <p class="text-uppercase font-weight-bolder"><em>Categoría seleccionada:</em> <strong id="selected_category"></strong></p>
                         </div>
@@ -251,7 +232,7 @@ $MetodosPago = new MetodosPago();
                                     <h4 class="text-uppercase font-weight-bolder">Productos seleccionados</h4>
                                 </div>
                                 <div>
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" style="min-height: 400px;">
                                         <table id="data_table" class="table align-items-center">
                                             <thead>
                                                 <tr>
@@ -277,8 +258,6 @@ $MetodosPago = new MetodosPago();
                                         </table>
                                     </div>
                                 </div>
-                                <div>
-                                </div>
                                 <div class="col-xl-12 mt-4">
                                     <div class="row">
                                         <div class="col-xl-4">
@@ -289,7 +268,7 @@ $MetodosPago = new MetodosPago();
                                             </h5>
                                         </div>
                                         <div class="col-xl-4 text-end mb-2">
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-form-change" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100" style="background: #008000" id="btnCalcularCambio">
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-form-change" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100" style="background: #252850; box-shadow: 4px 8px 8px #303030;" id="btnCalcularCambio">
                                                 Calcular cambio
                                             </button>
                                             <div class="modal fade" id="modal-form-change" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -320,7 +299,7 @@ $MetodosPago = new MetodosPago();
                                         </div>
 
                                         <div class="col-xl-4 text-end">
-                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100" style="background: #008000" onclick="GenerarVenta()" id="btnCrearVenta">
+                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100" style="background: #252850; box-shadow: 4px 8px 8px #303030;" onclick="GenerarVenta()" id="btnCrearVenta">
                                                 </i>Crear venta
                                             </button>
                                         </div>
@@ -413,4 +392,9 @@ $MetodosPago = new MetodosPago();
 <!-- style -->
 <style>
     @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+    .card {
+        box-shadow: 4px 8px 8px #303030;
+        /* Personaliza los valores según tus preferencias */
+    }
 </style>

@@ -105,7 +105,7 @@ $transacciones = $venta->transacciones($idUsuario);
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
+                        <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
                     </a>
                 </li>
                 <!-- <?php
@@ -164,13 +164,6 @@ $transacciones = $venta->transacciones($idUsuario);
                                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
-                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-              </ul>
-            </li> -->
                     </ul>
                 </div>
             </div>
@@ -178,61 +171,6 @@ $transacciones = $venta->transacciones($idUsuario);
         <div class="container-fluid py-4">
             <!-- main content -->
             <div class="row">
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-md mb-0 text-uppercase font-weight-bold">Transacciones en
-                                            efectivo</p>
-                                        <h5 class="font-weight-bolder">
-                                            $
-                                            <?php
-                                            $totalDiario = isset($transacciones->efectivo) ? number_format($transacciones->efectivo, 0, ',', '.') : '0';
-                                            echo $totalDiario;
-                                            ?>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-md mb-0 text-uppercase font-weight-bold">Transacciones en Nequi
-                                        </p>
-                                        <h5 class="font-weight-bolder">
-                                            $
-                                            <?php
-                                            $totalDiario2  = isset($transacciones->nequi) ? number_format($transacciones->nequi, 0, ',', '.') : '0';
-                                            echo $totalDiario2;
-                                            ?>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                                        <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-
                 <div class="col-xl-12">
                     <div class="card h-100">
                         <div class="card-header pb-0 p-3">
@@ -457,5 +395,10 @@ $transacciones = $venta->transacciones($idUsuario);
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .card {
+        box-shadow: 4px 8px 8px #303030;
+        /* Personaliza los valores según tus preferencias */
     }
 </style>

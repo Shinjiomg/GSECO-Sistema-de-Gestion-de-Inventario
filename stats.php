@@ -120,7 +120,7 @@ $articulos = $ar->index();
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
+            <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
           </a>
         </li>
         <!-- <?php
@@ -182,14 +182,14 @@ $articulos = $ar->index();
     </nav>
     <div class="container-fluid py-4">
       <!-- Cards -->
-      <div class="row">
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+      <div class="row mb-4">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas totales</p>
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">Total ventas del mes</p>
                     <h5 class="font-weight-bolder">
                       $
                       <?php
@@ -208,13 +208,13 @@ $articulos = $ar->index();
             </div>
           </div>
         </div>
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas diarias</p>
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas del día</p>
                     <h5 class="font-weight-bolder">
                       $
                       <?php
@@ -233,13 +233,13 @@ $articulos = $ar->index();
             </div>
           </div>
         </div>
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">Última venta</p>
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">última venta realizada</p>
                     <h5 class="font-weight-bolder">
                       $
                       <?php
@@ -258,234 +258,123 @@ $articulos = $ar->index();
             </div>
           </div>
         </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">gastos diarios</p>
+                    <h5 class="font-weight-bolder">
+                      $
+                    </h5>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-danger text-center rounded-circle">
+                    <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Transacciones -->
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en efectivo</p>
+                    <h5 class="font-weight-bolder">
+                      $
+                    </h5>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en nequi</p>
+                    <h5 class="font-weight-bolder">
+                      $
+                    </h5>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en daviplata</p>
+                    <h5 class="font-weight-bolder">
+                      $
+                    </h5>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-danger text-center rounded-circle">
+                    <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-md mb-0 text-uppercase font-weight-bold">Otros métodos</p>
+                    <h5 class="font-weight-bolder">
+                      $
+                    </h5>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-danger text-center rounded-circle">
+                    <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- main content -->
-
-      <?php  if($_SESSION['rol'] === 1){?>
       <div class="row mt-4">
-        <div class="col-xl-12">
-          <div class="card">
-            <div class="card-header pb-4">
-              <?php
-              $productosAgotandose = [];
-
-              foreach ($articulos as $art) {
-                $total = $art->stock_deseado;
-                $actual = $art->stock;
-                $porcentaje = ($actual / $total) * 100;
-
-                if ($porcentaje <= 40) {
-                  $productosAgotandose[] = $art->nombre;
-                }
-              }
-              if (!empty($productosAgotandose)) {
-              ?>
-                <!-- <div class="alert alert-warning lowercase" role="alert" style="color: white">
-                  <strong>¡Aviso!</strong> Se están agotando los siguientes productos:
-                  <strong>
-                    <?php echo implode(', ', $productosAgotandose); ?>
-                  </strong>
-                </div> -->
-              <?php } ?>
-
-              <div class="row pb-2 p-3">
-                <div class="col-xl-4 d-flex align-items-center text-uppercase">
-                  <h4 class="font-weight-bolder">Productos</h4>
-                </div>
-                <div class="col-xl-8 text-end">
-                  <div class="d-flex justify-content-end mb-2">
-                    <div>
-                      <?php
-                      if ($rol === 2) {
-                        echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product" disabled>';
-                        echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
-                      } else {
-                        echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">';
-                        echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
-                      }
-                      ?>
-
-                    </div>
-                  </div>
-                  <div class="modal fade" id="modal-form-product" tabindex="999999" style="z-index: 9999999" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title text-uppercase font-weight-bold">Añadir producto</h4>
-                          <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
-
-                        </div>
-                        <div class="modal-body p-0">
-                          <div class="card card-plain">
-                            <div class="card-body text-start">
-                              <form role="form text-left">
-                                <div class="form-group">
-                                  <div class="row">
-                                    <div class="col-xl-9">
-                                      <label for="" class="col-form-label text-uppercase">Nombre
-                                        del producto</label>
-                                      <input id="product_name" type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
-                                    </div>
-                                    <div class="col-xl-3">
-                                      <label for="" class="col-form-label text-uppercase">Cantidad</label>
-                                      <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad">
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-xl-4">
-                                      <label for="" class="col-form-label text-uppercase">Valor unitario</label>
-                                      <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
-                                    </div>
-                                    <div class="col-xl-4">
-                                      <label for="" class="col-form-label text-uppercase">Stock máximo</label>
-                                      <input class="form-control" type="number" id="stock_maximo" placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
-                                    </div>
-                                    <div class="col-xl-4">
-                                      <label for="" class="col-form-label text-uppercase">Categoría</label>
-                                      <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
-                                        <?php foreach ($categorias as $c) { ?>
-                                          <option value="<?php echo $c->id_categoria ?>" selected="true">
-                                            <?php echo $c->nombre ?>
-                                          </option>
-                                        <?php } ?>
-                                      </select>
-                                    </div>
-                                  </div>
-                                  <button type="button" id="confirmButton" onclick="saveProduct()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
-                                  </button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center mb-0" id="data_table" data-page-length="10">
-                <thead>
-                  <tr>
-                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                      Nombre del producto</th>
-                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                      Precio de venta</th>
-                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                      Unidades</th>
-                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                      Estado</th>
-                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                      Categoría</th>
-                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                      Stock máximo</th>
-                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                      Inventario</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                    </th>
-                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <?php }?>
-      <!--secondary content -->
-     
-      <div class="row mt-4">
-      <?php  if($_SESSION['rol'] === 1){?>
-        <div class="col-xl-6 mb-4">
-          <div class="card">
-            <div class="card-header pb-4">
-              <div class="row pb-2 p-3">
-                <div class="col-4 d-flex align-items-center text-uppercase">
-                  <h4 class="font-weight-bolder">Categorías</h4>
-                </div>
-                <div class="col-md-8 text-end">
-                  <div class="d-flex justify-content-end">
-                    <div>
-                      <?php
-                      if ($rol === 2) {
-                        echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories" disabled>';
-                        echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
-                      } else {
-                        echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories">';
-                        echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
-                      }
-                      ?>
-                    </div>
-                  </div>
-                  <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title text-uppercase font-weight-bold">Añadir categoría</h4>
-                          <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
-
-                        </div>
-                        <div class="modal-body p-0">
-                          <div class="card card-plain">
-                            <div class="card-body text-start">
-                              <form role="form text-center">
-                                <div class="row">
-                                  <div class="col-xl-12">
-                                    <label for="" class="col-form-label text-uppercase">Nombre de la categoria</label>
-                                    <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría" class="form-control" />
-                                  </div>
-                                  <div class="text-center">
-                                    <button type="button" onClick="guardarCategoria()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Añadir
-                                      categoría</button>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-1 pb-0 text-uppercase" id="filter2"></div>
-                <div class="me-md-2" id="botonera2"></div>
-                <div class="p-1 text-end text-uppercase" id="register2">
-
-                </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center mb-0" id="categories_table">
-                <thead>
-                  <tr>
-                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                      Nombre</th>
-                    <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                      Estado</th>
-                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                    </th>
-                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <?php }?>
-        <div class="col-xl-6">
+        <div class="col-xl-12 mb-2">
           <div class="card ">
             <div class="card-header pb-4">
               <div class="row pb-2 p-3">
                 <div class="col-xl-12 d-flex">
-                  <h4 class="text-uppercase font-weight-bolder">Ventas por empleado</h4>
+                  <h4 class="text-uppercase font-weight-bolder">Reporte de ventas</h4>
                 </div>
                 <div class="col-xl-12">
                   <input type="text" id="daterange" name="daterange" class="custom-daterangepicker" />
@@ -515,8 +404,222 @@ $articulos = $ar->index();
             </div>
           </div>
         </div>
+        <?php if ($rol === 1) { ?>
+          <div class="col-xl-12 mt-2 mb-2">
+            <div class="card">
+              <div class="card-header pb-4">
+                <?php
+                $productosAgotandose = [];
+
+                foreach ($articulos as $art) {
+                  $total = $art->stock_deseado;
+                  $actual = $art->stock;
+                  $porcentaje = ($actual / $total) * 100;
+
+                  if ($porcentaje <= 40) {
+                    $productosAgotandose[] = $art->nombre;
+                  }
+                }
+                if (!empty($productosAgotandose)) {
+                ?>
+                  <!-- <div class="alert alert-warning lowercase" role="alert" style="color: white">
+                  <strong>¡Aviso!</strong> Se están agotando los siguientes productos:
+                  <strong>
+                    <?php echo implode(', ', $productosAgotandose); ?>
+                  </strong>
+                </div> -->
+                <?php } ?>
+                <div class="row pb-2 p-3">
+                  <div class="col-xl-4 d-flex align-items-center text-uppercase">
+                    <h4 class="font-weight-bolder">Productos</h4>
+                  </div>
+                  <div class="col-xl-8 text-end">
+                    <div class="d-flex justify-content-end mb-2">
+                      <div>
+                        <?php
+                        if ($rol === 2) {
+                          echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product" disabled>';
+                          echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
+                        } else {
+                          echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">';
+                          echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
+                        }
+                        ?>
+
+                      </div>
+                    </div>
+                    <div class="modal fade" id="modal-form-product" tabindex="999999" style="z-index: 9999999" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title text-uppercase font-weight-bold">Añadir producto</h4>
+                            <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
+
+                          </div>
+                          <div class="modal-body p-0">
+                            <div class="card card-plain">
+                              <div class="card-body text-start">
+                                <form role="form text-left">
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col-xl-9">
+                                        <label for="" class="col-form-label text-uppercase">Nombre
+                                          del producto</label>
+                                        <input id="product_name" type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
+                                      </div>
+                                      <div class="col-xl-3">
+                                        <label for="" class="col-form-label text-uppercase">Cantidad</label>
+                                        <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad">
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-xl-4">
+                                        <label for="" class="col-form-label text-uppercase">Valor unitario</label>
+                                        <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
+                                      </div>
+                                      <div class="col-xl-4">
+                                        <label for="" class="col-form-label text-uppercase">Stock máximo</label>
+                                        <input class="form-control" type="number" id="stock_maximo" placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
+                                      </div>
+                                      <div class="col-xl-4">
+                                        <label for="" class="col-form-label text-uppercase">Categoría</label>
+                                        <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
+                                          <?php foreach ($categorias as $c) { ?>
+                                            <option value="<?php echo $c->id_categoria ?>" selected="true">
+                                              <?php echo $c->nombre ?>
+                                            </option>
+                                          <?php } ?>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <button type="button" id="confirmButton" onclick="saveProduct()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
+                                    </button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0" id="data_table" data-page-length="10">
+                  <thead>
+                    <tr>
+                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                        Nombre del producto</th>
+                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                        Precio de venta</th>
+                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                        Unidades</th>
+                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                        Estado</th>
+                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                        Categoría</th>
+                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                        Stock máximo</th>
+                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                        Inventario</th>
+                      <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                      </th>
+                      <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
+        <?php if ($rol === 1) { ?>
+          <div class="col-xl-12 mt-2 mb-2">
+            <div class="card">
+              <div class="card-header pb-4">
+                <div class="row pb-2 p-3">
+                  <div class="col-4 d-flex align-items-center text-uppercase">
+                    <h4 class="font-weight-bolder">Categorías</h4>
+                  </div>
+                  <div class="col-md-8 text-end">
+                    <div class="d-flex justify-content-end">
+                      <div>
+                        <?php
+                        if ($rol === 2) {
+                          echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories" disabled>';
+                          echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
+                        } else {
+                          echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories">';
+                          echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
+                        }
+                        ?>
+                      </div>
+                    </div>
+                    <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title text-uppercase font-weight-bold">Añadir categoría</h4>
+                            <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
+
+                          </div>
+                          <div class="modal-body p-0">
+                            <div class="card card-plain">
+                              <div class="card-body text-start">
+                                <form role="form text-center">
+                                  <div class="row">
+                                    <div class="col-xl-12">
+                                      <label for="" class="col-form-label text-uppercase">Nombre de la categoria</label>
+                                      <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría" class="form-control" />
+                                    </div>
+                                    <div class="text-center">
+                                      <button type="button" onClick="guardarCategoria()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Añadir
+                                        categoría</button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-1 pb-0 text-uppercase" id="filter2"></div>
+                  <div class="me-md-2" id="botonera2"></div>
+                  <div class="p-1 text-end text-uppercase" id="register2">
+
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0" id="categories_table">
+                  <thead>
+                    <tr>
+                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                        Nombre</th>
+                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                        Estado</th>
+                      <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                      </th>
+                      <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
       </div>
-      
+    </div>
+    <!--secondary content -->
   </main>
   <!-- config interface -->
   <div class="fixed-plugin">
@@ -745,5 +848,10 @@ $articulos = $ar->index();
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+  }
+
+  .card {
+    box-shadow: 4px 8px 8px #303030;
+    /* Personaliza los valores según tus preferencias */
   }
 </style>
