@@ -51,8 +51,7 @@ $articulos = $ar->index();
   <!-- DataTables CSS -->
   <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" rel="stylesheet">
   <!-- DataTables JS y sus dependencias -->
-  <script type="text/javascript" charset="utf8"
-    src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.7/js/dataTables.jqueryui.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -65,12 +64,9 @@ $articulos = $ar->index();
 <body class="g-sidenav-show" style="background-color: #009ad5;">
   <div class="h-100 bg-primary position-absolute w-100"></div>
   <!-- sidebar -->
-  <aside
-    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
-    id="sidenav-main">
+  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-        aria-hidden="true" id="iconSidenav"></i>
+      <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0 mr-4">
         <img src="./img/logo.png" class="navbar-brand-img h-100 mr-5" alt="main_logo">
         <span class="ms-1 font-weight-bold">GSECO</span>
@@ -84,8 +80,7 @@ $articulos = $ar->index();
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="stats.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
@@ -94,8 +89,7 @@ $articulos = $ar->index();
         <?php if ($rol === 2) { ?>
           <li class="nav-item">
             <a class="nav-link" href="sales.php">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-cart text-primary text-sm opacity-10"></i>
               </div>
               <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
@@ -104,8 +98,7 @@ $articulos = $ar->index();
         <?php } ?>
         <li class="nav-item">
           <a class="nav-link" href="bills.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
@@ -114,11 +107,10 @@ $articulos = $ar->index();
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
         </li>
-        <?php if ($rol === 2) { ?>
+        <?php if ($rol === 1) { ?>
           <li class="nav-item">
             <a class="nav-link" href="purchases.php">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
               </div>
               <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
@@ -127,8 +119,7 @@ $articulos = $ar->index();
 
           <li class="nav-item">
             <a class="nav-link" href="purchases-bills.php">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
               </div>
               <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
@@ -137,16 +128,15 @@ $articulos = $ar->index();
         <?php } ?>
         <li class="nav-item">
           <a class="nav-link" href="inventory-expenses.php">
-            <div
-              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
           </a>
         </li>
         <!-- <?php
-        if ($rol == 1) {
-          ?>
+              if ($rol == 1) {
+              ?>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                     </li>
@@ -160,15 +150,14 @@ $articulos = $ar->index();
                         </a>
                     </li>
                 <?php
-        }
-        ?> -->
+              }
+                ?> -->
       </ul>
     </div>
   </aside>
   <main class="main-content position-relative border-radius-lg">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-      data-scroll="false">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -300,7 +289,7 @@ $articulos = $ar->index();
                 }
               }
               if (!empty($productosAgotandose)) {
-                ?>
+              ?>
                 <!-- <div class="alert alert-warning lowercase" role="alert" style="color: white">
                   <strong>¡Aviso!</strong> Se están agotando los siguientes productos:
                   <strong>
@@ -327,8 +316,7 @@ $articulos = $ar->index();
 
                     </div>
                   </div>
-                  <div class="modal fade" id="modal-form-product" tabindex="999999" style="z-index: 9999999"
-                    role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                  <div class="modal fade" id="modal-form-product" tabindex="999999" style="z-index: 9999999" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -345,31 +333,25 @@ $articulos = $ar->index();
                                     <div class="col-xl-9">
                                       <label for="" class="col-form-label text-uppercase">Nombre
                                         del producto</label>
-                                      <input id="product_name" type="text" placeholder="Ingresa el nombre del producto"
-                                        class="form-control" />
+                                      <input id="product_name" type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
                                     </div>
                                     <div class="col-xl-3">
                                       <label for="" class="col-form-label text-uppercase">Cantidad</label>
-                                      <input class="form-control" type="number" id="product_stock"
-                                        placeholder="Ingresa la cantidad">
+                                      <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad">
                                     </div>
                                   </div>
                                   <div class="row">
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label text-uppercase">Valor unitario</label>
-                                      <input class="form-control" type="number" id="product_price"
-                                        placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label text-uppercase">Stock máximo</label>
-                                      <input class="form-control" type="number" id="stock_maximo"
-                                        placeholder="Ingresa el stock máximo del producto"
-                                        oninput="validarCantidad(this)">
+                                      <input class="form-control" type="number" id="stock_maximo" placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
                                     </div>
                                     <div class="col-xl-4">
                                       <label for="" class="col-form-label text-uppercase">Categoría</label>
-                                      <select class="form-control" name="choices-button" id="categories_select"
-                                        placeholder="Departure">
+                                      <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
                                         <?php foreach ($categorias as $c) { ?>
                                           <option value="<?php echo $c->id_categoria ?>" selected="true">
                                             <?php echo $c->nombre ?>
@@ -378,9 +360,7 @@ $articulos = $ar->index();
                                       </select>
                                     </div>
                                   </div>
-                                  <button type="button" id="confirmButton" onclick="saveProduct()"
-                                    class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
-                                    style="background: #5e72e4; color:white">guardar
+                                  <button type="button" id="confirmButton" onclick="saveProduct()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
                                   </button>
                                 </div>
                               </form>
@@ -451,8 +431,7 @@ $articulos = $ar->index();
                       ?>
                     </div>
                   </div>
-                  <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog"
-                    aria-labelledby="modal-form" aria-hidden="true">
+                  <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -467,13 +446,10 @@ $articulos = $ar->index();
                                 <div class="row">
                                   <div class="col-xl-12">
                                     <label for="" class="col-form-label text-uppercase">Nombre de la categoria</label>
-                                    <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría"
-                                      class="form-control" />
+                                    <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría" class="form-control" />
                                   </div>
                                   <div class="text-center">
-                                    <button type="button" onClick="guardarCategoria()"
-                                      class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
-                                      style="background: #5e72e4; color:white">Añadir
+                                    <button type="button" onClick="guardarCategoria()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Añadir
                                       categoría</button>
                                   </div>
                                 </div>
@@ -520,8 +496,7 @@ $articulos = $ar->index();
                   <h4 class="text-uppercase font-weight-bolder">Ventas por empleado</h4>
                 </div>
                 <div class="col-xl-12">
-                  <input type="text" id="daterange" name="daterange" value="11/05/2023 - 11/05/2023"
-                    class="custom-daterangepicker" />
+                  <input type="text" id="daterange" name="daterange" class="custom-daterangepicker" />
                 </div>
               </div>
             </div>
@@ -583,16 +558,23 @@ $articulos = $ar->index();
   <script src="js/stats.js"></script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
       // Obtiene la fecha actual
       const currentDate = new Date();
       const formattedDate = currentDate.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
 
-      // Obtiene el campo de fecha por su nombre y establece la fecha actual como valor
+      // Calcula la fecha que será exactamente un mes antes
+      const oneMonthAgo = new Date(currentDate);
+      oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+      const formattedOneMonthAgo = oneMonthAgo.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
+
+      // Obtiene el campo de fecha por su nombre y establece la fecha actual y la fecha de un mes antes como valores
       const dateRangeInput = document.querySelector('input[name="daterange"]');
-      dateRangeInput.value = formattedDate;
+      dateRangeInput.value = formattedOneMonthAgo + ' - ' + formattedDate;
     });
   </script>
+
+
   <!-- Date picker -->
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
@@ -605,15 +587,16 @@ $articulos = $ar->index();
   </script>
   <script>
     let rangeDates;
+
     function viewPDFVentas(id_usuario) {
       const url = `reports/venta_rango.php?id_usuario=${id_usuario}&fecha_inicio=${rangeDates.start}&fecha_final=${rangeDates.end}`;
       // Abre una ventana emergente
       window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
     }
-    $(function () {
+    $(function() {
       $('input[name="daterange"]').daterangepicker({
         opens: 'left'
-      }, function (start, end, label) {
+      }, function(start, end, label) {
         rangeDates = {
           start: start.format('YYYY-MM-DD'),
           end: end.format('YYYY-MM-DD')
@@ -627,7 +610,7 @@ $articulos = $ar->index();
           cache: false,
           contentType: false,
           processData: false,
-          success: function (response) {
+          success: function(response) {
             let tabla = document.getElementById('ventas_rango');
             ventas = JSON.parse(response);
 
@@ -643,7 +626,7 @@ $articulos = $ar->index();
                 "$" + precioVentaFormateado,
                 `<a class="text-danger font-weight-bold text-md"  onclick="viewPDFVentas( ${v.id_usuario})" data-original-title="Delete user"><i class="fas fa-file-pdf"></i></a>`,
               ];
-              contenidoCeldas.forEach(function (contenido) {
+              contenidoCeldas.forEach(function(contenido) {
                 var celda = document.createElement("td");
                 var parrafo = document.createElement("p");
                 parrafo.innerHTML = contenido;

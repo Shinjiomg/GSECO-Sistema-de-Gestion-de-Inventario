@@ -38,9 +38,7 @@ $MetodosPago = new MetodosPago();
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 </head>
@@ -48,12 +46,9 @@ $MetodosPago = new MetodosPago();
 <body class="g-sidenav-show" style="background-color: #009ad5;">
     <div class="h-100 bg-primary position-absolute w-100"></div>
     <!-- sidebar -->
-    <aside
-        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
-        id="sidenav-main">
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-                aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
                 <img src="./img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">GSECO</span>
@@ -67,8 +62,7 @@ $MetodosPago = new MetodosPago();
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
@@ -77,8 +71,7 @@ $MetodosPago = new MetodosPago();
                 <?php if ($rol === 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link active" href="sales.php">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder">VENTAS</span>
@@ -87,8 +80,7 @@ $MetodosPago = new MetodosPago();
                 <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link" href="bills.php">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
@@ -97,11 +89,10 @@ $MetodosPago = new MetodosPago();
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
                 </li>
-                <?php if ($rol === 2) { ?>
+                <?php if ($rol === 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="purchases.php">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
@@ -110,8 +101,7 @@ $MetodosPago = new MetodosPago();
 
                     <li class="nav-item">
                         <a class="nav-link" href="purchases-bills.php">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
@@ -120,16 +110,15 @@ $MetodosPago = new MetodosPago();
                 <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link" href="inventory-expenses.php">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
                     </a>
                 </li>
                 <!-- <?php
-                if ($rol == 1) {
-                    ?>
+                        if ($rol == 1) {
+                        ?>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                     </li>
@@ -143,7 +132,7 @@ $MetodosPago = new MetodosPago();
                         </a>
                     </li>
                 <?php
-                }
+                        }
                 ?> -->
                 <li class="sidenav-footer mx-3">
 
@@ -153,8 +142,7 @@ $MetodosPago = new MetodosPago();
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-            data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -200,8 +188,7 @@ $MetodosPago = new MetodosPago();
                 <div class="col-xl-6 mb-2">
                     <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Buscar por...">
                 </div>
-                <a onclick="generarCierre()" target="_blank" style="background: #008000; color:white; width: 200px;"
-                    class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
+                <a onclick="generarCierre()" target="_blank" style="background: #008000; color:white; width: 200px;" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
                     <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
                     Generar cierre
                 </a>
@@ -227,18 +214,14 @@ $MetodosPago = new MetodosPago();
 
 
                     <div class="row">
-                        <button class="btn dropdown-toggle text-uppercase font-weight-bolder"
-                            style="background: #c3c3c3; color:black; border: 0px solid black !important; height: 50px !important"
-                            type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
+                        <button class="btn dropdown-toggle text-uppercase font-weight-bolder" style="background: #c3c3c3; color:black; border: 0px solid black !important; height: 50px !important" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="true">
                             Selecciona una categoría
                         </button>
-                        <ul class="dropdown-menu" style="border: 1px solid black !important"
-                            aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdown-menu" style="border: 1px solid black !important" aria-labelledby="dropdownMenuButton">
                             <?php
                             foreach ($categorias as $c) {
-                                ?>
-                                <li
-                                    onclick="showProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')">
+                            ?>
+                                <li onclick="showProductsByCategory('<?php echo $c->id_categoria ?>', '<?php echo $c->nombre ?>')">
                                     <a class="dropdown-item text-uppercase font-weight-bolder">
                                         <?php echo $c->nombre ?>
                                     </a>
@@ -254,8 +237,7 @@ $MetodosPago = new MetodosPago();
                     <div class="card p-4">
                         <div class="col-md-12 ">
                             <h4 class="text-uppercase font-weight-bolder">Selecciona los productos</h4>
-                            <p class="text-uppercase font-weight-bolder"><em>Categoría seleccionada:</em> <strong
-                                    id="selected_category"></strong></p>
+                            <p class="text-uppercase font-weight-bolder"><em>Categoría seleccionada:</em> <strong id="selected_category"></strong></p>
                         </div>
                         <div class="row" id="products_category">
                         </div>
@@ -273,26 +255,19 @@ $MetodosPago = new MetodosPago();
                                         <table id="data_table" class="table align-items-center">
                                             <thead>
                                                 <tr>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Producto</th>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Cantidad</th>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Precio unitario</th>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Método de pago</th>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                         Total </th>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                     </th>
-                                                    <th align="center"
-                                                        class="text-center text-uppercase text-black text-xs font-weight-bolder">
+                                                    <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -314,42 +289,26 @@ $MetodosPago = new MetodosPago();
                                             </h5>
                                         </div>
                                         <div class="col-xl-4 text-end mb-2">
-                                            <button type="button" data-bs-toggle="modal"
-                                                data-bs-target="#modal-form-change"
-                                                class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100"
-                                                style="background: #008000" id="btnCalcularCambio">
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-form-change" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100" style="background: #008000" id="btnCalcularCambio">
                                                 Calcular cambio
                                             </button>
-                                            <div class="modal fade" id="modal-form-change" tabindex="1" role="dialog"
-                                                aria-labelledby="modal-form" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-md"
-                                                    role="document">
+                                            <div class="modal fade" id="modal-form-change" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title text-uppercase font-weight-bold">
-                                                                Calcular cambio</h4>
-                                                            <button type="button" class="btn bg-gradient-danger"
-                                                                data-bs-dismiss="modal">X</button>
+                                                            <h4 class="modal-title text-uppercase font-weight-bold">Calcular cambio</h4>
+                                                            <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
+
                                                         </div>
                                                         <div class="modal-body p-0">
                                                             <div class="card card-plain">
                                                                 <div class="card-body text-start">
                                                                     <form role="form text-left">
                                                                         <div class="form-group">
-                                                                            <label for="product_price"
-                                                                                class="text-uppercase font-weight-bolder"><strong>¿Con
-                                                                                    cuánto efectivo pagará el
-                                                                                    cliente?</strong></label>
-                                                                            <input class="form-control" type="number"
-                                                                                id="product_price"
-                                                                                placeholder="Ingresa el valor exacto de lo que te entregó el cliente">
-                                                                            <p id="cambio_resultado" class="mb-0">
-                                                                                <em>Debes devolverle al cliente
-                                                                                </em><strong>$0.00</strong> <em> de
-                                                                                    cambio</em></p>
-                                                                            <button type="button" id="btnCalcular"
-                                                                                class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
-                                                                                style="background: #5e72e4; color:white">Calcular</button>
+                                                                            <label for="product_price" class="text-uppercase font-weight-bolder"><strong>¿Con cuánto efectivo pagará el cliente?</strong></label>
+                                                                            <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor exacto de lo que te entregó el cliente">
+                                                                            <p id="cambio_resultado" class="mb-0"><em>Debes devolverle al cliente </em><strong>$0.00</strong> <em> de cambio</em></p>
+                                                                            <button type="button" id="btnCalcular" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Calcular</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -361,9 +320,7 @@ $MetodosPago = new MetodosPago();
                                         </div>
 
                                         <div class="col-xl-4 text-end">
-                                            <button type="button"
-                                                class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100"
-                                                style="background: #008000" onclick="GenerarVenta()" id="btnCrearVenta">
+                                            <button type="button" class="btn btn-success mb-0 text-uppercase font-weight-bolder w-100" style="background: #008000" onclick="GenerarVenta()" id="btnCrearVenta">
                                                 </i>Crear venta
                                             </button>
                                         </div>
@@ -410,23 +367,16 @@ $MetodosPago = new MetodosPago();
                         <div class="card-body">
                             <form role="form text-left">
                                 <div class="form-group">
-                                    <label for="productQuantity"
-                                        class="col-form-label text-uppercase font-weight-bolder">Cantidad:</label>
-                                    <input class="form-control" type="number" id="productQuantity"
-                                        oninput="validarCantidad(this)">
-                                    <p class="text-uppercase font-weight-bolder"><em>Unidades disponibles:</em> <strong
-                                            id="stock"></strong></p>
+                                    <label for="productQuantity" class="col-form-label text-uppercase font-weight-bolder">Cantidad:</label>
+                                    <input class="form-control" type="number" id="productQuantity" oninput="validarCantidad(this)">
+                                    <p class="text-uppercase font-weight-bolder"><em>Unidades disponibles:</em> <strong id="stock"></strong></p>
                                     <label for="" class="col-form-label text-uppercase">Método de pago:</label>
-                                    <select class="form-control" name="choices-button" id="metodos_pagos"
-                                        placeholder="Departure">
+                                    <select class="form-control" name="choices-button" id="metodos_pagos" placeholder="Departure">
                                         <?php foreach ($MetodosPago->index() as $mp) { ?>
-                                            <option value="<?php echo $mp->id_metodo_pago ?>" <?php echo ($mp->nombre === 'Efectivo') ? 'selected' : ''; ?>>
-                                                <?php echo $mp->nombre ?>
-                                            </option>
+                                            <option value="<?php echo $mp->id_metodo_pago ?>" <?php echo ($mp->nombre === 'Efectivo') ? 'selected' : ''; ?>><?php echo $mp->nombre ?></option>
                                         <?php } ?>
                                     </select>
-                                    <button type="button" id="confirmButton"
-                                        class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase font-weight-bolder">Guardar</button>
+                                    <button type="button" id="confirmButton" class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0 text-uppercase font-weight-bolder">Guardar</button>
                                 </div>
                             </form>
                         </div>

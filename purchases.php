@@ -3,7 +3,7 @@ include_once("conexion.php");
 include_once("Consultas.php");
 require('./models/categoria.php');
 
-if( !isset($_SESSION['id_usuario'])){
+if (!isset($_SESSION['id_usuario'])) {
     header("Location: index.php");
     exit();
 }
@@ -66,16 +66,16 @@ $Categoria = new Categoria()
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
                     </a>
                 </li>
-                <?php if($rol === 2){ ?>
-                <li class="nav-item">
-                    <a class="nav-link " href="sales.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-cart text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
-                    </a>
-                </li>
-                <?php }?>
+                <?php if ($rol === 2) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link " href="sales.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-cart text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
+                        </a>
+                    </li>
+                <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link" href="bills.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -87,22 +87,24 @@ $Categoria = new Categoria()
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="purchases.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="purchases-bills.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
-                    </a>
-                </li>
+                <?php if ($rol === 1) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="purchases.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="purchases-bills.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
+                        </a>
+                    </li>
+                <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link" href="inventory-expenses.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">

@@ -3,7 +3,7 @@ include_once("conexion.php");
 include_once("Consultas.php");
 require('./models/gastos.php');
 
-if( !isset($_SESSION['id_usuario'])){
+if (!isset($_SESSION['id_usuario'])) {
     header("Location: index.php");
     exit();
 }
@@ -89,7 +89,7 @@ $gastos = new Gastos();
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
                 </li>
-                <?php if ($rol === 2) { ?>
+                <?php if ($rol === 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="purchases.php">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -114,10 +114,6 @@ $gastos = new Gastos();
                         </div>
                         <span class="nav-link-text ms-1 font-weight-bolder">GASTOS DE INVENTARIO</span>
                     </a>
-                </li>
-
-                <li class="sidenav-footer mx-3">
-
                 </li>
             </ul>
         </div>
@@ -215,8 +211,6 @@ $gastos = new Gastos();
                 </div>
             </div>
         </div>
-
-
         </div>
     </main>
     <!-- config interface -->
