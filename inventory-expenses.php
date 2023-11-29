@@ -187,20 +187,7 @@ $categoriaGastos = new CategoriaGastos();
                             <div class="card-body text-start">
                                 <form role="form text-left">
                                     <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xl-9">
-
-                                                <label for="" class="col-form-label text-uppercase">Tipo
-                                                </label>
-                                                <select class="form-control" name="choices-button" id="categoria_gasto" placeholder="Departure">
-                                                    <?php foreach ($categoriaGastos as $cg) { ?>
-                                                        <option value="<?php echo $cg->id ?>" selected="true">
-                                                            <?php echo $cg->descripcion ?>
-                                                        </option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                        </div>
+                                       
                                         <div class="row">
                                             <div class="col-xl-9">
 
@@ -212,6 +199,20 @@ $categoriaGastos = new CategoriaGastos();
                                                 <label for="" class="col-form-label text-uppercase">Total</label>
                                                 <input id="total_bills" type="text" placeholder="Total" class="form-control" />
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-9">
+                                                <label for="" class="col-form-label text-uppercase">Categoria
+                                                </label>
+                                                <select class="form-control" name="choices-button" id="categoria_gasto" placeholder="Departure">
+                                                    <?php foreach ($categoriaGastos as $cg) { ?>
+                                                        <option value="<?php echo $cg->id ?>" selected="true">
+                                                            <?php echo $cg->descripcion ?>
+                                                        </option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            
                                         </div>
 
                                     </div>
