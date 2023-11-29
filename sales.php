@@ -44,7 +44,10 @@ $MetodosPago = new MetodosPago();
 </head>
 
 <body class="g-sidenav-hidden" style="background-color: #009ad5;">
-    <div class="h-100 bg-primary position-absolute w-100"></div>
+    <div class="h-100 bg-primary position-absolute w-100" style="background-image: url('./img/gseco.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;"></div>
     <!-- sidebar -->
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-1" id="sidenav-main">
         <div class="sidenav-header">
@@ -119,7 +122,7 @@ $MetodosPago = new MetodosPago();
             </ul>
         </div>
     </aside>
-    <main class="main-content position-relative border-radius-lg">
+    <main class="main-content">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
@@ -387,5 +390,14 @@ $MetodosPago = new MetodosPago();
 
     .sidenav {
         display: none;
+    }
+
+    .main-content {
+        position: relative;
+        border-radius: 10px;
+        overflow-y: auto;
+        /* Agrega un desplazamiento vertical cuando sea necesario */
+        max-height: 100vh;
+        /* Establece una altura máxima para evitar que el contenido se desborde */
     }
 </style>
