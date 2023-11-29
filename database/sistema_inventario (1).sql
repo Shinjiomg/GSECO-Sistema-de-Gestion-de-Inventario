@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2023 a las 17:26:45
+-- Tiempo de generación: 29-11-2023 a las 03:51:12
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -47,8 +47,8 @@ INSERT INTO `articulo` (`id_articulo`, `nombre`, `precio_venta`, `stock`, `descr
 (2, 'AGUA CRISTAL MINI ', 700.00, 0, NULL, 1, 3, 20),
 (3, 'AGUACRISTAL SIN GAS 600 ML', 1600.00, 0, NULL, 1, 3, 20),
 (4, 'AGUS CRISTAL COCO', 2000.00, 0, NULL, 1, 3, 20),
-(5, 'AREPA DE HUEVO', 3200.00, -3, NULL, 1, 8, 20),
-(6, 'AREPA DE QUESO', 2500.00, 0, NULL, 1, 8, 20),
+(5, 'AREPA DE HUEVO', 3200.00, -7, NULL, 1, 8, 20),
+(6, 'AREPA DE QUESO', 2500.00, -2, NULL, 1, 8, 20),
 (7, 'ARROZ - PORCI?N', 2000.00, 0, NULL, 1, 1, 20),
 (8, 'ARROZ CON LECHE', 3000.00, 0, NULL, 1, 10, 20),
 (9, 'AVENA BOLSA ', 1900.00, 0, NULL, 1, 10, 20),
@@ -122,7 +122,7 @@ INSERT INTO `articulo` (`id_articulo`, `nombre`, `precio_venta`, `stock`, `descr
 (77, 'HUEVOS', 2500.00, 0, NULL, 1, 6, 20),
 (78, 'HUEVOS PERICOS', 3000.00, 0, NULL, 1, 6, 20),
 (79, 'HUEVOS RANCHEROS', 5000.00, 0, NULL, 1, 6, 20),
-(80, 'JABON TOCADOR - BA?O', 2500.00, 0, NULL, 1, 2, 20),
+(80, 'JABON TOCADOR - BA?O', 2500.00, 4, NULL, 1, 2, 20),
 (81, 'JUGO DEL VALLE 1,5 LITROS', 4000.00, 0, NULL, 1, 3, 20),
 (82, 'JUGO DEL VALLE 400 ML', 1500.00, 0, NULL, 1, 3, 20),
 (83, 'JUGO DEL VALLE CAJA', 1500.00, 0, NULL, 1, 3, 20),
@@ -227,6 +227,27 @@ INSERT INTO `categoria` (`id_categoria`, `nombre`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `categoria_gastos`
+--
+
+CREATE TABLE `categoria_gastos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `descripcion` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoria_gastos`
+--
+
+INSERT INTO `categoria_gastos` (`id`, `descripcion`) VALUES
+(1, 'Honorarios'),
+(2, 'Arrendamiento'),
+(3, 'Honorarios'),
+(4, 'Arrendamiento');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `detalle_ingreso`
 --
 
@@ -237,6 +258,13 @@ CREATE TABLE `detalle_ingreso` (
   `cantidad` int(11) NOT NULL,
   `precio` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_ingreso`
+--
+
+INSERT INTO `detalle_ingreso` (`id_detalle_ingreso`, `Ingreso_id_ingreso`, `Articulo_id_articulo`, `cantidad`, `precio`) VALUES
+(7, 7, 80, 4, 3000.00);
 
 -- --------------------------------------------------------
 
@@ -259,8 +287,10 @@ CREATE TABLE `detalle_venta` (
 
 INSERT INTO `detalle_venta` (`id_detalle_venta`, `Venta_id_venta`, `Articulo_id_articulo`, `cantidad`, `precio`, `metodo_pago`) VALUES
 (26, 20, 1, 1, 1200.00, 1),
-(27, 21, 1, 1, 1200.00, 1),
-(28, 22, 5, 3, 3200.00, 1);
+(27, 21, 1, 1, 1200.00, 2),
+(28, 22, 5, 3, 3200.00, 1),
+(29, 23, 6, 2, 2500.00, 2),
+(30, 24, 5, 4, 3200.00, 2);
 
 -- --------------------------------------------------------
 
@@ -273,7 +303,8 @@ CREATE TABLE `gastos` (
   `descripcion` varchar(100) NOT NULL,
   `total` decimal(11,2) NOT NULL,
   `id_usuario` int(10) UNSIGNED NOT NULL,
-  `fecha` datetime DEFAULT NULL
+  `fecha` datetime DEFAULT NULL,
+  `categoria_gasto` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -289,6 +320,13 @@ CREATE TABLE `ingreso` (
   `total` decimal(11,2) NOT NULL,
   `estado` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `ingreso`
+--
+
+INSERT INTO `ingreso` (`id_ingreso`, `Usuario_id_usuario`, `fecha`, `total`, `estado`) VALUES
+(7, 3, '2023-11-25 02:21:40', 12000.00, 1);
 
 -- --------------------------------------------------------
 
@@ -306,7 +344,8 @@ CREATE TABLE `metodos_pago` (
 --
 
 INSERT INTO `metodos_pago` (`id_metodo_pago`, `nombre`) VALUES
-(1, 'efectivo');
+(1, 'Efectivo'),
+(2, 'Nequi');
 
 -- --------------------------------------------------------
 
@@ -325,7 +364,8 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`id_rol`, `nombre`, `estado`) VALUES
-(1, 'admin', 1);
+(1, 'Cajero', 1),
+(2, 'Administrador', 1);
 
 -- --------------------------------------------------------
 
@@ -350,7 +390,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombres`, `apellidos`, `tipo_documento`, `num_documento`, `email`, `user_password`, `estado`, `rol_id_rol`) VALUES
-(2, 'camilo', 'hernánde', 'cc', '10023', 'nicollgm100@gmail.com', '123456789', 1, 1);
+(2, 'camilo', 'hernánde', 'cc', '10023', 'nicollgm100@gmail.com', '123456789', 1, 2),
+(3, 'admin', 'admin', 'cc', '123456789', 'admin@gmail.com', '123456789', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -371,8 +412,10 @@ CREATE TABLE `venta` (
 
 INSERT INTO `venta` (`id_venta`, `Usuario_id_usuario`, `fecha`, `total`) VALUES
 (20, 2, '2023-11-17 22:45:56', 20000.00),
-(21, 2, '2023-11-17 23:06:08', 20000.00),
-(22, 2, '2023-11-19 17:07:51', 9600.00);
+(21, 2, '2023-11-19 23:06:08', 20000.00),
+(22, 2, '2023-11-19 17:07:51', 9600.00),
+(23, 2, '2023-11-24 18:04:30', 5000.00),
+(24, 2, '2023-11-28 03:33:54', 12800.00);
 
 --
 -- Índices para tablas volcadas
@@ -390,6 +433,12 @@ ALTER TABLE `articulo`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indices de la tabla `categoria_gastos`
+--
+ALTER TABLE `categoria_gastos`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `detalle_ingreso`
@@ -413,7 +462,8 @@ ALTER TABLE `detalle_venta`
 --
 ALTER TABLE `gastos`
   ADD PRIMARY KEY (`id_gasto`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `categoria_gasto` (`categoria_gasto`);
 
 --
 -- Indices de la tabla `ingreso`
@@ -465,52 +515,58 @@ ALTER TABLE `categoria`
   MODIFY `id_categoria` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT de la tabla `categoria_gastos`
+--
+ALTER TABLE `categoria_gastos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `id_detalle_ingreso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_detalle_ingreso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `gastos`
 --
 ALTER TABLE `gastos`
-  MODIFY `id_gasto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_gasto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `id_ingreso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_ingreso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `metodos_pago`
 --
 ALTER TABLE `metodos_pago`
-  MODIFY `id_metodo_pago` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_metodo_pago` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `id_rol` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_rol` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restricciones para tablas volcadas
@@ -541,7 +597,8 @@ ALTER TABLE `detalle_venta`
 -- Filtros para la tabla `gastos`
 --
 ALTER TABLE `gastos`
-  ADD CONSTRAINT `gastos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+  ADD CONSTRAINT `gastos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `gastos_ibfk_2` FOREIGN KEY (`categoria_gasto`) REFERENCES `categoria_gastos` (`id`);
 
 --
 -- Filtros para la tabla `ingreso`
