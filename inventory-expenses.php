@@ -2,6 +2,7 @@
 include_once("conexion.php");
 include_once("Consultas.php");
 require('./models/gastos.php');
+require('./models/categoriaGastos.php');
 
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: index.php");
@@ -12,7 +13,7 @@ if (!isset($_SESSION['id_usuario'])) {
 $rol = intval($_SESSION['rol']);
 $idUsuario = intval($_SESSION['id_usuario']);
 $gastos = new Gastos();
-
+$categoriaGastos = new CategoriaGastos();
 
 
 
@@ -186,6 +187,20 @@ $gastos = new Gastos();
                             <div class="card-body text-start">
                                 <form role="form text-left">
                                     <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xl-9">
+
+                                                <label for="" class="col-form-label text-uppercase">Tipo
+                                                </label>
+                                                <select class="form-control" name="choices-button" id="categoria_gasto" placeholder="Departure">
+                                                    <?php foreach ($categoriaGastos as $cg) { ?>
+                                                        <option value="<?php echo $cg->id ?>" selected="true">
+                                                            <?php echo $cg->descripcion ?>
+                                                        </option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-xl-9">
 
