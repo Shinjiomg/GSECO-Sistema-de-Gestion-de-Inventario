@@ -40,43 +40,36 @@ if (isset($_POST['btningresar'])) {
 	<link rel="icon" type="image/png" href="./img/logo.png">
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 
 <body>
 	<div class="container">
-		<div class="contenedor">
-			<h2 class="tituloempresa">TIENDA DEL SOLDADO</h2>
-			<div class="img">
-				<img src="img/logo.png">
-			</div>
-			<div class="login-content">
-				<form method="POST">
-					<h3 class="titulo" id="titulo1">GSECO</h3>
-					<h3 class="titulo" id="titulo3">Iniciar Sesión</h3>
-					<div class="input-div one">
-						<div class="i">
-							<i class="fas fa-user"></i>
-						</div>
-						<div class="div">
-							<h5>Correo Electrónico</h5>
-							<input id="user" type="email" name="txtusuario" class="input">
-						</div>
+		<div class="login-content">
+			<form method="POST">
+				<div class="title-container">
+					<img src="./img/logo.png" alt="Icono" class="icon">
+					<h2 class="title">BIENVENIDO</h2>
+				</div>
+				<div class="input-div one">
+					<div class="i">
+						<i class="fas fa-user"></i>
 					</div>
-					<div class="input-div pass">
-						<div class="i">
-							<i class="fas fa-lock"></i>
-						</div>
-						<div class="div">
-							<h5>Contraseña</h5>
-							<input id="user_password" type="password" name="txtpassword" class="input">
-						</div>
+					<div class="div">
+						<h5>Correo electrónico</h5>
+						<input type="email" id="user"  name="txtusuario" class="input">
 					</div>
-					<div class="btnpos">
-						<input type="button" class="btn" onclick="autenthicated()" name="btningresar" value="Ingresar">
+				</div>
+				<div class="input-div pass">
+					<div class="i">
+						<i class="fas fa-lock"></i>
 					</div>
-				</form>
-			</div>
+					<div class="div">
+						<h5>Contraseña</h5>
+						<input type="password"  id="user_password" name="txtpassword" class="input">
+					</div>
+				</div>
+				<input type="button" name="btningresar" class="btn" onclick="autenthicated()" value="Iniciar Sesión">
+			</form>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/main.js"></script>
