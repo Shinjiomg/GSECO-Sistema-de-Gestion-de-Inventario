@@ -183,8 +183,10 @@ $articulos = $ar->index();
         </div>
       </div>
     </nav>
+   
     <div class="container-fluid py-4">
       <!-- Cards -->
+      <?php if ($rol === 2) {?>
       <div class="row mb-4">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
@@ -283,6 +285,8 @@ $articulos = $ar->index();
           </div>
         </div>
       </div>
+
+      
       <!-- Transacciones -->
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -370,6 +374,7 @@ $articulos = $ar->index();
           </div>
         </div>
       </div>
+      <?php }?>
       <!-- main content -->
       <div class="row mt-4">
         <div class="col-xl-12 mb-2">
@@ -622,6 +627,7 @@ $articulos = $ar->index();
         <?php } ?>
       </div>
     </div>
+  
     <!--secondary content -->
   </main>
   <!-- config interface -->

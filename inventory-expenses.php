@@ -378,8 +378,67 @@ $categoriaGastos = new CategoriaGastos();
                     processData: false,
                     success: function(response) {
                         gastos = JSON.parse(response);
-                        console.log(response);
-                        console.log(gastos);
+
+                        let contenedorGastos = document.getElementById('contenedor-gastos');
+
+                        // Limpiar el contenedor antes de renderizar nuevos datos
+                        contenedorGastos.innerHTML = "";
+
+                        // Crear elementos para cada gasto
+                        const nuevoDiv = document.createElement('div');
+                        nuevoDiv.classList.add('col-xl-12');
+
+                        // Agregar el título una sola vez
+                        nuevoDiv.innerHTML = `
+                            <div class="card h-100">
+                                <div class="card-header pb-0 p-3">
+                                    <div class="row">
+                                        <div class="col-6 d-flex align-items-center">
+                                            <h4 class="mb-0 text-uppercase font-weight-bolder">Gastos realizados</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-3 pb-0">
+                                    <!-- Lista de gastos -->
+                                    <ul class="list-group">
+                                    </ul>
+                                </div>
+                            </div>
+                        `;
+
+                        // Agregar el contenedor principal al contenedorGastos
+                        contenedorGastos.appendChild(nuevoDiv);
+
+                        // Obtener la lista de gastos dentro del contenedor principal
+                        const listaGastos = nuevoDiv.querySelector('.list-group');
+
+                        // Iterar sobre los gastos y agregar cada uno a la lista
+                        gastos.forEach(g => {
+                            const listItem = document.createElement('li');
+                            listItem.classList.add('list-group-item', 'border-0', 'd-flex', 'justify-content-between', 'ps-0', 'mb-2', 'border-radius-lg');
+                            listItem.innerHTML = `
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex flex-column">
+                                    <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
+                                        ${g.descripcion}
+                                    </h6>
+                                    <span class="text-sm text-uppercase font-weight-bolder">
+                                        ${g.fecha}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="d-flex justify-content-end text-danger align-items-center text-gradient text-md text-uppercase font-weight-bolder">
+                                    - $ ${g.total.toLocaleString('es-ES')}
+                                </div>
+                            </div>
+                        `;
+
+                            // Agregar el elemento del gasto a la lista
+                            listaGastos.appendChild(listItem);
+                        });
+
+
                     }
                 });
 
