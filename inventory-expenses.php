@@ -349,7 +349,6 @@ $categoriaGastos = new CategoriaGastos();
             oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
             const formattedOneMonthAgo = oneMonthAgo.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
 
-            // Obtiene el campo de fecha por su nombre y establece la fecha actual y la fecha de un mes antes como valores
             const dateRangeInput = document.querySelector('input[name="daterange"]');
             dateRangeInput.value = formattedOneMonthAgo + ' - ' + formattedDate;
         });
@@ -365,10 +364,11 @@ $categoriaGastos = new CategoriaGastos();
                     start: start.format('YYYY-MM-DD'),
                     end: end.format('YYYY-MM-DD')
                 }
-
+                console.log(rangeDates);
 
                 let datos = new FormData();
-                datos.append('range_dates', JSON.stringify(rangeDates));
+                datos.append('range_dates_gastos', JSON.stringify(rangeDates));
+
                 $.ajax({
                     url: "ajax/gastos.ajax.php",
                     method: "POST",
@@ -377,10 +377,9 @@ $categoriaGastos = new CategoriaGastos();
                     contentType: false,
                     processData: false,
                     success: function(response) {
-
                         gastos = JSON.parse(response);
                         console.log(response);
-
+                        console.log(gastos);
                     }
                 });
 
