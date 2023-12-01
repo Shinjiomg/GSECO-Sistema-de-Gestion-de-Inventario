@@ -204,11 +204,11 @@ $categoriaGastos = new CategoriaGastos();
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xl-9">
+                                            <div class="col-xl-12">
                                                 <label for="" class="col-form-label text-uppercase">Categoria
                                                 </label>
                                                 <select class="form-control" name="choices-button" id="categoria_gasto" placeholder="Departure">
-                                                    <?php foreach ($categoriaGastos as $cg) { ?>
+                                                    <?php foreach ($categoriaGastos->all() as $cg) { ?>
                                                         <option value="<?php echo $cg->id ?>" selected="true">
                                                             <?php echo $cg->descripcion ?>
                                                         </option>

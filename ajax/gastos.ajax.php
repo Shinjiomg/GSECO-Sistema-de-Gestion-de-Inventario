@@ -28,8 +28,9 @@ if(isset($_POST["descripcion"])){
 
 	$descripcion= $_POST["descripcion"];
 	$total= $_POST["total"];
+	$categoria_gasto  = $_POST["categoria_gasto"];
     
-    echo json_encode( $gasto->store($descripcion, $total, $var_session));
+    echo json_encode( $gasto->store($descripcion, $total, $var_session, $categoria_gasto));
 
 }
 

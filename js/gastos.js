@@ -114,6 +114,9 @@ function guardar() {
     let descripcion = document.getElementById("description_bills").value;
     let total = document.getElementById("total_bills").value;
 
+    let categoria_gasto = document.getElementById("categoria_gasto").value;
+
+
     // Validar que los campos no estén vacíos
     if (!descripcion || !total) {
         alert("Por favor, completa todos los campos antes de guardar.");
@@ -124,6 +127,7 @@ function guardar() {
     let gastos = new FormData();
     gastos.append("descripcion", descripcion);
     gastos.append("total", total);
+    gastos.append("categoria_gasto", categoria_gasto);
 
     // Realizar la solicitud AJAX
     $.ajax({
