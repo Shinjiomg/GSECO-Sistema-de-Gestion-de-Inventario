@@ -35,16 +35,40 @@ class Gastos extends Database
     
 	public function gastosPorRango($rango)
 	{
+
 		$id_usuario =  $_SESSION['id_usuario'];
 		$rol = $_SESSION['rol'];
-		$rango =  json_decode($rango);
-       
+		$rangoFecha = json_decode($rango);
+
+		$formatted_start_date = date('Y-m-d H:i:s', strtotime($rangoFecha->start . ' 00:00:00'));
+		$formatted_end_date = date('Y-m-d H:i:s', strtotime($rangoFecha->end . ' 23:59:59'));
+		
+		return $formatted_end_date; 		
+
 		if ($rol === 2) {
-			$query = $this->pdo->query(" SELECT * from gastos WHERE id_usuario = '{$id_usuario}' AND DATE(fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
+			$query = $this->pdo->prepare("SELECT * FROM gastos WHERE id_usuario = :id_usuario AND fecha BETWEEN :start_date AND :end_date");
+
+			// Asignar valores a los parámetros
+			$query->bindParam(':id_usuario', $id_usuario);
+			$query->bindParam(':start_date', $formatted_start_date);
+			$query->bindParam(':end_date', $formatted_end_date);
+
+			// Ejecutar la consulta preparada
+			$query->execute();
+
+			// Obtener los resultados, por ejemplo:
+			$resultados = $query->fetchAll(PDO::FETCH_ASSOC);
+			return $resultados;
+
 		} else {
-			$query = $this->pdo->query(" SELECT * from gastos WHERE DATE(fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
+			/* Solo administrador */
+			$query = $this->pdo->query("SELECT * from gastos");
+			return $query->fetchAll();
 		}
-		return $query->fetchAll();
+		
+
 	}
+
+		
 
 }

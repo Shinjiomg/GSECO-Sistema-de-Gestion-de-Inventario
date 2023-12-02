@@ -368,17 +368,18 @@ $categoriaGastos = new CategoriaGastos();
                 }
                 console.log(rangeDates);
 
-                let datos = new FormData();
-                datos.append('range_dates_gastos', JSON.stringify(rangeDates));
+                let datosgastos = new FormData();
+                datosgastos.append('range_dates_gastos', JSON.stringify(rangeDates));
 
                 $.ajax({
                     url: "ajax/gastos.ajax.php",
                     method: "POST",
-                    data: datos,
+                    data: datosgastos,
                     cache: false,
                     contentType: false,
                     processData: false,
                     success: function(response) {
+                        console.log(response);
                         gastos = JSON.parse(response);
 
                         let contenedorGastos = document.getElementById('contenedor-gastos');
