@@ -366,8 +366,7 @@ $categoriaGastos = new CategoriaGastos();
                     start: start.format('YYYY-MM-DD'),
                     end: end.format('YYYY-MM-DD')
                 }
-                console.log(rangeDates);
-
+            
                 let datosgastos = new FormData();
                 datosgastos.append('range_dates_gastos', JSON.stringify(rangeDates));
 
@@ -379,7 +378,6 @@ $categoriaGastos = new CategoriaGastos();
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        console.log(response);
                         gastos = JSON.parse(response);
 
                         let contenedorGastos = document.getElementById('contenedor-gastos');

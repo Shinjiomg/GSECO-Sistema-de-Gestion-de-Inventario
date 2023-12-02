@@ -48,8 +48,7 @@ class Gastos extends Database
 
 		$formatted_start_date = date('Y-m-d H:i:s', strtotime($rangoFecha->start . ' 00:00:00'));
 		$formatted_end_date = date('Y-m-d H:i:s', strtotime($rangoFecha->end . ' 23:59:59'));
-		
-		return $formatted_end_date; 		
+			
 
 		if ($rol === 2) {
 			$query = $this->pdo->prepare("SELECT * FROM gastos WHERE id_usuario = :id_usuario AND fecha BETWEEN :start_date AND :end_date");
