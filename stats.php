@@ -4,6 +4,7 @@ include_once("Consultas.php");
 require('./models/venta.php');
 require('./models/articulo.php');
 require('./models/categoria.php');
+require('./models/gastos.php');
 
 if (!isset($_SESSION['id_usuario'])) {
   header("Location: index.php");
@@ -15,10 +16,13 @@ $rol = intval($_SESSION['rol']);
 $nw = new Venta();
 $ar = new Articulo();
 $c = new Categoria();
+$gastos = new Gastos();
 $categorias = $c->index();
 $ventas = $nw->ventas($_SESSION['id_usuario']);
 $ultimaVenta = $nw->ultimaVenta($_SESSION['id_usuario']);
 $articulos = $ar->index();
+$gastosDiarios = $gastos->gastosDiarios();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -273,7 +277,10 @@ $articulos = $ar->index();
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">gastos diarios</p>
                     <h5 class="font-weight-bolder">
-                      $0
+                      <?php 
+                         $gastosDiarios = ($gastosDiarios->total !== null) ? number_format($gastosDiarios->total, 0, ',', '.') : '0';
+                         echo $gastosDiarios;
+                      ?>
                     </h5>
                   </div>
                 </div>

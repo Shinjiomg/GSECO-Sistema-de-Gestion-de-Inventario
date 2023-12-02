@@ -105,7 +105,8 @@ class Venta extends Database
 		/* $query = $this->pdo->query("SELECT  COALESCE(SUM(total), 0) as total_diario FROM venta WHERE Usuario_id_usuario = {$id_usuario} AND DATE(fecha) = '{$currentDate}' GROUP BY tipo_pago"); */
 		$query = $this->pdo->query("SELECT
 		COALESCE(SUM(CASE WHEN dv.metodo_pago = 2 THEN dv.cantidad * dv.precio ELSE 0 END), 0) AS nequi,
-		COALESCE(SUM(CASE WHEN dv.metodo_pago = 1 THEN dv.cantidad * dv.precio ELSE 0 END), 0) AS efectivo,
+		COALESCE(SUM(CASE WHEN dv.metodo_pago = 1 THEN dv.cantidad * dv.precio ELSE 0 END), 0) AS efectivo,	
+		
 		mp.nombre
 		FROM venta v INNER JOIN detalle_venta dv ON v.id_venta = dv.Venta_id_venta 
 		INNER JOIN metodos_pago mp ON mp.id_metodo_pago = dv.metodo_pago

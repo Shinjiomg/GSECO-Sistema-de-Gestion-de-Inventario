@@ -6,6 +6,14 @@ date_default_timezone_set('America/Bogota');
 class Gastos extends Database
 {
   
+	public function gastosDiarios(){
+		$id_usuario =  $_SESSION['id_usuario'];
+
+		$currentDate = date('Y-m-d');
+		$query = $this->pdo->query("SELECT sum(total) as total from gastos WHERE id_usuario = '{$id_usuario}' AND DATE(fecha) = '{$currentDate}'");
+		return $query->fetch();
+
+	}
 
     public function all($id){
     
@@ -13,10 +21,8 @@ class Gastos extends Database
         	
 		$query = $this->pdo->query("SELECT * from gastos WHERE id_usuario = " . $id);
 		return $query->fetchAll();
-	
       
     }
-
 
     public function store($descripcion, $total, $id_usuario, $categoria_gasto)
     {
