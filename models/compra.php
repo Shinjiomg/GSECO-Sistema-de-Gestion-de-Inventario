@@ -105,7 +105,7 @@ class Compras extends Database
     {
         $currentDate = date('Y-m-d');
 
-        $query = $this->pdo->query("SELECT ingreso.id_ingreso,  DATE_FORMAT(ingreso.fecha, '%d/%m/%Y %H:%i') AS fecha_ingreso, GROUP_CONCAT(articulo.nombre SEPARATOR ', ') AS nombres_productos, ROUND(ingreso.total) AS total 
+        $query = $this->pdo->query("SELECT ingreso.id_ingreso, ingreso.estado,  DATE_FORMAT(ingreso.fecha, '%d/%m/%Y %H:%i') AS fecha_ingreso, GROUP_CONCAT(articulo.nombre SEPARATOR ', ') AS nombres_productos, ROUND(ingreso.total) AS total 
         FROM ingreso 
         INNER JOIN detalle_ingreso ON ingreso.id_ingreso = detalle_ingreso.Ingreso_id_ingreso 
         INNER JOIN articulo ON detalle_ingreso.Articulo_id_articulo  = articulo.id_articulo
@@ -114,6 +114,13 @@ class Compras extends Database
         return $query->fetchAll();
     }
 
+
+    public function changeStatusFactura($id_factura){
+
+        $query = $this->pdo->prepare("UPDATE ingreso SET estado = 0 WHERE id_ingreso = $id_factura");
+        $query->execute();
+
+    }
 
     //! Todo --- pending
     public function transacciones($id_usuario)

@@ -20,7 +20,7 @@ class pdf extends FPDF
 		$this->SetTextColor(255, 255, 255);
 		$this->Write(-20, 'Tienda del soldado GSECO');
 		$this->Ln();
-		$this->Write(45, 'FACTURA DE VENTA');
+		$this->Write(45, 'FACTURA DE COMPRA');
 		$this->Ln();
 		$this->SetFont('Arial', 'I', 20);
 		$this->Write(-25, '#GSECO-');

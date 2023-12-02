@@ -39,6 +39,7 @@ $compras = new Compras();
     <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -110,16 +111,16 @@ $compras = new Compras();
                         <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
                     </a>
                 </li>
-                <?php if ($rol == 2) {?>
-                <li class="nav-item">
-                    <a class="nav-link" href="inventory-expenses.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
-                    </a>
-                </li>
-                <?php }?>
+                <?php if ($rol == 2) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="inventory-expenses.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
+                        </a>
+                    </li>
+                <?php } ?>
                 <!-- <?php
                         if ($rol == 1) {
                         ?>
@@ -210,12 +211,25 @@ $compras = new Compras();
                                                     <?php echo $f->fecha_ingreso; ?>
                                                 </span>
                                             </div>
+
                                         </div>
                                         <div class="column">
+
                                             <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
                                                 + $
                                                 <?php echo number_format($f->total, 0, ',', '.'); ?>
                                             </div>
+                                            <?php if ($f->estado === 1) { ?>
+                                                <button style="background: #252850; box-shadow: 4px 4px 8px #303030; color:white; height: 50px !important" class="btn mb-0  btn-md d-flex align-items-center justify-content-center text-uppercase" onclick="changeStatus(<?php echo $f->id_ingreso ?>)">
+                                                    <i class="fas fa-money-bill"></i>&nbsp;&nbsp;
+                                                    Cambiar estado
+                                                </button>
+                                            <?php } else { ?>
+                                                <button style="background: green; box-shadow: 4px 4px 8px #303030; color:white; height: 50px !important" class="btn mb-0  btn-md d-flex align-items-center justify-content-center text-uppercase">
+                                                    <i class="fas fa-check"></i>&nbsp;&nbsp;
+                                                    Pagada
+                                                </button>
+                                            <?php } ?>
                                         </div>
                                     </li>
                                 </ul>
@@ -251,8 +265,8 @@ $compras = new Compras();
         </div>
     </div>
     <!--   Core JS Files and scripts  -->
-    <script src="js/login.js"></script>
     <script src="js/factura_compras.js"></script>
+    <script src="js/login.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
