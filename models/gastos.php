@@ -10,7 +10,7 @@ class Gastos extends Database
 		$id_usuario =  $_SESSION['id_usuario'];
 
 		$currentDate = date('Y-m-d');
-		$query = $this->pdo->query("SELECT sum(total) as total from gastos WHERE id_usuario = '{$id_usuario}' AND DATE(fecha) = '{$currentDate}'");
+		$query = $this->pdo->query("SELECT COALESCE(sum(total), 0) as total from gastos WHERE id_usuario = '{$id_usuario}' AND DATE(fecha) = '{$currentDate}'");
 		return $query->fetch();
 
 	}
