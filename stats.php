@@ -22,6 +22,7 @@ $ventas = $nw->ventas($_SESSION['id_usuario']);
 $ultimaVenta = $nw->ultimaVenta($_SESSION['id_usuario']);
 $articulos = $ar->index();
 $gastosDiarios = $gastos->gastosDiarios();
+$transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
 ?>
 <!DOCTYPE html>
@@ -306,7 +307,10 @@ $gastosDiarios = $gastos->gastosDiarios();
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en efectivo</p>
                     <h5 class="font-weight-bolder">
-                      $0
+                     <?php
+                      $efectivo = ($transacciones->efectivo !== null) ? number_format($transacciones->efectivo, 0, ',', '.') : '0';
+                      echo $efectivo;
+                     ?>
                     </h5>
                   </div>
                 </div>
@@ -327,7 +331,10 @@ $gastosDiarios = $gastos->gastosDiarios();
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en nequi</p>
                     <h5 class="font-weight-bolder">
-                      $0
+                    <?php
+                      $nequi = ($transacciones->nequi !== null) ? number_format($transacciones->nequi, 0, ',', '.') : '0';
+                      echo $nequi;
+                     ?>
                     </h5>
                   </div>
                 </div>
@@ -348,7 +355,10 @@ $gastosDiarios = $gastos->gastosDiarios();
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en daviplata</p>
                     <h5 class="font-weight-bolder">
-                      $0
+                    <?php
+                      $daviplata = ($transacciones->daviplata !== null) ? number_format($transacciones->daviplata, 0, ',', '.') : '0';
+                      echo $daviplata;
+                     ?>
                     </h5>
                   </div>
                 </div>
@@ -369,7 +379,10 @@ $gastosDiarios = $gastos->gastosDiarios();
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Otros métodos</p>
                     <h5 class="font-weight-bolder">
-                      $0
+                    <?php
+                      $otros = ($transacciones->otros !== null) ? number_format($transacciones->otros, 0, ',', '.') : '0';
+                      echo $otros;
+                     ?>
                     </h5>
                   </div>
                 </div>
