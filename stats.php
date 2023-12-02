@@ -37,6 +37,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
   <title>Tienda del soldado GSECO</title>
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
   <!-- Fonts and icons -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
@@ -53,6 +54,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-dy5PEnU+g4HRQnD6uPXU5d8VU9V9WvSj+G8xRQNgi9l4ebwnzmtv+pW2faa5zjrI9qMGl5VpBaDKk9G1t0Bi9zg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body class="g-sidenav-show" style="background-color: #009ad5;">
@@ -123,16 +126,16 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             </a>
           </li>
         <?php } ?>
-        <?php if ($rol == 2) {?>
-        <li class="nav-item">
-          <a class="nav-link" href="inventory-expenses.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
-          </a>
-        </li>
-        <?php }?>
+        <?php if ($rol == 2) { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="inventory-expenses.php">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
+            </a>
+          </li>
+        <?php } ?>
         <!-- <?php
               if ($rol == 1) {
               ?>
@@ -190,213 +193,213 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
         </div>
       </div>
     </nav>
-   
+
     <div class="container-fluid py-4">
       <!-- Cards -->
-      <?php if ($rol === 2) {?>
-      <div class="row mb-4">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">Total ventas del mes</p>
-                    <h5 class="font-weight-bolder">
-                      $
-                      <?php
-                      $ventasTotales = ($ultimaVenta->total_ultimo_mes !== null) ? number_format($ultimaVenta->total_ultimo_mes, 0, ',', '.') : '0';
-                      echo $ventasTotales;
-                      ?>
-                    </h5>
+      <?php if ($rol === 2) { ?>
+        <div class="row mb-4">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-md mb-0 text-uppercase font-weight-bold">Total ventas del mes</p>
+                      <h5 class="font-weight-bolder">
+                        $
+                        <?php
+                        $ventasTotales = ($ultimaVenta->total_ultimo_mes !== null) ? number_format($ultimaVenta->total_ultimo_mes, 0, ',', '.') : '0';
+                        echo $ventasTotales;
+                        ?>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                      <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas del día</p>
+                      <h5 class="font-weight-bolder">
+                        $
+                        <?php
+                        $totalVenta = ($ventas->total_diario !== null) ? number_format($ultimaVenta->total_diario, 0, ',', '.') : '0';
+                        echo $totalVenta;
+                        ?>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                      <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-md mb-0 text-uppercase font-weight-bold">última venta</p>
+                      <h5 class="font-weight-bolder">
+                        $
+                        <?php
+                        $ultimaVenta = ($ultimaVenta->ultima_venta !== null) ? number_format($ultimaVenta->ultima_venta, 0, ',', '.') : '0';
+                        echo $ultimaVenta;
+                        ?>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-success shadow-danger text-center rounded-circle">
+                      <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-md mb-0 text-uppercase font-weight-bold">gastos diarios</p>
+                      <h5 class="font-weight-bolder">
+                        <?php
+                        $gastosDiarios = ($gastosDiarios->total !== null) ? number_format($gastosDiarios->total, 0, ',', '.') : '0';
+                        echo $gastosDiarios;
+                        ?>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-info shadow-danger text-center rounded-circle">
+                      <i class="ni ni-shop text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas del día</p>
-                    <h5 class="font-weight-bolder">
-                      $
-                      <?php
-                      $totalVenta = ($ventas->total_diario !== null) ? number_format($ultimaVenta->total_diario, 0, ',', '.') : '0';
-                      echo $totalVenta;
-                      ?>
-                    </h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">última venta</p>
-                    <h5 class="font-weight-bolder">
-                      $
-                      <?php
-                      $ultimaVenta = ($ultimaVenta->ultima_venta !== null) ? number_format($ultimaVenta->ultima_venta, 0, ',', '.') : '0';
-                      echo $ultimaVenta;
-                      ?>
-                    </h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-danger text-center rounded-circle">
-                    <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">gastos diarios</p>
-                    <h5 class="font-weight-bolder">
-                      <?php 
-                         $gastosDiarios = ($gastosDiarios->total !== null) ? number_format($gastosDiarios->total, 0, ',', '.') : '0';
-                         echo $gastosDiarios;
-                      ?>
-                    </h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-info shadow-danger text-center rounded-circle">
-                    <i class="ni ni-shop text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      
-      <!-- Transacciones -->
-      <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en efectivo</p>
-                    <h5 class="font-weight-bolder">
-                     <?php
-                      $efectivo = ($transacciones->efectivo !== null) ? number_format($transacciones->efectivo, 0, ',', '.') : '0';
-                      echo $efectivo;
-                     ?>
-                    </h5>
+
+        <!-- Transacciones -->
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en efectivo</p>
+                      <h5 class="font-weight-bolder">
+                        <?php
+                        $efectivo = ($transacciones->efectivo !== null) ? number_format($transacciones->efectivo, 0, ',', '.') : '0';
+                        echo $efectivo;
+                        ?>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-warning shadow-primary text-center rounded-circle">
+                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-warning shadow-primary text-center rounded-circle">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en nequi</p>
+                      <h5 class="font-weight-bolder">
+                        <?php
+                        $nequi = ($transacciones->nequi !== null) ? number_format($transacciones->nequi, 0, ',', '.') : '0';
+                        echo $nequi;
+                        ?>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-info shadow-danger text-center rounded-circle">
+                      <i class="ni ni-mobile-button text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en daviplata</p>
+                      <h5 class="font-weight-bolder">
+                        <?php
+                        $daviplata = ($transacciones->daviplata !== null) ? number_format($transacciones->daviplata, 0, ',', '.') : '0';
+                        echo $daviplata;
+                        ?>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow-danger text-center rounded-circle">
+                      <i class="ni ni-tablet-button text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-md mb-0 text-uppercase font-weight-bold">Otros métodos</p>
+                      <h5 class="font-weight-bolder">
+                        <?php
+                        $otros = ($transacciones->otros !== null) ? number_format($transacciones->otros, 0, ',', '.') : '0';
+                        echo $otros;
+                        ?>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                      <i class="ni ni-diamond text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en nequi</p>
-                    <h5 class="font-weight-bolder">
-                    <?php
-                      $nequi = ($transacciones->nequi !== null) ? number_format($transacciones->nequi, 0, ',', '.') : '0';
-                      echo $nequi;
-                     ?>
-                    </h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-info shadow-danger text-center rounded-circle">
-                    <i class="ni ni-mobile-button text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">Ventas en daviplata</p>
-                    <h5 class="font-weight-bolder">
-                    <?php
-                      $daviplata = ($transacciones->daviplata !== null) ? number_format($transacciones->daviplata, 0, ',', '.') : '0';
-                      echo $daviplata;
-                     ?>
-                    </h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow-danger text-center rounded-circle">
-                    <i class="ni ni-tablet-button text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-md mb-0 text-uppercase font-weight-bold">Otros métodos</p>
-                    <h5 class="font-weight-bolder">
-                    <?php
-                      $otros = ($transacciones->otros !== null) ? number_format($transacciones->otros, 0, ',', '.') : '0';
-                      echo $otros;
-                     ?>
-                    </h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                    <i class="ni ni-diamond text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <?php }?>
+      <?php } ?>
       <!-- main content -->
       <div class="row mt-4">
         <div class="col-xl-12 mb-2">
@@ -467,13 +470,10 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     <div class="d-flex justify-content-end mb-2">
                       <div>
                         <?php
-                        if ($rol === 2) {
-                          echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product" disabled>';
-                          echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
-                        } else {
-                          echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">';
-                          echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
-                        }
+                        echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
+                        ';
+                        echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">';
+                        echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
                         ?>
 
                       </div>
@@ -536,7 +536,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 </div>
               </div>
               <div class="table-responsive">
-                <table class="table align-items-center mb-0" id="data_table" data-page-length="10">
+                <table class="table align-items-center mb-0" id="data_table">
                   <thead>
                     <tr>
                       <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
@@ -579,13 +579,10 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     <div class="d-flex justify-content-end">
                       <div>
                         <?php
-                        if ($rol === 2) {
-                          echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories" disabled>';
-                          echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
-                        } else {
-                          echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories">';
-                          echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
-                        }
+                        echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
+                        ';
+                        echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories">';
+                        echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
                         ?>
                       </div>
                     </div>
@@ -649,7 +646,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
         <?php } ?>
       </div>
     </div>
-  
+
     <!--secondary content -->
   </main>
   <!-- config interface -->
