@@ -1,6 +1,7 @@
 <?php
 
 require_once('db.php');
+date_default_timezone_set('America/Bogota');
 
 class Venta extends Database
 {
