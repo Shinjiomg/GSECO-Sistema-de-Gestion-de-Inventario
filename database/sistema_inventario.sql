@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-11-2023 a las 03:51:12
+-- Tiempo de generación: 03-12-2023 a las 00:14:02
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -47,8 +47,8 @@ INSERT INTO `articulo` (`id_articulo`, `nombre`, `precio_venta`, `stock`, `descr
 (2, 'AGUA CRISTAL MINI ', 700.00, 0, NULL, 1, 3, 20),
 (3, 'AGUACRISTAL SIN GAS 600 ML', 1600.00, 0, NULL, 1, 3, 20),
 (4, 'AGUS CRISTAL COCO', 2000.00, 0, NULL, 1, 3, 20),
-(5, 'AREPA DE HUEVO', 3200.00, -7, NULL, 1, 8, 20),
-(6, 'AREPA DE QUESO', 2500.00, -2, NULL, 1, 8, 20),
+(5, 'AREPA DE HUEVO', 3200.00, 0, NULL, 1, 8, 20),
+(6, 'AREPA DE QUESO', 2500.00, 0, NULL, 1, 8, 20),
 (7, 'ARROZ - PORCI?N', 2000.00, 0, NULL, 1, 1, 20),
 (8, 'ARROZ CON LECHE', 3000.00, 0, NULL, 1, 10, 20),
 (9, 'AVENA BOLSA ', 1900.00, 0, NULL, 1, 10, 20),
@@ -122,7 +122,7 @@ INSERT INTO `articulo` (`id_articulo`, `nombre`, `precio_venta`, `stock`, `descr
 (77, 'HUEVOS', 2500.00, 0, NULL, 1, 6, 20),
 (78, 'HUEVOS PERICOS', 3000.00, 0, NULL, 1, 6, 20),
 (79, 'HUEVOS RANCHEROS', 5000.00, 0, NULL, 1, 6, 20),
-(80, 'JABON TOCADOR - BA?O', 2500.00, 4, NULL, 1, 2, 20),
+(80, 'JABON TOCADOR - BA?O', 2500.00, 0, NULL, 1, 2, 20),
 (81, 'JUGO DEL VALLE 1,5 LITROS', 4000.00, 0, NULL, 1, 3, 20),
 (82, 'JUGO DEL VALLE 400 ML', 1500.00, 0, NULL, 1, 3, 20),
 (83, 'JUGO DEL VALLE CAJA', 1500.00, 0, NULL, 1, 3, 20),
@@ -242,8 +242,14 @@ CREATE TABLE `categoria_gastos` (
 INSERT INTO `categoria_gastos` (`id`, `descripcion`) VALUES
 (1, 'Honorarios'),
 (2, 'Arrendamiento'),
-(3, 'Honorarios'),
-(4, 'Arrendamiento');
+(3, 'Servicios'),
+(4, 'Legales'),
+(5, 'Mantenimiento y reparaciones'),
+(6, 'Elementos de aseo y cafetería'),
+(7, 'Utiles, papeleria y fotocopías'),
+(8, 'Taxis y buses'),
+(9, 'Diversos');
+
 
 -- --------------------------------------------------------
 
@@ -263,8 +269,6 @@ CREATE TABLE `detalle_ingreso` (
 -- Volcado de datos para la tabla `detalle_ingreso`
 --
 
-INSERT INTO `detalle_ingreso` (`id_detalle_ingreso`, `Ingreso_id_ingreso`, `Articulo_id_articulo`, `cantidad`, `precio`) VALUES
-(7, 7, 80, 4, 3000.00);
 
 -- --------------------------------------------------------
 
@@ -285,13 +289,6 @@ CREATE TABLE `detalle_venta` (
 -- Volcado de datos para la tabla `detalle_venta`
 --
 
-INSERT INTO `detalle_venta` (`id_detalle_venta`, `Venta_id_venta`, `Articulo_id_articulo`, `cantidad`, `precio`, `metodo_pago`) VALUES
-(26, 20, 1, 1, 1200.00, 1),
-(27, 21, 1, 1, 1200.00, 2),
-(28, 22, 5, 3, 3200.00, 1),
-(29, 23, 6, 2, 2500.00, 2),
-(30, 24, 5, 4, 3200.00, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -306,6 +303,11 @@ CREATE TABLE `gastos` (
   `fecha` datetime DEFAULT NULL,
   `categoria_gasto` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `gastos`
+--
+
 
 -- --------------------------------------------------------
 
@@ -325,8 +327,6 @@ CREATE TABLE `ingreso` (
 -- Volcado de datos para la tabla `ingreso`
 --
 
-INSERT INTO `ingreso` (`id_ingreso`, `Usuario_id_usuario`, `fecha`, `total`, `estado`) VALUES
-(7, 3, '2023-11-25 02:21:40', 12000.00, 1);
 
 -- --------------------------------------------------------
 
@@ -345,7 +345,9 @@ CREATE TABLE `metodos_pago` (
 
 INSERT INTO `metodos_pago` (`id_metodo_pago`, `nombre`) VALUES
 (1, 'Efectivo'),
-(2, 'Nequi');
+(2, 'Nequi'),
+(3, 'Daviplata'),
+(4, 'Otro metodo');
 
 -- --------------------------------------------------------
 
@@ -364,8 +366,8 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`id_rol`, `nombre`, `estado`) VALUES
-(1, 'Cajero', 1),
-(2, 'Administrador', 1);
+(1, 'Administrador', 1),
+(2, 'Cajero', 1);
 
 -- --------------------------------------------------------
 
@@ -389,9 +391,6 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nombres`, `apellidos`, `tipo_documento`, `num_documento`, `email`, `user_password`, `estado`, `rol_id_rol`) VALUES
-(2, 'camilo', 'hernánde', 'cc', '10023', 'nicollgm100@gmail.com', '123456789', 1, 2),
-(3, 'admin', 'admin', 'cc', '123456789', 'admin@gmail.com', '123456789', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -410,12 +409,6 @@ CREATE TABLE `venta` (
 -- Volcado de datos para la tabla `venta`
 --
 
-INSERT INTO `venta` (`id_venta`, `Usuario_id_usuario`, `fecha`, `total`) VALUES
-(20, 2, '2023-11-17 22:45:56', 20000.00),
-(21, 2, '2023-11-19 23:06:08', 20000.00),
-(22, 2, '2023-11-19 17:07:51', 9600.00),
-(23, 2, '2023-11-24 18:04:30', 5000.00),
-(24, 2, '2023-11-28 03:33:54', 12800.00);
 
 --
 -- Índices para tablas volcadas
@@ -524,31 +517,31 @@ ALTER TABLE `categoria_gastos`
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `id_detalle_ingreso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_detalle_ingreso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_detalle_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `gastos`
 --
 ALTER TABLE `gastos`
-  MODIFY `id_gasto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_gasto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `id_ingreso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_ingreso` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `metodos_pago`
 --
 ALTER TABLE `metodos_pago`
-  MODIFY `id_metodo_pago` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_metodo_pago` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -566,7 +559,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_venta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Restricciones para tablas volcadas
