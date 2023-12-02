@@ -19,7 +19,7 @@ class Gastos extends Database
     
         $currentDate = date('Y-m-d');
         	
-		$query = $this->pdo->query("SELECT * from gastos WHERE id_usuario = " . $id);
+		$query = $this->pdo->query("SELECT * from gastos WHERE id_usuario = '{$id}' AND DATE(fecha) = '{$currentDate}'");
 		return $query->fetchAll();
       
     }
