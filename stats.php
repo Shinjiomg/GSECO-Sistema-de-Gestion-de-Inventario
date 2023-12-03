@@ -470,7 +470,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     <div class="d-flex justify-content-end mb-2">
                       <div>
                        
-                        <button  type="button" onclick="printProductsPDF()" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>;
+                        <button  type="button" onclick="printProductsPDF('data_table_products_export')" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>;
                         <button  class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">;
                         <i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>;
                        
@@ -534,9 +534,9 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   </div>
                 </div>
               </div>
-              <div id="data_table" class="table-responsive">
+              <div id="data_table_products_export" class="table-responsive">
                 <table 
-                  class="table align-items-center mb-0">
+                  class="table align-items-center mb-0" id="data_table">
                   <thead>
                     <tr>
                       <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
@@ -578,12 +578,11 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   <div class="col-md-8 text-end">
                     <div class="d-flex justify-content-end">
                       <div>
-                        <?php
-                        echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
-                        ';
-                        echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories">';
-                        echo '<i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>';
-                        ?>
+                       <button onclick="printProductsPDF('categories_table_export')" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
+                      
+                       <button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories">;
+                        <i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>
+                       
                       </div>
                     </div>
                     <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -623,7 +622,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   </div>
                 </div>
               </div>
-              <div class="table-responsive">
+              <div class="table-responsive" id="categories_table_export">
                 <table class="table align-items-center mb-0" id="categories_table">
                   <thead>
                     <tr>

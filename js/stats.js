@@ -1,14 +1,14 @@
-function printProductsPDF(){
+function printProductsPDF(divName){
 
     let printContents;
     let popupWin;
-    printContents = document.getElementById('data_table').innerHTML;
+    printContents = document.getElementById(divName).innerHTML;
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
     popupWin.document.open();
     popupWin.document.write(`
       <html lang="es">
         <head>
-          <title>VMO 2023</title>
+          <title>Tienda del Soldado</title>
           <link id="theme-link" rel="stylesheet" type="text/css" href="styles.css">
           <style>
           @media print {
