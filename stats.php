@@ -469,12 +469,11 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   <div class="col-xl-8 text-end">
                     <div class="d-flex justify-content-end mb-2">
                       <div>
-                        <?php
-                        echo '<button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
-                        ';
-                        echo '<button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">';
-                        echo '<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>';
-                        ?>
+                       
+                        <button  type="button" onclick="printProductsPDF()" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>;
+                        <button  class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">;
+                        <i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>;
+                       
 
                       </div>
                     </div>
@@ -535,8 +534,9 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   </div>
                 </div>
               </div>
-              <div class="table-responsive">
-                <table class="table align-items-center mb-0" id="data_table">
+              <div id="data_table" class="table-responsive">
+                <table 
+                  class="table align-items-center mb-0">
                   <thead>
                     <tr>
                       <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
@@ -670,16 +670,17 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     </div>
   </div>
 
+  <script src="js/categoria.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/product.js"></script>
+  <script src="js/stats.js"></script>
+
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="assets/js/plugins/chartjs.min.js"></script>
   <!-- Tus archivos JavaScript -->
-  <script src="js/categoria.js"></script>
-  <script src="js/login.js"></script>
-  <script src="js/product.js"></script>
-  <script src="js/stats.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {

@@ -485,6 +485,8 @@ function removeProduct(id_articulo) {
 
 }
 
+
+
 function generarCierre() {
 
     const url = `reports/cierreCaja.php`;
