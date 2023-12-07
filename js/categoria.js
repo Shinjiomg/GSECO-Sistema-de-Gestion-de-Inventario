@@ -211,7 +211,4 @@ function renderTableCategories(){
         tabla.querySelector("tbody").appendChild(nuevaFila);
 
     });
-
-
-
 }
