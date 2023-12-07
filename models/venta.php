@@ -9,8 +9,15 @@ class Venta extends Database
 
 	public function ventas($id)
 	{
-		$query = $this->pdo->query('SELECT sum(total) as total_diario FROM venta WHERE Usuario_id_usuario =' . $id);
-		return $query->fetch();
+		$rol = $_SESSION['rol'];
+
+		if($rol === 2){
+			$query = $this->pdo->query('SELECT sum(total) as total_diario FROM venta WHERE Usuario_id_usuario =' . $id);
+			return $query->fetch();
+		}else{
+			$query = $this->pdo->query('SELECT sum(total) as total_diario FROM venta');
+			return $query->fetch();
+		}
 	}
 
 	public function store($idUsuario, $total, $productos)
