@@ -48,6 +48,22 @@ class Gastos extends Database
 
     }
 
+
+	public function gastosPorCategoria($categoria){
+		$currentDate = date('Y-m-d');
+
+		/* Operacionales */
+		if($categoria === 1){
+			$query = $this->pdo->prepare("SELECT * FROM gastos WHERE DATE(fecha) = '{$currentDate}' AND categoria_gasto <> 7");
+			$query->execute();
+
+		}else{
+			/* no operacionales */
+			$query = $this->pdo->prepare("SELECT * FROM gastos WHERE DATE(fecha) = '{$currentDate}' AND categoria_gasto = 7");
+			$query->execute();
+		}
+	}
+
     
 	public function gastosPorRango($rango)
 	{
