@@ -8,10 +8,20 @@ class Gastos extends Database
   
 	public function gastosDiarios(){
 		$id_usuario =  $_SESSION['id_usuario'];
+		$rol = $_SESSION['rol'];
 
-		$currentDate = date('Y-m-d');
-		$query = $this->pdo->query("SELECT COALESCE(sum(total), 0) as total from gastos WHERE id_usuario = '{$id_usuario}' AND DATE(fecha) = '{$currentDate}'");
-		return $query->fetch();
+		if($rol === 2){
+			$currentDate = date('Y-m-d');
+			$query = $this->pdo->query("SELECT COALESCE(sum(total), 0) as total from gastos WHERE id_usuario = '{$id_usuario}' AND DATE(fecha) = '{$currentDate}'");
+			return $query->fetch();
+			
+		}else{
+			$currentDate = date('Y-m-d');
+			$query = $this->pdo->query("SELECT COALESCE(sum(total), 0) as total from gastos WHERE DATE(fecha) = '{$currentDate}'");
+			return $query->fetch();
+
+		}
+
 
 	}
 
