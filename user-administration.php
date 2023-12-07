@@ -1,7 +1,7 @@
 <?php
 include_once("conexion.php");
 include_once("Consultas.php");
-if( !isset($_SESSION['id_usuario'])){
+if (!isset($_SESSION['id_usuario'])) {
     header("Location: index.php");
     exit();
 }
@@ -56,6 +56,16 @@ if( !isset($_SESSION['id_usuario'])){
                         <span class="nav-link-text ms-1  text-black">Estadísticas</span>
                     </a>
                 </li>
+                <?php if ($rol == 1) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="balance.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
+                        </a>
+                    </li>
+                <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link" href="sales.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
