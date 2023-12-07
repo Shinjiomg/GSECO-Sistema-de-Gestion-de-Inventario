@@ -43,7 +43,7 @@ $MetodosPago = new MetodosPago();
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-hidden" style="background-color: #009ad5;">
+<body class="g-sidenav-show" style="background-color: #009ad5;">
     <div class="h-100 bg-primary position-absolute w-100" style="background-image: url('./img/gseco.jpg') !important;
   background-size: cover !important;
   background-position: center !important;
@@ -111,16 +111,16 @@ $MetodosPago = new MetodosPago();
                         </a>
                     </li>
                 <?php } ?>
-                <?php if ($rol == 2) {?>
-                <li class="nav-item">
-                    <a class="nav-link" href="inventory-expenses.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
-                    </a>
-                </li>
-                <?php }?>
+                <?php if ($rol == 2) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="inventory-expenses.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
+                        </a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </aside>

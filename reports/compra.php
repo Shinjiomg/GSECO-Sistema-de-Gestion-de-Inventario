@@ -71,7 +71,7 @@ $fpdf->SetFillColor(57, 38, 107);
 $fpdf->Cell(60, 10, 'PRODUCTO', 0, 0, 'C', 1);
 $fpdf->Cell(60, 10, 'VALOR UNITARIO', 0, 0, 'C', 1);
 $fpdf->Cell(40, 10, 'CANTIDAD', 0, 0, 'C', 1);
-$fpdf->Cell(30, 10, 'SUBTOTAL', 0, 0, 'C', 1);
+$fpdf->Cell(30, 10, 'TOTAL DE VENTA', 0, 0, 'C', 1);
 $fpdf->Ln();
 
 $fpdf->SetTextColor(0, 0, 0);

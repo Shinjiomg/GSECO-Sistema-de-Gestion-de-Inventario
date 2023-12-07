@@ -178,9 +178,11 @@ function renderProducts(data) {
             btn.style.textOverflow = "ellipsis";
             btn.style.whiteSpace = "nowrap";
             btn.style.maxWidth = "100%";
-            btn.setAttribute("data-toggle", "tooltip");
-            btn.setAttribute("data-placement", "top");
-            btn.setAttribute("title", pr.nombre); // Agrega el nombre del artículo como título del tooltip
+            if (window.innerWidth >= 1200) {
+                btn.setAttribute("data-toggle", "tooltip");
+                btn.setAttribute("data-placement", "top");
+                btn.setAttribute("title", pr.nombre); // Agrega el nombre del artículo como título del tooltip
+            }
             // Crear un div para el nombre del producto
             var nombreDiv = document.createElement("div");
             nombreDiv.textContent = pr.id_articulo + " - " + pr.nombre;
@@ -197,10 +199,12 @@ function renderProducts(data) {
             btn.appendChild(nombreDiv);
             btn.appendChild(precioDiv);
             // Destruir el tooltip existente antes de asignar uno nuevo
-            $(btn).tooltip('dispose');
+            if (window.innerWidth >= 1200) {
+                $(btn).tooltip('dispose');
 
-            // Agregar el nuevo tooltip
-            $(btn).tooltip();
+                // Agregar el nuevo tooltip solo en pantallas grandes
+                $(btn).tooltip();
+            }
             // Crear un div para el modal
             var modalDiv = document.createElement("div");
             modalDiv.className = "modal fade";
