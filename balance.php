@@ -217,12 +217,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Total ingresos</p>
-                    <h5 class="font-weight-bolder">
-                      $
-                      <?php
-                      $totalVenta = ($ventas->total_diario !== null) ? number_format($ultimaVenta->total_diario, 0, ',', '.') : '0';
-                      echo $totalVenta;
-                      ?>
+                    <h5 class="font-weight-bolder" id="total_ingresos">
+                      
                     </h5>
                   </div>
                 </div>
@@ -331,7 +327,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             <div class="card-header pb-1">
             </div>
             <div class="table-responsive">
-              <table class="table align-items-center mb-">
+              <table id="balance_table" class="table align-items-center mb-">
                 <thead>
                   <tr>
                     <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
@@ -442,17 +438,42 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
         let datos = new FormData();
         datos.append('range_dates', JSON.stringify(rangeDates));
         $.ajax({
-          url: "ajax/ventas.ajax.php",
+          url: "ajax/balance.ajax.php",
           method: "POST",
           data: datos,
           cache: false,
           contentType: false,
           processData: false,
           success: function(response) {
-            let tabla = document.getElementById('ventas_rango');
-            ventas = JSON.parse(response);
+            let tabla = document.getElementById('balance_table');
+            balance = JSON.parse(response);
+            console.log(response);
+            sum_ingresos = 0;
+            sum_operacionales = 0;
+            sum_no_operacionales = 0;
 
-            ventas.forEach(v => {
+            total_ingresos = balance.ingresos.forEach(i=>{
+              sum_ingresos += i.ingresos;
+              return sum_ingresos;
+            });
+            total_operacionales = balance.operacionales.forEach(i=>{
+              sum_operacionales += i.operacionales;
+              return sum_operacionales;
+            });
+            
+            total_no_operacionales = balance.sum_no_operacionales.forEach(i=>{
+              sum_no_operacionales += i.no_operacionales;
+              return sum_no_operacionales;
+            });
+
+            console.log(total_ingresos , total_operacionales, total_no_operacionales);
+
+            let total_ingresos_div = document.getElementById('total_ingresos');
+            total_ingresos_div.value = '$ ' + total_ingresos;
+
+            
+
+           /*  ventas.forEach(v => {
 
               let nuevaFila = document.createElement("tr");
               nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
@@ -478,7 +499,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
               }
               // Agrega la nueva fila a la tabla
               tabla.querySelector("tbody").appendChild(nuevaFila);
-            });
+            }); */
           }
         });
 
