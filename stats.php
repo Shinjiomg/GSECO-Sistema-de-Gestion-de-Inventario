@@ -40,6 +40,13 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
   <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+  <!-- DataTables Buttons CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+  <!-- DataTables Buttons JS -->
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+
   <!-- Fonts and icons -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
@@ -486,7 +493,6 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   <div class="col-xl-8 text-end">
                     <div class="d-flex justify-content-end mb-2">
                       <div>
-
                         <button type="button" onclick="printProductsPDF('data_table_products_export')" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
                         <button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">
                           <i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>
@@ -829,22 +835,31 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
         $('#data_table').DataTable().destroy();
       }
       $('#data_table').DataTable({
+        dom: 'Bfrtip',
         paging: true, // Enable pagination
         searching: true, // Enable search functionality
+        buttons: [{
+          extend: 'excel',
+          text: '<span class="fas fa-file-excel" aria-hidden="true"></span>',
+          exportOptions: {
+            columns: ':visible'
+          },
+          attr: {
+            id: 'exportExcelBtn' // Asigna el id al botón
+          }
+        }],
         language: {
-          // Configurar textos en español
           paginate: {
             first: 'Primero',
             last: 'Último',
             next: 'Siguiente',
             previous: 'Anterior'
           },
-          search: '',
-          "loadingRecords": "Cargando...",
+          search: 'Buscar:',
           info: 'Mostrando _START_ a _END_ de _TOTAL_ entradas',
           infoEmpty: 'Mostrando 0 a 0 de 0 entradas',
           infoFiltered: '(filtrado de _MAX_ entradas totales)',
-          lengthMenu: '',
+          lengthMenu: 'Mostrar _MENU_ entradas por página',
           zeroRecords: 'No se encontraron resultados',
           emptyTable: 'No hay datos disponibles en la tabla'
         }
@@ -892,22 +907,31 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
         $('#categories_table').DataTable().destroy();
       }
       $('#categories_table').DataTable({
+        dom: 'Bfrtip',
         paging: true, // Enable pagination
         searching: true, // Enable search functionality
+        buttons: [{
+          extend: 'excel',
+          text: '<span class="fas fa-file-excel" aria-hidden="true"></span>',
+          exportOptions: {
+            columns: ':visible'
+          },
+          attr: {
+            id: 'export' // Asigna el id al botón
+          }
+        }],
         language: {
-          // Configurar textos en español
           paginate: {
             first: 'Primero',
             last: 'Último',
             next: 'Siguiente',
             previous: 'Anterior'
           },
-          search: '',
-          "loadingRecords": "Cargando...",
+          search: 'Buscar:',
           info: 'Mostrando _START_ a _END_ de _TOTAL_ entradas',
           infoEmpty: 'Mostrando 0 a 0 de 0 entradas',
           infoFiltered: '(filtrado de _MAX_ entradas totales)',
-          lengthMenu: '',
+          lengthMenu: 'Mostrar _MENU_ entradas por página',
           zeroRecords: 'No se encontraron resultados',
           emptyTable: 'No hay datos disponibles en la tabla'
         }
