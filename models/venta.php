@@ -82,13 +82,26 @@ class Venta extends Database
 
 	public function ultimaVenta($id)
 	{
+		$rol = $_SESSION['rol'];
 		$currentDate = date('Y-m-d');
-		/* $query = $this->pdo->query('SELECT * FROM venta WHERE Usuario_id_usuario ='.$id.' order by fecha desc limit 1'); */
-		/* $query = $this->pdo->query("SELECT SUM(total) as total_diario FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}'"); */
-		$query = $this->pdo->query("SELECT SUM(total) as total_diario, 
-    	(SELECT total FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}' ORDER BY fecha DESC LIMIT 1) as ultima_venta,
-    	(SELECT SUM(total) FROM venta  WHERE Usuario_id_usuario = {$id}  AND DATE(fecha) BETWEEN DATE_SUB('{$currentDate}', INTERVAL 30 DAY) AND '{$currentDate}') as total_ultimo_mes FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}'");
-		return $query->fetch();
+
+		if($rol === 2){
+			/* $query = $this->pdo->query('SELECT * FROM venta WHERE Usuario_id_usuario ='.$id.' order by fecha desc limit 1'); */
+			/* $query = $this->pdo->query("SELECT SUM(total) as total_diario FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}'"); */
+			$query = $this->pdo->query("SELECT SUM(total) as total_diario, 
+			(SELECT total FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}' ORDER BY fecha DESC LIMIT 1) as ultima_venta,
+			(SELECT SUM(total) FROM venta  WHERE Usuario_id_usuario = {$id}  AND DATE(fecha) BETWEEN DATE_SUB('{$currentDate}', INTERVAL 30 DAY) AND '{$currentDate}') as total_ultimo_mes FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}'");
+			return $query->fetch();
+			
+		}else{
+			/* $query = $this->pdo->query('SELECT * FROM venta WHERE Usuario_id_usuario ='.$id.' order by fecha desc limit 1'); */
+			/* $query = $this->pdo->query("SELECT SUM(total) as total_diario FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}'"); */
+			$query = $this->pdo->query("SELECT SUM(total) as total_diario, 
+			(SELECT total FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}' ORDER BY fecha DESC LIMIT 1) as ultima_venta,
+			(SELECT SUM(total) FROM venta  WHERE DATE(fecha) BETWEEN DATE_SUB('{$currentDate}', INTERVAL 30 DAY) AND '{$currentDate}') as total_ultimo_mes FROM venta WHERE Usuario_id_usuario = {$id} AND DATE(fecha) = '{$currentDate}'");
+			return $query->fetch();
+			
+		}
 	}
 
 	public function facturas($id_usuario)
