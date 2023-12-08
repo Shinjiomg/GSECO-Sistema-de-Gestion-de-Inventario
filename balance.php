@@ -218,7 +218,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Total ingresos</p>
                     <h5 class="font-weight-bolder" id="total_ingresos">
-                      
+                        $0
                     </h5>
                   </div>
                 </div>
@@ -233,12 +233,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Egresos operacionales</p>
-                    <h5 class="font-weight-bolder">
-                      $
-                      <?php
-                      $ultimaVenta = ($ultimaVenta->ultima_venta !== null) ? number_format($ultimaVenta->ultima_venta, 0, ',', '.') : '0';
-                      echo $ultimaVenta;
-                      ?>
+                    <h5 class="font-weight-bolder" id="total_operacionales">
+                      $0
                     </h5>
                   </div>
                 </div>
@@ -253,12 +249,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Egresos no operacionales</p>
-                    <h5 class="font-weight-bolder">
-                      $
-                      <?php
-                      $gastosDiarios = ($gastosDiarios->total !== null) ? number_format($gastosDiarios->total, 0, ',', '.') : '0';
-                      echo $gastosDiarios;
-                      ?>
+                    <h5 class="font-weight-bolder" id="total_no_operacionales">
+                      $0
                     </h5>
                   </div>
                 </div>
@@ -448,58 +440,62 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             let tabla = document.getElementById('balance_table');
             balance = JSON.parse(response);
             console.log(response);
+            console.log(balance);
             sum_ingresos = 0;
             sum_operacionales = 0;
             sum_no_operacionales = 0;
 
-            total_ingresos = balance.ingresos.forEach(i=>{
-              sum_ingresos += i.ingresos;
-              return sum_ingresos;
+            balance.ingresos.forEach(i=>{
+              sum_ingresos += +i.ingresos;
             });
-            total_operacionales = balance.operacionales.forEach(i=>{
-              sum_operacionales += i.operacionales;
-              return sum_operacionales;
+           balance.operacionales.forEach(i=>{
+              sum_operacionales += +i.operacionales;
             });
             
-            total_no_operacionales = balance.sum_no_operacionales.forEach(i=>{
-              sum_no_operacionales += i.no_operacionales;
-              return sum_no_operacionales;
+            total_no_operacionales = balance.no_operacionales.forEach(i=>{
+              sum_no_operacionales += +i.no_operacionales;
             });
-
-            console.log(total_ingresos , total_operacionales, total_no_operacionales);
 
             let total_ingresos_div = document.getElementById('total_ingresos');
-            total_ingresos_div.value = '$ ' + total_ingresos;
+            total_ingresos_div.textContent = '$ ' + sum_ingresos;
+
+            let total_operacionales_div = document.getElementById('total_operacionales');
+            total_operacionales_div.textContent = '$ ' + sum_operacionales;
+
+            let total_no_operacionales_div = document.getElementById('total_no_operacionales');
+            total_no_operacionales_div.textContent = '$ ' + sum_no_operacionales;
+
+
+            /* rellenar la tabla */
+            let currentDate = new Date(start);
+
+            table_balance =document.getElementById('balance_table');
+
+            for (let currentDate = new Date(start); currentDate <= end; currentDate.setDate(currentDate.getDate() + 1)) {
+              let nuevaFila = document.createElement("tr");
+
+              let contenidoCeldas = [
+                moment(currentDate).format('YYYY-MM-DD')
+              ];
+
+
+              // Itera sobre el contenido de las celdas y crea celdas <td>
+              contenidoCeldas.forEach(function (contenido) {
+                  var celda = document.createElement("td");
+                  var parrafo = document.createElement("p");
+                  parrafo.innerHTML = contenido;
+                  celda.appendChild(parrafo);
+                  nuevaFila.appendChild(celda);
+              });
+
+              tabla.querySelector("tbody").appendChild(nuevaFila);
+
+               
+            }
 
             
 
-           /*  ventas.forEach(v => {
-
-              let nuevaFila = document.createElement("tr");
-              nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
-              var precioVentaFormateado = parseFloat(v.total_venta).toLocaleString('es-CO');
-
-
-              let contenidoCeldas = [
-                v.nombres + ' ' + v.apellidos,
-                "$" + precioVentaFormateado,
-                `<a class="text-danger font-weight-bold text-md"  onclick="viewPDFVentas( ${v.id_usuario})" data-original-title="Delete user"><i class="fas fa-file-pdf"></i></a>`,
-              ];
-              contenidoCeldas.forEach(function(contenido) {
-                var celda = document.createElement("td");
-                var parrafo = document.createElement("p");
-                parrafo.innerHTML = contenido;
-                celda.appendChild(parrafo);
-                nuevaFila.appendChild(celda);
-              });
-              let tabla = document.getElementById("ventas_rango");
-              let filas = tabla.getElementsByTagName("tr");
-              for (var i = filas.length - 1; i > 0; i--) {
-                tabla.deleteRow(i);
-              }
-              // Agrega la nueva fila a la tabla
-              tabla.querySelector("tbody").appendChild(nuevaFila);
-            }); */
+           
           }
         });
 
