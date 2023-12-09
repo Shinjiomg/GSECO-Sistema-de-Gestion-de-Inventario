@@ -373,10 +373,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     </div>
   </div>
 
-  <script src="js/categoria.js"></script>
+¡
   <script src="js/login.js"></script>
-  <script src="js/product.js"></script>
-  <script src="js/stats.js"></script>
 
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
@@ -452,7 +450,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
               sum_operacionales += +i.operacionales;
             });
             
-            total_no_operacionales = balance.no_operacionales.forEach(i=>{
+            balance.no_operacionales.forEach(i=>{
               sum_no_operacionales += +i.no_operacionales;
             });
 
@@ -471,11 +469,48 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
             table_balance =document.getElementById('balance_table');
 
+
+            totales_ingresos = [];
+            totales_operacionales = [];
+            totales_no_operacionales = [];
+
+            totales_ingresos = balance.ingresos;
+            totales_operacionales = balance.operacionales;
+            totales_no_operacionales =  balance.no_operacionales;
+
+            let i = 0;
+            /* rellenar los faltantes */
+            
+            console.log(balance);
+            
+
             for (let currentDate = new Date(start); currentDate <= end; currentDate.setDate(currentDate.getDate() + 1)) {
               let nuevaFila = document.createElement("tr");
 
+              
+              let ingr = totales_ingresos.find(ingre =>  moment(new Date(ingre.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
+              ingr = ingr ? ingr.ingresos : 0;
+
+
+              let oper = totales_operacionales.find(op =>  moment(new Date(op.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
+              oper = oper ? oper.operacionales : 0;
+
+              
+              let no_oper = totales_no_operacionales.find(nop =>  moment(new Date(nop.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
+              no_oper = no_oper ? no_oper.no_operacionales : 0;
+              
+              console.log(no_oper);
+          
               let contenidoCeldas = [
-                moment(currentDate).format('YYYY-MM-DD')
+                moment(currentDate).format('YYYY-MM-DD'),
+                'PENDIENTE',
+                '$ ' + ingr,
+                '$ ' + oper,
+                '$ ' + no_oper,
+                '$ ' + (ingr - oper),
+                'PENDIENTE',
+                '$ ' + ((ingr * 10) /100)
+
               ];
 
 
@@ -485,6 +520,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   var parrafo = document.createElement("p");
                   parrafo.innerHTML = contenido;
                   celda.appendChild(parrafo);
+                  celda.classList.add("text-center");
                   nuevaFila.appendChild(celda);
               });
 
