@@ -50,6 +50,15 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
   <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
   <!-- SweetAlert2 -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+  <!-- DataTables Buttons CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+  <!-- DataTables Buttons JS -->
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
   <!-- DateRangePicker -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -603,6 +612,40 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
   </script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="./assets/js/argon-dashboard.js"></script>
+
+  <script>
+          $('#balance_table').DataTable({
+        dom: 'Bfrtip',
+        paging: true, // Enable pagination
+        searching: true, // Enable search functionality
+        buttons: [{
+          extend: 'excel',
+          text: '<span class="fas fa-file-excel" aria-hidden="true"></span>',
+          exportOptions: {
+            columns: ':visible'
+          },
+          attr: {
+            id: 'exportExcelBtn' // Asigna el id al botón
+          }
+        }],
+        language: {
+          paginate: {
+            first: 'Primero',
+            last: 'Último',
+            next: 'Siguiente',
+            previous: 'Anterior'
+          },
+          search: 'Buscar:',
+          info: 'Mostrando _START_ a _END_ de _TOTAL_ entradas',
+          infoEmpty: 'Mostrando 0 a 0 de 0 entradas',
+          infoFiltered: '(filtrado de _MAX_ entradas totales)',
+          lengthMenu: 'Mostrar _MENU_ entradas por página',
+          zeroRecords: 'No se encontraron resultados',
+          emptyTable: 'No hay datos disponibles en la tabla'
+        }
+      });
+
+  </script>
 </body>
 
 </html>
