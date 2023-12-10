@@ -219,13 +219,18 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             <div class="">
                 <input type="text" id="daterange" name="daterange" style="height: 50px !important; width: auto; box-shadow: 4px 4px 8px #303030;" />
             </div>
-          
+
             <div class="row mt-4">
                 <div class="col-xl-12 mt-2 mb-2">
                     <div class="card">
                         <div class="card-header pb-1">
+                            <div class="d-flex justify-content-end mb-2">
+                                <div>
+                                    <button type="button" onclick="printProductsPDF('data_table_gastos_operacionales')" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="table-responsive">
+                        <div id="data_table_gastos_operacionales" class="table-responsive">
                             <table id="balance_table" class="table align-items-center mb-">
                                 <thead>
                                     <tr>
@@ -272,7 +277,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
     ¡
     <script src="js/login.js"></script>
-
+    <script src="js/stats.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -343,12 +348,12 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                         balance = JSON.parse(response);
                         console.log(response);
                         console.log(balance);
-                       /*  sum_ingresos = 0;
-                        sum_operacionales = 0;
-                        sum_no_operacionales = 0;
-                        sum_ganancias_t = 0;
-                        sum_saldo_final_acumulado = 0;
-                        sum_disponible = 0; */
+                        /*  sum_ingresos = 0;
+                         sum_operacionales = 0;
+                         sum_no_operacionales = 0;
+                         sum_ganancias_t = 0;
+                         sum_saldo_final_acumulado = 0;
+                         sum_disponible = 0; */
 
 
                         /*   balance.ingresos.forEach(i=>{
@@ -396,7 +401,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                         disponible_div.textContent = '$ ' + sum_disponible;
 
 
- */                        /* rellenar la tabla */
+ */
+                        /* rellenar la tabla */
                         let currentDate = new Date(start);
 
 
@@ -408,7 +414,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                                     totales_operacionales = balance.operacionales;
                                     totales_no_operacionales =  balance.no_operacionales; */
 
-                      
+
                         /* rellenar los faltantes */
 
 

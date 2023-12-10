@@ -328,8 +328,13 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
         <div class="col-xl-12 mt-2 mb-2">
           <div class="card">
             <div class="card-header pb-1">
+              <div class="d-flex justify-content-end mb-2">
+                <div>
+                  <button type="button" onclick="printProductsPDF('data_table_balance')" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
+                </div>
+              </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive" id="data_table_balance">
               <table id="balance_table" class="table align-items-center mb-">
                 <thead>
                   <tr>
@@ -386,7 +391,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
   ¡
   <script src="js/login.js"></script>
-
+  <script src="js/stats.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
