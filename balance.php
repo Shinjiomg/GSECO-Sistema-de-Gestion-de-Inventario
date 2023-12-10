@@ -267,8 +267,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Disponible</p>
-                    <h5 class="font-weight-bolder">
-                      $
+                    <h5 class="font-weight-bolder" id="disponible">
+                      $0
 
                     </h5>
                   </div>
@@ -284,9 +284,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Saldo final acumulado</p>
-                    <h5 class="font-weight-bolder">
-                      $
-
+                    <h5 class="font-weight-bolder" id="saldo_final_acumulado">
+                      $0
                     </h5>
                   </div>
                 </div>
@@ -301,8 +300,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Total ganancia</p>
-                    <h5 class="font-weight-bolder">
-                      $
+                    <h5 class="font-weight-bolder" id="total_ganancias">
+                      $0
 
                     </h5>
                   </div>
@@ -436,14 +435,25 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
           processData: false,
           success: function(response) {
             let tabla = document.getElementById('balance_table');
+            let filas = tabla.getElementsByTagName("tr");
+
+            for (var m = filas.length - 1; m > 0; m--) {
+                tabla.deleteRow(m);
+            }
+
+            balance = [];
             balance = JSON.parse(response);
             console.log(response);
             console.log(balance);
             sum_ingresos = 0;
             sum_operacionales = 0;
             sum_no_operacionales = 0;
+            sum_ganancias_t = 0;
+            sum_saldo_final_acumulado = 0;
+            sum_disponible = 0;
 
-            balance.ingresos.forEach(i=>{
+
+          /*   balance.ingresos.forEach(i=>{
               sum_ingresos += +i.ingresos;
             });
            balance.operacionales.forEach(i=>{
@@ -453,66 +463,102 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             balance.no_operacionales.forEach(i=>{
               sum_no_operacionales += +i.no_operacionales;
             });
+ */
+            balance.forEach(b=>{
+              sum_ingresos +=  +b.total_ingresos;
+              sum_operacionales +=  +b.total_operacionales;
+              sum_no_operacionales +=  +b.total_no_operacionales;
+              sum_ganancias_t += +b.sum_ganancias;
+              sum_saldo_final_acumulado += +b.saldo_disponible_acum;
+              sum_disponible += +b.total_no_operacionales;
+            });
 
             let total_ingresos_div = document.getElementById('total_ingresos');
+            total_ingresos_div.textContent = '';
             total_ingresos_div.textContent = '$ ' + sum_ingresos;
 
             let total_operacionales_div = document.getElementById('total_operacionales');
+            total_operacionales_div.textContent = '';
             total_operacionales_div.textContent = '$ ' + sum_operacionales;
 
             let total_no_operacionales_div = document.getElementById('total_no_operacionales');
+            total_no_operacionales_div.textContent = '';
             total_no_operacionales_div.textContent = '$ ' + sum_no_operacionales;
+
+            saldo_final_acumulado_div= document.getElementById('saldo_final_acumulado');
+            saldo_final_acumulado_div.textContent = '';
+            saldo_final_acumulado_div.textContent = '$ ' + sum_saldo_final_acumulado;
+
+            total_ganancias_div = document.getElementById('total_ganancias');
+            total_ganancias_div.textContent = '';
+            total_ganancias_div.textContent = '$ ' + sum_ganancias_t;
+
+            disponible_div = document.getElementById('disponible');
+            disponible_div.textContent = '';
+            disponible_div.textContent = '$ ' + sum_disponible;
 
 
             /* rellenar la tabla */
             let currentDate = new Date(start);
 
-            table_balance =document.getElementById('balance_table');
 
-
-            totales_ingresos = [];
+/*             totales_ingresos = [];
             totales_operacionales = [];
             totales_no_operacionales = [];
 
             totales_ingresos = balance.ingresos;
             totales_operacionales = balance.operacionales;
-            totales_no_operacionales =  balance.no_operacionales;
+            totales_no_operacionales =  balance.no_operacionales; */
 
             let i = 0;
             /* rellenar los faltantes */
-            
-            console.log(balance);
-            
+          
 
             for (let currentDate = new Date(start); currentDate <= end; currentDate.setDate(currentDate.getDate() + 1)) {
               let nuevaFila = document.createElement("tr");
 
               
-              let ingr = totales_ingresos.find(ingre =>  moment(new Date(ingre.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
+             /*  let ingr = totales_ingresos.find(ingre =>  moment(new Date(ingre.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
               ingr = ingr ? ingr.ingresos : 0;
-
-
-              let oper = totales_operacionales.find(op =>  moment(new Date(op.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
+ */
+/*               let oper = totales_operacionales.find(op =>  moment(new Date(op.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
               oper = oper ? oper.operacionales : 0;
 
               
               let no_oper = totales_no_operacionales.find(nop =>  moment(new Date(nop.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
-              no_oper = no_oper ? no_oper.no_operacionales : 0;
+              no_oper = no_oper ? no_oper.no_operacionales : 0; */
               
-              console.log(no_oper);
-          
-              let contenidoCeldas = [
-                moment(currentDate).format('YYYY-MM-DD'),
-                'PENDIENTE',
-                '$ ' + ingr,
-                '$ ' + oper,
-                '$ ' + no_oper,
-                '$ ' + (ingr - oper),
-                'PENDIENTE',
-                '$ ' + ((ingr * 10) /100)
+              let row = balance.find(b =>  moment(new Date(b.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
+              
+              let contenidoCeldas = [];
+              if(row){
+                
+                contenidoCeldas = [
+                  moment(currentDate).format('YYYY-MM-DD'),
+                  '$ ' + row.saldos_anteriores,
+                  '$ ' + row.total_ingresos,
+                  '$ ' + row.total_operacionales,
+                  '$ ' + row.total_no_operacionales,
+                  '$ ' + row.sum_disponible_diario,
+                  '$ ' + row.saldo_disponible_acum,
+                  '$ ' + row.sum_ganancias
+  
+                ];
 
-              ];
+              }else{
 
+                contenidoCeldas = [
+                  moment(currentDate).format('YYYY-MM-DD'),
+                  '$ ' + 0,
+                  '$ ' + 0,
+                  '$ ' + 0,
+                  '$ ' + 0,
+                  '$ ' + 0,
+                  '$ ' + 0,
+                  '$ ' + 0
+  
+                ];
+              }
 
               // Itera sobre el contenido de las celdas y crea celdas <td>
               contenidoCeldas.forEach(function (contenido) {
