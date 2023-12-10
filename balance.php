@@ -164,6 +164,18 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <?php
               }
                 ?> -->
+
+        <?php if ($rol == 1) { ?>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
+          <li class="nav-item">
+            <a class="nav-link active" href="gastos_operacionales.php">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos operacionales</span>
+            </a>
+          </li>
+        <?php } ?>
       </ul>
     </div>
   </aside>
@@ -218,7 +230,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   <div class="numbers">
                     <p class="text-md mb-0 text-uppercase font-weight-bold">Total ingresos</p>
                     <h5 class="font-weight-bolder" id="total_ingresos">
-                        $0
+                      $0
                     </h5>
                   </div>
                 </div>
@@ -372,7 +384,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     </div>
   </div>
 
-¡
+  ¡
   <script src="js/login.js"></script>
 
   <script src="assets/js/core/popper.min.js"></script>
@@ -438,7 +450,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             let filas = tabla.getElementsByTagName("tr");
 
             for (var m = filas.length - 1; m > 0; m--) {
-                tabla.deleteRow(m);
+              tabla.deleteRow(m);
             }
 
             balance = [];
@@ -453,7 +465,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             sum_disponible = 0;
 
 
-          /*   balance.ingresos.forEach(i=>{
+            /*   balance.ingresos.forEach(i=>{
               sum_ingresos += +i.ingresos;
             });
            balance.operacionales.forEach(i=>{
@@ -464,10 +476,10 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
               sum_no_operacionales += +i.no_operacionales;
             });
  */
-            balance.forEach(b=>{
-              sum_ingresos +=  +b.total_ingresos;
-              sum_operacionales +=  +b.total_operacionales;
-              sum_no_operacionales +=  +b.total_no_operacionales;
+            balance.forEach(b => {
+              sum_ingresos += +b.total_ingresos;
+              sum_operacionales += +b.total_operacionales;
+              sum_no_operacionales += +b.total_no_operacionales;
               sum_ganancias_t += +b.sum_ganancias;
               sum_saldo_final_acumulado += +b.saldo_disponible_acum;
               sum_disponible += +b.total_no_operacionales;
@@ -485,7 +497,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             total_no_operacionales_div.textContent = '';
             total_no_operacionales_div.textContent = '$ ' + sum_no_operacionales;
 
-            saldo_final_acumulado_div= document.getElementById('saldo_final_acumulado');
+            saldo_final_acumulado_div = document.getElementById('saldo_final_acumulado');
             saldo_final_acumulado_div.textContent = '';
             saldo_final_acumulado_div.textContent = '$ ' + sum_saldo_final_acumulado;
 
@@ -502,37 +514,37 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             let currentDate = new Date(start);
 
 
-/*             totales_ingresos = [];
-            totales_operacionales = [];
-            totales_no_operacionales = [];
+            /*             totales_ingresos = [];
+                        totales_operacionales = [];
+                        totales_no_operacionales = [];
 
-            totales_ingresos = balance.ingresos;
-            totales_operacionales = balance.operacionales;
-            totales_no_operacionales =  balance.no_operacionales; */
+                        totales_ingresos = balance.ingresos;
+                        totales_operacionales = balance.operacionales;
+                        totales_no_operacionales =  balance.no_operacionales; */
 
             let i = 0;
             /* rellenar los faltantes */
-          
+
 
             for (let currentDate = new Date(start); currentDate <= end; currentDate.setDate(currentDate.getDate() + 1)) {
               let nuevaFila = document.createElement("tr");
 
-              
-             /*  let ingr = totales_ingresos.find(ingre =>  moment(new Date(ingre.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
+
+              /*  let ingr = totales_ingresos.find(ingre =>  moment(new Date(ingre.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
               ingr = ingr ? ingr.ingresos : 0;
  */
-/*               let oper = totales_operacionales.find(op =>  moment(new Date(op.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
-              oper = oper ? oper.operacionales : 0;
+              /*               let oper = totales_operacionales.find(op =>  moment(new Date(op.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
+                            oper = oper ? oper.operacionales : 0;
 
-              
-              let no_oper = totales_no_operacionales.find(nop =>  moment(new Date(nop.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
-              no_oper = no_oper ? no_oper.no_operacionales : 0; */
-              
-              let row = balance.find(b =>  moment(new Date(b.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
-              
+                            
+                            let no_oper = totales_no_operacionales.find(nop =>  moment(new Date(nop.fecha)).format('YYYY-MM-DD') ===  moment(currentDate).format('YYYY-MM-DD'));
+                            no_oper = no_oper ? no_oper.no_operacionales : 0; */
+
+              let row = balance.find(b => moment(new Date(b.fecha)).format('YYYY-MM-DD') === moment(currentDate).format('YYYY-MM-DD'));
+
               let contenidoCeldas = [];
-              if(row){
-                
+              if (row) {
+
                 contenidoCeldas = [
                   moment(currentDate).format('YYYY-MM-DD'),
                   '$ ' + row.saldos_anteriores,
@@ -542,10 +554,10 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   '$ ' + row.sum_disponible_diario,
                   '$ ' + row.saldo_disponible_acum,
                   '$ ' + row.sum_ganancias
-  
+
                 ];
 
-              }else{
+              } else {
 
                 contenidoCeldas = [
                   moment(currentDate).format('YYYY-MM-DD'),
@@ -556,28 +568,28 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                   '$ ' + 0,
                   '$ ' + 0,
                   '$ ' + 0
-  
+
                 ];
               }
 
               // Itera sobre el contenido de las celdas y crea celdas <td>
-              contenidoCeldas.forEach(function (contenido) {
-                  var celda = document.createElement("td");
-                  var parrafo = document.createElement("p");
-                  parrafo.innerHTML = contenido;
-                  celda.appendChild(parrafo);
-                  celda.classList.add("text-center");
-                  nuevaFila.appendChild(celda);
+              contenidoCeldas.forEach(function(contenido) {
+                var celda = document.createElement("td");
+                var parrafo = document.createElement("p");
+                parrafo.innerHTML = contenido;
+                celda.appendChild(parrafo);
+                celda.classList.add("text-center");
+                nuevaFila.appendChild(celda);
               });
 
               tabla.querySelector("tbody").appendChild(nuevaFila);
 
-               
+
             }
 
-            
 
-           
+
+
           }
         });
 
