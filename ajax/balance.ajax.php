@@ -13,3 +13,5 @@ if(isset($_POST["range_dates"])){
 	echo json_encode($balance -> balance($range));
 
 }
+
+

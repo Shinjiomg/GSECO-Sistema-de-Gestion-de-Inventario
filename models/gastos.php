@@ -49,19 +49,20 @@ class Gastos extends Database
     }
 
 
-	public function gastosPorCategoria($categoria){
+	public function gastosPorCategoria($categoria, $rango){
 		$currentDate = date('Y-m-d');
+		$rango = json_decode($rango);
 
 		/* Operacionales */
-		if($categoria === 1){
-			$query = $this->pdo->prepare("SELECT * FROM gastos WHERE DATE(fecha) = '{$currentDate}' AND categoria_gasto <> 7");
-			$query->execute();
-
+		if($categoria == 1){
+			$query = $this->pdo->query("SELECT * FROM gastos WHERE categoria_gasto <> 11 AND DATE(fecha) BETWEEN '{$rango->start}' AND '{$rango->end}'");
+			
 		}else{
 			/* no operacionales */
-			$query = $this->pdo->prepare("SELECT * FROM gastos WHERE DATE(fecha) = '{$currentDate}' AND categoria_gasto = 7");
-			$query->execute();
+			$query = $this->pdo->query("SELECT * FROM gastos WHERE categoria_gasto = 11 AND DATE(fecha) BETWEEN '{$rango->start}' AND '{$rango->end}' ORDER BY fecha");
+			
 		}
+		return $query->fetchAll();
 	}
 
     
