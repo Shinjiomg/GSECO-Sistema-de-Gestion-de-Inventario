@@ -62,7 +62,7 @@ $compras = new Compras();
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Artículos</h6>
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">inventario</h6>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
@@ -74,14 +74,17 @@ $compras = new Compras();
                 </li>
                 <?php if ($rol == 1) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="balance.php">
+                        <a class="nav-link" href="inventory.php">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">gestionar inventario</span>
                         </a>
                     </li>
                 <?php } ?>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de ventas</h6>
+                </li>
                 <?php if ($rol === 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="sales.php">
@@ -93,7 +96,7 @@ $compras = new Compras();
                     </li>
                 <?php } ?>
                 <li class="nav-item">
-                    <a class="nav-link " href="bills.php">
+                    <a class="nav-link" href="bills.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
@@ -101,7 +104,7 @@ $compras = new Compras();
                     </a>
                 </li>
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">gestión de compras</h6>
                 </li>
                 <?php if ($rol === 1) { ?>
                     <li class="nav-item">
@@ -112,15 +115,16 @@ $compras = new Compras();
                             <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="purchases-bills.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
+                        </a>
+                    </li>
                 <?php } ?>
-                <li class="nav-item">
-                    <a class="nav-link active" href="purchases-bills.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
-                    </a>
-                </li>
                 <?php if ($rol == 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="inventory-expenses.php">
@@ -150,9 +154,11 @@ $compras = new Compras();
                         }
                 ?> -->
                 <?php if ($rol == 1) { ?>
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="gastos_operacionales.php">
+                        <a class="nav-link" href="gastos_operacionales.php">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
@@ -160,7 +166,15 @@ $compras = new Compras();
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="gastos_no_operacionales.php">
+                        <a class="nav-link" href="balance.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gastos_no_operacionales.php">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
@@ -168,9 +182,6 @@ $compras = new Compras();
                         </a>
                     </li>
                 <?php } ?>
-                <li class="sidenav-footer mx-3">
-
-                </li>
             </ul>
         </div>
     </aside>
@@ -203,7 +214,7 @@ $compras = new Compras();
                         </li>
                         <li class="nav-item px-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-0">
-                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                                <i class="fa fa-sign-out fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
 

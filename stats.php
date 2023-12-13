@@ -85,7 +85,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Artículos</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">inventario</h6>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="stats.php">
@@ -97,14 +97,17 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
         </li>
         <?php if ($rol == 1) { ?>
           <li class="nav-item">
-            <a class="nav-link" href="balance.php">
+            <a class="nav-link" href="inventory.php">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
               </div>
-              <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
+              <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">gestionar inventario</span>
             </a>
           </li>
         <?php } ?>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de ventas</h6>
+        </li>
         <?php if ($rol === 2) { ?>
           <li class="nav-item">
             <a class="nav-link" href="sales.php">
@@ -124,7 +127,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
           </a>
         </li>
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">gestión de compras</h6>
         </li>
         <?php if ($rol === 1) { ?>
           <li class="nav-item">
@@ -173,28 +176,35 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <?php
               }
                 ?> -->
-                <li class="nav-item mt-3">
-         
-        </li>
-        <?php if ($rol == 1) {?>
-        <li class="nav-item">
-        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
-          <a class="nav-link active" href="gastos_operacionales.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos operacionales</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="gastos_no_operacionales.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos no operacionales</span>
-          </a>
-        </li>
-        <?php }?>
+        <?php if ($rol == 1) { ?>
+          <li class="nav-item mt-3">
+            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gastos_operacionales.php">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos operacionales</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="balance.php">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gastos_no_operacionales.php">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos no operacionales</span>
+            </a>
+          </li>
+        <?php } ?>
       </ul>
     </div>
   </aside>
@@ -227,7 +237,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                <i class="fa fa-sign-out fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
           </ul>
@@ -483,208 +493,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             </div>
           </div>
         </div>
-        <?php if ($rol === 1) { ?>
-          <div class="col-xl-12 mt-2 mb-2">
-            <div class="card">
-              <div class="card-header pb-4">
-                <?php
-                $productosAgotandose = [];
-
-                foreach ($articulos as $art) {
-                  $total = $art->stock_deseado;
-                  $actual = $art->stock;
-                  $porcentaje = ($actual / $total) * 100;
-
-                  if ($porcentaje <= 40) {
-                    $productosAgotandose[] = $art->nombre;
-                  }
-                }
-                if (!empty($productosAgotandose)) {
-                ?>
-                  <!-- <div class="alert alert-warning lowercase" role="alert" style="color: white">
-                  <strong>¡Aviso!</strong> Se están agotando los siguientes productos:
-                  <strong>
-                    <?php echo implode(', ', $productosAgotandose); ?>
-                  </strong>
-                </div> -->
-                <?php } ?>
-                <div class="row pb-2 p-3">
-                  <div class="col-xl-4 d-flex align-items-center text-uppercase">
-                    <h4 class="font-weight-bolder">Productos</h4>
-                  </div>
-                  <div class="col-xl-8 text-end">
-                    <div class="d-flex justify-content-end mb-2">
-                      <div>
-                        <button type="button" onclick="printProductsPDF('data_table_products_export')" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
-                        <button class="btn mb-0 text-uppercase" data-bs-toggle="modal" style="background: #5e72e4; color:white" data-bs-target="#modal-form-product">
-                          <i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Añadir producto</button>
-
-
-                      </div>
-                    </div>
-                    <div class="modal fade" id="modal-form-product" tabindex="999999" style="z-index: 9999999" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title text-uppercase font-weight-bold">Añadir producto</h4>
-                            <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
-
-                          </div>
-                          <div class="modal-body p-0">
-                            <div class="card card-plain">
-                              <div class="card-body text-start">
-                                <form role="form text-left">
-                                  <div class="form-group">
-                                    <div class="row">
-                                      <div class="col-xl-9">
-                                        <label for="" class="col-form-label text-uppercase">Nombre
-                                          del producto</label>
-                                        <input id="product_name" type="text" placeholder="Ingresa el nombre del producto" class="form-control" />
-                                      </div>
-                                      <div class="col-xl-3">
-                                        <label for="" class="col-form-label text-uppercase">Cantidad</label>
-                                        <input class="form-control" type="number" id="product_stock" placeholder="Ingresa la cantidad">
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-xl-4">
-                                        <label for="" class="col-form-label text-uppercase">Valor unitario</label>
-                                        <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor del producto" oninput="validarCantidad(this)">
-                                      </div>
-                                      <div class="col-xl-4">
-                                        <label for="" class="col-form-label text-uppercase">Stock máximo</label>
-                                        <input class="form-control" type="number" id="stock_maximo" placeholder="Ingresa el stock máximo del producto" oninput="validarCantidad(this)">
-                                      </div>
-                                      <div class="col-xl-4">
-                                        <label for="" class="col-form-label text-uppercase">Categoría</label>
-                                        <select class="form-control" name="choices-button" id="categories_select" placeholder="Departure">
-                                          <?php foreach ($categorias as $c) { ?>
-                                            <option value="<?php echo $c->id_categoria ?>" selected="true">
-                                              <?php echo $c->nombre ?>
-                                            </option>
-                                          <?php } ?>
-                                        </select>
-                                      </div>
-                                    </div>
-                                    <button type="button" id="confirmButton" onclick="saveProduct()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
-                                    </button>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="data_table_products_export" class="table-responsive">
-                <table class="table align-items-center mb-0" id="data_table">
-                  <thead>
-                    <tr>
-                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                        Nombre del producto</th>
-                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                        Precio de venta</th>
-                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                        Unidades</th>
-                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                        Estado</th>
-                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                        Categoría</th>
-                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                        Stock máximo</th>
-                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                        Inventario</th>
-                      <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                      </th>
-                      <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        <?php } ?>
-        <?php if ($rol === 1) { ?>
-          <div class="col-xl-12 mt-2 mb-2">
-            <div class="card">
-              <div class="card-header pb-4">
-                <div class="row pb-2 p-3">
-                  <div class="col-4 d-flex align-items-center text-uppercase">
-                    <h4 class="font-weight-bolder">Categorías</h4>
-                  </div>
-                  <div class="col-md-8 text-end">
-                    <div class="d-flex justify-content-end">
-                      <div>
-                        <button onclick="printProductsPDF('categories_table_export')" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
-
-                        <button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white" data-bs-toggle="modal" data-bs-target="#modal-form-categories">
-                          <i class="fas fa-plus"></i>&nbsp;&nbsp;Añadir categoría</button>
-                      </div>
-                    </div>
-                    <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title text-uppercase font-weight-bold">Añadir categoría</h4>
-                            <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">X</button>
-
-                          </div>
-                          <div class="modal-body p-0">
-                            <div class="card card-plain">
-                              <div class="card-body text-start">
-                                <form role="form text-center">
-                                  <div class="row">
-                                    <div class="col-xl-12">
-                                      <label for="" class="col-form-label text-uppercase">Nombre de la categoria</label>
-                                      <input id="categoria" type="text" placeholder="Ingresa el nombre de la categoría" class="form-control" />
-                                    </div>
-                                    <div class="text-center">
-                                      <button type="button" onClick="guardarCategoria()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Añadir
-                                        categoría</button>
-                                    </div>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="table-responsive" id="categories_table_export">
-                <table class="table align-items-center mb-0" id="categories_table">
-                  <thead>
-                    <tr>
-                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                        Nombre</th>
-                      <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                        Estado</th>
-                      <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                      </th>
-                      <th align="center" class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        <?php } ?>
       </div>
     </div>
-
-    <!--secondary content -->
   </main>
   <!-- config interface -->
   <div class="fixed-plugin">
@@ -807,159 +617,6 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
       });
     });
   </script>
-  <script>
-    function renderTable() {
-      let tabla = document.getElementById("data_table");
-      let filas = tabla.getElementsByTagName("tr");
-      for (var i = filas.length - 1; i > 0; i--) {
-        tabla.deleteRow(i);
-      }
-      products.forEach(pr => {
-        let nuevaFila = document.createElement("tr");
-        nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
-        var precioVentaFormateado = parseFloat(pr.precio_venta).toLocaleString('es-CO');
-        // Define el contenido de cada celda
-        let contenidoCeldas = [
-          pr.nombre,
-          "$" + precioVentaFormateado,
-          pr.stock,
-          (pr.stock > 0 && pr.estado === 1) ? '<span class="badge badge-sm bg-gradient-success">Stock disponible</span>' : (pr.estado === 0) ? '<span class="badge badge-sm bg-gradient-danger">Stock no disponible</span>' : '<span class="badge badge-sm bg-gradient-warning">Stock agotado</span>',
-          pr.categoria,
-          pr.stock_deseado,
-          `<div class="d-flex align-items-center justify-content-center">
-            <span class="me-2 text-xs font-weight-bold">
-             ${((pr.stock / pr.stock_deseado) * 100).toFixed(1) + '%'}
-            </span>
-            <div class="progress">
-                ${((pr.stock / pr.stock_deseado) * 100) <= 40 ?
-                `<div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>` :
-                (((pr.stock / pr.stock_deseado) * 100) >= 40 && ((pr.stock / pr.stock_deseado) * 100) <= 60) ?
-                    `<div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>` :
-                    `<div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>`
-            }
-            </div>
-          </div>`,
-          ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" onclick="editProduct(${pr.id_articulo})"><i class="fas fa-edit" style='font-size:24px'></i></a>`,
-          ` <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs"   onclick="eliminarProducto(${pr.id_articulo})"><i class="fas fa-trash" style='font-size:24px'></i></a>`
-        ];
-        // Itera sobre el contenido de las celdas y crea celdas <td>
-        contenidoCeldas.forEach(function(contenido) {
-          var celda = document.createElement("td");
-          var parrafo = document.createElement("p");
-          parrafo.innerHTML = contenido;
-          celda.appendChild(parrafo);
-          nuevaFila.appendChild(celda);
-        });
-        // Agrega la nueva fila a la tabla
-        tabla.querySelector("tbody").appendChild(nuevaFila);
-      });
-      if ($.fn.DataTable.isDataTable('#data_table')) {
-        $('#data_table').DataTable().destroy();
-      }
-      $('#data_table').DataTable({
-        dom: 'Bfrtip',
-        paging: true, // Enable pagination
-        searching: true, // Enable search functionality
-        buttons: [{
-          extend: 'excel',
-          text: '<span class="fas fa-file-excel" aria-hidden="true"></span>',
-          exportOptions: {
-            columns: ':visible'
-          },
-          attr: {
-            id: 'exportExcelBtn' // Asigna el id al botón
-          }
-        }],
-        language: {
-          paginate: {
-            first: 'Primero',
-            last: 'Último',
-            next: 'Siguiente',
-            previous: 'Anterior'
-          },
-          search: 'Buscar:',
-          info: 'Mostrando _START_ a _END_ de _TOTAL_ entradas',
-          infoEmpty: 'Mostrando 0 a 0 de 0 entradas',
-          infoFiltered: '(filtrado de _MAX_ entradas totales)',
-          lengthMenu: 'Mostrar _MENU_ entradas por página',
-          zeroRecords: 'No se encontraron resultados',
-          emptyTable: 'No hay datos disponibles en la tabla'
-        }
-      });
-    }
-  </script>
-  <script>
-    function renderTableCategories() {
-      let tabla = document.getElementById("categories_table");
-
-      let filas = tabla.getElementsByTagName("tr");
-
-
-      for (var i = filas.length - 1; i > 0; i--) {
-        tabla.deleteRow(i);
-      }
-
-      categories.forEach(c => {
-
-        let nuevaFila = document.createElement("tr");
-        nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
-
-        // Define el contenido de cada celda
-        let contenidoCeldas = [
-          c.nombre,
-          c.estado === 1 ? '<span class="badge badge-sm bg-gradient-success">Stock disponible</span>' : '<span class="badge badge-sm bg-gradient-danger">Stock no disponible</span>',
-          ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs"  onclick="editCategoria(${c.id_categoria})" ><i class="fas fa-edit" style='font-size:24px'></i></a>`,
-          `<a data-bs-toggle="tooltip" onclick='eliminarCategoria(${c.id_categoria})' title="Borrar" class="text-danger font-weight-bold text-xs"><i class="fas fa-trash" style='font-size:24px'></i></a>`
-        ];
-
-        // Itera sobre el contenido de las celdas y crea celdas <td>
-        contenidoCeldas.forEach(function(contenido) {
-          var celda = document.createElement("td");
-          var parrafo = document.createElement("p");
-          parrafo.innerHTML = contenido;
-          celda.appendChild(parrafo);
-          nuevaFila.appendChild(celda);
-        });
-
-        // Agrega la nueva fila a la tabla
-        tabla.querySelector("tbody").appendChild(nuevaFila);
-
-      });
-      if ($.fn.DataTable.isDataTable('#categories_table')) {
-        $('#categories_table').DataTable().destroy();
-      }
-      $('#categories_table').DataTable({
-        dom: 'Bfrtip',
-        paging: true, // Enable pagination
-        searching: true, // Enable search functionality
-        buttons: [{
-          extend: 'excel',
-          text: '<span class="fas fa-file-excel" aria-hidden="true"></span>',
-          exportOptions: {
-            columns: ':visible'
-          },
-          attr: {
-            id: 'export' // Asigna el id al botón
-          }
-        }],
-        language: {
-          paginate: {
-            first: 'Primero',
-            last: 'Último',
-            next: 'Siguiente',
-            previous: 'Anterior'
-          },
-          search: 'Buscar:',
-          info: 'Mostrando _START_ a _END_ de _TOTAL_ entradas',
-          infoEmpty: 'Mostrando 0 a 0 de 0 entradas',
-          infoFiltered: '(filtrado de _MAX_ entradas totales)',
-          lengthMenu: 'Mostrar _MENU_ entradas por página',
-          zeroRecords: 'No se encontraron resultados',
-          emptyTable: 'No hay datos disponibles en la tabla'
-        }
-      });
-    }
-  </script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="./assets/js/argon-dashboard.js"></script>
 </body>
@@ -987,8 +644,9 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     line-height: 1.5;
     font-size: 0.875rem;
     font-weight: 700;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: auto;
+    margin-left: 25px;
   }
 
   .dataTables_wrapper .dataTables_paginate .paginate_button {
@@ -1111,7 +769,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
   .dataTables_wrapper .dataTables_filter label {
     font-weight: bold;
     /* Estilo de fuente del label */
-    margin-right: 10px;
+    margin-right: 35px;
     /* Ajusta el margen derecho según tus preferencias */
   }
 

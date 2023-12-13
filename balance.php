@@ -50,7 +50,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
   <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
   <!-- SweetAlert2 -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-  
+
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
   <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
   <!-- DataTables Buttons CSS -->
@@ -85,7 +85,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Artículos</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">inventario</h6>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="stats.php">
@@ -97,14 +97,17 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
         </li>
         <?php if ($rol == 1) { ?>
           <li class="nav-item">
-            <a class="nav-link active" href="balance.php">
+            <a class="nav-link" href="inventory.php">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
               </div>
-              <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
+              <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">gestionar inventario</span>
             </a>
           </li>
         <?php } ?>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de ventas</h6>
+        </li>
         <?php if ($rol === 2) { ?>
           <li class="nav-item">
             <a class="nav-link" href="sales.php">
@@ -124,7 +127,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
           </a>
         </li>
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">gestión de compras</h6>
         </li>
         <?php if ($rol === 1) { ?>
           <li class="nav-item">
@@ -173,11 +176,12 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <?php
               }
                 ?> -->
-
         <?php if ($rol == 1) { ?>
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
+          <li class="nav-item mt-3">
+            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
+          </li>
           <li class="nav-item">
-            <a class="nav-link active" href="gastos_operacionales.php">
+            <a class="nav-link" href="gastos_operacionales.php">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
               </div>
@@ -185,7 +189,15 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="gastos_no_operacionales.php">
+            <a class="nav-link active" href="balance.php">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gastos_no_operacionales.php">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
               </div>
@@ -225,7 +237,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                <i class="fa fa-sign-out fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
           </ul>
@@ -347,7 +359,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             <div class="card-header pb-1">
               <div class="d-flex justify-content-end mb-2">
                 <div>
-                  <button type="button" onclick="printProductsPDF('data_table_balance')" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i></button>
+                  <button type="button" onclick="printProductsPDF('data_table_balance')" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i> EXPORTAR A PDF</button>
                 </div>
               </div>
             </div>
@@ -622,37 +634,36 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
   <script src="./assets/js/argon-dashboard.js"></script>
 
   <script>
-          $('#balance_table').DataTable({
-        dom: 'Bfrtip',
-        paging: true, // Enable pagination
-        searching: true, // Enable search functionality
-        buttons: [{
-          extend: 'excel',
-          text: '<span class="fas fa-file-excel" aria-hidden="true"></span>',
-          exportOptions: {
-            columns: ':visible'
-          },
-          attr: {
-            id: 'exportExcelBtn' // Asigna el id al botón
-          }
-        }],
-        language: {
-          paginate: {
-            first: 'Primero',
-            last: 'Último',
-            next: 'Siguiente',
-            previous: 'Anterior'
-          },
-          search: 'Buscar:',
-          info: 'Mostrando _START_ a _END_ de _TOTAL_ entradas',
-          infoEmpty: 'Mostrando 0 a 0 de 0 entradas',
-          infoFiltered: '(filtrado de _MAX_ entradas totales)',
-          lengthMenu: 'Mostrar _MENU_ entradas por página',
-          zeroRecords: 'No se encontraron resultados',
-          emptyTable: 'No hay datos disponibles en la tabla'
+    $('#balance_table').DataTable({
+      dom: 'Bfrtip',
+      paging: true, // Enable pagination
+      searching: true, // Enable search functionality
+      buttons: [{
+        extend: 'excel',
+        text: '<span class="fas fa-file-excel" aria-hidden="true"></span> EXPORTAR A EXCEL',
+        exportOptions: {
+          columns: ':visible'
+        },
+        attr: {
+          id: 'exportExcelBtn' // Asigna el id al botón
         }
-      });
-
+      }],
+      language: {
+        paginate: {
+          first: 'Primero',
+          last: 'Último',
+          next: 'Siguiente',
+          previous: 'Anterior'
+        },
+        search: 'Buscar:',
+        info: 'Mostrando _START_ a _END_ de _TOTAL_ entradas',
+        infoEmpty: 'Mostrando 0 a 0 de 0 entradas',
+        infoFiltered: '(filtrado de _MAX_ entradas totales)',
+        lengthMenu: 'Mostrar _MENU_ entradas por página',
+        zeroRecords: 'No se encontraron resultados',
+        emptyTable: 'No hay datos disponibles en la tabla'
+      }
+    });
   </script>
 </body>
 
@@ -679,8 +690,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     line-height: 1.5;
     font-size: 0.875rem;
     font-weight: 700;
-    height: 50px;
-    width: 50px;
+    height: 40px;
   }
 
   .dataTables_wrapper .dataTables_paginate .paginate_button {

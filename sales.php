@@ -60,9 +60,9 @@ $MetodosPago = new MetodosPago();
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
-                <!-- <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Artículos</h6>
-                </li> -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">inventario</h6>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -73,21 +73,24 @@ $MetodosPago = new MetodosPago();
                 </li>
                 <?php if ($rol == 1) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="balance.php">
+                        <a class="nav-link" href="inventory.php">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">gestionar inventario</span>
                         </a>
                     </li>
                 <?php } ?>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de ventas</h6>
+                </li>
                 <?php if ($rol === 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link active" href="sales.php">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1 font-weight-bolder">VENTAS</span>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
                         </a>
                     </li>
                 <?php } ?>
@@ -99,9 +102,9 @@ $MetodosPago = new MetodosPago();
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PROVEEDORES</h6>
-                </li> -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">gestión de compras</h6>
+                </li>
                 <?php if ($rol === 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="purchases.php">
@@ -131,10 +134,30 @@ $MetodosPago = new MetodosPago();
                         </a>
                     </li>
                 <?php } ?>
-                <?php if ($rol == 1) { ?>
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
+                <!-- <?php
+                        if ($rol == 1) {
+                        ?>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
+                    </li>
+
                     <li class="nav-item">
-                        <a class="nav-link active" href="gastos_operacionales.php">
+                        <a class="nav-link" href="user-administration.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
+                        </a>
+                    </li>
+                <?php
+                        }
+                ?> -->
+                <?php if ($rol == 1) { ?>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gastos_operacionales.php">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
@@ -142,11 +165,19 @@ $MetodosPago = new MetodosPago();
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="gastos_no_operacionales.php">
+                        <a class="nav-link" href="balance.php">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastosno operacionales</span>
+                            <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gastos_no_operacionales.php">
+                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos no operacionales</span>
                         </a>
                     </li>
                 <?php } ?>
@@ -184,7 +215,7 @@ $MetodosPago = new MetodosPago();
                         </li>
                         <li class="nav-item px-3 d-flex align-items-center">
                             <a class="nav-link text-white p-0">
-                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                                <i class="fa fa-sign-out fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
                     </ul>
