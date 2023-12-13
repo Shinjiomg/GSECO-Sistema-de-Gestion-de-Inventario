@@ -15,4 +15,14 @@ if(isset($_POST["no_operacionales"])){
 
 }
 
+if(isset($_POST["operacionales"])){
+
+	$gastos = new Gastos();
+
+	$range= $_POST["range_dates"];
+
+	echo json_encode($gastos -> gastosPorCategoria(2,$range));
+
+}
+
 

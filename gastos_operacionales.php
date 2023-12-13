@@ -252,7 +252,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                             </div>
                         </div>
                         <div id="data_table_gastos_operacionales" class="table-responsive">
-                            <table id="balance_table" class="table align-items-center">
+                            <table id="table_operacionales" class="table align-items-center">
                                 <thead>
                                     <tr>
                                         <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
@@ -348,7 +348,64 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     start: start.format('YYYY-MM-DD'),
                     end: end.format('YYYY-MM-DD')
                 }
+
                 let datos = new FormData();
+                datos.append('range_dates', JSON.stringify(rangeDates));
+                datos.append('operacionales', true);
+                $.ajax({
+                    url: "ajax/gastos_op.ajax.php",
+                    method: "POST",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        let tabla = document.getElementById('table_operacionales');
+                        let filas = tabla.getElementsByTagName("tr");
+
+                        for (var m = filas.length - 1; m > 0; m--) {
+                            tabla.deleteRow(m);
+                        }
+
+
+                        gastos_nop = [];
+                        gastos_nop = JSON.parse(response);
+
+                        let currentDate = new Date(start);
+
+
+                        for (let currentDate = new Date(start); currentDate <= end; currentDate.setDate(currentDate.getDate() + 1)) {
+
+
+                            gastos_nop.forEach(g => {
+                                let contenidoCeldas = [];
+                                if (moment(new Date(g.fecha)).format('YYYY-MM-DD') === moment(currentDate).format('YYYY-MM-DD')) {
+                                    let nuevaFila = document.createElement("tr");
+                                    contenidoCeldas = [
+                                        moment(currentDate).format('YYYY-MM-DD'),
+                                        g.descripcion,
+                                        '$ ' + g.total,
+                                    ];
+                                    contenidoCeldas.forEach(function(contenido) {
+                                        var celda = document.createElement("td");
+                                        var parrafo = document.createElement("p");
+                                        parrafo.innerHTML = contenido;
+                                        celda.appendChild(parrafo);
+                                        celda.classList.add("text-center");
+                                        nuevaFila.appendChild(celda);
+                                    });
+                                    tabla.querySelector("tbody").appendChild(nuevaFila);
+                                }
+
+                            })
+
+                            // Itera sobre el contenido de las celdas y crea celdas <td>
+
+                        }
+
+                    }
+                });
+              
                 datos.append('range_dates', JSON.stringify(rangeDates));
                 $.ajax({
                     url: "ajax/balance.ajax.php",
@@ -378,24 +435,6 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
 
                         /*   balance.ingresos.forEach(i=>{
-              sum_ingresos += +i.ingresos;
-            });
-           balance.operacionales.forEach(i=>{
-              sum_operacionales += +i.operacionales;
-            });
-            
-            balance.no_operacionales.forEach(i=>{
-              sum_no_operacionales += +i.no_operacionales;
-            });
- */
-                        /* balance.forEach(b => {
-                            sum_ingresos += +b.total_ingresos;
-                            sum_operacionales += +b.total_operacionales;
-                            sum_no_operacionales += +b.total_no_operacionales;
-                            sum_ganancias_t += +b.sum_ganancias;
-                            sum_saldo_final_acumulado += +b.saldo_disponible_acum;
-                            sum_disponible += +b.total_no_operacionales;
-                        });
 
                         let total_ingresos_div = document.getElementById('total_ingresos');
                         total_ingresos_div.textContent = '';
