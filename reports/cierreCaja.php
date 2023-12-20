@@ -14,8 +14,8 @@ class pdf extends FPDF
 {
 	public function header()
 	{
-	
-	
+
+
 		$this->SetFillColor(57, 38, 107);
 		$this->Rect(0, 0, 220, 50, 'F');
 		$this->SetY(20);
@@ -72,19 +72,19 @@ $fpdf->SetFillColor(57, 38, 107);
 $fpdf->Cell(60, 10, 'VENTAS', 0, 0, 'C', 1);
 $fpdf->Cell(60, 10, 'INGRESOS', 0, 0, 'C', 1);
 $fpdf->Cell(40, 10, 'GASTOS', 0, 0, 'C', 1);
-$fpdf->Cell(30, 10, 'GANANCIAS', 0, 0, 'C', 1);
+$fpdf->Cell(30, 10, 'DISPONIBLE (EFECTIVO - GASTOS)', 0, 0, 'C', 1);
 $fpdf->Ln();
 
 $fpdf->SetTextColor(0, 0, 0);
 $fpdf->SetFillColor(255, 255, 255);
 foreach ($cierre as $v) {
-
-	$fpdf->Cell(60, 10, '$ '.$v->ventas, 0, 0, 'C', 1);
-	$fpdf->Cell(60, 10, '$ '.$v->ingresos, 0, 0, 'C', 1);
-	$fpdf->Cell(30, 10, '$ '.$v->gastos, 0, 0, 'C', 1); 
-	$fpdf->Cell(40, 10,'$ '.(($v->ventas) - ($v->ingresos + $v->gastos )), 0, 0, 'C', 1);
+	$fpdf->Cell(60, 10, '$ ' . number_format($v->ventas, 0, '.', ','), 0, 0, 'C', 1);
+	$fpdf->Cell(60, 10, '$ ' . number_format($v->ingresos, 0, '.', ','), 0, 0, 'C', 1);
+	$fpdf->Cell(30, 10, '$ ' . number_format($v->gastos, 0, '.', ','), 0, 0, 'C', 1);
+	$fpdf->Cell(40, 10, '$ ' . number_format(($v->ventas) - ($v->ingresos + $v->gastos), 0, '.', ','), 0, 0, 'C', 1);
 
 	$fpdf->Ln();
 }
+
 
 $fpdf->OutPut();

@@ -218,8 +218,7 @@ function confirmQuantityCompra() {
 
     const quantity = parseInt(quantityInput.value);
     const precioCompra = parseFloat(precio.value);
-    if (!isNaN(quantity)) {
-
+    if (!isNaN(quantity) && quantity > 0) {
         const rs = products.filter(
             (art) => art.id_articulo === selectedProduct.id_articulo
         );

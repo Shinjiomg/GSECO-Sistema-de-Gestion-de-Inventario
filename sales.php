@@ -329,16 +329,16 @@ $MetodosPago = new MetodosPago();
                                                                 <div class="card-body text-start">
                                                                     <form role="form text-left">
                                                                         <div class="form-group">
-                                                                            <label for="product_price" class="text-uppercase font-weight-bolder"><strong>¿Con
-                                                                                    cuánto efectivo pagará el
-                                                                                    cliente?</strong></label>
-                                                                            <input class="form-control" type="number" id="product_price" placeholder="Ingresa el valor exacto de lo que te entregó el cliente">
+                                                                            <label for="product_price" class="text-uppercase font-weight-bolder">
+                                                                                <strong>¿Con cuánto efectivo pagará el cliente?</strong>
+                                                                            </label>
+                                                                            <input class="form-control" type="text" id="product_price" oninput="formatNumber(this)" onkeypress="handleKeyPress(event)" placeholder="Ingresa el valor exacto de lo que te entregó el cliente">
                                                                             <p id="cambio_resultado" class="mb-0">
-                                                                                <em>Debes devolverle al cliente
-                                                                                </em><strong>$0.00</strong> <em> de
-                                                                                    cambio</em>
+                                                                                <em>Debes devolverle al cliente</em>
+                                                                                <strong>$0.00</strong>
+                                                                                <em> de cambio</em>
                                                                             </p>
-                                                                            <button type="button" id="btnCalcular" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">Calcular</button>
+                                                                            <button type="button" id="btnCalcular" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white" onclick="calcularCambio()">Calcular</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -432,6 +432,58 @@ $MetodosPago = new MetodosPago();
                 damping: '0.5'
             }
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+    <script>
+        function formatNumber(input) {
+            // Remueve cualquier caracter que no sea un dígito
+            var value = input.value.replace(/[^\d]/g, '');
+
+            // Formatea el número con separadores de miles
+            var formattedValue = Number(value).toLocaleString('en-US');
+
+            // Actualiza el valor en el input
+            input.value = formattedValue;
+        }
+
+        function calcularCambio() {
+            // Obtén el valor ingresado por el usuario y conviértelo a número
+            var montoIngresado = parseFloat(document.getElementById('product_price').value.replace(/[^\d.]/g, ''));
+
+            if (isNaN(montoIngresado) || montoIngresado <= 0) {
+                alert("Por favor, ingresa un valor válido para el monto.");
+                return;
+            }
+
+            // Obtiene el valor formateado de la sumaEfectivo
+            var sumaEfectivo = parseFloat(document.getElementById('modal-form-change').dataset.sumaEfectivo.replace(/[^\d.]/g, ''));
+
+            // Realiza la resta para calcular el cambio
+            var cambio = montoIngresado - sumaEfectivo;
+
+            if (montoIngresado < sumaEfectivo) {
+                alert("Por favor, ingresa un valor válido para el monto.");
+                return;
+            }
+
+            // Muestra el cambio en algún lugar del modal
+            var cambioElement = document.getElementById('cambio_resultado');
+            cambioElement.textContent = "Debes devolverle al cliente $" + cambio.toLocaleString('es-CO');
+        }
+
+        document.getElementById('btnCalcular').addEventListener('click', function() {
+            calcularCambio();
+        });
+
+        function handleKeyPress(event) {
+            // Verifica si la tecla presionada es "Enter"
+            if (event.key === 'Enter') {
+                // Evita el comportamiento predeterminado del "Enter" en el formulario
+                event.preventDefault();
+
+                // Llama a la función para calcular el cambio
+                calcularCambio();
+            }
         }
     </script>
     <!-- Github buttons -->

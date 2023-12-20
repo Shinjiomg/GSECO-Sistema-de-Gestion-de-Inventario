@@ -281,8 +281,7 @@ function confirmQuantity() {
 
     const metodo_pago = document.getElementById('metodos_pagos');
     const indiceSeleccionado = metodo_pago.selectedIndex;
-
-    if (!isNaN(quantity) && (selectedProduct.categoria_id_categoria === 8 || selectedProduct.categoria_id_categoria === 6 || selectedProduct.stock >= quantity)) {
+    if (!isNaN(quantity) && quantity > 0) {
         const rs = products.filter(
             (art) => art.id_articulo === selectedProduct.id_articulo
         );
@@ -321,12 +320,13 @@ function confirmQuantity() {
     } else {
         Swal.fire({
             title: "Error",
-            text: "El inventario es insuficiente",
+            text: "Ingrese una cantidad válida",
             icon: "error",
             timer: 1500
         });
     }
 }
+
 
 
 function renderTable() {
