@@ -85,7 +85,7 @@ foreach ($ventas_rango as $v) {
 	$fpdf->Cell(60, 10, $v->nombres.' '.$v->apellidos, 0, 0, 'C', 1);
 	$fpdf->Cell(60, 10, $v->nombre, 0, 0, 'C', 1);
 	$fpdf->Cell(30, 10, $v->cantidad_total, 0, 0, 'C', 1); 
-	$fpdf->Cell(40, 10,'$ '.$v->subtotal, 0, 0, 'C', 1);
+	$fpdf->Cell(40, 10,'$ '.  number_format($v->subtotal, 0, '', '.'), 0, 0, 'C', 1);
 	$total = $total + $v->subtotal;
 	/* 
 	$fpdf->Cell(30, 10, "$" . $total, 0, 0, 'C', 1); 

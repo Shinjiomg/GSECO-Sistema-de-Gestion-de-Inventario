@@ -69,19 +69,19 @@ $fpdf->Ln();
 $fpdf->SetFont('Arial', '', 9);
 $fpdf->SetTextColor(255, 255, 255);
 $fpdf->SetFillColor(57, 38, 107);
-$fpdf->Cell(60, 10, 'VENTAS', 0, 0, 'C', 1);
-$fpdf->Cell(60, 10, 'INGRESOS', 0, 0, 'C', 1);
-$fpdf->Cell(40, 10, 'GASTOS', 0, 0, 'C', 1);
-$fpdf->Cell(30, 10, 'DISPONIBLE (EFECTIVO - GASTOS)', 0, 0, 'C', 1);
+$fpdf->Cell(30, 10, 'VENTAS', 0, 0, 'C', 1);
+$fpdf->Cell(30, 10, 'INGRESOS', 0, 0, 'C', 1);
+$fpdf->Cell(30, 10, 'GASTOS', 0, 0, 'C', 1);
+$fpdf->Cell(60, 10, 'DISPONIBLE (EFECTIVO - GASTOS)', 0, 0, 'C', 1);
 $fpdf->Ln();
 
 $fpdf->SetTextColor(0, 0, 0);
 $fpdf->SetFillColor(255, 255, 255);
 foreach ($cierre as $v) {
-	$fpdf->Cell(60, 10, '$ ' . number_format($v->ventas, 0, '.', ','), 0, 0, 'C', 1);
-	$fpdf->Cell(60, 10, '$ ' . number_format($v->ingresos, 0, '.', ','), 0, 0, 'C', 1);
+	$fpdf->Cell(30, 10, '$ ' . number_format($v->ventas, 0, '.', ','), 0, 0, 'C', 1);
+	$fpdf->Cell(30, 10, '$ ' . number_format($v->ingresos, 0, '.', ','), 0, 0, 'C', 1);
 	$fpdf->Cell(30, 10, '$ ' . number_format($v->gastos, 0, '.', ','), 0, 0, 'C', 1);
-	$fpdf->Cell(40, 10, '$ ' . number_format(($v->ventas) - ($v->ingresos + $v->gastos), 0, '.', ','), 0, 0, 'C', 1);
+	$fpdf->Cell(60, 10, '$ ' . number_format(($v->ventas) - ($v->ingresos + $v->gastos), 0, '.', ','), 0, 0, 'C', 1);
 
 	$fpdf->Ln();
 }
