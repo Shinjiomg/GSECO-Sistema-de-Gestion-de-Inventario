@@ -384,7 +384,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                                     contenidoCeldas = [
                                         moment(currentDate).format('YYYY-MM-DD'),
                                         g.descripcion,
-                                        '$ ' + g.total,
+                                        '$ ' + parseFloat(g.total).toLocaleString('es-CO')
                                     ];
                                     contenidoCeldas.forEach(function(contenido) {
                                         var celda = document.createElement("td");

@@ -521,27 +521,27 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
             let total_ingresos_div = document.getElementById('total_ingresos');
             total_ingresos_div.textContent = '';
-            total_ingresos_div.textContent = '$ ' + sum_ingresos;
+            total_ingresos_div.textContent = '$ ' + parseFloat(sum_ingresos).toLocaleString('es-CO');
 
             let total_operacionales_div = document.getElementById('total_operacionales');
             total_operacionales_div.textContent = '';
-            total_operacionales_div.textContent = '$ ' + sum_operacionales;
+            total_operacionales_div.textContent = '$ ' + parseFloat(sum_operacionales).toLocaleString('es-CO');
 
             let total_no_operacionales_div = document.getElementById('total_no_operacionales');
             total_no_operacionales_div.textContent = '';
-            total_no_operacionales_div.textContent = '$ ' + sum_no_operacionales;
+            total_no_operacionales_div.textContent = '$ ' + parseFloat(sum_no_operacionales).toLocaleString('es-CO');
 
             saldo_final_acumulado_div = document.getElementById('saldo_final_acumulado');
             saldo_final_acumulado_div.textContent = '';
-            saldo_final_acumulado_div.textContent = '$ ' + sum_saldo_final_acumulado;
+            saldo_final_acumulado_div.textContent = '$ ' +  parseFloat(sum_saldo_final_acumulado).toLocaleString('es-CO');
 
             total_ganancias_div = document.getElementById('total_ganancias');
             total_ganancias_div.textContent = '';
-            total_ganancias_div.textContent = '$ ' + sum_ganancias_t;
+            total_ganancias_div.textContent = '$ ' +  parseFloat(sum_ganancias_t).toLocaleString('es-CO');
 
             disponible_div = document.getElementById('disponible');
             disponible_div.textContent = '';
-            disponible_div.textContent = '$ ' + sum_disponible;
+            disponible_div.textContent = '$ ' +  parseFloat(sum_disponible).toLocaleString('es-CO');
 
 
             /* rellenar la tabla */
@@ -581,13 +581,13 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
                 contenidoCeldas = [
                   moment(currentDate).format('YYYY-MM-DD'),
-                  '$ ' + row.saldos_anteriores,
-                  '$ ' + row.total_ingresos,
-                  '$ ' + row.total_operacionales,
-                  '$ ' + row.total_no_operacionales,
-                  '$ ' + row.sum_disponible_diario,
-                  '$ ' + row.saldo_disponible_acum,
-                  '$ ' + row.sum_ganancias
+                  '$ ' + parseFloat(row.saldos_anteriores).toLocaleString('es-CO'),
+                  '$ ' + parseFloat(row.total_ingresos).toLocaleString('es-CO'),
+                  '$ ' + parseFloat(row.total_operacionales).toLocaleString('es-CO'),
+                  '$ ' + parseFloat(row.total_no_operacionales).toLocaleString('es-CO'),
+                  '$ ' + parseFloat(row.sum_disponible_diario).toLocaleString('es-CO'),
+                  '$ ' + parseFloat(row.saldo_disponible_acum).toLocaleString('es-CO'),
+                  '$ ' + parseFloat(row.sum_ganancias).toLocaleString('es-CO')
 
                 ];
 
