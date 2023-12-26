@@ -621,19 +621,10 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
             }
 
+            if ($.fn.DataTable.isDataTable('#balance_table')) {
+                $('#balance_table').DataTable().destroy();
+    }
 
-
-
-          }
-        });
-
-      });
-    });
-  </script>
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <script src="./assets/js/argon-dashboard.js"></script>
-
-  <script>
     $('#balance_table').DataTable({
       dom: 'Bfrtip',
       paging: true, // Enable pagination
@@ -664,7 +655,20 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
         emptyTable: 'No hay datos disponibles en la tabla'
       }
     });
+
+
+
+
+          }
+        });
+
+      });
+    });
   </script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="./assets/js/argon-dashboard.js"></script>
+
+
 </body>
 
 </html>
