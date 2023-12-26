@@ -77,6 +77,7 @@ $fpdf->Ln();
 
 $fpdf->SetTextColor(0, 0, 0);
 $fpdf->SetFillColor(255, 255, 255);
+$total = 0;
 foreach ($ventas_rango as $v) {
 	/* $precio = number_format($detail->precio, 0, '', '.');
 	$cantidad = number_format($detail->cantidad, 0, '', '.');
@@ -85,6 +86,7 @@ foreach ($ventas_rango as $v) {
 	$fpdf->Cell(60, 10, $v->nombre, 0, 0, 'C', 1);
 	$fpdf->Cell(30, 10, $v->cantidad_total, 0, 0, 'C', 1); 
 	$fpdf->Cell(40, 10,'$ '.$v->subtotal, 0, 0, 'C', 1);
+	$total = $total + $v->subtotal;
 	/* 
 	$fpdf->Cell(30, 10, "$" . $total, 0, 0, 'C', 1); 
 	$fpdf->Cell(60, 10, $detail->product_name, 0, 0, 'C', 1);
@@ -94,6 +96,14 @@ foreach ($ventas_rango as $v) {
 	$fpdf->Cell(30, 10, $detail->uni_price * $detail->quantity, 0, 0, 'C', 1); */
 	$fpdf->Ln();
 }
+$fpdf->Ln();
+$fpdf->SetFont('Arial', 'B', 16);
+$fpdf->SetX(150);
+$fpdf->Write(0, 'TOTAL: ');
+$totalEnPesos = number_format($total, 0, '', '.');
+$fpdf->SetFont('Arial', '', 16);
+$fpdf->Write(0, "$" . $totalEnPesos); 
+
 /* $fpdf->Ln();
 $fpdf->Ln();
 $fpdf->SetFont('Arial', 'B', 16);
