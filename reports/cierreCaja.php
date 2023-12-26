@@ -10,6 +10,8 @@ $venta = new Venta();
 $cierre = $venta->cierreCaja($var_session);
 
 
+
+
 class pdf extends FPDF
 {
 	public function header()
@@ -69,22 +71,32 @@ $fpdf->Ln();
 $fpdf->SetFont('Arial', '', 9);
 $fpdf->SetTextColor(255, 255, 255);
 $fpdf->SetFillColor(57, 38, 107);
-$fpdf->Cell(30, 10, 'VENTAS', 0, 0, 'C', 1);
-$fpdf->Cell(30, 10, 'INGRESOS', 0, 0, 'C', 1);
-$fpdf->Cell(30, 10, 'GASTOS', 0, 0, 'C', 1);
+$fpdf->Cell(25, 10, 'EFECTIVO', 0, 0, 'C', 1);
+$fpdf->Cell(25, 10, 'NEQUI', 0, 0, 'C', 1);
+$fpdf->Cell(25, 10, 'DAVIPLATA', 0, 0, 'C', 1);
+$fpdf->Cell(25, 10, 'OTROS', 0, 0, 'C', 1);
+$fpdf->Cell(25, 10, 'INGRESOS', 0, 0, 'C', 1);
+$fpdf->Cell(25, 10, 'GASTOS', 0, 0, 'C', 1);
 $fpdf->Cell(60, 10, 'DISPONIBLE (EFECTIVO - GASTOS)', 0, 0, 'C', 1);
 $fpdf->Ln();
 
 $fpdf->SetTextColor(0, 0, 0);
 $fpdf->SetFillColor(255, 255, 255);
-foreach ($cierre as $v) {
-	$fpdf->Cell(30, 10, '$ ' . number_format($v->ventas, 0, '.', ','), 0, 0, 'C', 1);
-	$fpdf->Cell(30, 10, '$ ' . number_format($v->ingresos, 0, '.', ','), 0, 0, 'C', 1);
-	$fpdf->Cell(30, 10, '$ ' . number_format($v->gastos, 0, '.', ','), 0, 0, 'C', 1);
-	$fpdf->Cell(60, 10, '$ ' . number_format(($v->ventas) - ($v->ingresos + $v->gastos), 0, '.', ','), 0, 0, 'C', 1);
 
+/* foreach ($cierre as $v) { */
+	/* $fpdf->Cell(30, 10, '$ ' . number_format($v, 0, '.', ','), 0, 0, 'C', 1);
+	$fpdf->Cell(30, 10, '$ ' . number_format($v, 0, '.', ','), 0, 0, 'C', 1);
+	$fpdf->Cell(30, 10, '$ ' . number_format($v, 0, '.', ','), 0, 0, 'C', 1);
+	$fpdf->Cell(60, 10, '$ ' . number_format(($v), 0, '.', ','), 0, 0, 'C', 1); */
+	$fpdf->Cell(25, 10, '$ ' .$cierre['ventas']->efectivo, 0, 0, 'C', 1);
+	$fpdf->Cell(25, 10, '$ ' .$cierre['ventas']->nequi, 0, 0, 'C', 1);
+	$fpdf->Cell(25, 10, '$ ' .$cierre['ventas']->daviplata, 0, 0, 'C', 1);
+	$fpdf->Cell(25, 10, '$ ' .$cierre['ventas']->otros, 0, 0, 'C', 1);
+	$fpdf->Cell(25, 10, '$ ' .$cierre['ingresos'], 0, 0, 'C', 1);
+	$fpdf->Cell(25, 10, '$ ' .$cierre['gastos'], 0, 0, 'C', 1);
+	$fpdf->Cell(60, 10, '$ ' .($cierre['ventas']->efectivo - $cierre['gastos']), 0, 0, 'C', 1);
 	$fpdf->Ln();
-}
+/* } */
 
 
 $fpdf->OutPut();

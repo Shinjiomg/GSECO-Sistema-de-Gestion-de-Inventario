@@ -215,12 +215,42 @@ class Venta extends Database
 	public function cierreCaja($id_usuario){
 		$currentDate = date('Y-m-d');
 
-		$query = $this->pdo->query("SELECT (SELECT COALESCE(sum(total), 0) from venta where DATE(fecha) = '{$currentDate}' AND Usuario_id_usuario = '{$id_usuario}') as ventas,
+	/* 	$query = $this->pdo->query("SELECT (SELECT COALESCE(sum(total), 0) from venta where DATE(fecha) = '{$currentDate}' AND Usuario_id_usuario = '{$id_usuario}') as ventas,
 		(SELECT COALESCE(sum(total), 0) from ingreso where DATE(fecha) = '{$currentDate}' AND Usuario_id_usuario = '{$id_usuario}' ) as ingresos,
 		(SELECT COALESCE(sum(total), 0) from gastos where DATE(fecha) = '{$currentDate}' AND id_usuario = '{$id_usuario}' ) as gastos");
+ 	*/
 
+		 /* ingresos */
+        $query = $this->pdo->query("SELECT COALESCE(sum(total), 0) from ingreso where DATE(fecha) = '{$currentDate}' AND Usuario_id_usuario = '{$id_usuario}'");
+        $total_ingresos = $query->fetchColumn();
 
-		return $query->fetchAll();
+		/* gastos */
+		$query = $this->pdo->query("SELECT COALESCE(SUM(total), 0) FROM gastos WHERE DATE(fecha) = '{$currentDate}' AND id_usuario = '{$id_usuario}'");
+        $total_gastos = $query->fetchColumn();
+
+		/* ventas */
+		$query = $this->pdo->query("SELECT
+			COALESCE(SUM(CASE WHEN dv.metodo_pago = 2 THEN dv.cantidad * dv.precio ELSE 0 END), 0) AS nequi,
+			COALESCE(SUM(CASE WHEN dv.metodo_pago = 1 THEN dv.cantidad * dv.precio ELSE 0 END), 0) AS efectivo,	
+			COALESCE(SUM(CASE WHEN dv.metodo_pago = 3 THEN dv.cantidad * dv.precio ELSE 0 END), 0) AS daviplata,	
+			COALESCE(SUM(CASE WHEN dv.metodo_pago = 4 THEN dv.cantidad * dv.precio ELSE 0 END), 0) AS otros,	
+			
+			mp.nombre
+			FROM venta v INNER JOIN detalle_venta dv ON v.id_venta = dv.Venta_id_venta 
+			INNER JOIN metodos_pago mp ON mp.id_metodo_pago = dv.metodo_pago
+			WHERE v.Usuario_id_usuario = {$id_usuario} AND DATE(v.fecha) = '{$currentDate}'");
+
+		$total_ventas = $query->fetch();
+
+		$resultados = array(
+			'ingresos' => $total_ingresos,
+			'gastos' => $total_gastos,
+			'ventas' => $total_ventas
+			
+		);
+
+        return $resultados;
+ 
 
 	}
 }
