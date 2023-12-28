@@ -305,29 +305,27 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                             <?php } ?>
                             <div class="row pb-2 p-3">
                                 <div class="col-xl-4 d-flex align-items-center text-uppercase">
-                                    <h4 class="font-weight-bolder">Productos</h4>
+                                    <h4 class="font-weight-bolder">Usuarios</h4>
                                 </div>
                                 <div class="col-xl-8 text-end">
                                     <div class="d-flex justify-content-end mb-2">
                                         <div>
-                                            <button type="button" onclick="printProductsPDF('data_table_products_export')"
+                                           <!--  <button type="button" onclick="printProductsPDF('data_table_products_export')"
                                                 class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i
-                                                    class="fas fa-file-pdf"></i> EXPORTAR A PDF</button>
+                                                    class="fas fa-file-pdf"></i> EXPORTAR A PDF</button> -->
                                             <button class="btn mb-0 text-uppercase" data-bs-toggle="modal"
                                                 style="background: #5e72e4; color:white"
-                                                data-bs-target="#modal-form-product">
-                                                <i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Crear producto</button>
-
-
+                                                data-bs-target="#modal-form-users">
+                                                <i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Crear usuario</button>
                                         </div>
                                     </div>
-                                    <div class="modal fade" id="modal-form-product" tabindex="999999"
+                                    <div class="modal fade" id="modal-form-users" tabindex="999999"
                                         style="z-index: 9999999" role="dialog" aria-labelledby="modal-form"
                                         aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title text-uppercase font-weight-bold">Crear producto
+                                                    <h4 class="modal-title text-uppercase font-weight-bold">Crear usuario
                                                     </h4>
                                                     <button type="button" class="btn bg-gradient-danger"
                                                         data-bs-dismiss="modal">X</button>
@@ -339,57 +337,50 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                                                             <form role="form text-left">
                                                                 <div class="form-group">
                                                                     <div class="row">
-                                                                        <div class="col-xl-9">
+                                                                        <div class="col-xl-6">
                                                                             <label for=""
-                                                                                class="col-form-label text-uppercase">Nombre
-                                                                                del producto</label>
-                                                                            <input id="product_name" type="text"
-                                                                                placeholder="Ingresa el nombre del producto"
+                                                                                class="col-form-label text-uppercase">Nombres</label>
+                                                                            <input id="user_name" type="text"
+                                                                                placeholder="Nombres"
                                                                                 class="form-control" />
                                                                         </div>
-                                                                        <div class="col-xl-3">
+                                                                        <div class="col-xl-6">
                                                                             <label for=""
-                                                                                class="col-form-label text-uppercase">Cantidad</label>
-                                                                            <input class="form-control" type="number"
-                                                                                id="product_stock"
-                                                                                placeholder="Ingresa la cantidad">
+                                                                                class="col-form-label text-uppercase">Apellidos</label>
+                                                                            <input class="form-control" type="text"
+                                                                                id="user_last_name"
+                                                                                placeholder="Apellidos">
+                                                                        </div>
+                                                                        <div class="col-xl-6">
+                                                                            <label for=""
+                                                                                class="col-form-label text-uppercase">Tipo de documento</label>
+                                                                            <input class="form-control" type="text"
+                                                                                id="user_doc_type"
+                                                                                placeholder="Tipo de documento">
+                                                                        </div>
+                                                                        <div class="col-xl-6">
+                                                                            <label for=""
+                                                                                class="col-form-label text-uppercase">Nº documento</label>
+                                                                            <input class="form-control" type="text"
+                                                                                id="num_doc"
+                                                                                placeholder="Nº documento">
+                                                                        </div>
+                                                                        <div class="col-xl-6">
+                                                                            <label for=""
+                                                                                class="col-form-label text-uppercase">Correo</label>
+                                                                            <input class="form-control" type="text"
+                                                                                id="email"
+                                                                                placeholder="Correo">
+                                                                        </div>
+                                                                        <div class="col-xl-6">
+                                                                            <label for=""
+                                                                                class="col-form-label text-uppercase">Password</label>
+                                                                            <input class="form-control" type="text"
+                                                                                id="password"
+                                                                                placeholder="Password">
                                                                         </div>
                                                                     </div>
-                                                                    <div class="row">
-                                                                        <div class="col-xl-4">
-                                                                            <label for=""
-                                                                                class="col-form-label text-uppercase">Valor
-                                                                                unitario</label>
-                                                                            <input class="form-control" type="number"
-                                                                                id="product_price"
-                                                                                placeholder="Ingresa el valor del producto"
-                                                                                oninput="validarCantidad(this)">
-                                                                        </div>
-                                                                        <div class="col-xl-4">
-                                                                            <label for=""
-                                                                                class="col-form-label text-uppercase">Stock
-                                                                                máximo</label>
-                                                                            <input class="form-control" type="number"
-                                                                                id="stock_maximo"
-                                                                                placeholder="Ingresa el stock máximo del producto"
-                                                                                oninput="validarCantidad(this)">
-                                                                        </div>
-                                                                        <div class="col-xl-4">
-                                                                            <label for=""
-                                                                                class="col-form-label text-uppercase">Categoría</label>
-                                                                            <select class="form-control"
-                                                                                name="choices-button" id="categories_select"
-                                                                                placeholder="Departure">
-                                                                                <?php foreach ($categorias as $c) { ?>
-                                                                                    <option
-                                                                                        value="<?php echo $c->id_categoria ?>"
-                                                                                        selected="true">
-                                                                                        <?php echo $c->nombre ?>
-                                                                                    </option>
-                                                                                <?php } ?>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
+                                                                    
                                                                     <button type="button" id="confirmButton"
                                                                         onclick="saveProduct()"
                                                                         class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
