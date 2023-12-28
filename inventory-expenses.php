@@ -41,7 +41,9 @@ $categoriaGastos = new CategoriaGastos();
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -53,9 +55,12 @@ $categoriaGastos = new CategoriaGastos();
   background-position: center !important;
   background-repeat: no-repeat !important;">></div>
     <!-- sidebar -->
-    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
                 <img src="./img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">GSECO</span>
@@ -63,13 +68,14 @@ $categoriaGastos = new CategoriaGastos();
         </div>
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-        <ul class="navbar-nav">
+            <ul class="navbar-nav">
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">inventario</h6>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
@@ -78,7 +84,8 @@ $categoriaGastos = new CategoriaGastos();
                 <?php if ($rol == 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="inventory.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">gestionar inventario</span>
@@ -91,7 +98,8 @@ $categoriaGastos = new CategoriaGastos();
                 <?php if ($rol === 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="sales.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
@@ -100,19 +108,35 @@ $categoriaGastos = new CategoriaGastos();
                 <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link" href="bills.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
                     </a>
                 </li>
+                <?php if ($rol === 1) { ?>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de usuarios</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="users.php">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fa fa-user text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
+                        </a>
+                    </li>
+                <?php } ?>
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">gestión de compras</h6>
                 </li>
                 <?php if ($rol === 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="purchases.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
@@ -121,7 +145,8 @@ $categoriaGastos = new CategoriaGastos();
 
                     <li class="nav-item">
                         <a class="nav-link" href="purchases-bills.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
@@ -131,7 +156,8 @@ $categoriaGastos = new CategoriaGastos();
                 <?php if ($rol == 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link active" href="inventory-expenses.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
@@ -139,8 +165,8 @@ $categoriaGastos = new CategoriaGastos();
                     </li>
                 <?php } ?>
                 <!-- <?php
-                        if ($rol == 1) {
-                        ?>
+                if ($rol == 1) {
+                    ?>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                     </li>
@@ -154,7 +180,7 @@ $categoriaGastos = new CategoriaGastos();
                         </a>
                     </li>
                 <?php
-                        }
+                }
                 ?> -->
                 <?php if ($rol == 1) { ?>
                     <li class="nav-item mt-3">
@@ -162,7 +188,8 @@ $categoriaGastos = new CategoriaGastos();
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="gastos_operacionales.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos operacionales</span>
@@ -170,7 +197,8 @@ $categoriaGastos = new CategoriaGastos();
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="balance.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
@@ -178,10 +206,12 @@ $categoriaGastos = new CategoriaGastos();
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="gastos_no_operacionales.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos no operacionales</span>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos no
+                                operacionales</span>
                         </a>
                     </li>
                 <?php } ?>
@@ -190,7 +220,8 @@ $categoriaGastos = new CategoriaGastos();
     </aside>
     <main class="main-content">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+            data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -227,13 +258,16 @@ $categoriaGastos = new CategoriaGastos();
         <div class="container-fluid">
             <div class="row mt-1">
                 <div class="col-xl-6 text-end mb-2">
-                    <button id="nuevo_gasto" style="background: #252850; box-shadow: 4px 4px 8px #303030; color:white; height: 50px !important" class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
+                    <button id="nuevo_gasto"
+                        style="background: #252850; box-shadow: 4px 4px 8px #303030; color:white; height: 50px !important"
+                        class="btn mb-0 me-3 btn-md d-flex align-items-center justify-content-center text-uppercase">
                         <i class="fas fa-file-pdf"></i>&nbsp;&nbsp;
                         Nuevo Gasto
                     </button>
                 </div>
                 <div class="col-xl-6 text-end mb-2">
-                    <input type="text" id="daterange" name="daterange" style="height: 50px !important; width: auto; box-shadow: 4px 4px 8px #303030;" />
+                    <input type="text" id="daterange" name="daterange"
+                        style="height: 50px !important; width: auto; box-shadow: 4px 4px 8px #303030;" />
                 </div>
             </div>
         </div>
@@ -241,7 +275,8 @@ $categoriaGastos = new CategoriaGastos();
             <div class="row mt-0 mb-4" id="contenedor-gastos">
             </div>
         </div>
-        <div class="modal fade" id="modal-gastos" tabindex="999999" style="z-index: 9999999" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+        <div class="modal fade" id="modal-gastos" tabindex="999999" style="z-index: 9999999" role="dialog"
+            aria-labelledby="modal-form" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -257,20 +292,24 @@ $categoriaGastos = new CategoriaGastos();
                                         <div class="row">
                                             <div class="col-xl-9">
 
-                                                <label for="" class="col-form-label text-uppercase">Descripción del Gasto
+                                                <label for="" class="col-form-label text-uppercase">Descripción del
+                                                    Gasto
                                                 </label>
-                                                <input id="description_bills" type="text" placeholder="Ingresa el gasto" class="form-control" />
+                                                <input id="description_bills" type="text" placeholder="Ingresa el gasto"
+                                                    class="form-control" />
                                             </div>
                                             <div class="col-xl-3">
                                                 <label for="" class="col-form-label text-uppercase">Total</label>
-                                                <input id="total_bills" type="text" placeholder="Total" class="form-control" />
+                                                <input id="total_bills" type="text" placeholder="Total"
+                                                    class="form-control" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xl-12">
                                                 <label for="" class="col-form-label text-uppercase">Categoria
                                                 </label>
-                                                <select class="form-control" name="choices-button" id="categoria_gasto" placeholder="Departure">
+                                                <select class="form-control" name="choices-button" id="categoria_gasto"
+                                                    placeholder="Departure">
                                                     <?php foreach ($categoriaGastos->all() as $cg) { ?>
                                                         <option value="<?php echo $cg->id ?>" selected="true">
                                                             <?php echo $cg->descripcion ?>
@@ -282,7 +321,9 @@ $categoriaGastos = new CategoriaGastos();
                                         </div>
 
                                     </div>
-                                    <button type="button" id="confirmButton" onclick="guardar()" class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase" style="background: #5e72e4; color:white">guardar
+                                    <button type="button" id="confirmButton" onclick="guardar()"
+                                        class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
+                                        style="background: #5e72e4; color:white">guardar
                                     </button>
                             </div>
                             </form>
@@ -402,7 +443,7 @@ $categoriaGastos = new CategoriaGastos();
         });
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             // Obtiene la fecha actual
             const currentDate = new Date();
             const formattedDate = currentDate.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
@@ -419,10 +460,10 @@ $categoriaGastos = new CategoriaGastos();
     <script>
         let rangeDates;
 
-        $(function() {
+        $(function () {
             $('input[name="daterange"]').daterangepicker({
                 opens: 'left'
-            }, function(start, end, label) {
+            }, function (start, end, label) {
                 rangeDates = {
                     start: start.format('YYYY-MM-DD'),
                     end: end.format('YYYY-MM-DD')
@@ -438,7 +479,7 @@ $categoriaGastos = new CategoriaGastos();
                     cache: false,
                     contentType: false,
                     processData: false,
-                    success: function(response) {
+                    success: function (response) {
                         gastos = JSON.parse(response);
 
                         let contenedorGastos = document.getElementById('contenedor-gastos');

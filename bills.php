@@ -33,7 +33,9 @@ $transacciones = $venta->transacciones($idUsuario);
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="g-sidenav-show" style="background-color: #009ad5;">
@@ -42,9 +44,12 @@ $transacciones = $venta->transacciones($idUsuario);
   background-position: center !important;
   background-repeat: no-repeat !important;">></div>
     <!-- sidebar -->
-    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
                 <img src="./img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">GSECO</span>
@@ -58,7 +63,8 @@ $transacciones = $venta->transacciones($idUsuario);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
@@ -67,7 +73,8 @@ $transacciones = $venta->transacciones($idUsuario);
                 <?php if ($rol == 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="inventory.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">gestionar inventario</span>
@@ -80,7 +87,8 @@ $transacciones = $venta->transacciones($idUsuario);
                 <?php if ($rol === 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="sales.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
@@ -89,19 +97,35 @@ $transacciones = $venta->transacciones($idUsuario);
                 <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link active" href="bills.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
                     </a>
                 </li>
+                <?php if ($rol === 1) { ?>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de usuarios</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="users.php">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fa fa-user text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
+                        </a>
+                    </li>
+                <?php } ?>
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">gestión de compras</h6>
                 </li>
                 <?php if ($rol === 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="purchases.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
@@ -110,7 +134,8 @@ $transacciones = $venta->transacciones($idUsuario);
 
                     <li class="nav-item">
                         <a class="nav-link" href="purchases-bills.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
@@ -120,7 +145,8 @@ $transacciones = $venta->transacciones($idUsuario);
                 <?php if ($rol == 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="inventory-expenses.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
@@ -128,8 +154,8 @@ $transacciones = $venta->transacciones($idUsuario);
                     </li>
                 <?php } ?>
                 <!-- <?php
-                        if ($rol == 1) {
-                        ?>
+                if ($rol == 1) {
+                    ?>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                     </li>
@@ -143,7 +169,7 @@ $transacciones = $venta->transacciones($idUsuario);
                         </a>
                     </li>
                 <?php
-                        }
+                }
                 ?> -->
                 <?php if ($rol == 1) { ?>
                     <li class="nav-item mt-3">
@@ -151,7 +177,8 @@ $transacciones = $venta->transacciones($idUsuario);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="gastos_operacionales.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos operacionales</span>
@@ -159,7 +186,8 @@ $transacciones = $venta->transacciones($idUsuario);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="balance.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
@@ -167,10 +195,12 @@ $transacciones = $venta->transacciones($idUsuario);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="gastos_no_operacionales.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos no operacionales</span>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos no
+                                operacionales</span>
                         </a>
                     </li>
                 <?php } ?>
@@ -179,7 +209,8 @@ $transacciones = $venta->transacciones($idUsuario);
     </aside>
     <main class="main-content">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+            data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -236,13 +267,17 @@ $transacciones = $venta->transacciones($idUsuario);
                             });
 
                             // Iterar sobre las facturas ordenadas
-                            foreach ($facturas as $f) {  ?>
+                            foreach ($facturas as $f) { ?>
                                 <ul class="list-group">
-                                    <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <li
+                                        class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                         <div class="d-flex align-items-center">
-                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i class="fas fa-file-pdf"></i></a>
+                                            <a onclick="viewPDF(<?php echo $f->id_venta ?>)" target="_blank"
+                                                class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-md d-flex align-items-center justify-content-center"><i
+                                                    class="fas fa-file-pdf"></i></a>
                                             <div class="d-flex flex-column">
-                                                <h6 class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
+                                                <h6
+                                                    class="mb-1 text-dark font-weight-bold text-md text-uppercase font-weight-bolder">
                                                     <?php echo $f->nombres_productos; ?>
                                                 </h6>
                                                 <span class="text-sm text-uppercase font-weight-bolder">
@@ -251,10 +286,12 @@ $transacciones = $venta->transacciones($idUsuario);
                                             </div>
                                         </div>
                                         <div class="column">
-                                            <div class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
+                                            <div
+                                                class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
                                                 <?php echo $f->tipo_pago; ?>
                                             </div>
-                                            <div class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
+                                            <div
+                                                class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
                                                 + $
                                                 <?php echo number_format($f->total, 0, ',', '.'); ?>
                                             </div>

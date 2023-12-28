@@ -54,7 +54,9 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-dy5PEnU+g4HRQnD6uPXU5d8VU9V9WvSj+G8xRQNgi9l4ebwnzmtv+pW2faa5zjrI9qMGl5VpBaDKk9G1t0Bi9zg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-dy5PEnU+g4HRQnD6uPXU5d8VU9V9WvSj+G8xRQNgi9l4ebwnzmtv+pW2faa5zjrI9qMGl5VpBaDKk9G1t0Bi9zg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -64,9 +66,12 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
   background-position: center !important;
   background-repeat: no-repeat !important;">></div>
     <!-- sidebar -->
-    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <i class="fas fa-times p-3 cursor-pointer text-black opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0 mr-4">
                 <img src="./img/logo.png" class="navbar-brand-img h-100 mr-5" alt="main_logo">
                 <span class="ms-1 font-weight-bold">GSECO</span>
@@ -80,7 +85,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="stats.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Estadísticas</span>
@@ -89,7 +95,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <?php if ($rol == 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="inventory.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">gestionar inventario</span>
@@ -102,7 +109,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <?php if ($rol === 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="sales.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-cart text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Ventas</span>
@@ -111,19 +119,35 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link" href="bills.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Factura de venta</span>
                     </a>
                 </li>
+                <?php if ($rol === 1) { ?>
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de usuarios</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="users.php">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fa fa-user text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Usuarios</span>
+                        </a>
+                    </li>
+                <?php } ?>
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">gestión de compras</h6>
                 </li>
                 <?php if ($rol === 1) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="purchases.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder">COMPRAS</span>
@@ -132,7 +156,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
                     <li class="nav-item">
                         <a class="nav-link" href="purchases-bills.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder">FACTURA DE COMPRA</span>
@@ -142,7 +167,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 <?php if ($rol == 2) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="inventory-expenses.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
@@ -150,8 +176,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     </li>
                 <?php } ?>
                 <!-- <?php
-                        if ($rol == 1) {
-                        ?>
+                if ($rol == 1) {
+                    ?>
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administración</h6>
                     </li>
@@ -165,7 +191,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                         </a>
                     </li>
                 <?php
-                        }
+                }
                 ?> -->
                 <?php if ($rol == 1) { ?>
                     <li class="nav-item mt-3">
@@ -173,7 +199,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="gastos_operacionales.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos operacionales</span>
@@ -181,7 +208,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="balance.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Balance</span>
@@ -189,10 +217,12 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="gastos_no_operacionales.php">
-                            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos no operacionales</span>
+                            <span class="nav-link-text ms-1 text-uppercase font-weight-bolder">Gastos no
+                                operacionales</span>
                         </a>
                     </li>
                 <?php } ?>
@@ -201,7 +231,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     </aside>
     <main class="main-content">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+            data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -238,7 +269,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
         <div class="container-fluid py-4">
             <div class="">
-                <input type="text" id="daterange" name="daterange" style="height: 50px !important; width: auto; box-shadow: 4px 4px 8px #303030;" />
+                <input type="text" id="daterange" name="daterange"
+                    style="height: 50px !important; width: auto; box-shadow: 4px 4px 8px #303030;" />
             </div>
 
             <div class="row mt-4">
@@ -247,7 +279,9 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                         <div class="card-header pb-1">
                             <div class="d-flex justify-content-end mb-2">
                                 <div>
-                                    <button type="button" onclick="printProductsPDF('data_table_gastos_operacionales')" class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i class="fas fa-file-pdf"></i> EXPORTAR A PDF</button>
+                                    <button type="button" onclick="printProductsPDF('data_table_gastos_operacionales')"
+                                        class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i
+                                            class="fas fa-file-pdf"></i> EXPORTAR A PDF</button>
                                 </div>
                             </div>
                         </div>
@@ -255,11 +289,14 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                             <table id="table_operacionales" class="table align-items-center">
                                 <thead>
                                     <tr>
-                                        <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                                        <th align="center"
+                                            class="text-center text-uppercase text-black text-sm font-weight-bolder">
                                             Fecha</th>
-                                        <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                                        <th align="center"
+                                            class="text-center text-uppercase text-black text-sm font-weight-bolder">
                                             Descripción</th>
-                                        <th align="center" class="text-center text-uppercase text-black text-sm font-weight-bolder">
+                                        <th align="center"
+                                            class="text-center text-uppercase text-black text-sm font-weight-bolder">
                                             Egreso</th>
                                     </tr>
                                 </thead>
@@ -307,7 +344,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     <!-- Tus archivos JavaScript -->
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             // Obtiene la fecha actual
             const currentDate = new Date();
             const formattedDate = currentDate.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
@@ -340,10 +377,10 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             // Abre una ventana emergente
             window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
         }
-        $(function() {
+        $(function () {
             $('input[name="daterange"]').daterangepicker({
                 opens: 'left'
-            }, function(start, end, label) {
+            }, function (start, end, label) {
                 rangeDates = {
                     start: start.format('YYYY-MM-DD'),
                     end: end.format('YYYY-MM-DD')
@@ -359,7 +396,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     cache: false,
                     contentType: false,
                     processData: false,
-                    success: function(response) {
+                    success: function (response) {
                         let tabla = document.getElementById('table_operacionales');
                         let filas = tabla.getElementsByTagName("tr");
 
@@ -386,7 +423,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                                         g.descripcion,
                                         '$ ' + parseFloat(g.total).toLocaleString('es-CO')
                                     ];
-                                    contenidoCeldas.forEach(function(contenido) {
+                                    contenidoCeldas.forEach(function (contenido) {
                                         var celda = document.createElement("td");
                                         var parrafo = document.createElement("p");
                                         parrafo.innerHTML = contenido;
@@ -405,7 +442,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
 
                     }
                 });
-              
+
                 datos.append('range_dates', JSON.stringify(rangeDates));
                 $.ajax({
                     url: "ajax/balance.ajax.php",
@@ -414,7 +451,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     cache: false,
                     contentType: false,
                     processData: false,
-                    success: function(response) {
+                    success: function (response) {
                         let tabla = document.getElementById('balance_table');
                         let filas = tabla.getElementsByTagName("tr");
 
@@ -525,7 +562,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                             }
 
                             // Itera sobre el contenido de las celdas y crea celdas <td>
-                            contenidoCeldas.forEach(function(contenido) {
+                            contenidoCeldas.forEach(function (contenido) {
                                 var celda = document.createElement("td");
                                 var parrafo = document.createElement("p");
                                 parrafo.innerHTML = contenido;
