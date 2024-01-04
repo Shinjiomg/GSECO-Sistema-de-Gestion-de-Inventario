@@ -153,7 +153,7 @@ $categoriaGastos = new CategoriaGastos();
                         </a>
                     </li>
                 <?php } ?>
-                <?php if ($rol == 2) { ?>
+               
                     <li class="nav-item">
                         <a class="nav-link active" href="inventory-expenses.php">
                             <div
@@ -163,7 +163,7 @@ $categoriaGastos = new CategoriaGastos();
                             <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
                         </a>
                     </li>
-                <?php } ?>
+                
                 <!-- <?php
                 if ($rol == 1) {
                     ?>

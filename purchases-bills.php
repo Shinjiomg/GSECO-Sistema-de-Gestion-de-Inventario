@@ -150,7 +150,7 @@ $compras = new Compras();
                         </a>
                     </li>
                 <?php } ?>
-                <?php if ($rol == 2) { ?>
+               
                     <li class="nav-item">
                         <a class="nav-link" href="inventory-expenses.php">
                             <div
@@ -160,7 +160,7 @@ $compras = new Compras();
                             <span class="nav-link-text ms-1 font-weight-bolder text-uppercase">Registro de gastos</span>
                         </a>
                     </li>
-                <?php } ?>
+                
                 <!-- <?php
                 if ($rol == 1) {
                     ?>
