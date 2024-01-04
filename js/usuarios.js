@@ -31,24 +31,28 @@ function getUsers() {
 
 
 
-function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria) {
-    let newProduct = {
-        nombre,
-        cantidad,
-        precio,
-        stockMaximo,
-        selectCategoria
+function guardarUsuario(nombres, apellidos, tipo_doc, num_doc,  email, password, selected_rol) {
+
+    let newUser = {
+        nombres,
+        apellidos,
+        tipo_doc,
+        num_doc,
+        email,
+        password,
+        selected_rol
     }
 
     let datos = new FormData();
 
-    datos.append('new_product', JSON.stringify(newProduct));
+    datos.append('new_user', JSON.stringify(newUser));
 
-    let category = document.getElementById('categories_select');
+    let rol = document.getElementById('rol_selected');
 
-    let selectedText = category.options[category.selectedIndex].text;
+    let selectedText = rol.options[rol.selectedIndex].text;
+
     $.ajax({
-        url: "ajax/productos.ajax.php",
+        url: "ajax/usuarios.ajax.php",
         method: "POST",
         data: datos,
         cache: false,
@@ -56,18 +60,18 @@ function guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria)
         processData: false,
         success: function (response) {
             Swal.fire({
-                title: "Generar Producto",
-                text: "El producto se guardó correctamente",
+                title: "Generar Usuario",
+                text: "El usuario se guardó correctamente",
                 icon: "success",
                 timer: 1500
             });
-            let newProduct = JSON.parse(response);
+            let newUser = JSON.parse(response);
             users
             
-            .push({ ...newProduct, categoria: selectedText })
+            .push({ ...newUser, rol_id_rol: selectedText })
 
             renderTable();
-            $('#modal-form-product').modal('hide');
+            $('#modal-form-users').modal('hide');
         }
     });
 }
@@ -165,17 +169,27 @@ function renderUsers(data) {
 
 }
 
-function saveProduct() {
-    let nombre = document.getElementById('product_name').value;
-    let cantidad = document.getElementById('product_stock').value;
-    let precio = document.getElementById('product_price').value;
-    let stockMaximo = document.getElementById('stock_maximo').value;
-    let selectCategoria = document.getElementById('categories_select').value;
-    if (selectedUser) {
+function saveUser() {
+    let nombres = document.getElementById('user_name').value;
+    let apellidos = document.getElementById('user_last_name').value;
+    let tipo_doc = document.getElementById('user_doc_type').value;
+    let num_doc = document.getElementById('num_doc').value;
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+
+    let selected_rol = document.getElementById('rol_selected').value;
+
+   /*  if (selectedUser) {
         saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria);
         return;
-    }
-    guardarProducto(nombre, cantidad, precio, stockMaximo, selectCategoria);
+    } */
+    guardarUsuario(nombres,
+        apellidos,
+        tipo_doc,
+        num_doc,
+        email,
+        password,
+        selected_rol);
 }
 
 function saveEditProduct(nombre, cantidad, precio, stockMaximo, selectCategoria) {

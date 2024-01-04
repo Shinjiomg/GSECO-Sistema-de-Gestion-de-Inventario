@@ -18,12 +18,14 @@ $nw = new Venta();
 $ar = new Articulo();
 $c = new Categoria();
 $gastos = new Gastos();
+$usuarios = new Usuario();
 $categorias = $c->index();
 $ventas = $nw->ventas($_SESSION['id_usuario']);
 $ultimaVenta = $nw->ultimaVenta($_SESSION['id_usuario']);
 $articulos = $ar->index();
 $gastosDiarios = $gastos->gastosDiarios();
 $transacciones = $nw->transacciones($_SESSION['id_usuario']);
+$roles = $usuarios->allroles();
 
 ?>
 <!DOCTYPE html>
@@ -383,12 +385,23 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                                                                         <div class="col-xl-6">
                                                                             <label for=""
                                                                                 class="col-form-label text-uppercase">Rol</label>
+                                                                                <select class="form-control"
+                                                                                name="choices-button" id="rol_selected"
+                                                                                placeholder="Departure">
+                                                                                <?php foreach ($roles as $r) { ?>
+                                                                                    <option
+                                                                                        value="<?php echo $r->id_rol ?>"
+                                                                                    >
+                                                                                        <?php echo $r->nombre ?>
+                                                                                    </option>
+                                                                                <?php } ?>
+                                                                            </select>
                                                                                 
                                                                         </div>
                                                                     </div>
                                                                     
                                                                     <button type="button" id="confirmButton"
-                                                                        onclick="saveProduct()"
+                                                                        onclick="saveUser()"
                                                                         class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
                                                                         style="background: #5e72e4; color:white">guardar
                                                                     </button>

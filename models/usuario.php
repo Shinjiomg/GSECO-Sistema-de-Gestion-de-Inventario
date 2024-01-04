@@ -17,9 +17,35 @@ class Usuario extends Database
 		$query->execute();
 	}
 
-	public function roles(){
+	public function allroles(){
 		$query = $this->pdo->query('SELECT * FROM rol');
 		return $query->fetchAll();
+	}
+
+	public function show($id_usuario)
+	{
+		$query = $this->pdo->query('SELECT * FROM usuario where id_usuario =' . $id_usuario);
+		return $query->fetch();
+	}
+
+	public function store($usuario)
+	{
+
+		$usuario = json_decode($usuario);
+
+		$query = $this->pdo->prepare('INSERT INTO usuario (nombres,apellidos,tipo_documento,num_documento,email,user_password,rol_id_rol) VALUES (:nombres, :apellidos, :tipo_documento, :num_documento, :email, :user_password, :rol_id_rol)');
+		
+
+		$query->bindParam(':nombres', $usuario->nombres);
+		$query->bindParam(':apellidos', $usuario->apellidos);
+		$query->bindParam(':tipo_documento', $usuario->tipo_doc);
+		$query->bindParam(':num_documento', $usuario->num_doc);
+		$query->bindParam(':email', $usuario->email);
+		$query->bindParam(':user_password', $usuario->password);
+		$query->bindParam(':rol_id_rol', $usuario->selected_rol);
+		$query->execute();
+		$lastInsertId = $this->pdo->lastInsertId();
+		return $this->show($lastInsertId);
 	}
 
 	public function logout(){
