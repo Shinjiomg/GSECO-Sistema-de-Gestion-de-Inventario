@@ -12,6 +12,16 @@ class Usuario extends Database
 		return $query->fetchAll();
 	}
 
+	public function destroy($id){
+		$query = $this->pdo->prepare('UPDATE usuario set estado = 0 where id_usuario =' . $id);
+		$query->execute();
+	}
+
+	public function roles(){
+		$query = $this->pdo->query('SELECT * FROM rol');
+		return $query->fetchAll();
+	}
+
 	public function logout(){
 		session_start();
 		session_destroy();

@@ -5,6 +5,7 @@ require('./models/venta.php');
 require('./models/articulo.php');
 require('./models/categoria.php');
 require('./models/gastos.php');
+require('./models/usuario.php');
 
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: index.php");
@@ -379,6 +380,11 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                                                                                 id="password"
                                                                                 placeholder="Password">
                                                                         </div>
+                                                                        <div class="col-xl-6">
+                                                                            <label for=""
+                                                                                class="col-form-label text-uppercase">Rol</label>
+                                                                                
+                                                                        </div>
                                                                     </div>
                                                                     
                                                                     <button type="button" id="confirmButton"
@@ -397,36 +403,24 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                                 </div>
                             </div>
                         </div>
-                        <div id="data_table_products_export" class="table-responsive">
-                            <table class="table align-items-center mb-0" id="data_table">
+                        <div id="data_table_users_export" class="table-responsive">
+                            <table class="table align-items-center mb-0" id="data_table_users">
                                 <thead>
                                     <tr>
                                         <th align="center"
                                             class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                                            Nombre del producto</th>
+                                            Nombres</th>
                                         <th align="center"
                                             class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                                            Precio de venta</th>
+                                            Apellidos</th>
                                         <th align="center"
                                             class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                                            Unidades</th>
+                                            Tipo de documento</th>
                                         <th align="center"
                                             class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                                            Estado</th>
+                                            Email</th>
                                         <th align="center"
                                             class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                                            Categoría</th>
-                                        <th align="center"
-                                            class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                                            Stock máximo</th>
-                                        <th align="center"
-                                            class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                                            Inventario</th>
-                                        <th align="center"
-                                            class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                                        </th>
-                                        <th align="center"
-                                            class="text-center text-uppercase text-black text-xs font-weight-bolder">
                                         </th>
                                     </tr>
                                 </thead>
@@ -438,92 +432,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                     </div>
                 </div>
             <?php } ?>
-            <?php if ($rol === 1) { ?>
-                <div class="col-xl-12 mt-2 mb-2">
-                    <div class="card">
-                        <div class="card-header pb-4">
-                            <div class="row pb-2 p-3">
-                                <div class="col-4 d-flex align-items-center text-uppercase">
-                                    <h4 class="font-weight-bolder">Categorías</h4>
-                                </div>
-                                <div class="col-md-8 text-end">
-                                    <div class="d-flex justify-content-end">
-                                        <div>
-                                            <button onclick="printProductsPDF('categories_table_export')"
-                                                class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"><i
-                                                    class="fas fa-file-pdf"></i> EXPORTAR A PDF</button>
-
-                                            <button class="btn mb-0 text-uppercase" style="background: #5e72e4; color:white"
-                                                data-bs-toggle="modal" data-bs-target="#modal-form-categories">
-                                                <i class="fas fa-plus"></i>&nbsp;&nbsp;Crear categoría</button>
-                                        </div>
-                                    </div>
-                                    <div class="modal fade" id="modal-form-categories" tabindex="1" role="dialog"
-                                        aria-labelledby="modal-form" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title text-uppercase font-weight-bold">Crear categoría
-                                                    </h4>
-                                                    <button type="button" class="btn bg-gradient-danger"
-                                                        data-bs-dismiss="modal">X</button>
-
-                                                </div>
-                                                <div class="modal-body p-0">
-                                                    <div class="card card-plain">
-                                                        <div class="card-body text-start">
-                                                            <form role="form text-center">
-                                                                <div class="row">
-                                                                    <div class="col-xl-12">
-                                                                        <label for=""
-                                                                            class="col-form-label text-uppercase">Nombre de
-                                                                            la categoria</label>
-                                                                        <input id="categoria" type="text"
-                                                                            placeholder="Ingresa el nombre de la categoría"
-                                                                            class="form-control" />
-                                                                    </div>
-                                                                    <div class="text-center">
-                                                                        <button type="button" onClick="guardarCategoria()"
-                                                                            class="btn btn-round btn-lg w-100 mt-4 mb-0 text-uppercase"
-                                                                            style="background: #5e72e4; color:white">Añadir
-                                                                            categoría</button>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-responsive" id="categories_table_export">
-                            <table class="table align-items-center mb-0" id="categories_table">
-                                <thead>
-                                    <tr>
-                                        <th align="center"
-                                            class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                                            Nombre</th>
-                                        <th align="center"
-                                            class="text-center text-uppercase text-black text-sm font-weight-bolder">
-                                            Estado</th>
-                                        <th align="center"
-                                            class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                                        </th>
-                                        <th align="center"
-                                            class="text-center text-uppercase text-black text-xs font-weight-bolder">
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
+          
         </div>
         </div>
 
@@ -550,10 +459,10 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
         </div>
     </div>
 
-    <script src="js/categoria.js"></script>
+  
     <script src="js/login.js"></script>
-    <script src="js/product.js"></script>
-    <script src="js/stats.js"></script>
+    <script src="js/usuarios.js"></script>
+ 
 
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
@@ -562,23 +471,7 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
     <script src="assets/js/plugins/chartjs.min.js"></script>
     <!-- Tus archivos JavaScript -->
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Obtiene la fecha actual
-            const currentDate = new Date();
-            const formattedDate = currentDate.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
 
-            // Calcula la fecha que será exactamente un mes antes
-            const oneMonthAgo = new Date(currentDate);
-            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-            const formattedOneMonthAgo = oneMonthAgo.toLocaleDateString('en-US'); // Formato MM/DD/YYYY (cambiar según el formato deseado)
-
-            // Obtiene el campo de fecha por su nombre y establece la fecha actual y la fecha de un mes antes como valores
-            const dateRangeInput = document.querySelector('input[name="daterange"]');
-            dateRangeInput.value = formattedOneMonthAgo + ' - ' + formattedDate;
-        });
-    </script>
-    <!-- Date picker -->
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -588,221 +481,8 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
-    <script>
-        let rangeDates;
-
-        function viewPDFVentas(id_usuario) {
-            const url = `reports/venta_rango.php?id_usuario=${id_usuario}&fecha_inicio=${rangeDates.start}&fecha_final=${rangeDates.end}`;
-            // Abre una ventana emergente
-            window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
-        }
-        $(function () {
-            $('input[name="daterange"]').daterangepicker({
-                opens: 'left'
-            }, function (start, end, label) {
-                rangeDates = {
-                    start: start.format('YYYY-MM-DD'),
-                    end: end.format('YYYY-MM-DD')
-                }
-                let datos = new FormData();
-                datos.append('range_dates', JSON.stringify(rangeDates));
-                $.ajax({
-                    url: "ajax/ventas.ajax.php",
-                    method: "POST",
-                    data: datos,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        let tabla = document.getElementById('ventas_rango');
-                        ventas = JSON.parse(response);
-
-                        ventas.forEach(v => {
-
-                            let nuevaFila = document.createElement("tr");
-                            nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
-                            var precioVentaFormateado = parseFloat(v.total_venta).toLocaleString('es-CO');
 
 
-                            let contenidoCeldas = [
-                                v.nombres + ' ' + v.apellidos,
-                                "$" + precioVentaFormateado,
-                                `<a class="text-danger font-weight-bold text-md"  onclick="viewPDFVentas( ${v.id_usuario})" data-original-title="Delete user"><i class="fas fa-file-pdf"></i></a>`,
-                            ];
-                            contenidoCeldas.forEach(function (contenido) {
-                                var celda = document.createElement("td");
-                                var parrafo = document.createElement("p");
-                                parrafo.innerHTML = contenido;
-                                celda.appendChild(parrafo);
-                                nuevaFila.appendChild(celda);
-                            });
-                            let tabla = document.getElementById("ventas_rango");
-                            let filas = tabla.getElementsByTagName("tr");
-                            for (var i = filas.length - 1; i > 0; i--) {
-                                tabla.deleteRow(i);
-                            }
-                            // Agrega la nueva fila a la tabla
-                            tabla.querySelector("tbody").appendChild(nuevaFila);
-                        });
-                    }
-                });
-
-            });
-        });
-    </script>
-    <script>
-        function renderTable() {
-            let tabla = document.getElementById("data_table");
-            let filas = tabla.getElementsByTagName("tr");
-            for (var i = filas.length - 1; i > 0; i--) {
-                tabla.deleteRow(i);
-            }
-            products.forEach(pr => {
-                let nuevaFila = document.createElement("tr");
-                nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
-                var precioVentaFormateado = parseFloat(pr.precio_venta).toLocaleString('es-CO');
-                // Define el contenido de cada celda
-                let contenidoCeldas = [
-                    pr.nombre,
-                    "$" + precioVentaFormateado,
-                    pr.stock,
-                    (pr.stock > 0 && pr.estado === 1) ? '<span class="badge badge-sm bg-gradient-success">Stock disponible</span>' : (pr.estado === 0) ? '<span class="badge badge-sm bg-gradient-danger">Stock no disponible</span>' : '<span class="badge badge-sm bg-gradient-warning">Stock agotado</span>',
-                    pr.categoria,
-                    pr.stock_deseado,
-                    `<div class="d-flex align-items-center justify-content-center">
-            <span class="me-2 text-xs font-weight-bold">
-             ${((pr.stock / pr.stock_deseado) * 100).toFixed(1) + '%'}
-            </span>
-            <div class="progress">
-                ${((pr.stock / pr.stock_deseado) * 100) <= 40 ?
-                        `<div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>` :
-                        (((pr.stock / pr.stock_deseado) * 100) >= 40 && ((pr.stock / pr.stock_deseado) * 100) <= 60) ?
-                            `<div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>` :
-                            `<div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${((pr.stock / pr.stock_deseado) * 100).toFixed(1)}%"></div>`
-                    }
-            </div>
-          </div>`,
-                    ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs" onclick="editProduct(${pr.id_articulo})"><i class="fas fa-edit" style='font-size:24px'></i></a>`,
-                    ` <a data-bs-toggle="tooltip" title="Borrar" class="text-danger font-weight-bold text-xs"   onclick="eliminarProducto(${pr.id_articulo})"><i class="fas fa-trash" style='font-size:24px'></i></a>`
-                ];
-                // Itera sobre el contenido de las celdas y crea celdas <td>
-                contenidoCeldas.forEach(function (contenido) {
-                    var celda = document.createElement("td");
-                    var parrafo = document.createElement("p");
-                    parrafo.innerHTML = contenido;
-                    celda.appendChild(parrafo);
-                    nuevaFila.appendChild(celda);
-                });
-                // Agrega la nueva fila a la tabla
-                tabla.querySelector("tbody").appendChild(nuevaFila);
-            });
-            if ($.fn.DataTable.isDataTable('#data_table')) {
-                $('#data_table').DataTable().destroy();
-            }
-            $('#data_table').DataTable({
-                dom: 'Bfrtip',
-                paging: true, // Enable pagination
-                searching: true, // Enable search functionality
-                buttons: [{
-                    extend: 'excel',
-                    text: '<span class="fas fa-file-excel" aria-hidden="true"></span> EXPORTAR A EXCEL',
-                    exportOptions: {
-                        columns: ':visible'
-                    },
-                    attr: {
-                        id: 'exportExcelBtn' // Asigna el id al botón
-                    }
-                }],
-                language: {
-                    paginate: {
-                        first: 'Primero',
-                        last: 'Último',
-                        next: 'Siguiente',
-                        previous: 'Anterior'
-                    },
-                    search: 'Buscar:',
-                    info: 'Mostrando _START_ a _END_ de _TOTAL_ entradas',
-                    infoEmpty: 'Mostrando 0 a 0 de 0 entradas',
-                    infoFiltered: '(filtrado de _MAX_ entradas totales)',
-                    lengthMenu: 'Mostrar _MENU_ entradas por página',
-                    zeroRecords: 'No se encontraron resultados',
-                    emptyTable: 'No hay datos disponibles en la tabla'
-                }
-            });
-        }
-    </script>
-    <script>
-        function renderTableCategories() {
-            let tabla = document.getElementById("categories_table");
-
-            let filas = tabla.getElementsByTagName("tr");
-
-
-            for (var i = filas.length - 1; i > 0; i--) {
-                tabla.deleteRow(i);
-            }
-
-            categories.forEach(c => {
-
-                let nuevaFila = document.createElement("tr");
-                nuevaFila.classList.add('text-center', 'text-uppercase', 'text-black', 'text-xs', 'font-weight-bolder');
-
-                // Define el contenido de cada celda
-                let contenidoCeldas = [
-                    c.nombre,
-                    c.estado === 1 ? '<span class="badge badge-sm bg-gradient-success">Stock disponible</span>' : '<span class="badge badge-sm bg-gradient-danger">Stock no disponible</span>',
-                    ` <a data-bs-toggle="tooltip" title="Editar" class="text-primary font-weight-bold text-xs"  onclick="editCategoria(${c.id_categoria})" ><i class="fas fa-edit" style='font-size:24px'></i></a>`,
-                    `<a data-bs-toggle="tooltip" onclick='eliminarCategoria(${c.id_categoria})' title="Borrar" class="text-danger font-weight-bold text-xs"><i class="fas fa-trash" style='font-size:24px'></i></a>`
-                ];
-
-                // Itera sobre el contenido de las celdas y crea celdas <td>
-                contenidoCeldas.forEach(function (contenido) {
-                    var celda = document.createElement("td");
-                    var parrafo = document.createElement("p");
-                    parrafo.innerHTML = contenido;
-                    celda.appendChild(parrafo);
-                    nuevaFila.appendChild(celda);
-                });
-
-                // Agrega la nueva fila a la tabla
-                tabla.querySelector("tbody").appendChild(nuevaFila);
-
-            });
-            if ($.fn.DataTable.isDataTable('#categories_table')) {
-                $('#categories_table').DataTable().destroy();
-            }
-            $('#categories_table').DataTable({
-                dom: 'Bfrtip',
-                paging: true, // Enable pagination
-                searching: true, // Enable search functionality
-                buttons: [{
-                    extend: 'excel',
-                    text: '<span class="fas fa-file-excel" aria-hidden="true"></span> EXPORTAR A EXCEL',
-                    exportOptions: {
-                        columns: ':visible'
-                    },
-                    attr: {
-                        id: 'export' // Asigna el id al botón
-                    }
-                }],
-                language: {
-                    paginate: {
-                        first: 'Primero',
-                        last: 'Último',
-                        next: 'Siguiente',
-                        previous: 'Anterior'
-                    },
-                    search: 'Buscar:',
-                    info: 'Mostrando _START_ a _END_ de _TOTAL_ entradas',
-                    infoEmpty: 'Mostrando 0 a 0 de 0 entradas',
-                    infoFiltered: '(filtrado de _MAX_ entradas totales)',
-                    lengthMenu: 'Mostrar _MENU_ entradas por página',
-                    zeroRecords: 'No se encontraron resultados',
-                    emptyTable: 'No hay datos disponibles en la tabla'
-                }
-            });
-        }
-    </script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="./assets/js/argon-dashboard.js"></script>
 </body>
