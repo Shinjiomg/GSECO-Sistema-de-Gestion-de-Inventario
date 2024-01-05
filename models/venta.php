@@ -204,7 +204,7 @@ class Venta extends Database
 			INNER JOIN usuario ON venta.Usuario_id_usuario = usuario.id_usuario
 			INNER JOIN detalle_venta ON venta.id_venta = detalle_venta.Venta_id_venta
 			INNER JOIN articulo ON articulo.id_articulo = detalle_venta.Articulo_id_articulo
-			WHERE DATE(venta.fecha) BETWEEN '{$fecha_inicio}' AND '{$fecha_final}' GROUP BY articulo.nombre");
+			WHERE DATE(venta.fecha) BETWEEN '{$fecha_inicio}' AND '{$fecha_final}' GROUP BY usuario.id_usuario, articulo.nombre");
 			
 			return $query->fetchAll();
 
