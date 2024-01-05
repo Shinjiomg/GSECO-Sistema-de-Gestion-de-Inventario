@@ -598,6 +598,13 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
           success: function(response) {
             let tabla = document.getElementById('ventas_rango');
             ventas = JSON.parse(response);
+            console.log(response);
+
+            
+              let filas = tabla.getElementsByTagName("tr");
+              for (var i = filas.length - 1; i > 0; i--) {
+                tabla.deleteRow(i);
+              }
 
             ventas.forEach(v => {
 
@@ -618,13 +625,9 @@ $transacciones = $nw->transacciones($_SESSION['id_usuario']);
                 celda.appendChild(parrafo);
                 nuevaFila.appendChild(celda);
               });
-              let tabla = document.getElementById("ventas_rango");
-              let filas = tabla.getElementsByTagName("tr");
-              for (var i = filas.length - 1; i > 0; i--) {
-                tabla.deleteRow(i);
-              }
-              // Agrega la nueva fila a la tabla
               tabla.querySelector("tbody").appendChild(nuevaFila);
+              
+              // Agrega la nueva fila a la tabla
             });
           }
         });
