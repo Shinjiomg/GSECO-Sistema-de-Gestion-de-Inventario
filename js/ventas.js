@@ -235,6 +235,7 @@ function addProductTable(pr) {
         (art) => art.id_articulo === pr.id_articulo
     );
     let title = document.querySelector('#titleModal');
+    let cantidad = document.querySelector('#productQuantity');
 
     if (rs?.length) {
         Swal.fire({
@@ -249,20 +250,10 @@ function addProductTable(pr) {
         selectedProduct = pr;
 
         $('#modal-form').modal('show');
+
         title.textContent = pr.nombre;
+        cantidad.value = 1;
 
-        let cant = document.getElementById('productQuantity');
-
-        cant.addEventListener('keypress', function (event) {
-            // Verifica si la tecla presionada es 'Enter' (cuyo código es 13)
-            if (event.key === 'Enter') {
-                // Evita que el formulario se envíe (si está dentro de un formulario)
-                event.preventDefault();
-
-                // Llama a la función que deseas ejecutar al presionar 'Enter'
-                confirmQuantity();
-            }
-        });
     }
     let stock = document.getElementById('stock');
     stock.textContent = selectedProduct.stock + ' productos';
@@ -278,8 +269,9 @@ function renderSumTotal(value) {
 function confirmQuantity() {
     const quantityInput = document.getElementById('productQuantity');
     const quantity = parseInt(quantityInput.value);
-
+   
     const metodo_pago = document.getElementById('metodos_pagos');
+    
     const indiceSeleccionado = metodo_pago.selectedIndex;
     if (!isNaN(quantity) && quantity > 0) {
         const rs = products.filter(
@@ -291,6 +283,9 @@ function confirmQuantity() {
             prActualizado.cantidad = quantity;
             prActualizado.metodo_pago_id = metodo_pago.value;
             prActualizado.metodo_pago_text = metodo_pago.options[indiceSeleccionado].text;
+           
+            metodo_pago.selectedIndex = 0;
+            quantityInput.value = 1;
             $('#modal-form').modal('hide');
             Swal.fire({
                 title: "Editar producto",
@@ -307,14 +302,18 @@ function confirmQuantity() {
                 metodo_pago_id: metodo_pago.value,
                 metodo_pago_text: metodo_pago.options[indiceSeleccionado].text
             });
+            metodo_pago.selectedIndex = 0;
+            quantityInput.value = 1;
             Swal.fire({
                 title: "Agregar producto",
                 text: "El producto fue agregado al carrito de compras",
                 icon: "success",
                 timer: 1500
             });
+            
+    
         }
-        quantityInput.value = 0;
+       
         renderTable();
 
     } else {
@@ -379,7 +378,7 @@ function renderTable() {
         renderSumTotal(sumaTotales)
 
         $('#modal-form').modal('hide');
-        document.getElementById('productQuantity').value = '';
+        document.getElementById('productQuantity').value = 1;
     })
     const modalFormChange = document.getElementById('modal-form-change');
     modalFormChange.dataset.sumaEfectivo = sumaEfectivo;
@@ -440,9 +439,12 @@ function editProduct(id_articulo) {
     stock.textContent = selectedProduct.stock + ' productos';
     let cantidadValue = +selectedProduct.cantidad;
 
-    if (!cantidad.value) {
+    let pago = document.getElementById('metodos_pagos');
+    pago.selectedIndex = selectedProduct.metodo_pago_id - 1;
+
+    /* if (!cantidad.value) { */
         cantidad.value = cantidadValue;
-    }
+    /* } */
 
     // Agrega una validación adicional
     cantidad.addEventListener('input', function () {
@@ -503,5 +505,20 @@ function generarCierre() {
 
 const confirmButton = document.getElementById('confirmButton');
 confirmButton.addEventListener('click', confirmQuantity);
+
+let cant = document.getElementById('productQuantity');
+
+/* confirmQuantity(); */
+
+cant.addEventListener('keypress', function (event) {
+    // Verifica si la tecla presionada es 'Enter' (cuyo código es 13)
+    if (event.key === 'Enter') {
+        // Evita que el formulario se envíe (si está dentro de un formulario)
+        event.preventDefault();
+        confirmQuantity();
+
+        // Llama a la función que deseas ejecutar al presionar 'Enter'
+    }
+});
 
 
