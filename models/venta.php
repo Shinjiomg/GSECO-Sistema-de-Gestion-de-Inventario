@@ -110,7 +110,7 @@ class Venta extends Database
 		$rol = $_SESSION['rol'];
 
 		if($rol === 2){
-			$query = $this->pdo->query("SELECT venta.id_venta,  DATE_FORMAT(venta.fecha, '%d/%m/%Y %H:%i') AS fecha_venta, GROUP_CONCAT(articulo.nombre SEPARATOR ', ') AS nombres_productos, ROUND(venta.total) AS total, metodos_pago.nombre as tipo_pago
+			$query = $this->pdo->query("SELECT venta.id_venta,  DATE_FORMAT(venta.fecha, '%d/%m/%Y %H:%i') AS fecha_venta, GROUP_CONCAT(articulo.nombre SEPARATOR ', ') AS nombres_productos, ROUND(venta.total) AS total, metodos_pago.nombre as tipo_pago, GROUP_CONCAT(metodos_pago.nombre SEPARATOR ', ') AS metodos_pagos
 				FROM venta 
 				JOIN detalle_venta ON venta.id_venta = detalle_venta.Venta_id_venta 
 				JOIN metodos_pago ON metodos_pago.id_metodo_pago = detalle_venta.metodo_pago

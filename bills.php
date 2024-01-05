@@ -288,7 +288,7 @@ $transacciones = $venta->transacciones($idUsuario);
                                         <div class="column">
                                             <div
                                                 class="d-flex justify-content-end align-items-center text-md text-uppercase font-weight-bolder">
-                                                <?php echo $f->tipo_pago; ?>
+                                                <?php echo $f->metodos_pagos; ?>
                                             </div>
                                             <div
                                                 class="d-flex justify-content-end text-success align-items-center text-gradient text-md text-uppercase font-weight-bolder">
