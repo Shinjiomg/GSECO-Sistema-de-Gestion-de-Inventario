@@ -178,7 +178,7 @@ function renderProducts(data) {
             btn.style.textOverflow = "ellipsis";
             btn.style.whiteSpace = "nowrap";
             btn.style.maxWidth = "100%";
-            if (window.innerWidth >= 1200) {
+            if (window.innerWidth > 1200) {
                 btn.setAttribute("data-toggle", "tooltip");
                 btn.setAttribute("data-placement", "top");
                 btn.setAttribute("title", pr.nombre); // Agrega el nombre del artículo como título del tooltip
@@ -195,16 +195,23 @@ function renderProducts(data) {
             var precioDiv = document.createElement("div");
             precioDiv.textContent = '$' + precioFormateado;
 
-            // Agregar los divs al botón
-            btn.appendChild(nombreDiv);
-            btn.appendChild(precioDiv);
-            // Destruir el tooltip existente antes de asignar uno nuevo
-            if (window.innerWidth >= 1200) {
+            function destroyTooltip() {
                 $(btn).tooltip('dispose');
+            }
+            
+            // Verificar si la pantalla es lo suficientemente grande para los tooltips
+            if (window.innerWidth >= 1200) {
+                destroyTooltip();
 
                 // Agregar el nuevo tooltip solo en pantallas grandes
                 $(btn).tooltip();
+            } else {
+                // Si la pantalla es pequeña, destruir el tooltip para evitar que se quede pegado
+                destroyTooltip();
             }
+            // Agregar los divs al botón
+            btn.appendChild(nombreDiv);
+            btn.appendChild(precioDiv);
             // Crear un div para el modal
             var modalDiv = document.createElement("div");
             modalDiv.className = "modal fade";

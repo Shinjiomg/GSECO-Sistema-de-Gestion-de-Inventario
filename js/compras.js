@@ -131,9 +131,11 @@ function renderProductsTable(data) {
             btn.style.overflow = "hidden";
             btn.style.textOverflow = "ellipsis";
             btn.style.whiteSpace = "nowrap";
-            btn.setAttribute("data-toggle", "tooltip");
-            btn.setAttribute("data-placement", "top");
-            btn.setAttribute("title", pr.nombre); // Agrega el nombre del artículo como título del tooltip
+            if (window.innerWidth > 1200) {
+                btn.setAttribute("data-toggle", "tooltip");
+                btn.setAttribute("data-placement", "top");
+                btn.setAttribute("title", pr.nombre); // Agrega el nombre del artículo como título del tooltip
+            }
             // Crear un div para el nombre del producto
             var nombreDiv = document.createElement("div");
             nombreDiv.textContent = pr.id_articulo + " - " + pr.nombre;
@@ -146,7 +148,20 @@ function renderProductsTable(data) {
             var precioFormateado = precioNumerico.toLocaleString('es-CO');
             var precioDiv = document.createElement("div");
             precioDiv.textContent = '$' + precioFormateado;
+            function destroyTooltip() {
+                $(btn).tooltip('dispose');
+            }
 
+            // Verificar si la pantalla es lo suficientemente grande para los tooltips
+            if (window.innerWidth >= 1200) {
+                destroyTooltip();
+
+                // Agregar el nuevo tooltip solo en pantallas grandes
+                $(btn).tooltip();
+            } else {
+                // Si la pantalla es pequeña, destruir el tooltip para evitar que se quede pegado
+                destroyTooltip();
+            }
             // Agregar los divs al botón
             btn.appendChild(nombreDiv);
             btn.appendChild(precioDiv);
