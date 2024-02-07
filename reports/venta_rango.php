@@ -33,6 +33,7 @@ class pdf extends FPDF
 		$this->Write(90, 'jose.jairo.fuentes@gmail.com');
 		$this->Ln();
 		$this->Write(-80, '123-456-7890');
+		$this->SetY(60);
 	}
 
 	public function footer()
@@ -79,29 +80,29 @@ $fpdf->SetTextColor(0, 0, 0);
 $fpdf->SetFillColor(255, 255, 255);
 $total = 0;
 foreach ($ventas_rango as $v) {
-	/* $precio = number_format($detail->precio, 0, '', '.');
-	$cantidad = number_format($detail->cantidad, 0, '', '.');
-	$total = number_format($detail->cantidad * $detail->precio, 0, '', '.'); */
+	
+	if ($fpdf->GetY() > 250) { // Ajusta este valor según la posición en la que quieras que se agregue una nueva página
+	   $fpdf->AddPage(); // Agregar una nueva página
+	   
+	}
+	
 	$fpdf->Cell(60, 10, $v->nombres.' '.$v->apellidos, 0, 0, 'C', 1);
 	$fpdf->Cell(60, 10, $v->nombre, 0, 0, 'C', 1);
 	$fpdf->Cell(30, 10, $v->cantidad_total, 0, 0, 'C', 1); 
 	$fpdf->Cell(40, 10,'$ '.  number_format($v->subtotal, 0, '', '.'), 0, 0, 'C', 1);
 	$total = $total + $v->subtotal;
-	/* 
-	$fpdf->Cell(30, 10, "$" . $total, 0, 0, 'C', 1); 
-	$fpdf->Cell(60, 10, $detail->product_name, 0, 0, 'C', 1);
-	$fpdf->Cell(60, 10, $detail->description, 0, 0, 'C', 1);
-	$fpdf->Cell(20, 10, $detail->unit_price, 0, 0, 'C', 1);
-	$fpdf->Cell(20, 10, $detail->quantity, 0, 0, 'C', 1);
-	$fpdf->Cell(30, 10, $detail->uni_price * $detail->quantity, 0, 0, 'C', 1); */
+	
 	$fpdf->Ln();
+
+
 }
 $fpdf->Ln();
 $fpdf->SetFont('Arial', 'B', 16);
-$fpdf->SetX(150);
+$fpdf->SetX(100);
 $fpdf->Write(0, 'TOTAL: ');
 $totalEnPesos = number_format($total, 0, '', '.');
 $fpdf->SetFont('Arial', '', 16);
+$fpdf->SetX(150);
 $fpdf->Write(0, "$" . $totalEnPesos); 
 
 /* $fpdf->Ln();
