@@ -181,7 +181,7 @@ class Venta extends Database
 		} else {
 			/* Solo administrador */
 			$query = $this->pdo->query("SELECT COALESCE(SUM(venta.total),0) as total_venta, usuario.nombres, usuario.apellidos, usuario.id_usuario FROM venta
-				JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario WHERE  DATE(venta.fecha) BETWEEN '{$rango->start}' AND '{$rango->end}' GROUP BY usuario.nombres");
+				JOIN usuario on venta.Usuario_id_usuario = usuario.id_usuario WHERE  DATE(venta.fecha) BETWEEN '{$rango->start}' AND '{$rango->end}' GROUP BY usuario.id_usuario");
 		}
 		return $query->fetchAll();
 	}
@@ -191,7 +191,7 @@ class Venta extends Database
 		$rol = $_SESSION['rol'];
 
 		if($rol === 2){
-			$query = $this->pdo->query("SELECT  usuario.nombres, usuario.apellidos,sum(detalle_venta.cantidad) as cantidad_total,sum(detalle_venta.cantidad * detalle_venta.precio) as subtotal, articulo.nombre FROM venta 
+			$query = $this->pdo->query("SELECT  usuario.nombres, venta.total as sum_t, usuario.apellidos,sum(detalle_venta.cantidad) as cantidad_total,sum(detalle_venta.cantidad * detalle_venta.precio) as subtotal, articulo.nombre FROM venta 
 			INNER JOIN usuario ON venta.Usuario_id_usuario = usuario.id_usuario
 			INNER JOIN detalle_venta ON venta.id_venta = detalle_venta.Venta_id_venta
 			INNER JOIN articulo ON articulo.id_articulo = detalle_venta.Articulo_id_articulo
